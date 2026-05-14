@@ -826,3 +826,101 @@ footer {
   .footer-inner { flex-direction: column; align-items: center; text-align: center; }
   .footer-right { align-items: center; }
 }
+
+/* ── BRAND TYPOGRAPHY — Barlow Condensed for all display / heading elements
+   Primary font per SC Wave Brand Identity Guide 2025-26
+   ──────────────────────────────────────────────────────────────────────── */
+
+/* Hero display titles */
+.hero h1 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: clamp(42px, 6.5vw, 72px);
+  letter-spacing: 0.01em;
+}
+
+.page-hero h1 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: clamp(30px, 5vw, 52px);
+  letter-spacing: 0.01em;
+}
+
+/* Section / group labels (h2) */
+.resource-group h2 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.22em;
+}
+
+/* Card titles */
+.card h3 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-size: 20px;
+  letter-spacing: 0.01em;
+}
+
+/* Resource item & video card titles */
+.resource-info h4,
+.video-info h4 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-size: 16px;
+  letter-spacing: 0.01em;
+}
+
+/* Coach / profile headings */
+.profile-header h2 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 30px;
+  letter-spacing: 0.01em;
+}
+
+.profile-body h3 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.22em;
+}
+
+/* Header "SC WAVE" wordmark */
+.logo-text .club {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 18px;
+  letter-spacing: 0.14em;
+}
+
+/* Hero stats numbers */
+.stat-num {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 34px;
+  letter-spacing: 0.02em;
+}
+
+/* Nav links */
+nav a {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.12em;
+}
+
+/* Card footer "Go to →" */
+.card-footer {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 15px;
+  letter-spacing: 0.06em;
+}
+
+/* Value badges in coach profile */
+.value-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 13px;
+  letter-spacing: 0.14em;
+}
