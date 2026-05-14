@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SC Wave Soccer Club — Brand Identity</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700;1,800;1,900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --black:     #0D0D0D;
+      --black-mid: #1A1A1A;
+      --black-soft:#242424;
+      --gold:      #F5C518;
+      --gold-dark: #C49A10;
+      --gold-light:#FAD84A;
+      --cyan:      #00D4E4;
+      --white:     #FFFFFF;
+      --off-white: #F2F2F0;
+      --gray:      #6B6B6B;
+      --gray-light:#A0A0A0;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #D0D0D0;
+      font-family: 'Inter', sans-serif;
+      padding: 40px 20px;
+    }
+
+    /* ── Page Shell ─────────────────────────────────────────────────────────── */
+    .page {
+      width: 1200px;
+      min-height: 675px;
+      margin: 0 auto 28px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Page 1 · Cover ─────────────────────────────────────────────────────── */
+    .pg-cover {
+      background: var(--black);
+      padding: 56px 72px;
+      justify-content: center;
+    }
+
+    .cover-logo {
+      position: absolute;
+      top: 44px;
+      left: 72px;
+      width: 72px;
+    }
+
+    .cover-menu {
+      position: absolute;
+      top: 48px;
+      right: 72px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .cover-menu span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--white);
+      opacity: 0.5;
+    }
+
+    .cover-waves {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 420px;
+      height: 100%;
+      opacity: 0.12;
+    }
+
+    .cover-waves-bl {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 320px;
+      height: 260px;
+      opacity: 0.08;
+    }
+
+    .cover-divider {
+      width: 100%;
+      height: 1px;
+      background: rgba(255,255,255,0.15);
+      margin: 32px 0 20px;
+    }
+
+    .cover-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 72px;
+      line-height: 0.95;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: -0.5px;
+    }
+
+    .cover-title .gold { color: var(--gold); }
+
+    .cover-sub {
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: 11px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin-top: 10px;
+    }
+
+    /* ── Page 2 · Logo ──────────────────────────────────────────────────────── */
+    .pg-light {
+      background: var(--white);
+      padding: 60px 80px;
+    }
+
+    .section-divider {
+      width: 100%;
+      height: 1px;
+      background: #E0E0E0;
+      margin: 28px 0;
+    }
+
+    .section-divider-dark {
+      width: 100%;
+      height: 1px;
+      background: rgba(255,255,255,0.12);
+      margin: 28px 0;
+    }
+
+    .page-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 52px;
+      line-height: 1;
+      text-transform: uppercase;
+      color: var(--black);
+      letter-spacing: 0.5px;
+    }
+
+    .page-label-dark {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 52px;
+      line-height: 1;
+      text-transform: uppercase;
+      color: var(--white);
+      letter-spacing: 0.5px;
+    }
+
+    .section-tag {
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-top: 4px;
+    }
+
+    .logo-showcase {
+      display: flex;
+      align-items: center;
+      gap: 60px;
+      flex: 1;
+      margin-top: 24px;
+    }
+
+    .logo-grid-wrap {
+      position: relative;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #E0E0E0;
+      padding: 40px;
+    }
+
+    .logo-grid-wrap::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,0,0,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,0.06) 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+
+    .logo-grid-wrap img {
+      position: relative;
+      width: 220px;
+      height: 220px;
+      object-fit: contain;
+    }
+
+    .logo-tagline {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: #333;
+      text-align: center;
+      margin-top: 18px;
+    }
+
+    .logo-copy {
+      max-width: 340px;
+    }
+
+    .logo-copy h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 28px;
+      text-transform: uppercase;
+      color: var(--black);
+      margin-bottom: 12px;
+    }
+
+    .logo-copy p {
+      font-size: 13.5px;
+      color: #555;
+      line-height: 1.65;
+      margin-bottom: 10px;
+    }
+
+    .logo-rule {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .logo-rule-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .logo-rule p {
+      font-size: 11.5px;
+      color: #666;
+      line-height: 1.4;
+      margin: 0;
+    }
+
+    /* ── Page 3 · Family of Logos ───────────────────────────────────────────── */
+    .logo-family-grid {
+      display: flex;
+      gap: 32px;
+      margin-top: 32px;
+    }
+
+    .logo-variant {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .logo-variant-box {
+      width: 100%;
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 4px;
+      padding: 28px;
+    }
+
+    .logo-variant-box img {
+      width: 120px;
+      height: 120px;
+      object-fit: contain;
+    }
+
+    .logo-variant-label {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 9px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gray);
+    }
+
+    /* ── Pages 4–5 · Fonts ──────────────────────────────────────────────────── */
+    .pg-dark {
+      background: var(--black-mid);
+      padding: 60px 80px;
+    }
+
+    .font-layout {
+      display: flex;
+      gap: 72px;
+      align-items: flex-start;
+      flex: 1;
+      margin-top: 32px;
+    }
+
+    .font-specimen {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+      min-width: 200px;
+    }
+
+    .font-specimen .big-aa {
+      font-size: 120px;
+      line-height: 1;
+      color: var(--white);
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .font-specimen .big-aa-body {
+      font-size: 100px;
+      line-height: 1;
+      color: var(--white);
+      font-weight: 300;
+    }
+
+    .font-name {
+      font-family: 'Inter', sans-serif;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-top: 4px;
+    }
+
+    .font-grid {
+      flex: 1;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 0;
+    }
+
+    .font-grid span {
+      font-size: 15px;
+      font-weight: 900;
+      color: var(--white);
+      padding: 6px 0;
+      text-transform: uppercase;
+    }
+
+    .font-grid-body span {
+      font-weight: 300;
+      text-transform: none;
+    }
+
+    .font-corner-label {
+      position: absolute;
+      top: 56px;
+      right: 80px;
+      text-align: right;
+    }
+
+    .font-corner-label p {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 20px;
+      text-transform: uppercase;
+      color: var(--white);
+      line-height: 1;
+    }
+
+    .font-corner-label span {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 20px;
+      text-transform: uppercase;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    /* ── Pages 6–7 · Colors ─────────────────────────────────────────────────── */
+    .color-grid {
+      display: flex;
+      gap: 48px;
+      margin-top: 32px;
+    }
+
+    .color-swatch {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .swatch-divider {
+      width: 100%;
+      height: 1px;
+      background: #D0D0D0;
+    }
+
+    .swatch-hex {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: #333;
+      letter-spacing: 0.04em;
+    }
+
+    .swatch-name {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 500;
+      color: #888;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-top: -6px;
+    }
+
+    .swatch-circle {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+    }
+
+    .swatch-circle.outlined {
+      border: 1.5px solid #CCCCCC;
+    }
+
+    /* secondary color page */
+    .color-grid-2 {
+      display: flex;
+      gap: 48px;
+      margin-top: 32px;
+    }
+
+    /* ── Page 8 · Usage ─────────────────────────────────────────────────────── */
+    .usage-cols {
+      display: flex;
+      gap: 32px;
+      margin-top: 32px;
+      flex: 1;
+    }
+
+    .usage-col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .usage-block {
+      border-radius: 6px;
+      padding: 24px 28px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .usage-block h4 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 28px;
+      text-transform: uppercase;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .usage-block p {
+      font-size: 11px;
+      line-height: 1.5;
+      opacity: 0.65;
+    }
+
+    .usage-block .label-tag {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      opacity: 0.45;
+      margin-bottom: 16px;
+    }
+
+    /* ── Print ──────────────────────────────────────────────────────────────── */
+    @media print {
+      body { background: none; padding: 0; }
+      .page {
+        margin: 0;
+        width: 100%;
+        min-height: 100vh;
+        page-break-after: always;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════════════════════════════
+     PAGE 1 · COVER
+════════════════════════════════════════════════════════════════════════ -->
+<div class="page pg-cover">
+
+  <!-- Wave decorations top-right -->
+  <svg class="cover-waves" viewBox="0 0 420 675" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M 420,0 Q 300,80 420,160 Q 300,240 420,320 Q 300,400 420,480 Q 300,560 420,640" stroke="#F5C518" stroke-width="1.2" fill="none"/>
+    <path d="M 420,20 Q 290,100 420,180 Q 290,260 420,340 Q 290,420 420,500 Q 290,580 420,660" stroke="#F5C518" stroke-width="1" fill="none"/>
+    <path d="M 420,40 Q 280,120 420,200 Q 280,280 420,360 Q 280,440 420,520 Q 280,600 420,675" stroke="#00D4E4" stroke-width="0.8" fill="none"/>
+    <path d="M 420,60 Q 260,140 420,220 Q 260,300 420,380 Q 260,460 420,540 Q 260,620 420,675" stroke="#00D4E4" stroke-width="0.7" fill="none"/>
+    <path d="M 420,80 Q 240,160 420,240 Q 240,320 420,400 Q 240,480 420,560 Q 240,640 420,675" stroke="#F5C518" stroke-width="0.5" fill="none"/>
+    <path d="M 420,100 Q 220,180 420,260 Q 220,340 420,420 Q 220,500 420,580" stroke="#00D4E4" stroke-width="0.4" fill="none"/>
+  </svg>
+
+  <!-- Wave decorations bottom-left -->
+  <svg class="cover-waves-bl" viewBox="0 0 320 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M 0,260 Q 80,180 0,100 Q 80,40 0,0" stroke="#F5C518" stroke-width="1" fill="none"/>
+    <path d="M 20,260 Q 100,180 20,100 Q 100,40 20,0" stroke="#F5C518" stroke-width="0.8" fill="none"/>
+    <path d="M 40,260 Q 120,180 40,100 Q 120,40 40,0" stroke="#00D4E4" stroke-width="0.6" fill="none"/>
+    <path d="M 60,260 Q 140,180 60,100 Q 140,40 60,0" stroke="#00D4E4" stroke-width="0.5" fill="none"/>
+  </svg>
+
+  <img class="cover-logo" src="assets/scwave-logo.png" alt="SC Wave" />
+
+  <div class="cover-menu">
+    <span></span><span></span><span></span>
+  </div>
+
+  <div style="margin-top:auto;margin-bottom:auto;">
+    <div class="cover-title">
+      <span class="gold">SC Wave</span><br>Soccer Club<br>Brand Identity
+    </div>
+    <div class="cover-divider"></div>
+    <div class="cover-sub">A Comprehensive Visual Language &nbsp;·&nbsp; 2025–26 Season</div>
+  </div>
+
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════════════════════
+     PAGE 2 · THE LOGO
+════════════════════════════════════════════════════════════════════════ -->
+<div class="page pg-light">
+
+  <div class="section-divider" style="margin-top:0;"></div>
+
+  <div class="page-label">SC Wave Soccer Club Logo</div>
+  <div class="section-tag">Primary Mark &amp; Clear Space</div>
+
+  <div class="logo-showcase">
+
+    <div style="display:flex;flex-direction:column;align-items:center;gap:12px;flex:1.2;">
+      <div class="logo-grid-wrap">
+        <img src="assets/scwave-logo.png" alt="SC Wave Logo" />
+      </div>
+      <div class="logo-tagline">SC Wave Soccer Club &nbsp;·&nbsp; Founded 1978 &nbsp;·&nbsp; MLS NEXT</div>
+    </div>
+
+    <div class="logo-copy">
+      <h3>Clear Space &amp; Sizing</h3>
+      <p>Always maintain clear space around the logo equal to the width of the "S" in the mark. Never crowd the logo with text or other graphic elements.</p>
+      <p>Minimum print size: <strong>0.75 inches</strong> wide.<br>Minimum digital size: <strong>60px</strong> wide.</p>
+
+      <div style="margin-top:20px;display:flex;flex-direction:column;gap:12px;">
+        <div class="logo-rule">
+          <div class="logo-rule-dot" style="background:#22C55E;"></div>
+          <p>Use on solid black or very dark backgrounds for maximum impact.</p>
+        </div>
+        <div class="logo-rule">
+          <div class="logo-rule-dot" style="background:#22C55E;"></div>
+          <p>Use on white or light neutral backgrounds with full detail visible.</p>
+        </div>
+        <div class="logo-rule">
+          <div class="logo-rule-dot" style="background:#EF4444;"></div>
+          <p>Do not place on busy photography or low-contrast colored backgrounds.</p>
+        </div>
+        <div class="logo-rule">
+          <div class="logo-rule-dot" style="background:#EF4444;"></div>
+          <p>Do not distort, rotate, recolor, or add drop shadows to the logo.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="section-divider"></div>
+
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════════════════════
+     PAGE 3 · FAMILY OF LOGOS
+════════════════════════════════════════════════════════════════════════ -->
+<div class="page pg-light">
+
+  <div class="section-divider" style="margin-top:0;"></div>
+
+  <div class="page-label">Family of Logos</div>
+  <div class="section-tag">Logo Variations &amp; Approved Backgrounds</div>
+
+  <div class="logo-family-grid">
+
+    <div class="logo-variant">
+      <div class="logo-variant-box" style="background:#0D0D0D;">
+        <img src="assets/scwave-logo.png" alt="SC Wave on Black" />
+      </div>
+      <div class="logo-variant-label">Primary — On Black</div>
+    </div>
+
+    <div class="logo-variant">
+      <div class="logo-variant-box" style="background:#1A1A1A;border:1px solid #333;">
+        <img src="assets/scwave-logo.png" alt="SC Wave on Dark" />
+      </div>
+      <div class="logo-variant-label">Secondary — On Dark</div>
+    </div>
+
+    <div class="logo-variant">
+      <div class="logo-variant-box" style="background:#F2F2F0;border:1px solid #E0E0E0;">
+        <img src="assets/scwave-logo.png" alt="SC Wave on Light" />
+      </div>
+      <div class="logo-variant-label">On Light Background</div>
+    </div>
+
+    <div class="logo-variant">
+      <div class="logo-variant-box" style="background:#F5C518;">
+        <img src="assets/scwave-logo.png" alt="SC Wave on Gold" />
+      </div>
+      <div class="logo-variant-label">On Brand Gold</div>
+    </div>
+
+  </div>
+
+  <div style="margin-top:28px;padding:20px 24px;background:#FFF8E7;border-left:3px solid #F5C518;border-radius:2px;">
+    <p style="font-size:12px;color:#555;line-height:1.6;"><strong style="color:#333;">MLS NEXT Requirement:</strong> When the SC Wave logo appears alongside the MLS NEXT badge (on documents, kits, or digital materials), always place the MLS NEXT badge to the right of or below the SC Wave primary mark. Both logos must remain clearly legible.</p>
+  </div>
+
+  <div class="section-divider"></div>
+
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════════════════════
+     PAGE 4 · PRIMARY FONT — BARLOW CONDENSED
+════════════════════════════════════════════════════════════════════════ -->
+<div class="page pg-dark" style="position:relative;">
+
+  <div class="font-corner-label">
+    <p>Family of</p>
+    <span>Fonts</span>
+  </div>
+
+  <div class="page-label-dark">Primary Font</div>
+  <div class="section-tag" style="color:rgba(255,255,255,0.35);">For Headings, Titles &amp; Display</div>
+
+  <div class="section-divider-dark"></div>
+
+  <div class="font-layout">
+
+    <div class="font-specimen">
+      <div class="big-aa" style="font-family:'Barlow Condensed',sans-serif;">AA</div>
+      <div class="font-name">Barlow Condensed</div>
+    </div>
+
+    <div style="flex:1;">
+      <div class="font-grid" style="margin-bottom:8px;">
+        <span style="font-family:'Barlow Condensed',sans-serif;">AA</span>
+        <span style="font-family:'Barlow Condensed',sans-serif;">BB</span>
+        <span style="font-family:'Barlow Condensed',sans-serif;">CC</span>
+        <span style="font-family:'Barlow Condensed',sans-serif;">DD</span>
+        <span style="font-family:'Barlow Condensed',sans-serif;">EE</span>
+        <span style="font-family:'Barlow Condensed',sans-serif;">FF</span>
+        <span style="font-family:'Barlow Condensed',sans-serif;">GG</span>
+        <span style="font-family:'Barlow Condensed',sans-serif;">HH</span>
+        <span style="font-family:'Barlow Condensed',sans-serif;">II</span>
+        <span style="font-family:'Barlow Condensed',sans-serif;">JJ</span>
+        <span style="font-family:'Barlow Condensed',sans-serif;">KK</span>
+        <span style="font-family:'Barlow Condensed',sans-serif;">LL</span>
+        <span style="font-family:'Barlow Condensed',sans-serif;">MM</span>
+        <span style="font-family:'Barlow Condensed',sans-serif;">NN</span>
+        <span style="font-family:'Barlow Condensed',sans-serif;">OO</span>
+        <span style="font-family:'Barlow Condensed',sans-serif;">PP</span>
+        <span style="font-family:'Barlow Condensed',sans-serif;">QQ</span>
+        <span style="font-family:'Barlow Condensed',sans-serif;">RR</span>
+        <span style="font-family:'Barlow Condensed',sans-serif;">SS</span>
+        <span style="font-family:'Barlow Condensed',sans-serif;">TT</span>
+        <span style="font-family:'Barlow Condensed',sans-serif;">UU</span>
+        <span style="font-family:'Barlow Condensed',sans-serif;">VV</span>
+        <span style="font-family:'Barlow Condensed',sans-serif;">WW</span>
+        <span style="font-family:'Barlow Condensed',sans-serif;">XX</span>
+        <span style="font-family:'Barlow Condensed',sans-serif;">YY</span>
+        <span style="font-family:'Barlow Condensed',sans-serif;">ZZ</span>
+        <span style="font-family:'Barlow Condensed',sans-serif;">00</span>
+        <span style="font-family:'Barlow Condensed',sans-serif;">01</span>
+        <span style="font-family:'Barlow Condensed',sans-serif;">02</span>
+        <span style="font-family:'Barlow Condensed',sans-serif;">03</span>
+        <span style="font-family:'Barlow Condensed',sans-serif;">04</span>
+        <span style="font-family:'Barlow Condensed',sans-serif;">05</span>
+        <span style="font-family:'Barlow Condensed',sans-serif;">06</span>
+        <span style="font-family:'Barlow Condensed',sans-serif;">07</span>
+        <span style="font-family:'Barlow Condensed',sans-serif;">08</span>
+        <span style="font-family:'Barlow Condensed',sans-serif;">09</span>
+      </div>
+
+      <div style="margin-top:28px;border-left:3px solid var(--gold);padding-left:18px;">
+        <p style="font-family:'Barlow Condensed',sans-serif;font-size:36px;font-weight:900;color:var(--gold);line-height:1;text-transform:uppercase;">DEVELOP · COMPETE · EXCEL</p>
+        <p style="font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;color:rgba(255,255,255,0.6);margin-top:4px;text-transform:uppercase;">SC Wave MLS NEXT — 2025–26 Season</p>
+        <p style="font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:600;color:rgba(255,255,255,0.35);margin-top:4px;text-transform:uppercase;letter-spacing:0.05em;">Use for: page titles · section headers · player names · document headings</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="section-divider-dark"></div>
+
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════════════════════
+     PAGE 5 · SECONDARY FONT — INTER
+════════════════════════════════════════════════════════════════════════ -->
+<div class="page pg-dark" style="position:relative;">
+
+  <div class="font-corner-label">
+    <p>Family of</p>
+    <span>Fonts</span>
+  </div>
+
+  <div class="page-label-dark">Secondary Font</div>
+  <div class="section-tag" style="color:rgba(255,255,255,0.35);">For Subtitles, Body Text &amp; Captions</div>
+
+  <div class="section-divider-dark"></div>
+
+  <div class="font-layout">
+
+    <div class="font-specimen">
+      <div class="big-aa-body" style="font-family:'Inter',sans-serif;font-weight:300;">Aa</div>
+      <div class="font-name">Inter</div>
+    </div>
+
+    <div style="flex:1;">
+      <div class="font-grid font-grid-body" style="margin-bottom:8px;">
+        <span style="font-family:'Inter',sans-serif;font-weight:400;font-size:14px;">Aa</span>
+        <span style="font-family:'Inter',sans-serif;font-weight:400;font-size:14px;">Bb</span>
+        <span style="font-family:'Inter',sans-serif;font-weight:400;font-size:14px;">Cc</span>
+        <span style="font-family:'Inter',sans-serif;font-weight:400;font-size:14px;">Dd</span>
+        <span style="font-family:'Inter',sans-serif;font-weight:400;font-size:14px;">Ee</span>
+        <span style="font-family:'Inter',sans-serif;font-weight:400;font-size:14px;">Ff</span>
+        <span style="font-family:'Inter',sans-serif;font-weight:400;font-size:14px;">Gg</span>
+        <span style="font-family:'Inter',sans-serif;font-weight:400;font-size:14px;">Hh</span>
+        <span style="font-family:'Inter',sans-serif;font-weight:400;font-size:14px;">Ii</span>
+        <span style="font-family:'Inter',sans-serif;font-weight:400;font-size:14px;">Jj</span>
+        <span style="font-family:'Inter',sans-serif;font-weight:400;font-size:14px;">Kk</span>
+        <span style="font-family:'Inter',sans-serif;font-weight:400;font-size:14px;">Ll</span>
+        <span style="font-family:'Inter',sans-serif;font-weight:400;font-size:14px;">Mm</span>
+        <span style="font-family:'Inter',sans-serif;font-weight:400;font-size:14px;">Nn</span>
+        <span style="font-family:'Inter',sans-serif;font-weight:400;font-size:14px;">Oo</span>
+        <span style="font-family:'Inter',sans-serif;font-weight:400;font-size:14px;">Pp</span>
+        <span style="font-family:'Inter',sans-serif;font-weight:400;font-size:14px;">Qq</span>
+        <span style="font-family:'Inter',sans-serif;font-weight:400;font-size:14px;">Rr</span>
+        <span style="font-family:'Inter',sans-serif;font-weight:400;font-size:14px;">Ss</span>
+        <span style="font-family:'Inter',sans-serif;font-weight:400;font-size:14px;">Tt</span>
+        <span style="font-family:'Inter',sans-serif;font-weight:400;font-size:14px;">Uu</span>
+        <span style="font-family:'Inter',sans-serif;font-weight:400;font-size:14px;">Vv</span>
+        <span style="font-family:'Inter',sans-serif;font-weight:400;font-size:14px;">Ww</span>
+        <span style="font-family:'Inter',sans-serif;font-weight:400;font-size:14px;">Xx</span>
+        <span style="font-family:'Inter',sans-serif;font-weight:400;font-size:14px;">Yy</span>
+        <span style="font-family:'Inter',sans-serif;font-weight:400;font-size:14px;">Zz</span>
+        <span style="font-family:'Inter',sans-serif;font-weight:400;font-size:14px;">00</span>
+        <span style="font-family:'Inter',sans-serif;font-weight:400;font-size:14px;">01</span>
+        <span style="font-family:'Inter',sans-serif;font-weight:400;font-size:14px;">02</span>
+        <span style="font-family:'Inter',sans-serif;font-weight:400;font-size:14px;">03</span>
+        <span style="font-family:'Inter',sans-serif;font-weight:400;font-size:14px;">04</span>
+        <span style="font-family:'Inter',sans-serif;font-weight:400;font-size:14px;">05</span>
+        <span style="font-family:'Inter',sans-serif;font-weight:400;font-size:14px;">06</span>
+        <span style="font-family:'Inter',sans-serif;font-weight:400;font-size:14px;">07</span>
+        <span style="font-family:'Inter',sans-serif;font-weight:400;font-size:14px;">08</span>
+        <span style="font-family:'Inter',sans-serif;font-weight:400;font-size:14px;">09</span>
+      </div>
+
+      <div style="margin-top:28px;border-left:3px solid var(--cyan);padding-left:18px;">
+        <p style="font-family:'Inter',sans-serif;font-size:17px;font-weight:400;color:rgba(255,255,255,0.85);line-height:1.6;">SC Wave competes at the highest youth development platform in the country. We develop complete players — technically sound, tactically intelligent, physically prepared, and mentally strong.</p>
+        <p style="font-family:'Inter',sans-serif;font-size:11px;font-weight:500;color:rgba(255,255,255,0.35);margin-top:12px;text-transform:uppercase;letter-spacing:0.1em;">Use for: body text · descriptions · subtitles · captions · form fields</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="section-divider-dark"></div>
+
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════════════════════
+     PAGE 6 · BRAND COLORS — PRIMARY
+════════════════════════════════════════════════════════════════════════ -->
+<div class="page pg-light">
+
+  <div class="section-divider" style="margin-top:0;"></div>
+
+  <div class="page-label">Brand Colors</div>
+  <div class="section-tag">Primary Color Palette</div>
+
+  <div class="color-grid">
+
+    <div class="color-swatch">
+      <div class="swatch-divider"></div>
+      <div class="swatch-hex">#0D0D0D</div>
+      <div class="swatch-name">SC Black</div>
+      <div class="swatch-circle" style="background:#0D0D0D;"></div>
+      <div style="font-size:11px;color:#888;line-height:1.5;margin-top:8px;">Primary background. Use for all document backgrounds, headers, and dark surface elements.</div>
+    </div>
+
+    <div class="color-swatch">
+      <div class="swatch-divider"></div>
+      <div class="swatch-hex">#F5C518</div>
+      <div class="swatch-name">SC Gold</div>
+      <div class="swatch-circle" style="background:#F5C518;"></div>
+      <div style="font-size:11px;color:#888;line-height:1.5;margin-top:8px;">Primary accent. Use for headings on dark backgrounds, key callouts, and logo mark highlights.</div>
+    </div>
+
+    <div class="color-swatch">
+      <div class="swatch-divider"></div>
+      <div class="swatch-hex">#00D4E4</div>
+      <div class="swatch-name">MLS Cyan</div>
+      <div class="swatch-circle" style="background:#00D4E4;"></div>
+      <div style="font-size:11px;color:#888;line-height:1.5;margin-top:8px;">Secondary accent tied to MLS NEXT identity. Use for links, active states, and supporting highlights.</div>
+    </div>
+
+    <div class="color-swatch">
+      <div class="swatch-divider"></div>
+      <div class="swatch-hex">#FFFFFF</div>
+      <div class="swatch-name">White</div>
+      <div class="swatch-circle outlined" style="background:#FFFFFF;"></div>
+      <div style="font-size:11px;color:#888;line-height:1.5;margin-top:8px;">Primary text on dark backgrounds. Use for body copy, labels, and clean print surfaces.</div>
+    </div>
+
+  </div>
+
+  <div class="section-divider"></div>
+
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════════════════════
+     PAGE 7 · BRAND COLORS — EXTENDED
+════════════════════════════════════════════════════════════════════════ -->
+<div class="page pg-light">
+
+  <div class="section-divider" style="margin-top:0;"></div>
+
+  <div class="page-label">Brand Colors</div>
+  <div class="section-tag">Extended &amp; Supporting Palette</div>
+
+  <div class="color-grid">
+
+    <div class="color-swatch">
+      <div class="swatch-divider"></div>
+      <div class="swatch-hex">#1A1A1A</div>
+      <div class="swatch-name">Dark Surface</div>
+      <div class="swatch-circle" style="background:#1A1A1A;"></div>
+      <div style="font-size:11px;color:#888;line-height:1.5;margin-top:8px;">Cards, panels, and secondary dark surfaces. Slightly lighter than SC Black for depth layering.</div>
+    </div>
+
+    <div class="color-swatch">
+      <div class="swatch-divider"></div>
+      <div class="swatch-hex">#C49A10</div>
+      <div class="swatch-name">Gold Dark</div>
+      <div class="swatch-circle" style="background:#C49A10;"></div>
+      <div style="font-size:11px;color:#888;line-height:1.5;margin-top:8px;">Hover states and pressed gold elements. Use when SC Gold needs slightly more depth.</div>
+    </div>
+
+    <div class="color-swatch">
+      <div class="swatch-divider"></div>
+      <div class="swatch-hex">#FAD84A</div>
+      <div class="swatch-name">Gold Light</div>
+      <div class="swatch-circle" style="background:#FAD84A;"></div>
+      <div style="font-size:11px;color:#888;line-height:1.5;margin-top:8px;">Highlights, badges, and emphasis text on very dark backgrounds where full gold is too heavy.</div>
+    </div>
+
+    <div class="color-swatch">
+      <div class="swatch-divider"></div>
+      <div class="swatch-hex">#F2F2F0</div>
+      <div class="swatch-name">Off-White</div>
+      <div class="swatch-circle outlined" style="background:#F2F2F0;"></div>
+      <div style="font-size:11px;color:#888;line-height:1.5;margin-top:8px;">Light background surface for print documents and light-mode layouts. Softer than pure white.</div>
+    </div>
+
+  </div>
+
+  <div class="section-divider"></div>
+
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════════════════════
+     PAGE 8 · COLOR USAGE
+════════════════════════════════════════════════════════════════════════ -->
+<div class="page pg-dark">
+
+  <div class="page-label-dark">Color in Use</div>
+  <div class="section-tag" style="color:rgba(255,255,255,0.35);">Typography &amp; Background Combinations</div>
+
+  <div class="section-divider-dark"></div>
+
+  <div class="usage-cols">
+
+    <div class="usage-col">
+      <!-- Black bg + Gold title + White body -->
+      <div class="usage-block" style="background:#0D0D0D;border:1px solid #2A2A2A;min-height:160px;">
+        <div class="label-tag" style="color:rgba(255,255,255,0.3);">Primary — Dark Layout</div>
+        <h4 style="font-family:'Barlow Condensed',sans-serif;color:#F5C518;font-size:32px;text-transform:uppercase;font-weight:900;line-height:1;">SC Wave Training Hub</h4>
+        <p style="font-family:'Inter',sans-serif;font-size:12px;color:rgba(255,255,255,0.65);margin-top:6px;line-height:1.6;">Study the game. Develop your craft. Compete at the highest level.</p>
+      </div>
+      <!-- Black bg + Cyan accent -->
+      <div class="usage-block" style="background:#0D0D0D;border-left:3px solid #00D4E4;border-top:1px solid #2A2A2A;border-right:1px solid #2A2A2A;border-bottom:1px solid #2A2A2A;min-height:120px;">
+        <div class="label-tag" style="color:rgba(255,255,255,0.3);">With MLS Cyan Accent</div>
+        <h4 style="font-family:'Barlow Condensed',sans-serif;color:#FFFFFF;font-size:24px;text-transform:uppercase;font-weight:900;line-height:1;">Tactical &amp; Mental Activities</h4>
+        <p style="font-family:'Inter',sans-serif;font-size:11px;color:rgba(255,255,255,0.5);margin-top:4px;">Left cyan bar used for section blocks and resource groups</p>
+      </div>
+    </div>
+
+    <div class="usage-col">
+      <!-- Gold bg + Black text -->
+      <div class="usage-block" style="background:#F5C518;min-height:140px;">
+        <div class="label-tag" style="color:rgba(0,0,0,0.4);">Gold Background</div>
+        <h4 style="font-family:'Barlow Condensed',sans-serif;color:#0D0D0D;font-size:28px;text-transform:uppercase;font-weight:900;">MLS NEXT</h4>
+        <p style="font-family:'Inter',sans-serif;font-size:11px;color:rgba(0,0,0,0.6);margin-top:4px;">Gold surfaces always use black text — never white on gold.</p>
+      </div>
+      <!-- White bg + Black text -->
+      <div class="usage-block" style="background:#F2F2F0;min-height:140px;">
+        <div class="label-tag" style="color:#888;">Light / Print Layout</div>
+        <h4 style="font-family:'Barlow Condensed',sans-serif;color:#0D0D0D;font-size:28px;text-transform:uppercase;font-weight:900;">Player Profile</h4>
+        <p style="font-family:'Inter',sans-serif;font-size:11px;color:#555;margin-top:4px;">Light documents use SC Black for all text. Gold is used only as accent lines or headers.</p>
+      </div>
+    </div>
+
+    <div class="usage-col" style="justify-content:space-between;">
+      <div>
+        <p style="font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;text-transform:uppercase;color:var(--gold);letter-spacing:0.1em;margin-bottom:14px;">Type Hierarchy</p>
+        <div style="margin-bottom:10px;">
+          <p style="font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:900;color:var(--white);text-transform:uppercase;line-height:1;">Display / H1</p>
+          <p style="font-size:9px;color:rgba(255,255,255,0.3);letter-spacing:0.1em;text-transform:uppercase;margin-top:2px;">Barlow Condensed · ExtraBold 800–900 · All Caps</p>
+        </div>
+        <div style="margin-bottom:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.08);">
+          <p style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;color:rgba(255,255,255,0.8);text-transform:uppercase;line-height:1;">Section Header / H2</p>
+          <p style="font-size:9px;color:rgba(255,255,255,0.3);letter-spacing:0.1em;text-transform:uppercase;margin-top:2px;">Barlow Condensed · Bold 700 · All Caps</p>
+        </div>
+        <div style="margin-bottom:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.08);">
+          <p style="font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:rgba(255,255,255,0.7);line-height:1.2;">Subtitle / Label</p>
+          <p style="font-size:9px;color:rgba(255,255,255,0.3);letter-spacing:0.1em;text-transform:uppercase;margin-top:2px;">Inter · SemiBold 600 · Title Case</p>
+        </div>
+        <div style="padding-top:8px;border-top:1px solid rgba(255,255,255,0.08);">
+          <p style="font-family:'Inter',sans-serif;font-size:13px;font-weight:400;color:rgba(255,255,255,0.55);line-height:1.6;">Body text for descriptions and supporting copy. Clear, legible, and never heavier than Regular 400 in most cases.</p>
+          <p style="font-size:9px;color:rgba(255,255,255,0.3);letter-spacing:0.1em;text-transform:uppercase;margin-top:4px;">Inter · Regular 400 · Sentence case</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="section-divider-dark"></div>
+
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════════════════════
+     PAGE 9 · CLOSING
+════════════════════════════════════════════════════════════════════════ -->
+<div class="page pg-cover" style="justify-content:center;align-items:center;text-align:center;gap:24px;">
+
+  <svg style="position:absolute;top:0;left:0;width:100%;height:100%;opacity:0.06;" viewBox="0 0 1200 675" fill="none">
+    <circle cx="600" cy="337" r="500" stroke="#F5C518" stroke-width="1"/>
+    <circle cx="600" cy="337" r="400" stroke="#F5C518" stroke-width="1"/>
+    <circle cx="600" cy="337" r="300" stroke="#00D4E4" stroke-width="0.8"/>
+    <circle cx="600" cy="337" r="200" stroke="#00D4E4" stroke-width="0.8"/>
+    <circle cx="600" cy="337" r="100" stroke="#F5C518" stroke-width="0.6"/>
+  </svg>
+
+  <img src="assets/scwave-logo.png" alt="SC Wave" style="width:100px;height:100px;object-fit:contain;position:relative;" />
+
+  <div style="position:relative;">
+    <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:48px;color:var(--white);text-transform:uppercase;line-height:1;">SC Wave Soccer Club</div>
+    <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:22px;color:var(--gold);text-transform:uppercase;letter-spacing:0.08em;margin-top:6px;">MLS NEXT · Founded 1978</div>
+    <div style="font-family:'Inter',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-top:20px;">Brand Identity Guide · 2025–26 Season</div>
+    <div style="font-family:'Inter',sans-serif;font-size:11px;color:rgba(255,255,255,0.2);margin-top:8px;letter-spacing:0.05em;">All materials produced by this club must adhere to these guidelines.</div>
+  </div>
+
+  <div style="position:relative;display:flex;gap:32px;margin-top:8px;align-items:center;">
+    <div style="font-family:'Inter',sans-serif;font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.15em;text-transform:uppercase;">danielmartini07@gmail.com</div>
+    <div style="width:4px;height:4px;border-radius:50%;background:var(--gold);opacity:0.4;"></div>
+    <div style="font-family:'Inter',sans-serif;font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.15em;text-transform:uppercase;">850-791-0998</div>
+  </div>
+
+</div>
+
+</body>
+</html>
