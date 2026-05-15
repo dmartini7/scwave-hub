@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Game Analysis — SC Wave Training Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+
+    /* ── Art Hero ─────────────────────────────────────────────────────────────── */
+    .analysis-hero {
+      position: relative;
+      background: #0D0D0D;
+      overflow: hidden;
+      padding: 72px 64px 80px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      min-height: 380px;
+    }
+
+    .hero-waves-tr {
+      position: absolute;
+      top: 0; right: 0;
+      width: 440px; height: 100%;
+      opacity: 0.13;
+      pointer-events: none;
+    }
+
+    .hero-waves-bl {
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 340px; height: 280px;
+      opacity: 0.08;
+      pointer-events: none;
+    }
+
+    .hero-back {
+      position: relative;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+      margin-bottom: 36px;
+      transition: color 0.2s;
+    }
+    .hero-back:hover { color: #F5C518; }
+
+    .hero-eyebrow {
+      position: relative;
+      z-index: 2;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: #F5C518;
+      margin-bottom: 14px;
+    }
+
+    .hero-title {
+      position: relative;
+      z-index: 2;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: clamp(64px, 9vw, 108px);
+      line-height: 0.88;
+      text-transform: uppercase;
+      color: #FFFFFF;
+      letter-spacing: -0.5px;
+      margin-bottom: 24px;
+    }
+
+    .hero-title .cyan { color: #00D4E4; }
+
+    .hero-divider {
+      position: relative;
+      z-index: 2;
+      width: 56px;
+      height: 3px;
+      background: linear-gradient(90deg, #F5C518, #00D4E4);
+      margin-bottom: 20px;
+    }
+
+    .hero-sub {
+      position: relative;
+      z-index: 2;
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 14px;
+      letter-spacing: 0.06em;
+      color: rgba(255,255,255,0.45);
+      max-width: 520px;
+      line-height: 1.6;
+    }
+
+    /* ── Form Wrap ─────────────────────────────────────────────────────────────── */
+    .form-wrap {
+      background: #0D0D0D;
+      padding: 0 0 80px;
+    }
+
+    .form-intro {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 48px 32px 0;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .form-intro-text h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 22px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #FFFFFF;
+      margin-bottom: 6px;
+    }
+
+    .form-intro-text p {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.6;
+      max-width: 460px;
+    }
+
+    .form-open-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #F5C518;
+      color: #0D0D0D;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 13px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 11px 20px;
+      border-radius: 4px;
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .form-open-btn:hover { background: #FAD84A; transform: translateY(-1px); }
+
+    .form-divider {
+      max-width: 760px;
+      margin: 28px auto 0;
+      padding: 0 32px;
+      height: 1px;
+      background: rgba(255,255,255,0.08);
+    }
+
+    /* ── Embedded Form ─────────────────────────────────────────────────────────── */
+    .form-embed-shell {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 32px 32px 0;
+    }
+
+    .form-embed-shell iframe {
+      width: 100%;
+      min-height: 1200px;
+      border: none;
+      border-radius: 8px;
+      display: block;
+      background: #FFFFFF;
+    }
+
+    /* ── Pillars strip ─────────────────────────────────────────────────────────── */
+    .pillars-strip {
+      display: flex;
+      gap: 0;
+      max-width: 760px;
+      margin: 0 auto 0;
+      padding: 0 32px;
+    }
+
+    .pillar {
+      flex: 1;
+      padding: 16px 18px;
+      border-top: 2px solid transparent;
+    }
+    .pillar:nth-child(1) { border-color: #F5C518; background: rgba(245,197,24,0.05); }
+    .pillar:nth-child(2) { border-color: #00D4E4; background: rgba(0,212,228,0.05); }
+    .pillar:nth-child(3) { border-color: #F5C518; background: rgba(245,197,24,0.04); }
+    .pillar:nth-child(4) { border-color: #00D4E4; background: rgba(0,212,228,0.04); }
+
+    .pillar-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+    }
+
+    .pillar-desc {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      color: rgba(255,255,255,0.28);
+      margin-top: 3px;
+      line-height: 1.4;
+    }
+
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo-block">
+      <img class="sc-logo" src="assets/scwave-logo.png" alt="SC Wave" />
+      <div class="logo-text">
+        <span class="club">SC Wave</span>
+        <span class="hub">Player Training Hub</span>
+      </div>
+    </a>
+    <div class="header-right">
+      <nav>
+        <a href="tactical-mental.html">Tactical &amp; Mental</a>
+        <a href="technical.html">Technical</a>
+        <a href="physical.html">Physical</a>
+        <a href="club-documents.html" class="active">Club Docs</a>
+      </nav>
+      <div class="mls-badge">
+        <img src="assets/mlsnext-logo.png" alt="MLS NEXT" />
+        <span>MLS NEXT</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ── Art Hero ──────────────────────────────────────────────────────────────── -->
+<div class="analysis-hero">
+
+  <!-- Wave decorations — top-right -->
+  <svg class="hero-waves-tr" viewBox="0 0 440 520" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M 440,0 Q 320,80 440,160 Q 320,240 440,320 Q 320,400 440,480 Q 320,520 440,520" stroke="#F5C518" stroke-width="1.4" fill="none"/>
+    <path d="M 440,20 Q 300,100 440,180 Q 300,260 440,340 Q 300,420 440,500" stroke="#F5C518" stroke-width="1.1" fill="none"/>
+    <path d="M 440,40 Q 280,120 440,200 Q 280,280 440,360 Q 280,440 440,520" stroke="#00D4E4" stroke-width="0.9" fill="none"/>
+    <path d="M 440,60 Q 260,140 440,220 Q 260,300 440,380 Q 260,460 440,520" stroke="#00D4E4" stroke-width="0.7" fill="none"/>
+    <path d="M 440,80 Q 240,160 440,240 Q 240,320 440,400 Q 240,480 440,520" stroke="#F5C518" stroke-width="0.5" fill="none"/>
+    <path d="M 440,100 Q 220,180 440,260 Q 220,340 440,420 Q 220,500 440,520" stroke="#00D4E4" stroke-width="0.4" fill="none"/>
+  </svg>
+
+  <!-- Wave decorations — bottom-left -->
+  <svg class="hero-waves-bl" viewBox="0 0 340 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M 0,280 Q 90,200 0,120 Q 90,50 0,0" stroke="#F5C518" stroke-width="1.2" fill="none"/>
+    <path d="M 22,280 Q 112,200 22,120 Q 112,50 22,0" stroke="#F5C518" stroke-width="0.9" fill="none"/>
+    <path d="M 44,280 Q 134,200 44,120 Q 134,50 44,0" stroke="#00D4E4" stroke-width="0.7" fill="none"/>
+    <path d="M 66,280 Q 156,200 66,120 Q 156,50 66,0" stroke="#00D4E4" stroke-width="0.5" fill="none"/>
+  </svg>
+
+  <a href="club-documents.html" class="hero-back">← Back to Club Docs</a>
+
+  <div class="hero-eyebrow">Player Development · SC Wave MLS NEXT</div>
+
+  <h1 class="hero-title">Game<br><span class="cyan">Analysis</span></h1>
+
+  <div class="hero-divider"></div>
+
+  <p class="hero-sub">Reflect on your performance after every match. Honest self-analysis is what separates players who grow from players who plateau. Fill out the form below within 24 hours of each game.</p>
+
+</div>
+
+<!-- ── 4-Pillar Strip ─────────────────────────────────────────────────────────── -->
+<div class="form-wrap">
+  <div class="pillars-strip">
+    <div class="pillar">
+      <div class="pillar-label">Technical</div>
+      <div class="pillar-desc">Ball control, passing, finishing</div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-label">Tactical</div>
+      <div class="pillar-desc">Decision-making, positioning</div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-label">Physical</div>
+      <div class="pillar-desc">Intensity, duels, endurance</div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-label">Mental</div>
+      <div class="pillar-desc">Focus, composure, leadership</div>
+    </div>
+  </div>
+
+  <!-- Intro + fallback button -->
+  <div class="form-intro">
+    <div class="form-intro-text">
+      <h3>SC Wave Game Analysis Form</h3>
+      <p>Complete after every competitive match. Be honest — this is for your development, not a grade.</p>
+    </div>
+    <a href="https://docs.google.com/forms/d/19UKD7lizIMmhS6TXW2a4Mfp5t-HXuadBdWB5mfy9ab4/viewform"
+       target="_blank" class="form-open-btn">
+      ↗ Open in New Tab
+    </a>
+  </div>
+
+  <div class="form-divider"></div>
+
+  <!-- Embedded Google Form -->
+  <div class="form-embed-shell">
+    <iframe
+      src="https://docs.google.com/forms/d/19UKD7lizIMmhS6TXW2a4Mfp5t-HXuadBdWB5mfy9ab4/viewform?embedded=true"
+      title="SC Wave Game Analysis Form"
+      loading="lazy">
+      <p style="color:#fff;padding:24px;">
+        Form couldn't load — <a href="https://docs.google.com/forms/d/19UKD7lizIMmhS6TXW2a4Mfp5t-HXuadBdWB5mfy9ab4/viewform" target="_blank" style="color:#F5C518;">click here to open it</a>.
+      </p>
+    </iframe>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="assets/scwave-logo.png" alt="SC Wave" />
+      <span>SC Wave Soccer Club · Founded 1978</span>
+    </div>
+    <div class="footer-right">
+      <a href="mailto:danielmartini07@gmail.com">danielmartini07@gmail.com</a>
+      <div class="footer-mls">
+        <img src="assets/mlsnext-logo.png" alt="MLS NEXT" />
+        <span>MLS NEXT Member Club</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
