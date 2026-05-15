@@ -334,10 +334,32 @@
       <!-- 1 · Match Info -->
       <div class="form-section">
         <div class="section-label">01 · Match Information</div>
-        <div class="field-row">
+        <div class="field-row thirds">
           <div class="field">
             <label>Player Name <span class="req">*</span></label>
             <input type="text" name="player_name" placeholder="First Last" required />
+          </div>
+          <div class="field">
+            <label>Team Sector <span class="req">*</span></label>
+            <select name="team_sector" required>
+              <option value="" disabled selected>Select team</option>
+              <optgroup label="Homegrown">
+                <option>U13 (2014) Homegrown</option>
+                <option>U14 (2013) Homegrown</option>
+                <option>U15 (2012) Homegrown</option>
+                <option>U16 (2011) Homegrown</option>
+                <option>U17 (2010) Homegrown</option>
+                <option>U19 (2009/08) Homegrown</option>
+              </optgroup>
+              <optgroup label="Academy">
+                <option>U13 Academy</option>
+                <option>U14 Academy</option>
+                <option>U15 Academy</option>
+                <option>U16 Academy</option>
+                <option>U17 Academy</option>
+                <option>U19 Academy</option>
+              </optgroup>
+            </select>
           </div>
           <div class="field">
             <label>Position <span class="req">*</span></label>
@@ -584,6 +606,7 @@
 
     // Basic required field check
     const name   = this.player_name.value.trim();
+    const sector = this.team_sector.value;
     const pos    = this.position.value;
     const date   = this.match_date.value;
     const opp    = this.opponent.value.trim();
@@ -592,9 +615,9 @@
     const chal   = this.challenge.value.trim();
     const focus  = this.next_focus.value.trim();
 
-    if (!name || !pos || !date || !opp || !result || !well || !chal || !focus) {
+    if (!name || !sector || !pos || !date || !opp || !result || !well || !chal || !focus) {
       // Highlight missing fields
-      [this.player_name, this.position, this.match_date, this.opponent, this.went_well, this.challenge, this.next_focus].forEach(f => {
+      [this.player_name, this.team_sector, this.position, this.match_date, this.opponent, this.went_well, this.challenge, this.next_focus].forEach(f => {
         if (!f.value.trim()) f.style.borderColor = '#ef4444';
         else f.style.borderColor = '';
       });
@@ -610,8 +633,9 @@
     const lines = [
       '=== SC WAVE GAME ANALYSIS ===',
       '',
-      'Player: '   + (data.get('player_name') || '—'),
-      'Position: ' + (data.get('position')    || '—'),
+      'Player: '      + (data.get('player_name')  || '—'),
+      'Team Sector: ' + (data.get('team_sector')  || '—'),
+      'Position: '    + (data.get('position')     || '—'),
       'Date: '     + (data.get('match_date')  || '—'),
       'Opponent: ' + (data.get('opponent')    || '—'),
       'Score: '    + (data.get('score')       || '—'),
