@@ -669,10 +669,31 @@
       data.get('notes') || '—',
     ];
 
+    // Route email by team sector
+    const emailMap = {
+      'U13 (2014) Homegrown':  { to: 'coach.hugofq@gmail.com',                          coach: 'Coach Hugo' },
+      'U14 (2013) Homegrown':  { to: 'coach.hugofq@gmail.com',                          coach: 'Coach Hugo' },
+      'U15 (2012) Homegrown':  { to: 'danielmartini07@gmail.com',                       coach: 'Coach Daniel' },
+      'U16 (2011) Homegrown':  { to: 'danielmartini07@gmail.com',                       coach: 'Coach Daniel' },
+      'U17 (2010) Homegrown':  { to: 'tftorres7@gmail.com,sagadin78@hotmail.com',       coach: 'Coach Tom & Coach Steve' },
+      'U19 (2009/08) Homegrown':{ to: 'tftorres7@gmail.com,sagadin78@hotmail.com',      coach: 'Coach Tom & Coach Steve' },
+      'U13 Academy':           { to: 'tylerh@mksc.org',                                 coach: 'Coach Tyler' },
+      'U14 Academy':           { to: 'tylerh@mksc.org',                                 coach: 'Coach Tyler' },
+      'U15 Academy':           { to: 'tylerh@mksc.org',                                 coach: 'Coach Tyler' },
+      'U16 Academy':           { to: 'andre_hayne@hotmail.com',                         coach: 'Coach Andre' },
+      'U17 Academy':           { to: 'andre_hayne@hotmail.com',                         coach: 'Coach Andre' },
+      'U19 Academy':           { to: 'andre_hayne@hotmail.com',                         coach: 'Coach Andre' },
+    };
+    const route  = emailMap[sector] || { to: 'danielmartini07@gmail.com', coach: 'your coach' };
+
     const subject = encodeURIComponent('Game Analysis — ' + (data.get('player_name') || 'Player') + ' vs ' + (data.get('opponent') || 'Opponent') + ' (' + (data.get('match_date') || '') + ')');
     const body    = encodeURIComponent(lines.join('\n'));
 
-    window.location.href = 'mailto:danielmartini07@gmail.com?subject=' + subject + '&body=' + body;
+    window.location.href = 'mailto:' + route.to + '?subject=' + subject + '&body=' + body;
+
+    // Update thank-you coach name
+    document.querySelector('.ty-sub').textContent =
+      route.coach + ' will review your self-analysis. See you at training — come ready to work on what you identified.';
 
     // Show thank-you
     document.getElementById('gameForm').style.display = 'none';
