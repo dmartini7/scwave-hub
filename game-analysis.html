@@ -500,14 +500,6 @@
           <input type="text" name="next_focus" placeholder="Be precise — the more specific, the more useful" required />
         </div>
         <div class="field field-gap">
-          <label>Do you want to discuss this with Coach Daniel?</label>
-          <div class="coach-radio">
-            <div class="coach-btn" data-coach="Yes">Yes</div>
-            <div class="coach-btn" data-coach="No">No</div>
-          </div>
-          <input type="hidden" name="discuss_coach" id="coachHidden" />
-        </div>
-        <div class="field field-gap">
           <label>Anything else for Coach to know? <span style="font-size:10px;opacity:0.4;">(optional)</span></label>
           <textarea name="notes" placeholder="Injury, personal situation, something on your mind..."></textarea>
         </div>
@@ -561,15 +553,6 @@
       const r = btn.dataset.result;
       btn.classList.add('selected-' + r.toLowerCase());
       document.getElementById('resultHidden').value = r;
-    });
-  });
-
-  /* ── Coach buttons ──────────────────────────────────────────────────────── */
-  document.querySelectorAll('.coach-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.coach-btn').forEach(b => b.classList.remove('selected'));
-      btn.classList.add('selected');
-      document.getElementById('coachHidden').value = btn.dataset.coach;
     });
   });
 
@@ -663,7 +646,6 @@
       '',
       '-- LOOKING AHEAD --',
       'Next training focus: ' + (data.get('next_focus') || '—'),
-      'Discuss with Coach: '  + (data.get('discuss_coach') || '—'),
       '',
       'Notes for Coach:',
       data.get('notes') || '—',
