@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MLS NEXT Style of Play — SC Wave Training Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+
+    * { user-select: none; -webkit-user-select: none; }
+
+    /* ── Art Hero ─────────────────────────────────────────────────────────── */
+    .viewer-hero {
+      position: relative;
+      background: #0D0D0D;
+      overflow: hidden;
+      padding: 72px 64px 80px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      min-height: 280px;
+    }
+    .hero-waves-tr {
+      position: absolute; top: 0; right: 0;
+      width: 440px; height: 100%;
+      opacity: 0.13; pointer-events: none;
+    }
+    .hero-waves-bl {
+      position: absolute; bottom: 0; left: 0;
+      width: 340px; height: 280px;
+      opacity: 0.08; pointer-events: none;
+    }
+    .hero-back {
+      position: relative; z-index: 2;
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: 12px; letter-spacing: 0.18em;
+      text-transform: uppercase; color: rgba(255,255,255,0.45);
+      text-decoration: none; margin-bottom: 36px; transition: color 0.2s;
+    }
+    .hero-back:hover { color: #F5C518; }
+    .hero-eyebrow {
+      position: relative; z-index: 2;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: 11px; letter-spacing: 0.28em;
+      text-transform: uppercase; color: #F5C518; margin-bottom: 14px;
+    }
+    .hero-title {
+      position: relative; z-index: 2;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900; font-size: clamp(48px, 7vw, 88px);
+      line-height: 0.88; text-transform: uppercase;
+      color: #FFFFFF; letter-spacing: -0.5px; margin-bottom: 24px;
+    }
+    .hero-title .cyan { color: #00D4E4; }
+    .hero-divider {
+      position: relative; z-index: 2;
+      width: 56px; height: 3px;
+      background: linear-gradient(90deg, #F5C518, #00D4E4);
+      margin-bottom: 20px;
+    }
+    .hero-sub {
+      position: relative; z-index: 2;
+      font-family: 'Inter', sans-serif; font-weight: 400;
+      font-size: 14px; letter-spacing: 0.04em;
+      color: rgba(255,255,255,0.45); max-width: 520px; line-height: 1.65;
+    }
+
+    /* ── Slide Viewer ─────────────────────────────────────────────────────── */
+    .slide-viewer {
+      background: #0D0D0D;
+      padding: 40px 0 80px;
+    }
+    .slide-shell {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Main slide image */
+    .slide-display {
+      position: relative;
+    }
+    .slide-img {
+      width: 100%;
+      display: block;
+      border-radius: 6px;
+      box-shadow: 0 8px 48px rgba(0,0,0,0.6);
+      pointer-events: none;
+    }
+
+    /* Video player (shown only on video slides) */
+    .slide-video {
+      width: 100%;
+      display: block;
+      border-radius: 6px;
+      margin-top: 16px;
+      background: #000;
+    }
+
+    /* Navigation row */
+    .slide-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 24px;
+    }
+    .nav-btn {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 13px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      background: #F5C518;
+      color: #0D0D0D;
+      border: none;
+      border-radius: 4px;
+      padding: 10px 20px;
+      cursor: pointer;
+      transition: background 0.15s, opacity 0.15s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .nav-btn:hover:not(:disabled) { background: #FAD84A; }
+    .nav-btn:disabled {
+      opacity: 0.25;
+      cursor: default;
+    }
+    .slide-counter {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.12em;
+      color: #F5C518;
+    }
+
+    /* Video badge on thumb */
+    .thumb-item {
+      position: relative;
+    }
+    .thumb-video-badge {
+      position: absolute;
+      bottom: 3px;
+      right: 3px;
+      background: rgba(0,212,228,0.85);
+      color: #0D0D0D;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 9px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 1px 4px;
+      border-radius: 2px;
+      pointer-events: none;
+    }
+
+    /* Thumbnail strip */
+    .thumb-strip-wrap {
+      margin-top: 32px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      scrollbar-width: thin;
+      scrollbar-color: #F5C518 #1a1a1a;
+    }
+    .thumb-strip-wrap::-webkit-scrollbar { height: 4px; }
+    .thumb-strip-wrap::-webkit-scrollbar-track { background: #1a1a1a; }
+    .thumb-strip-wrap::-webkit-scrollbar-thumb { background: #F5C518; border-radius: 2px; }
+    .thumb-strip {
+      display: flex;
+      gap: 8px;
+      width: max-content;
+    }
+    .thumb-item {
+      flex-shrink: 0;
+      width: 96px;
+      cursor: pointer;
+      border-radius: 3px;
+      overflow: hidden;
+      border: 2px solid transparent;
+      transition: border-color 0.15s, opacity 0.15s;
+      opacity: 0.45;
+    }
+    .thumb-item:hover { opacity: 0.75; }
+    .thumb-item.active {
+      border-color: #F5C518;
+      opacity: 1;
+    }
+    .thumb-item img {
+      width: 100%;
+      display: block;
+      pointer-events: none;
+    }
+
+    @media (max-width: 600px) {
+      .viewer-hero { padding: 48px 24px 56px; min-height: 220px; }
+      .hero-waves-tr { width: 240px; }
+      .thumb-item { width: 64px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo-block">
+      <img class="sc-logo" src="assets/scwave-logo.png" alt="SC Wave" />
+      <div class="logo-text">
+        <span class="club">SC Wave</span>
+        <span class="hub">Player Training Hub</span>
+      </div>
+    </a>
+    <div class="header-right">
+      <nav>
+        <a href="tactical-mental.html" class="active">Tactical &amp; Mental</a>
+        <a href="technical.html">Technical</a>
+        <a href="physical.html">Physical</a>
+        <a href="club-documents.html">Club Docs</a>
+      </nav>
+      <div class="mls-badge">
+        <img src="assets/mlsnext-logo.png" alt="MLS NEXT" />
+        <span>MLS NEXT</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Art Hero -->
+<div class="viewer-hero">
+  <svg class="hero-waves-tr" viewBox="0 0 440 520" fill="none">
+    <path d="M440,0 Q320,80 440,160 Q320,240 440,320 Q320,400 440,480 Q320,520 440,520" stroke="#F5C518" stroke-width="1.4" fill="none"/>
+    <path d="M440,20 Q300,100 440,180 Q300,260 440,340 Q300,420 440,500" stroke="#F5C518" stroke-width="1.1" fill="none"/>
+    <path d="M440,40 Q280,120 440,200 Q280,280 440,360 Q280,440 440,520" stroke="#00D4E4" stroke-width="0.9" fill="none"/>
+    <path d="M440,60 Q260,140 440,220 Q260,300 440,380 Q260,460 440,520" stroke="#00D4E4" stroke-width="0.7" fill="none"/>
+    <path d="M440,80 Q240,160 440,240 Q240,320 440,400 Q240,480 440,520" stroke="#F5C518" stroke-width="0.5" fill="none"/>
+    <path d="M440,100 Q220,180 440,260 Q220,340 440,420 Q220,500 440,520" stroke="#00D4E4" stroke-width="0.4" fill="none"/>
+  </svg>
+  <svg class="hero-waves-bl" viewBox="0 0 340 280" fill="none">
+    <path d="M0,280 Q90,200 0,120 Q90,50 0,0" stroke="#F5C518" stroke-width="1.2" fill="none"/>
+    <path d="M22,280 Q112,200 22,120 Q112,50 22,0" stroke="#F5C518" stroke-width="0.9" fill="none"/>
+    <path d="M44,280 Q134,200 44,120 Q134,50 44,0" stroke="#00D4E4" stroke-width="0.7" fill="none"/>
+    <path d="M66,280 Q156,200 66,120 Q156,50 66,0" stroke="#00D4E4" stroke-width="0.5" fill="none"/>
+  </svg>
+
+  <a href="tactical-mental.html" class="hero-back">← Back to Tactical &amp; Mental</a>
+  <div class="hero-eyebrow">Tactical &amp; Mental · SC Wave MLS NEXT</div>
+  <h1 class="hero-title">MLS NEXT<br><span class="cyan">Style of Play</span></h1>
+  <div class="hero-divider"></div>
+  <p class="hero-sub">The tactical framework guiding our development this season — with video examples of key principles in action.</p>
+</div>
+
+<!-- Slide Viewer -->
+<div class="slide-viewer">
+  <div class="slide-shell">
+
+    <!-- Main slide display -->
+    <div class="slide-display">
+      <img
+        id="mainSlide"
+        class="slide-img"
+        src="assets/slides/style-of-play/slide-01.jpg"
+        alt="Slide 1 of 15"
+        draggable="false"
+        oncontextmenu="return false"
+      />
+      <!-- Video player — shown only on video slides -->
+      <video
+        id="slideVideo"
+        class="slide-video"
+        controls
+        preload="metadata"
+        style="display:none;"
+      >
+        <source id="videoSrcMp4" src="" type="video/mp4" />
+        <source id="videoSrcMov" src="" type="video/quicktime" />
+      </video>
+    </div>
+
+    <!-- Navigation row -->
+    <div class="slide-nav">
+      <button class="nav-btn" id="prevBtn" disabled onclick="changeSlide(-1)">← Prev</button>
+      <span class="slide-counter" id="slideCounter">1 / 15</span>
+      <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Next →</button>
+    </div>
+
+    <!-- Thumbnail strip -->
+    <div class="thumb-strip-wrap" id="thumbWrap">
+      <div class="thumb-strip" id="thumbStrip"></div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="assets/scwave-logo.png" alt="SC Wave" />
+      <span>SC Wave Soccer Club · Founded 1978</span>
+    </div>
+    <div class="footer-right">
+      <a href="mailto:danielmartini07@gmail.com">danielmartini07@gmail.com</a>
+      <div class="footer-mls">
+        <img src="assets/mlsnext-logo.png" alt="MLS NEXT" />
+        <span>MLS NEXT Member Club</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* ── Security ──────────────────────────────────────────────────────────── */
+  document.addEventListener('contextmenu', e => e.preventDefault());
+  document.addEventListener('dragstart',   e => e.preventDefault());
+
+  /* ── Viewer state ──────────────────────────────────────────────────────── */
+  const TOTAL  = 15;
+  const FOLDER = 'assets/slides/style-of-play/';
+  const VIDEO_BASE = 'assets/slides/videos/';
+  let current  = 1;
+
+  // Map of slide number → video filename (mp4 base name, .mov as fallback)
+  const VIDEO_SLIDES = {
+    5:  'style-of-play-video-1',
+    8:  'style-of-play-video-2',
+    13: 'style-of-play-video-3',
+    15: 'style-of-play-video-4',
+  };
+
+  const mainSlide    = document.getElementById('mainSlide');
+  const slideVideo   = document.getElementById('slideVideo');
+  const videoSrcMp4  = document.getElementById('videoSrcMp4');
+  const videoSrcMov  = document.getElementById('videoSrcMov');
+  const prevBtn      = document.getElementById('prevBtn');
+  const nextBtn      = document.getElementById('nextBtn');
+  const slideCounter = document.getElementById('slideCounter');
+  const thumbStrip   = document.getElementById('thumbStrip');
+  const thumbWrap    = document.getElementById('thumbWrap');
+
+  /* ── Build thumbnail strip ─────────────────────────────────────────────── */
+  function pad(n) { return String(n).padStart(2, '0'); }
+  function slideSrc(n) { return FOLDER + 'slide-' + pad(n) + '.jpg'; }
+
+  for (let i = 1; i <= TOTAL; i++) {
+    const item = document.createElement('div');
+    item.className = 'thumb-item' + (i === 1 ? ' active' : '');
+    item.dataset.slide = i;
+
+    const img = document.createElement('img');
+    img.src = slideSrc(i);
+    img.alt = 'Slide ' + i;
+    img.loading = 'lazy';
+    img.draggable = false;
+    img.oncontextmenu = () => false;
+    item.appendChild(img);
+
+    // Video badge
+    if (VIDEO_SLIDES[i]) {
+      const badge = document.createElement('span');
+      badge.className = 'thumb-video-badge';
+      badge.textContent = 'Video';
+      item.appendChild(badge);
+    }
+
+    item.addEventListener('click', () => goTo(i));
+    thumbStrip.appendChild(item);
+  }
+
+  /* ── Navigation ────────────────────────────────────────────────────────── */
+  function goTo(n) {
+    if (n < 1 || n > TOTAL) return;
+    current = n;
+
+    mainSlide.src = slideSrc(n);
+    mainSlide.alt = 'Slide ' + n + ' of ' + TOTAL;
+
+    slideCounter.textContent = n + ' / ' + TOTAL;
+
+    prevBtn.disabled = (n === 1);
+    nextBtn.disabled = (n === TOTAL);
+
+    // Handle video
+    const videoName = VIDEO_SLIDES[n];
+    if (videoName) {
+      // Pause and reset before changing src
+      slideVideo.pause();
+      videoSrcMp4.src = VIDEO_BASE + videoName + '.mp4';
+      videoSrcMov.src = VIDEO_BASE + videoName + '.mov';
+      slideVideo.load();
+      slideVideo.style.display = 'block';
+    } else {
+      slideVideo.pause();
+      slideVideo.style.display = 'none';
+      videoSrcMp4.src = '';
+      videoSrcMov.src = '';
+    }
+
+    // Update thumbnail active state
+    thumbStrip.querySelectorAll('.thumb-item').forEach(item => {
+      item.classList.toggle('active', parseInt(item.dataset.slide) === n);
+    });
+
+    // Scroll thumbnail into view
+    const activeThumb = thumbStrip.querySelector('.thumb-item.active');
+    if (activeThumb) {
+      const wrapRect  = thumbWrap.getBoundingClientRect();
+      const thumbRect = activeThumb.getBoundingClientRect();
+      if (thumbRect.left < wrapRect.left || thumbRect.right > wrapRect.right) {
+        activeThumb.scrollIntoView({ inline: 'center', behavior: 'smooth', block: 'nearest' });
+      }
+    }
+  }
+
+  function changeSlide(delta) { goTo(current + delta); }
+
+  /* ── Keyboard support ──────────────────────────────────────────────────── */
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowLeft')  changeSlide(-1);
+    if (e.key === 'ArrowRight') changeSlide(1);
+  });
+</script>
+
+</body>
+</html>
