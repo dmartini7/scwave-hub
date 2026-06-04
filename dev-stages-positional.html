@@ -1,0 +1,2049 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Development Stages &amp; Positional Roles — SC Wave</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:       #0D0D0D;
+      --gold:        #F5C518;
+      --gold-dark:   #C49A10;
+      --gold-light:  #FAD84A;
+      --cyan:        #00D4E4;
+      --white:       #FFFFFF;
+      --off-white:   #F2F2F0;
+      --surface:     #1A1A1A;
+      --surface2:    #242424;
+      --border:      #333333;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+    }
+
+    /* ── TYPOGRAPHY ── */
+    h1 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+    h2 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+    h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .03em;
+    }
+    h4 {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      font-size: .75rem;
+    }
+
+    /* ── LAYOUT ── */
+    .page-wrap { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+
+    section { padding: 64px 0; }
+    section + section { border-top: 1px solid var(--border); }
+
+    /* ── COVER ── */
+    .cover {
+      background: var(--black);
+      padding: 72px 24px 64px;
+      text-align: center;
+      border-bottom: 4px solid var(--gold);
+    }
+    .cover img {
+      height: 96px;
+      margin-bottom: 32px;
+    }
+    .cover-eyebrow {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: var(--cyan);
+      margin-bottom: 16px;
+    }
+    .cover h1 {
+      font-size: clamp(2.8rem, 7vw, 5rem);
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+    .cover-sub {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: var(--off-white);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+
+    /* ── SECTION HEADERS ── */
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 4px;
+      height: 18px;
+      background: var(--cyan);
+      border-radius: 2px;
+    }
+    .section-label span {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: .7rem;
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      color: var(--cyan);
+    }
+    .section-title {
+      color: var(--gold);
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      margin-bottom: 32px;
+      line-height: 1.05;
+    }
+
+    /* ── CARDS ── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 24px;
+    }
+    .card-gold {
+      background: var(--gold);
+      color: var(--black);
+      border: none;
+    }
+    .card-gold h3, .card-gold h4, .card-gold p, .card-gold li { color: var(--black); }
+
+    /* ── GRIDS ── */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+
+    @media (max-width: 700px) {
+      .grid-2, .grid-3, .grid-4, .grid-5 { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 900px) {
+      .grid-4 { grid-template-columns: 1fr 1fr; }
+      .grid-5 { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* ── BODY TEXT ── */
+    p { color: var(--off-white); margin-bottom: 12px; }
+    p:last-child { margin-bottom: 0; }
+    ul { padding-left: 20px; }
+    ul li { color: var(--off-white); margin-bottom: 6px; }
+
+    /* ── MISSION / VISION ── */
+    .mv-block {
+      background: var(--surface);
+      border-left: 4px solid var(--gold);
+      border-radius: 0 8px 8px 0;
+      padding: 28px 28px 28px 28px;
+    }
+    .mv-block h3 {
+      color: var(--gold);
+      font-size: 1rem;
+      margin-bottom: 10px;
+    }
+    .mv-block p { font-size: 1rem; }
+
+    /* ── VALUES ── */
+    .value-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--gold);
+      border-radius: 8px;
+      padding: 24px 20px;
+    }
+    .value-card h3 {
+      color: var(--gold);
+      font-size: 1.15rem;
+      margin-bottom: 8px;
+    }
+    .value-card p { font-size: .9rem; }
+
+    /* ── PATHWAY ── */
+    .pathway {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      align-items: flex-start;
+    }
+    .pathway-item {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      width: 100%;
+    }
+    .pathway-arrow {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .pathway-node {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 20px;
+      width: 100%;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      font-size: 1.1rem;
+      color: var(--off-white);
+    }
+    .pathway-node.highlight { background: var(--gold); color: var(--black); border-color: var(--gold); }
+    .pathway-node.highlight-cyan { background: var(--cyan); color: var(--black); border-color: var(--cyan); }
+    .pathway-node.top-level { background: #1c1200; border-color: var(--gold); color: var(--gold); }
+    .pathway-connector {
+      width: 2px;
+      height: 20px;
+      background: var(--border);
+      margin: 0 auto;
+    }
+    .pathway-connector.gold { background: var(--gold); }
+
+    /* ── TRAINING ENVIRONMENT ── */
+    .season-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .season-header {
+      background: var(--gold);
+      color: var(--black);
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    .season-header h3 { color: var(--black); font-size: 1.3rem; }
+    .season-header span { font-size: .8rem; font-weight: 600; font-family: 'Inter', sans-serif; }
+    .season-body { padding: 20px; }
+    .season-detail { margin-bottom: 12px; }
+    .season-detail-label {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: .68rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--cyan);
+      margin-bottom: 4px;
+    }
+    .session-tag {
+      display: inline-block;
+      background: var(--surface2);
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+    .day-row { display: flex; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+    .day-chip {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 4px 10px;
+      font-size: .8rem;
+    }
+    .day-chip strong { color: var(--gold); font-family: 'Barlow Condensed', sans-serif; font-weight: 700; text-transform: uppercase; }
+
+    /* ── DNA ── */
+    .dna-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; border-radius: 8px; overflow: hidden; border: 3px solid var(--surface2); }
+    .dna-cell {
+      padding: 28px 24px;
+    }
+    .dna-cell.attack { background: #1a1200; }
+    .dna-cell.atd    { background: #1a0a00; }
+    .dna-cell.defend { background: #001a1a; }
+    .dna-cell.dta    { background: #0a001a; }
+    .dna-cell h3 { font-size: 1.1rem; margin-bottom: 10px; }
+    .dna-cell.attack h3 { color: var(--gold); }
+    .dna-cell.atd h3    { color: #FF8C42; }
+    .dna-cell.defend h3 { color: var(--cyan); }
+    .dna-cell.dta h3    { color: #B84FFF; }
+    .dna-phase-label {
+      font-size: .65rem;
+      font-weight: 700;
+      font-family: 'Inter', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      margin-bottom: 6px;
+      opacity: .6;
+    }
+    .dna-cell.attack .dna-phase-label { color: var(--gold); }
+    .dna-cell.atd .dna-phase-label    { color: #FF8C42; }
+    .dna-cell.defend .dna-phase-label { color: var(--cyan); }
+    .dna-cell.dta .dna-phase-label    { color: #B84FFF; }
+
+    @media (max-width: 600px) { .dna-grid { grid-template-columns: 1fr; } }
+
+    /* ── DEVELOPMENT STAGES ── */
+    .stage-timeline { display: flex; flex-direction: column; gap: 0; position: relative; }
+    .stage-row {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 24px;
+      padding: 24px 0;
+      border-left: 3px solid var(--border);
+      padding-left: 24px;
+      margin-left: 16px;
+      position: relative;
+    }
+    .stage-row::before {
+      content: '';
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--border);
+      position: absolute;
+      left: -8px;
+      top: 32px;
+    }
+    .stage-row.active::before { background: var(--gold); box-shadow: 0 0 10px var(--gold-dark); }
+    .stage-row.active { border-color: var(--gold); }
+    .stage-age {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 1.6rem;
+      color: var(--gold);
+      text-transform: uppercase;
+      line-height: 1;
+    }
+    .stage-zone {
+      font-size: .7rem;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--cyan);
+      margin-bottom: 6px;
+    }
+    .stage-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: var(--off-white);
+      text-transform: uppercase;
+      letter-spacing: .03em;
+      margin-bottom: 6px;
+    }
+    .stage-desc { font-size: .9rem; color: #aaa; }
+    .stage-bullets { margin-top: 8px; }
+    .stage-bullets li { font-size: .85rem; color: #999; }
+
+    /* ── AGE GROUP SECTIONS ── */
+    .age-group-header {
+      background: var(--surface);
+      border-left: 6px solid var(--gold);
+      border-radius: 0 8px 8px 0;
+      padding: 24px 28px;
+      margin-bottom: 32px;
+    }
+    .age-group-header h2 { color: var(--gold); font-size: 2rem; margin-bottom: 4px; }
+    .age-group-header p { font-size: .95rem; color: var(--off-white); }
+
+    /* ── BEHAVIORS ── */
+    .behaviors-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 32px; }
+    @media (max-width: 700px) { .behaviors-grid { grid-template-columns: 1fr; } }
+
+    .behavior-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+    }
+    .behavior-card h4 {
+      color: var(--cyan);
+      font-size: .7rem;
+      margin-bottom: 10px;
+    }
+    .behavior-card ul { padding-left: 16px; }
+    .behavior-card li { font-size: .875rem; color: var(--off-white); margin-bottom: 5px; }
+
+    /* ── TACTICAL TABLES ── */
+    .table-wrap { overflow-x: auto; margin-bottom: 32px; }
+    .table-label {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: .7rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--cyan);
+      margin-bottom: 8px;
+    }
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 3px;
+      min-width: 600px;
+    }
+    thead th {
+      background: var(--surface2);
+      padding: 12px 16px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      font-size: .95rem;
+      color: var(--off-white);
+      border-radius: 4px;
+    }
+    thead th:first-child { color: var(--gold); min-width: 130px; }
+    thead th.atk  { color: var(--gold); }
+    thead th.def  { color: var(--cyan); }
+    thead th.ta   { color: #FF8C42; }
+    thead th.da   { color: #B84FFF; }
+
+    tbody tr td {
+      padding: 14px 16px;
+      border-radius: 4px;
+      vertical-align: top;
+      font-size: .875rem;
+      color: var(--off-white);
+      line-height: 1.55;
+    }
+    tbody tr:nth-child(odd) td:first-child,
+    tbody tr:nth-child(even) td:first-child {
+      background: var(--surface2);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-size: 1rem;
+      letter-spacing: .03em;
+    }
+    tbody tr:nth-child(odd) td:not(:first-child)  { background: #161616; }
+    tbody tr:nth-child(even) td:not(:first-child) { background: #1c1c1c; }
+
+    /* ── POSITIONAL ROLES ── */
+    .position-section { margin-bottom: 56px; }
+    .position-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 2px solid var(--surface2);
+    }
+    .position-badge {
+      background: var(--gold);
+      color: var(--black);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      padding: 10px 18px;
+      border-radius: 6px;
+      min-width: 72px;
+      text-align: center;
+      line-height: 1;
+    }
+    .position-badge.cyan { background: var(--cyan); }
+    .position-title-block h2 { color: var(--gold); font-size: 1.8rem; margin-bottom: 2px; }
+    .position-title-block .key-qualities {
+      font-size: .8rem;
+      color: #aaa;
+      font-family: 'Inter', sans-serif;
+    }
+    .key-quality-tag {
+      display: inline-block;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 2px 8px;
+      font-size: .75rem;
+      color: var(--off-white);
+      margin: 2px 3px 2px 0;
+    }
+
+    .phases-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+    @media (max-width: 650px) { .phases-grid { grid-template-columns: 1fr; } }
+
+    .phase-block { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 18px 20px; }
+    .phase-title {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: .68rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      margin-bottom: 12px;
+    }
+    .phase-title.atk { color: var(--gold); }
+    .phase-title.def { color: var(--cyan); }
+    .phase-title.ta  { color: #FF8C42; }
+    .phase-title.da  { color: #B84FFF; }
+    .phase-block ul { padding-left: 16px; }
+    .phase-block li { font-size: .85rem; color: var(--off-white); margin-bottom: 5px; }
+
+    .zone-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: .85rem;
+      text-transform: uppercase;
+      color: #888;
+      margin: 10px 0 4px;
+      letter-spacing: .03em;
+    }
+
+    .principles-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 16px; }
+    @media (max-width: 700px) { .principles-row { grid-template-columns: 1fr; } }
+
+    .principle-block { background: var(--surface2); border-radius: 6px; padding: 16px; }
+    .principle-block h4 { color: var(--gold); font-size: .68rem; margin-bottom: 8px; }
+    .principle-block ul { padding-left: 14px; }
+    .principle-block li { font-size: .82rem; color: var(--off-white); margin-bottom: 4px; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--surface);
+      border-top: 4px solid var(--gold);
+      padding: 40px 24px;
+      text-align: center;
+    }
+    footer img { height: 56px; margin-bottom: 16px; opacity: .85; }
+    footer p { color: #888; font-size: .85rem; }
+    footer strong { color: var(--gold); }
+
+    /* ── PRINT ── */
+    @media print {
+      body { background: white; color: black; font-size: 11pt; }
+      .cover { background: #0D0D0D; }
+      section { padding: 32px 0; }
+      table { min-width: unset; page-break-inside: avoid; }
+      .dna-grid { grid-template-columns: 1fr 1fr; }
+      .behaviors-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════════
+     COVER
+═══════════════════════════════════════════════════════════ -->
+<header class="cover">
+  <img src="assets/scwave-logo.png" alt="SC Wave" onerror="this.style.display='none'">
+  <div class="cover-eyebrow">MLS NEXT — Player Development · 2025–2026</div>
+  <h1>Development Stages &amp;<br>Positional Roles + Key Qualities</h1>
+  <div class="cover-sub">SC Wave Soccer Club · MLS NEXT</div>
+</header>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     MISSION & VISION
+═══════════════════════════════════════════════════════════ -->
+<section>
+  <div class="page-wrap">
+    <div class="section-label"><span>Foundation</span></div>
+    <h2 class="section-title">Mission &amp; Vision</h2>
+
+    <div class="grid-2" style="gap:20px;">
+      <div class="mv-block">
+        <h3>Mission</h3>
+        <p>SC Wave provides an enjoyable and positive environment for soccer players. Our mission is to promote individual development of all our players and assist them to reach their full potential, both within the game and outside of the game of soccer. Our players focus on proper preparation through discipline, determination, dedication, hard work and teamwork while playing with a passion and competing every time they step on the field.</p>
+      </div>
+      <div class="mv-block" style="border-color: var(--cyan);">
+        <h3 style="color:var(--cyan);">Vision</h3>
+        <p>SC Wave will develop complete soccer players with excellent soccer intelligence, technical skills, and a competitive mentality. Players will learn to love the game and will compete at their appropriate level, while experiencing life-lessons beyond the game. We aim to prepare our players to the next level of College Soccer and in some instances professional soccer.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     VALUES
+═══════════════════════════════════════════════════════════ -->
+<section>
+  <div class="page-wrap">
+    <div class="section-label"><span>Culture</span></div>
+    <h2 class="section-title">Club Values</h2>
+
+    <div class="grid-5">
+      <div class="value-card">
+        <h3>Meritocracy</h3>
+        <p>Our attitudes and behaviors reflect what we deserve.</p>
+      </div>
+      <div class="value-card">
+        <h3>Team Spirit</h3>
+        <p>Collective achievements generate individual benefits.</p>
+      </div>
+      <div class="value-card">
+        <h3>Respect</h3>
+        <p>We respect the environment; referees, opponents, teammates and facilities. We are proud to represent the club and our community.</p>
+      </div>
+      <div class="value-card">
+        <h3>Resilience</h3>
+        <p>Giving up is not an option. You fail only when you quit.</p>
+      </div>
+      <div class="value-card">
+        <h3>Creativity</h3>
+        <p>We are brave and confident to create/generate something unpredictable.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     PLAYER PATHWAY
+═══════════════════════════════════════════════════════════ -->
+<section>
+  <div class="page-wrap">
+    <div class="section-label"><span>Development</span></div>
+    <h2 class="section-title">Player Pathway</h2>
+
+    <div style="display:flex;gap:48px;align-items:flex-start;flex-wrap:wrap;">
+      <div style="min-width:280px;max-width:460px;flex:1;">
+      <div class="pathway-arrow">
+        <div class="pathway-node top-level">College &amp; PRO</div>
+        <div class="pathway-connector gold"></div>
+        <div class="pathway-node highlight-cyan">GA &amp; MLS NEXT</div>
+        <div class="pathway-connector gold"></div>
+        <div class="pathway-node highlight">Regional Level</div>
+        <div class="pathway-connector"></div>
+        <div class="pathway-node highlight">State Level</div>
+        <div class="pathway-connector"></div>
+        <div class="pathway-node">Select</div>
+        <div class="pathway-connector"></div>
+        <div class="pathway-node">Academy</div>
+        <div class="pathway-connector"></div>
+        <div class="pathway-node">Recreational</div>
+      </div>
+      </div>
+      <div style="flex-shrink:0;border-radius:8px;overflow:hidden;border:2px solid #F5C518;max-width:200px;margin-top:8px;">
+        <img src="assets/player-pathway.jpeg" alt="SC Wave Player" style="width:100%;height:auto;display:block;" />
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     HOMEGROWN TRAINING ENVIRONMENT
+═══════════════════════════════════════════════════════════ -->
+<section>
+  <div class="page-wrap">
+    <div class="section-label"><span>Calendar</span></div>
+    <h2 class="section-title">Homegrown Training Environment</h2>
+
+    <div class="grid-3">
+
+      <!-- FALL -->
+      <div class="season-card">
+        <div class="season-header">
+          <h3>Fall</h3>
+          <span>Aug – Nov</span>
+        </div>
+        <div class="season-body">
+          <div class="session-tag">4 Sessions / Week</div>
+
+          <div class="season-detail">
+            <div class="season-detail-label">Monday</div>
+            <p style="font-size:.875rem;">Recovery Day — technical/skill day (free play). Tactical Focus: Individual</p>
+          </div>
+          <div class="season-detail">
+            <div class="season-detail-label">Tuesday / Wednesday</div>
+            <p style="font-size:.875rem;">Tactical Focus: Group / Team</p>
+          </div>
+          <div class="season-detail">
+            <div class="season-detail-label">Thursday</div>
+            <p style="font-size:.875rem;">Organizational Sessions — set pieces/plays, patterns, detail oriented, Game Preparation</p>
+          </div>
+          <div class="season-detail">
+            <div class="season-detail-label">Location</div>
+            <p style="font-size:.875rem;">Waukesha and/or Franklin, WI</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- WINTER -->
+      <div class="season-card">
+        <div class="season-header">
+          <h3>Winter</h3>
+          <span>Dec – Mar</span>
+        </div>
+        <div class="season-body">
+          <div class="session-tag">2–3 Sessions / Week</div>
+
+          <div class="season-detail">
+            <div class="season-detail-label">U13–U16 Focus</div>
+            <p style="font-size:.875rem;">Futsal Training 1× per week — focus on technical and tactical benefits, translation to the outdoor game</p>
+          </div>
+          <div class="season-detail">
+            <div class="season-detail-label">Optional Program</div>
+            <p style="font-size:.875rem;">Speed / Agility / Strength Program</p>
+          </div>
+          <div class="season-detail">
+            <div class="season-detail-label">Location</div>
+            <p style="font-size:.875rem;">MOSH (Franklin) and New Berlin, WI</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- SPRING -->
+      <div class="season-card">
+        <div class="season-header">
+          <h3>Spring</h3>
+          <span>Apr – Jun</span>
+        </div>
+        <div class="season-body">
+          <div class="session-tag">4 Sessions / Week</div>
+
+          <div class="season-detail">
+            <div class="season-detail-label">Monday</div>
+            <p style="font-size:.875rem;">Recovery Day — technical/skill day (free play). Tactical Focus: Individual</p>
+          </div>
+          <div class="season-detail">
+            <div class="season-detail-label">Tuesday / Wednesday</div>
+            <p style="font-size:.875rem;">Tactical Focus: Group / Team</p>
+          </div>
+          <div class="season-detail">
+            <div class="season-detail-label">Thursday</div>
+            <p style="font-size:.875rem;">Organizational Sessions — set pieces/plays, patterns, detail oriented, Game Preparation</p>
+          </div>
+          <div class="season-detail">
+            <div class="season-detail-label">Location</div>
+            <p style="font-size:.875rem;">Waukesha and/or Franklin, WI</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     SC WAVE DNA
+═══════════════════════════════════════════════════════════ -->
+<section>
+  <div class="page-wrap">
+    <div class="section-label"><span>Identity</span></div>
+    <h2 class="section-title">SC Wave DNA — Four Phases of Play</h2>
+
+    <div class="dna-grid">
+      <div class="dna-cell attack">
+        <div class="dna-phase-label">Phase 1</div>
+        <h3>Attacking</h3>
+        <p>Proactive and objective ball possession utilizing our positional play principles to create space and attack the opponent's goal.</p>
+      </div>
+      <div class="dna-cell atd">
+        <div class="dna-phase-label">Phase 2</div>
+        <h3>Attacking → Defending</h3>
+        <p>When losing possession, we seek to react quickly, in an organized manner, immediately to recover the ball or protect our goal.</p>
+      </div>
+      <div class="dna-cell defend">
+        <div class="dna-phase-label">Phase 3</div>
+        <h3>Defending</h3>
+        <p>Defensive organization seeking to gain ball possession high up the field utilizing a mid or high compact block structure. If we can't, we will look to force opponent to pre-established trapping zones.</p>
+      </div>
+      <div class="dna-cell dta">
+        <div class="dna-phase-label">Phase 4</div>
+        <h3>Defending → Attacking</h3>
+        <p>Immediate reaction to vertically attack opponent if space is available or keep the ball as we restructure our attacking organization.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     DEVELOPMENT STAGES
+═══════════════════════════════════════════════════════════ -->
+<section>
+  <div class="page-wrap">
+    <div class="section-label"><span>Progression</span></div>
+    <h2 class="section-title">Player Development Stages</h2>
+    <p style="margin-bottom:32px;">Player Behaviors and Team Tactical Principles based on stages of development — U13 through U19 age groups.</p>
+
+    <div class="stage-timeline">
+
+      <div class="stage-row">
+        <div class="stage-age">U9</div>
+        <div>
+          <div class="stage-title">Start of the Pathway</div>
+          <div class="stage-desc">Introduction to the game and the SC Wave environment.</div>
+        </div>
+      </div>
+
+      <div class="stage-row">
+        <div class="stage-age">U12</div>
+        <div>
+          <div class="stage-zone">Zone 1</div>
+          <div class="stage-title">Introduction to the Key Qualities</div>
+          <div class="stage-desc">Development of the individual qualities of a player in a team environment (not based on position). Continuous development of fundamentals.</div>
+        </div>
+      </div>
+
+      <div class="stage-row active">
+        <div class="stage-age">U13 – U14</div>
+        <div>
+          <div class="stage-zone">Zone 2</div>
+          <div class="stage-title">Develop the Key Qualities</div>
+          <div class="stage-desc">Development of the individual qualities of a player in a team concept (e.g. roles and tasks of players). 11v11 Introduction. Intro to Club's Game Model &amp; Principles.</div>
+        </div>
+      </div>
+
+      <div class="stage-row active">
+        <div class="stage-age">U15 – U16</div>
+        <div>
+          <div class="stage-zone">Zone 2</div>
+          <div class="stage-title">Execute the Key Qualities Successfully</div>
+          <div class="stage-desc">Development of the specific qualities of a player in their position to maximize their contribution to the result of the game.</div>
+          <ul class="stage-bullets">
+            <li>Development &amp; Performance</li>
+            <li>Execute Club's Game Model &amp; Principles</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="stage-row active">
+        <div class="stage-age">U17 – U19</div>
+        <div>
+          <div class="stage-zone">Zone 2</div>
+          <div class="stage-title">Execute the Key Qualities Successfully in Order to Win the Game</div>
+          <div class="stage-desc">Development of the specific qualities of a player to be the best player in their position to win the game.</div>
+          <ul class="stage-bullets">
+            <li>Performance &amp; Results</li>
+            <li>Total Implementation of Club's Game Model &amp; Principles</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     U13 & U14
+═══════════════════════════════════════════════════════════ -->
+<section id="u1314">
+  <div class="page-wrap">
+
+    <div class="age-group-header">
+      <h2>U-13 &amp; U-14</h2>
+      <p>Develop the Key Qualities — Development of the individual qualities of a player in a team concept (e.g. roles and tasks of players)</p>
+    </div>
+
+    <div class="section-label"><span>Player Behaviors</span></div>
+    <h3 style="color:var(--off-white);font-size:1.1rem;text-transform:uppercase;letter-spacing:.04em;margin:8px 0 20px;">U-13 &amp; U-14 Player Behaviors to Look For</h3>
+
+    <div class="behaviors-grid">
+      <div class="behavior-card">
+        <h4>Game Understanding &amp; Decision Making</h4>
+        <ul>
+          <li>Understands all the phases of the game relative to our style of play and makes quick decisions</li>
+          <li>Applies our principles of play to scenarios in the game</li>
+        </ul>
+      </div>
+      <div class="behavior-card">
+        <h4>Initiative</h4>
+        <ul>
+          <li>Proactive in situations, looks for new ideas</li>
+          <li>Attacks opponents (1v1, dribble/movement to drag opponents out of position)</li>
+        </ul>
+      </div>
+      <div class="behavior-card">
+        <h4>Focus</h4>
+        <ul>
+          <li>Plays to win every game</li>
+          <li>Is brave and competes in every moment</li>
+        </ul>
+      </div>
+      <div class="behavior-card">
+        <h4>Optimal Technical</h4>
+        <ul>
+          <li>Technically proficient to be successful in all situations</li>
+          <li>Proficient in 1v1 to create attacking prowess</li>
+        </ul>
+      </div>
+      <div class="behavior-card">
+        <h4>Optimal Physical</h4>
+        <ul>
+          <li>Protects the ball with body and correct improvement</li>
+        </ul>
+      </div>
+      <div class="behavior-card">
+        <h4>Responsible (On &amp; Off Field)</h4>
+        <ul>
+          <li>Is involved and engaged throughout every game, training session, and exercise</li>
+          <li>Accountable for actions</li>
+          <li>Handles (un)expected challenges and problems with flexibility and accountability</li>
+          <li>Develops own goals to reach their personal learning objectives</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ATTACKING / DEFENDING TABLE -->
+    <div class="section-label"><span>Tactical Principles</span></div>
+    <h3 style="color:var(--off-white);font-size:1.1rem;text-transform:uppercase;letter-spacing:.04em;margin:8px 0 16px;">Attacking &amp; Defending</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Zone</th>
+            <th class="atk">Attacking</th>
+            <th class="def">Defending</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Attacking 1/3</td>
+            <td>Different types of runs to get behind/between last line of defenders; Find key players where they can succeed; Find space to combine and become a passing option; Get numbers in the box; Move away from defender = creating space</td>
+            <td>Mix of zonal and man to man; Pressing: Recognize the moment to make play predictable; Look to always pressure the player on the ball; Stay and keep it compact, limit the space between lines and units</td>
+          </tr>
+          <tr>
+            <td>Midfield 1/3</td>
+            <td>Movement of players to create numbers up; Full backs and wingers occupying different channels; Find space to combine and become a passing option; Create numbers up on one side to find teammate on the other side in open space or 1v1; Move away from defender = creating space</td>
+            <td>Keep the ball in front of us, force play wide; Look to always pressure the player on the ball in your zone; Zonal defending – communicate player movement; Stay and keep it compact, limit the space between lines and units</td>
+          </tr>
+          <tr>
+            <td>Defending 1/3</td>
+            <td>Create numbers up to move the ball forward; Beat the first defender by passing or dribbling; Create diagonal passing lanes to support teammate; Find separation away from defender = creating space; Occupy 5 vertical lanes with 5 defenders</td>
+            <td>Get compact and stay compact – don't allow passes through you; Get behind the ball, force play wide; Look to always pressure the player on the ball; Inside the box man mark, outside the box mark space</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- TRANSITION TABLE -->
+    <h3 style="color:var(--off-white);font-size:1.1rem;text-transform:uppercase;letter-spacing:.04em;margin:0 0 16px;">Transitions — Attacking→Defending &amp; Defending→Attacking</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Zone</th>
+            <th class="ta">Transition A→D</th>
+            <th class="da">Transition D→A</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Attacking 1/3</td>
+            <td>Pressure player on the ball as soon as possible; Numbers behind the ball immediately, get compact/organized; Ball orientated press, Create numbers up around the ball; Force play back; When first pressure gets broken, drop deep and get organized/compact; No pressure on the ball, drop/delay</td>
+            <td>Play the highest player on the field if possible; Dribble towards the goal and shoot on target</td>
+          </tr>
+          <tr>
+            <td>Midfield 1/3</td>
+            <td>Pressure player on the ball as soon as possible; Numbers behind the ball immediately, get compact/organize; Ball orientated press, Create numbers up around the ball; Force play outside; Zonal defending – don't cross in front or behind each other</td>
+            <td>Play the first pass to the closest player ahead of the ball; Pass backwards if you can not go forward</td>
+          </tr>
+          <tr>
+            <td>Defending 1/3</td>
+            <td>Pressure player on the ball as soon as possible; Numbers behind the ball immediately, get compact/organize; Ball orientated press, Create numbers up around the ball; Force play outside; Zonal defending, man to man within the box; When first pressure gets broken or no pressure, drop deep (edge of the D lowest point of confrontation) and get organized/compact</td>
+            <td>Play the first pass to the closest player ahead of the ball; Pass backwards if you can not go forward</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     U15 & U16
+═══════════════════════════════════════════════════════════ -->
+<section id="u1516">
+  <div class="page-wrap">
+
+    <div class="age-group-header">
+      <h2>U-15 &amp; U-16</h2>
+      <p>Execute the Key Qualities Successfully — Development of the specific qualities of a player in their position to maximize their contribution to the result of the game</p>
+    </div>
+
+    <div class="section-label"><span>Player Behaviors</span></div>
+    <h3 style="color:var(--off-white);font-size:1.1rem;text-transform:uppercase;letter-spacing:.04em;margin:8px 0 20px;">U-15 &amp; U-16 Player Behaviors to Look For</h3>
+
+    <div class="behaviors-grid">
+      <div class="behavior-card">
+        <h4>Game Understanding &amp; Decision Making</h4>
+        <ul>
+          <li>Understands all the phases of the game relative to our style of play and makes quick decisions</li>
+          <li>Applies our principles of play to scenarios in the game</li>
+          <li>Coordinates actions with teammates, opponents, and positions within the field</li>
+          <li>Is the best player at their position based on the style of play of the team</li>
+        </ul>
+      </div>
+      <div class="behavior-card">
+        <h4>Initiative</h4>
+        <ul>
+          <li>Proactive in situations, looks for new ideas</li>
+          <li>Attacks opponents (1v1, dribble/movement to drag opponents out of position)</li>
+          <li>Thinks ahead</li>
+        </ul>
+      </div>
+      <div class="behavior-card">
+        <h4>Focus</h4>
+        <ul>
+          <li>Plays to win every game</li>
+          <li>Is brave and competes in every moment</li>
+          <li>Recovers quickly from an adverse moment</li>
+        </ul>
+      </div>
+      <div class="behavior-card">
+        <h4>Optimal Technical</h4>
+        <ul>
+          <li>Technically proficient to be successful in all situations</li>
+          <li>Proficient in 1v1 to create attacking prowess</li>
+          <li>Technical skills to create attacking moments under pressure</li>
+        </ul>
+      </div>
+      <div class="behavior-card">
+        <h4>Optimal Physical</h4>
+        <ul>
+          <li>Protects the ball with body and correct improvement</li>
+          <li>Has the physical fitness to execute tasks at the highest level for every game</li>
+        </ul>
+      </div>
+      <div class="behavior-card">
+        <h4>Responsible (On &amp; Off Field)</h4>
+        <ul>
+          <li>Is involved and engaged throughout every game, training session, and exercise</li>
+          <li>Accountable for actions</li>
+          <li>Handles (un)expected challenges and problems with flexibility and accountability</li>
+          <li>Develops own goals to reach their personal learning objectives</li>
+          <li>Analyzes game &amp; training performance in relation to positional requirements in the system of play</li>
+          <li>Creates their own PDP… Personal Development Plan</li>
+          <li>Is dependable and reliable (leadership)</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ATTACKING / DEFENDING TABLE -->
+    <div class="section-label"><span>Tactical Principles</span></div>
+    <h3 style="color:var(--off-white);font-size:1.1rem;text-transform:uppercase;letter-spacing:.04em;margin:8px 0 16px;">Attacking &amp; Defending</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Zone</th>
+            <th class="atk">Attacking</th>
+            <th class="def">Defending</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Attacking 1/3</td>
+            <td>Vary the type of runs to get behind/between last line of defenders; Find key players where they can succeed; Utilize space and triangulate to create passing options; Get numbers in the box; Find separation away from defender = creating space</td>
+            <td>Stay and keep it compact — Vertical 5–7 yards and Horizontal Compactness 3–5 yards; Get behind the ball, force play wide; Look to always pressure the player on the ball; In box man&gt;zone, outside the box zone&gt;man</td>
+          </tr>
+          <tr>
+            <td>Midfield 1/3</td>
+            <td>Movement of players to create numbers up; Wide Players occupying different channels (full backs/wingers); Utilize space and triangulate to create passing options; Create #s up one side to exploit opposite side isolation (1v1, open space); Find separation away from defender = creating space</td>
+            <td>Keep the ball in front of us, force play wide; Look to always pressure the player on the ball in your zone; Zonal defending – don't cross in front or behind each other; Stay and keep it compact — Vertical 8–10 yards and Horizontal Compactness 5–7 yards</td>
+          </tr>
+          <tr>
+            <td>Defending 1/3</td>
+            <td>Create numbers up to advance ball forward; Break first line of defenders on the dribble or pass; Create diagonal passing lanes — break lines of pressure with diagonal pass; Getting unmarked, creating space; Occupy 5 vertical lanes with 5 defenders (Appropriate spacing of back 5)</td>
+            <td>Stay and keep it compact — Vertical 5–7 yards and Horizontal Compactness 3–5 yards; Get behind the ball, force play wide; Look to always pressure the player on the ball; In box man&gt;zone, outside the box zone&gt;man</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- TRANSITION TABLE -->
+    <h3 style="color:var(--off-white);font-size:1.1rem;text-transform:uppercase;letter-spacing:.04em;margin:0 0 16px;">Transitions — Attacking→Defending &amp; Defending→Attacking</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Zone</th>
+            <th class="ta">Transition A→D</th>
+            <th class="da">Transition D→A</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Attacking 1/3</td>
+            <td>Pressure player on the ball as soon as possible; Numbers behind the ball; Ball orientated press, Create numbers up around the ball; Force play back; When first pressure gets broken, drop deep and get organized/compact; No pressure on the ball, drop/delay</td>
+            <td>Play the most goal dangerous pass immediately; Dribble toward goal and shoot on target</td>
+          </tr>
+          <tr>
+            <td>Midfield 1/3</td>
+            <td>Pressure player on the ball as soon as possible; Numbers behind the ball; Ball orientated press, Create numbers up around the ball; Force play outside; Zonal defending – don't cross in front or behind each other</td>
+            <td>Play the first pass to the closest player ahead of the ball; Keep the ball if you can't play forward</td>
+          </tr>
+          <tr>
+            <td>Defending 1/3</td>
+            <td>Pressure the ball immediately; Numbers behind the ball immediately, get compact/organize; Ball orientated press, Create numbers up around the ball; Force play outside; Zonal defending, man to man within the box; When first pressure gets broken or no pressure, drop deep (edge of the D lowest point of confrontation) and get organized/compact</td>
+            <td>Play the first pass to the closest player ahead of the ball; Keep the ball if you can't play forward</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     U17 & U18 / U19
+═══════════════════════════════════════════════════════════ -->
+<section id="u1719">
+  <div class="page-wrap">
+
+    <div class="age-group-header">
+      <h2>U-17, U-18 &amp; U-19</h2>
+      <p>Execute the Key Qualities Successfully in Order to Win the Game — Development of the specific qualities of a player to be the best player in their position to win the game</p>
+    </div>
+
+    <div class="section-label"><span>Player Behaviors</span></div>
+    <h3 style="color:var(--off-white);font-size:1.1rem;text-transform:uppercase;letter-spacing:.04em;margin:8px 0 20px;">U-17 &amp; U-18 Player Behaviors to Look For</h3>
+
+    <div class="behaviors-grid">
+      <div class="behavior-card">
+        <h4>Game Understanding &amp; Decision Making</h4>
+        <ul>
+          <li>Understands all the phases of the game relative to our style of play and makes quick decisions</li>
+          <li>Applies our principles of play to scenarios in the game</li>
+          <li>Coordinates actions with teammates, opponents, and positions within the field</li>
+          <li>Is the best player at their position based on the style of play of the team</li>
+          <li>Manages the moments within the game at the appropriate pace</li>
+        </ul>
+      </div>
+      <div class="behavior-card">
+        <h4>Initiative</h4>
+        <ul>
+          <li>Proactive in situations, looks for new ideas</li>
+          <li>Attacks opponents (1v1, dribble/movement to drag opponents out of position)</li>
+          <li>Thinks ahead</li>
+          <li>Scanning the field and finding space for the next movements</li>
+        </ul>
+      </div>
+      <div class="behavior-card">
+        <h4>Focus</h4>
+        <ul>
+          <li>Plays to win every game</li>
+          <li>Is brave and competes in every moment</li>
+          <li>Recovers quickly from an adverse moment</li>
+          <li>Emotionally composed</li>
+        </ul>
+      </div>
+      <div class="behavior-card">
+        <h4>Optimal Technical</h4>
+        <ul>
+          <li>Technically proficient to be successful in all situations</li>
+          <li>Proficient in 1v1 to create attacking prowess</li>
+          <li>Technical skills to create attacking moments under pressure</li>
+          <li>Technical skills to dictate the pace of the game</li>
+        </ul>
+      </div>
+      <div class="behavior-card">
+        <h4>Optimal Physical</h4>
+        <ul>
+          <li>Protects the ball with body and correct improvement</li>
+          <li>Has the physical fitness to execute tasks at the highest level for every game</li>
+          <li>Demonstrates power and speed</li>
+        </ul>
+      </div>
+      <div class="behavior-card">
+        <h4>Responsible (On &amp; Off Field)</h4>
+        <ul>
+          <li>Is involved and engaged throughout every game, training session, and exercise</li>
+          <li>Accountable for actions</li>
+          <li>Handles (un)expected challenges and problems with flexibility and accountability</li>
+          <li>Develops own goals to reach their personal learning objectives</li>
+          <li>Analyzes game &amp; training performance in relation to positional requirements in the system of play</li>
+          <li>Creates their own PDP… Personal Development Plan</li>
+          <li>Is dependable and reliable (leadership)</li>
+          <li>Personal lifestyle aligns with becoming an elite performer</li>
+          <li>Is a 'coach' on the field</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ATTACKING / DEFENDING TABLE -->
+    <div class="section-label"><span>Tactical Principles</span></div>
+    <h3 style="color:var(--off-white);font-size:1.1rem;text-transform:uppercase;letter-spacing:.04em;margin:8px 0 16px;">Attacking &amp; Defending — U-17 &amp; U-19</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Zone</th>
+            <th class="atk">Attacking</th>
+            <th class="def">Defending</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Attacking 1/3</td>
+            <td>Vary the type of runs to get behind/between last line of defenders; Find key players where they can succeed; Utilize space and triangulate to create passing options; Get numbers in the box; Find separation away from defender = creating space</td>
+            <td>Stay and keep it compact — Vertical 5–7 yards and Horizontal Compactness 3–5 yards; Get behind the ball, force play wide; Look to always pressure the player on the ball; In box man&gt;zone, outside the box zone&gt;man</td>
+          </tr>
+          <tr>
+            <td>Midfield 1/3</td>
+            <td>Movement of players to create numbers up; Wide Players occupying different channels (full backs/wingers); Utilize space and triangulate to create passing options; Create #s up one side to exploit opposite side isolation (1v1, open space); Find separation away from defender = creating space</td>
+            <td>Keep the ball in front of us, force play wide; Look to always pressure the player on the ball in your zone; Zonal defending – don't cross in front or behind each other; Stay and keep it compact — Vertical 8–10 yards and Horizontal Compactness 5–7 yards</td>
+          </tr>
+          <tr>
+            <td>Defending 1/3</td>
+            <td>Create numbers up to advance ball forward; Break first line of defenders on the dribble or pass; Create diagonal passing lanes — break lines of pressure with diagonal pass; Getting unmarked, creating space; Occupy 5 vertical lanes with 5 defenders (Appropriate spacing of back 5)</td>
+            <td>Stay and keep it compact — Vertical 5–7 yards and Horizontal Compactness 3–5 yards; Get behind the ball, force play wide; Look to always pressure the player on the ball; In box man&gt;zone, outside the box zone&gt;man</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- TRANSITION TABLE -->
+    <h3 style="color:var(--off-white);font-size:1.1rem;text-transform:uppercase;letter-spacing:.04em;margin:0 0 16px;">Transitions — Attacking→Defending &amp; Defending→Attacking — U-17 &amp; U-19</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Zone</th>
+            <th class="ta">Transition A→D</th>
+            <th class="da">Transition D→A</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Attacking 1/3</td>
+            <td>Pressure player on the ball as soon as possible; Numbers behind the ball; Ball orientated press, Create numbers up around the ball; Force play back; When first pressure gets broken, drop deep and get organized/compact; No pressure on the ball, drop/delay</td>
+            <td>Play the most goal dangerous pass immediately; Dribble toward goal and shoot on target</td>
+          </tr>
+          <tr>
+            <td>Midfield 1/3</td>
+            <td>Pressure player on the ball as soon as possible; Numbers behind the ball; Ball orientated press, Create numbers up around the ball; Force play outside; Zonal defending – don't cross in front or behind each other</td>
+            <td>Play the first pass to the closest player ahead of the ball; Keep the ball if you can't play forward</td>
+          </tr>
+          <tr>
+            <td>Defending 1/3</td>
+            <td>Pressure the ball immediately; Numbers behind the ball immediately, get compact/organize; Ball orientated press, Create numbers up around the ball; Force play outside; Zonal defending, man to man within the box; When first pressure gets broken or no pressure, drop deep (edge of the D lowest point of confrontation) and get organized/compact</td>
+            <td>Play the first pass to the closest player ahead of the ball; Keep the ball if you can't play forward</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     POSITIONAL ROLES & RESPONSIBILITIES
+═══════════════════════════════════════════════════════════ -->
+<section id="positions">
+  <div class="page-wrap">
+    <div class="section-label"><span>Roles</span></div>
+    <h2 class="section-title">Positional Roles, Responsibilities &amp; Key Qualities</h2>
+    <p style="margin-bottom:48px;">In all moments of the game.</p>
+
+
+    <!-- ─── GK ─── -->
+    <div class="position-section">
+      <div class="position-header">
+        <div class="position-badge">#1</div>
+        <div class="position-title-block">
+          <h2>Goalkeeper — GK</h2>
+          <div class="key-qualities">
+            <span class="key-quality-tag">Confident</span>
+            <span class="key-quality-tag">Athletic</span>
+            <span class="key-quality-tag">Decisive</span>
+            <span class="key-quality-tag">Coach on the Field</span>
+            <span class="key-quality-tag">Accurate, Confident Passing (short and long)</span>
+          </div>
+        </div>
+        <svg viewBox="0 0 180 280" width="140" height="218" style="flex-shrink:0;border-radius:6px;" xmlns="http://www.w3.org/2000/svg">
+          <rect width="180" height="280" fill="#0c150c" rx="6"/>
+          <rect x="8" y="8" width="164" height="264" fill="none" stroke="#1c3c1c" stroke-width="1.5"/>
+          <line x1="8" y1="140" x2="172" y2="140" stroke="#1c3c1c" stroke-width="1"/>
+          <circle cx="90" cy="140" r="26" fill="none" stroke="#1c3c1c" stroke-width="1"/>
+          <rect x="46" y="212" width="88" height="52" fill="none" stroke="#1c3c1c" stroke-width="1.5"/>
+          <rect x="66" y="246" width="48" height="18" fill="none" stroke="#1c3c1c" stroke-width="1"/>
+          <rect x="46" y="16" width="88" height="52" fill="none" stroke="#1c3c1c" stroke-width="1.5"/>
+          <rect x="66" y="16" width="48" height="18" fill="none" stroke="#1c3c1c" stroke-width="1"/>
+          <circle cx="90" cy="52" r="9" fill="#242424" stroke="#404040" stroke-width="1.5"/><text x="90" y="56" text-anchor="middle" fill="#777" font-size="8" font-family="Arial,sans-serif" font-weight="700">9</text>
+          <circle cx="18" cy="88" r="9" fill="#242424" stroke="#404040" stroke-width="1.5"/><text x="18" y="92" text-anchor="middle" fill="#777" font-size="8" font-family="Arial,sans-serif" font-weight="700">11</text>
+          <circle cx="162" cy="88" r="9" fill="#242424" stroke="#404040" stroke-width="1.5"/><text x="162" y="92" text-anchor="middle" fill="#777" font-size="8" font-family="Arial,sans-serif" font-weight="700">7</text>
+          <circle cx="52" cy="152" r="9" fill="#242424" stroke="#404040" stroke-width="1.5"/><text x="52" y="156" text-anchor="middle" fill="#777" font-size="8" font-family="Arial,sans-serif" font-weight="700">8</text>
+          <circle cx="128" cy="152" r="9" fill="#242424" stroke="#404040" stroke-width="1.5"/><text x="128" y="156" text-anchor="middle" fill="#777" font-size="8" font-family="Arial,sans-serif" font-weight="700">10</text>
+          <circle cx="90" cy="180" r="9" fill="#242424" stroke="#404040" stroke-width="1.5"/><text x="90" y="184" text-anchor="middle" fill="#777" font-size="8" font-family="Arial,sans-serif" font-weight="700">6</text>
+          <circle cx="18" cy="205" r="9" fill="#242424" stroke="#404040" stroke-width="1.5"/><text x="18" y="209" text-anchor="middle" fill="#777" font-size="8" font-family="Arial,sans-serif" font-weight="700">3</text>
+          <circle cx="162" cy="205" r="9" fill="#242424" stroke="#404040" stroke-width="1.5"/><text x="162" y="209" text-anchor="middle" fill="#777" font-size="8" font-family="Arial,sans-serif" font-weight="700">2</text>
+          <circle cx="62" cy="222" r="9" fill="#242424" stroke="#404040" stroke-width="1.5"/><text x="62" y="226" text-anchor="middle" fill="#777" font-size="8" font-family="Arial,sans-serif" font-weight="700">5</text>
+          <circle cx="118" cy="222" r="9" fill="#242424" stroke="#404040" stroke-width="1.5"/><text x="118" y="226" text-anchor="middle" fill="#777" font-size="8" font-family="Arial,sans-serif" font-weight="700">4</text>
+          <circle cx="90" cy="258" r="10" fill="#F5C518" stroke="#FAD84A" stroke-width="2"/><text x="90" y="262" text-anchor="middle" fill="#0D0D0D" font-size="8" font-family="Arial,sans-serif" font-weight="700">1</text>
+        </svg>
+      </div>
+
+      <h4 style="color:var(--cyan);margin-bottom:12px;">Player Actions by Zone</h4>
+      <div class="phases-grid" style="grid-template-columns:repeat(4,1fr);">
+        <div class="phase-block">
+          <div class="phase-title atk">Attacking</div>
+          <div class="zone-label">Def 1/3</div>
+          <ul><li>Position to support for back pass if ball cannot be played forward</li><li>Pass forward or wide to spread out and/or begin build-up</li></ul>
+          <div class="zone-label">Mid 1/3</div>
+          <ul><li>Position to support for back pass if ball cannot be played forward</li></ul>
+          <div class="zone-label">Off 1/3</div>
+          <ul><li>Push up the defensive line and organize (coach) teammates to position themselves to prevent counter attacks</li></ul>
+        </div>
+        <div class="phase-block">
+          <div class="phase-title def">Defending</div>
+          <div class="zone-label">Def 1/3</div>
+          <ul><li>Organize teammates when to switch from zonal marking to player tracking (organization on set pieces)</li><li>Anticipate crosses and shots and position to stop or regain the ball</li></ul>
+          <div class="zone-label">Mid 1/3</div>
+          <ul><li>Position to provide cover to anticipate and intercept long balls behind defensive line</li></ul>
+          <div class="zone-label">Off 1/3</div>
+          <ul><li>Position to provide cover to anticipate and intercept long balls behind defensive line</li></ul>
+        </div>
+        <div class="phase-block">
+          <div class="phase-title da">Transition D→A</div>
+          <div class="zone-label">Def 1/3</div>
+          <ul><li>Pass forward (long) quickly to exploit the opponent and create 1v1</li><li>Keep the ball when you cannot play forward</li></ul>
+          <div class="zone-label">Mid 1/3</div>
+          <ul><li>Push the defensive line up</li><li>Give support for back pass if ball cannot be played forward</li></ul>
+          <div class="zone-label">Off 1/3</div>
+          <ul><li>Organize teammates to position themselves to prevent counter attacks</li></ul>
+        </div>
+        <div class="phase-block">
+          <div class="phase-title ta">Transition A→D</div>
+          <div class="zone-label">Def 1/3</div>
+          <ul><li>Stay connected to the back line – organize teammates</li></ul>
+          <div class="zone-label">Mid 1/3</div>
+          <ul><li>Organize teammates – balanced and compact</li></ul>
+          <div class="zone-label">Off 1/3</div>
+          <ul><li>Position behind defensive line to take preventative defensive action</li></ul>
+        </div>
+      </div>
+
+      <h4 style="color:var(--cyan);margin:20px 0 12px;">Principles of Play</h4>
+      <div class="principles-row">
+        <div class="principle-block">
+          <h4>Offensive — Build Out</h4>
+          <ul><li>Disorganize opponent</li><li>Variety in distribution</li><li>Confidence in distribution</li></ul>
+        </div>
+        <div class="principle-block">
+          <h4>Offensive — Advancement Phase</h4>
+          <ul><li>Disorganize opponent</li><li>Available for backward pass</li><li>Push up with the team</li><li>Awareness of field position</li></ul>
+        </div>
+        <div class="principle-block">
+          <h4>Offensive — Chance Creation / Scoring</h4>
+          <ul><li>Push up with the team</li><li>Awareness of field position</li></ul>
+        </div>
+        <div class="principle-block">
+          <h4>Defensive — Defensive Third</h4>
+          <ul><li>Recover ball</li><li>Secure hands when catching</li><li>Command the box</li><li>Aggression and confidence</li><li>Read opponent's body shape</li></ul>
+        </div>
+        <div class="principle-block">
+          <h4>Defensive — Middle Block</h4>
+          <ul><li>Recover ball</li><li>Move forward when opponent plays backward</li><li>Ready to come off line to intercept</li></ul>
+        </div>
+        <div class="principle-block">
+          <h4>Defensive — Press</h4>
+          <ul><li>Organize teammates in front</li><li>Read opponent's body language</li></ul>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ─── CB ─── -->
+    <div class="position-section">
+      <div class="position-header">
+        <div class="position-badge">#4 / #5</div>
+        <div class="position-title-block">
+          <h2>Center Back — CB</h2>
+          <div class="key-qualities">
+            <span class="key-quality-tag">Positionally Dominant</span>
+            <span class="key-quality-tag">Vocal Leader</span>
+            <span class="key-quality-tag">Technically Skilled</span>
+            <span class="key-quality-tag">Athletic</span>
+            <span class="key-quality-tag">Aerially Dominant</span>
+          </div>
+        </div>
+        <svg viewBox="0 0 180 280" width="140" height="218" style="flex-shrink:0;border-radius:6px;" xmlns="http://www.w3.org/2000/svg">
+          <rect width="180" height="280" fill="#0c150c" rx="6"/>
+          <rect x="8" y="8" width="164" height="264" fill="none" stroke="#1c3c1c" stroke-width="1.5"/>
+          <line x1="8" y1="140" x2="172" y2="140" stroke="#1c3c1c" stroke-width="1"/>
+          <circle cx="90" cy="140" r="26" fill="none" stroke="#1c3c1c" stroke-width="1"/>
+          <rect x="46" y="212" width="88" height="52" fill="none" stroke="#1c3c1c" stroke-width="1.5"/>
+          <rect x="66" y="246" width="48" height="18" fill="none" stroke="#1c3c1c" stroke-width="1"/>
+          <rect x="46" y="16" width="88" height="52" fill="none" stroke="#1c3c1c" stroke-width="1.5"/>
+          <rect x="66" y="16" width="48" height="18" fill="none" stroke="#1c3c1c" stroke-width="1"/>
+          <circle cx="90" cy="52" r="9" fill="#242424" stroke="#404040" stroke-width="1.5"/><text x="90" y="56" text-anchor="middle" fill="#777" font-size="8" font-family="Arial,sans-serif" font-weight="700">9</text>
+          <circle cx="18" cy="88" r="9" fill="#242424" stroke="#404040" stroke-width="1.5"/><text x="18" y="92" text-anchor="middle" fill="#777" font-size="8" font-family="Arial,sans-serif" font-weight="700">11</text>
+          <circle cx="162" cy="88" r="9" fill="#242424" stroke="#404040" stroke-width="1.5"/><text x="162" y="92" text-anchor="middle" fill="#777" font-size="8" font-family="Arial,sans-serif" font-weight="700">7</text>
+          <circle cx="52" cy="152" r="9" fill="#242424" stroke="#404040" stroke-width="1.5"/><text x="52" y="156" text-anchor="middle" fill="#777" font-size="8" font-family="Arial,sans-serif" font-weight="700">8</text>
+          <circle cx="128" cy="152" r="9" fill="#242424" stroke="#404040" stroke-width="1.5"/><text x="128" y="156" text-anchor="middle" fill="#777" font-size="8" font-family="Arial,sans-serif" font-weight="700">10</text>
+          <circle cx="90" cy="180" r="9" fill="#242424" stroke="#404040" stroke-width="1.5"/><text x="90" y="184" text-anchor="middle" fill="#777" font-size="8" font-family="Arial,sans-serif" font-weight="700">6</text>
+          <circle cx="18" cy="205" r="9" fill="#242424" stroke="#404040" stroke-width="1.5"/><text x="18" y="209" text-anchor="middle" fill="#777" font-size="8" font-family="Arial,sans-serif" font-weight="700">3</text>
+          <circle cx="162" cy="205" r="9" fill="#242424" stroke="#404040" stroke-width="1.5"/><text x="162" y="209" text-anchor="middle" fill="#777" font-size="8" font-family="Arial,sans-serif" font-weight="700">2</text>
+          <circle cx="62" cy="222" r="10" fill="#F5C518" stroke="#FAD84A" stroke-width="2"/><text x="62" y="226" text-anchor="middle" fill="#0D0D0D" font-size="8" font-family="Arial,sans-serif" font-weight="700">5</text>
+          <circle cx="118" cy="222" r="10" fill="#F5C518" stroke="#FAD84A" stroke-width="2"/><text x="118" y="226" text-anchor="middle" fill="#0D0D0D" font-size="8" font-family="Arial,sans-serif" font-weight="700">4</text>
+          <circle cx="90" cy="258" r="9" fill="#242424" stroke="#404040" stroke-width="1.5"/><text x="90" y="262" text-anchor="middle" fill="#777" font-size="8" font-family="Arial,sans-serif" font-weight="700">1</text>
+        </svg>
+      </div>
+
+      <h4 style="color:var(--cyan);margin-bottom:12px;">Player Actions by Zone</h4>
+      <div class="phases-grid" style="grid-template-columns:repeat(4,1fr);">
+        <div class="phase-block">
+          <div class="phase-title atk">Attacking</div>
+          <div class="zone-label">Def 1/3</div>
+          <ul><li>Position to spread out &amp; provide passing option (for GK) in relation to other center back &amp; defensive midfielder to outnumber opponent</li><li>Make accurate forward/diagonal passes between (or behind) the opposition defensive lines</li></ul>
+          <div class="zone-label">Mid 1/3</div>
+          <ul><li>Move forward with (and without) the ball to create 2v1</li><li>Position to support if the ball cannot be played forward</li></ul>
+          <div class="zone-label">Off 1/3</div>
+          <ul><li>Push up the defensive line &amp; organize teammates to take up preventive defensive action</li></ul>
+        </div>
+        <div class="phase-block">
+          <div class="phase-title def">Defending</div>
+          <div class="zone-label">Def 1/3</div>
+          <ul><li>Deny opposition in 1v1 situations (air &amp; ground) and be first to the ball on all crosses</li><li>Clear ball from danger areas</li></ul>
+          <div class="zone-label">Mid 1/3</div>
+          <ul><li>Position to monitor opponent &amp; analyze situation to determine correct defensive action: PCB, zone, man mark, etc.</li><li>Movements &amp; decisions in partnership with other center back</li></ul>
+          <div class="zone-label">Off 1/3</div>
+          <ul><li>Lead &amp; organize defensive line &amp; direct other teammates</li><li>Intercept long &amp; through passes</li></ul>
+        </div>
+        <div class="phase-block">
+          <div class="phase-title da">Transition D→A</div>
+          <div class="zone-label">Def 1/3</div>
+          <ul><li>Move quickly into position to support in space</li><li>Pass or dribble forward</li></ul>
+          <div class="zone-label">Mid 1/3</div>
+          <ul><li>Coach the defensive line to push up as a unit</li></ul>
+          <div class="zone-label">Off 1/3</div>
+          <ul><li>—</li></ul>
+        </div>
+        <div class="phase-block">
+          <div class="phase-title ta">Transition A→D</div>
+          <div class="zone-label">Def 1/3</div>
+          <ul><li>If closest to the situation, put pressure on the ball immediately to prevent danger</li></ul>
+          <div class="zone-label">Mid 1/3</div>
+          <ul><li>Quick decision to pressure the ball, delay the opponents attack, or drop back</li></ul>
+          <div class="zone-label">Off 1/3</div>
+          <ul><li>Take preventive defensive action</li></ul>
+        </div>
+      </div>
+
+      <h4 style="color:var(--cyan);margin:20px 0 12px;">Principles of Play</h4>
+      <div class="principles-row">
+        <div class="principle-block">
+          <h4>Offensive — Build Out</h4>
+          <ul><li>Disorganize opponent</li><li>Eliminate defenders with pass</li><li>Variety in passing</li><li>Dribble forward when no pressure</li></ul>
+        </div>
+        <div class="principle-block">
+          <h4>Offensive — Advancement Phase</h4>
+          <ul><li>Disorganize opponent</li><li>Eliminate defenders with pass or dribble</li><li>Overload one side to isolate opposite side</li><li>Variety in passing</li></ul>
+        </div>
+        <div class="principle-block">
+          <h4>Offensive — Chance Creation / Scoring</h4>
+          <ul><li>Disorganize opponent</li><li>Eliminate defenders with pass or dribble</li><li>Crossing from variety of positions</li><li>Pass backward to restart attack</li></ul>
+        </div>
+        <div class="principle-block">
+          <h4>Defensive — Defensive Third</h4>
+          <ul><li>Organized and compact</li><li>Intercept and recover the ball</li><li>Connected sub-groups</li><li>Limit central penetration</li><li>Communication to teammates in front</li><li>Block crosses/shots</li><li>Limit opponent's entry into our box</li></ul>
+        </div>
+        <div class="principle-block">
+          <h4>Defensive — Middle Block</h4>
+          <ul><li>Organized and compact</li><li>Intercept and recover the ball</li><li>Connected sub-groups</li><li>Limit central penetration</li><li>Communication to teammates in front</li><li>Step forward when opponent plays backward</li></ul>
+        </div>
+        <div class="principle-block">
+          <h4>Defensive — Press</h4>
+          <ul><li>Organized and compact</li><li>Intercept and recover the ball</li><li>Connected sub-groups</li><li>Limit central penetration</li><li>Communication to teammates in front</li><li>Proactive marking to prevent counter</li></ul>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ─── FB ─── -->
+    <div class="position-section">
+      <div class="position-header">
+        <div class="position-badge">#2 / #3</div>
+        <div class="position-title-block">
+          <h2>Full Back — FB</h2>
+          <div class="key-qualities">
+            <span class="key-quality-tag">High Level of Endurance</span>
+            <span class="key-quality-tag">Proficient Dribbler</span>
+            <span class="key-quality-tag">High-Concentration / Anticipation</span>
+            <span class="key-quality-tag">Proficient Cross / Long Passing</span>
+            <span class="key-quality-tag">Proficient Defending 1v1</span>
+          </div>
+        </div>
+        <svg viewBox="0 0 180 280" width="140" height="218" style="flex-shrink:0;border-radius:6px;" xmlns="http://www.w3.org/2000/svg">
+          <rect width="180" height="280" fill="#0c150c" rx="6"/>
+          <rect x="8" y="8" width="164" height="264" fill="none" stroke="#1c3c1c" stroke-width="1.5"/>
+          <line x1="8" y1="140" x2="172" y2="140" stroke="#1c3c1c" stroke-width="1"/>
+          <circle cx="90" cy="140" r="26" fill="none" stroke="#1c3c1c" stroke-width="1"/>
+          <rect x="46" y="212" width="88" height="52" fill="none" stroke="#1c3c1c" stroke-width="1.5"/>
+          <rect x="66" y="246" width="48" height="18" fill="none" stroke="#1c3c1c" stroke-width="1"/>
+          <rect x="46" y="16" width="88" height="52" fill="none" stroke="#1c3c1c" stroke-width="1.5"/>
+          <rect x="66" y="16" width="48" height="18" fill="none" stroke="#1c3c1c" stroke-width="1"/>
+          <circle cx="90" cy="52" r="9" fill="#242424" stroke="#404040" stroke-width="1.5"/><text x="90" y="56" text-anchor="middle" fill="#777" font-size="8" font-family="Arial,sans-serif" font-weight="700">9</text>
+          <circle cx="18" cy="88" r="9" fill="#242424" stroke="#404040" stroke-width="1.5"/><text x="18" y="92" text-anchor="middle" fill="#777" font-size="8" font-family="Arial,sans-serif" font-weight="700">11</text>
+          <circle cx="162" cy="88" r="9" fill="#242424" stroke="#404040" stroke-width="1.5"/><text x="162" y="92" text-anchor="middle" fill="#777" font-size="8" font-family="Arial,sans-serif" font-weight="700">7</text>
+          <circle cx="52" cy="152" r="9" fill="#242424" stroke="#404040" stroke-width="1.5"/><text x="52" y="156" text-anchor="middle" fill="#777" font-size="8" font-family="Arial,sans-serif" font-weight="700">8</text>
+          <circle cx="128" cy="152" r="9" fill="#242424" stroke="#404040" stroke-width="1.5"/><text x="128" y="156" text-anchor="middle" fill="#777" font-size="8" font-family="Arial,sans-serif" font-weight="700">10</text>
+          <circle cx="90" cy="180" r="9" fill="#242424" stroke="#404040" stroke-width="1.5"/><text x="90" y="184" text-anchor="middle" fill="#777" font-size="8" font-family="Arial,sans-serif" font-weight="700">6</text>
+          <circle cx="18" cy="205" r="10" fill="#F5C518" stroke="#FAD84A" stroke-width="2"/><text x="18" y="209" text-anchor="middle" fill="#0D0D0D" font-size="8" font-family="Arial,sans-serif" font-weight="700">3</text>
+          <circle cx="162" cy="205" r="10" fill="#F5C518" stroke="#FAD84A" stroke-width="2"/><text x="162" y="209" text-anchor="middle" fill="#0D0D0D" font-size="8" font-family="Arial,sans-serif" font-weight="700">2</text>
+          <circle cx="62" cy="222" r="9" fill="#242424" stroke="#404040" stroke-width="1.5"/><text x="62" y="226" text-anchor="middle" fill="#777" font-size="8" font-family="Arial,sans-serif" font-weight="700">5</text>
+          <circle cx="118" cy="222" r="9" fill="#242424" stroke="#404040" stroke-width="1.5"/><text x="118" y="226" text-anchor="middle" fill="#777" font-size="8" font-family="Arial,sans-serif" font-weight="700">4</text>
+          <circle cx="90" cy="258" r="9" fill="#242424" stroke="#404040" stroke-width="1.5"/><text x="90" y="262" text-anchor="middle" fill="#777" font-size="8" font-family="Arial,sans-serif" font-weight="700">1</text>
+        </svg>
+      </div>
+
+      <h4 style="color:var(--cyan);margin-bottom:12px;">Player Actions by Zone</h4>
+      <div class="phases-grid" style="grid-template-columns:repeat(4,1fr);">
+        <div class="phase-block">
+          <div class="phase-title atk">Attacking</div>
+          <div class="zone-label">Def 1/3</div>
+          <ul><li>Position to support wide &amp; high to receive ball and/or create space for teammates</li><li>Pass forward (diagonal or behind) or hold the ball</li></ul>
+          <div class="zone-label">Mid 1/3</div>
+          <ul><li>Support the attack wide &amp; with runs behind</li><li>Provide balance to take preventive defensive action when team is in possession/attacking on opposite side, and monitor/organize teammates from this position</li></ul>
+          <div class="zone-label">Off 1/3</div>
+          <ul><li>Pass or dribble forward, create 1v1 or 2v1 with (e.g. overlapping runs)</li><li>Play the early cross when there is space behind the defensive line</li></ul>
+        </div>
+        <div class="phase-block">
+          <div class="phase-title def">Defending</div>
+          <div class="zone-label">Def 1/3</div>
+          <ul><li>Pressure the player with the ball to regain the ball or delay the opponents attack</li><li>Deny penetration, prevent crosses in 1v1 situations</li></ul>
+          <div class="zone-label">Mid 1/3</div>
+          <ul><li>Monitor organization &amp; coach fellow defenders &amp; wide forward where necessary</li><li>Move centrally to provide cover &amp; balance when ball is on opposite side</li></ul>
+          <div class="zone-label">Off 1/3</div>
+          <ul><li>Position &amp; reposition to intercept passes while monitoring opponent</li></ul>
+        </div>
+        <div class="phase-block">
+          <div class="phase-title da">Transition D→A</div>
+          <div class="zone-label">Def 1/3</div>
+          <ul><li>Give quick support in space (forward &amp; wide)</li></ul>
+          <div class="zone-label">Mid 1/3</div>
+          <ul><li>Move up with the defensive line, as part of a collective unit</li></ul>
+          <div class="zone-label">Off 1/3</div>
+          <ul><li>Pass or dribble forward quickly to exploit the opponent if disorganized</li></ul>
+        </div>
+        <div class="phase-block">
+          <div class="phase-title ta">Transition A→D</div>
+          <div class="zone-label">Def 1/3</div>
+          <ul><li>If closest to the situation, put pressure on the ball immediately to prevent danger</li></ul>
+          <div class="zone-label">Mid 1/3</div>
+          <ul><li>If farthest from the situation, drop back quickly to re-position with defensive line to provide balance</li><li>Based on situation, make decision to put pressure on the ball or drop with defensive line</li></ul>
+          <div class="zone-label">Off 1/3</div>
+          <ul><li>If closest to the situation, put pressure on the ball immediately</li></ul>
+        </div>
+      </div>
+
+      <h4 style="color:var(--cyan);margin:20px 0 12px;">Principles of Play</h4>
+      <div class="principles-row">
+        <div class="principle-block">
+          <h4>Offensive — Build Out</h4>
+          <ul><li>Disorganize opponent</li><li>Create overloads</li><li>Counter movements to create space</li><li>Dribble the ball forward when no pressure</li><li>Overload one side to exploit the other</li></ul>
+        </div>
+        <div class="principle-block">
+          <h4>Offensive — Advancement Phase</h4>
+          <ul><li>Create overloads</li><li>Disorganize opponent</li><li>Counter movements to create space</li><li>Overload one side to exploit the other</li><li>Movement centrally to provide double 6</li><li>Awareness of field position</li></ul>
+        </div>
+        <div class="principle-block">
+          <h4>Offensive — Chance Creation / Scoring</h4>
+          <ul><li>Create overloads</li><li>Disorganize opponent</li><li>Eliminate defenders with pass or dribble</li><li>Crossing from variety of positions</li><li>Dynamic attacking runs behind opponent</li><li>Shooting from outside the box</li></ul>
+        </div>
+        <div class="principle-block">
+          <h4>Defensive — Defensive Third</h4>
+          <ul><li>Organized and compact</li><li>Intercept and recover the ball</li><li>Connected sub-groups</li><li>Limit central penetration</li><li>Communication to teammates in front</li><li>Block crosses/shots</li><li>Limit opponent's entry into our box</li></ul>
+        </div>
+        <div class="principle-block">
+          <h4>Defensive — Middle Block</h4>
+          <ul><li>Organized and compact</li><li>Horizontal and vertical compactness</li><li>Intercept and recover the ball</li><li>Connected sub-groups</li><li>Limit central penetration</li><li>Communication to teammates in front</li><li>Angle of approach to force wide</li></ul>
+        </div>
+        <div class="principle-block">
+          <h4>Defensive — Press</h4>
+          <ul><li>Organized and compact</li><li>Horizontal and vertical compactness</li><li>Communication to teammates in front</li><li>Connected sub-groups</li><li>Intercept and recover the ball</li></ul>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ─── DM ─── -->
+    <div class="position-section">
+      <div class="position-header">
+        <div class="position-badge cyan">#6</div>
+        <div class="position-title-block">
+          <h2>Defensive Midfielder — DM</h2>
+          <div class="key-qualities">
+            <span class="key-quality-tag">Strong Tackling Ability</span>
+            <span class="key-quality-tag">Athletic</span>
+            <span class="key-quality-tag">Positionally Dominant</span>
+            <span class="key-quality-tag">Accurate, Efficient Distribution</span>
+            <span class="key-quality-tag">Control / Dictate Tempo of the Game</span>
+          </div>
+        </div>
+        <svg viewBox="0 0 180 280" width="140" height="218" style="flex-shrink:0;border-radius:6px;" xmlns="http://www.w3.org/2000/svg">
+          <rect width="180" height="280" fill="#0c150c" rx="6"/>
+          <rect x="8" y="8" width="164" height="264" fill="none" stroke="#1c3c1c" stroke-width="1.5"/>
+          <line x1="8" y1="140" x2="172" y2="140" stroke="#1c3c1c" stroke-width="1"/>
+          <circle cx="90" cy="140" r="26" fill="none" stroke="#1c3c1c" stroke-width="1"/>
+          <rect x="46" y="212" width="88" height="52" fill="none" stroke="#1c3c1c" stroke-width="1.5"/>
+          <rect x="66" y="246" width="48" height="18" fill="none" stroke="#1c3c1c" stroke-width="1"/>
+          <rect x="46" y="16" width="88" height="52" fill="none" stroke="#1c3c1c" stroke-width="1.5"/>
+          <rect x="66" y="16" width="48" height="18" fill="none" stroke="#1c3c1c" stroke-width="1"/>
+          <circle cx="90" cy="52" r="9" fill="#242424" stroke="#404040" stroke-width="1.5"/><text x="90" y="56" text-anchor="middle" fill="#777" font-size="8" font-family="Arial,sans-serif" font-weight="700">9</text>
+          <circle cx="18" cy="88" r="9" fill="#242424" stroke="#404040" stroke-width="1.5"/><text x="18" y="92" text-anchor="middle" fill="#777" font-size="8" font-family="Arial,sans-serif" font-weight="700">11</text>
+          <circle cx="162" cy="88" r="9" fill="#242424" stroke="#404040" stroke-width="1.5"/><text x="162" y="92" text-anchor="middle" fill="#777" font-size="8" font-family="Arial,sans-serif" font-weight="700">7</text>
+          <circle cx="52" cy="152" r="9" fill="#242424" stroke="#404040" stroke-width="1.5"/><text x="52" y="156" text-anchor="middle" fill="#777" font-size="8" font-family="Arial,sans-serif" font-weight="700">8</text>
+          <circle cx="128" cy="152" r="9" fill="#242424" stroke="#404040" stroke-width="1.5"/><text x="128" y="156" text-anchor="middle" fill="#777" font-size="8" font-family="Arial,sans-serif" font-weight="700">10</text>
+          <circle cx="90" cy="180" r="10" fill="#F5C518" stroke="#FAD84A" stroke-width="2"/><text x="90" y="184" text-anchor="middle" fill="#0D0D0D" font-size="8" font-family="Arial,sans-serif" font-weight="700">6</text>
+          <circle cx="18" cy="205" r="9" fill="#242424" stroke="#404040" stroke-width="1.5"/><text x="18" y="209" text-anchor="middle" fill="#777" font-size="8" font-family="Arial,sans-serif" font-weight="700">3</text>
+          <circle cx="162" cy="205" r="9" fill="#242424" stroke="#404040" stroke-width="1.5"/><text x="162" y="209" text-anchor="middle" fill="#777" font-size="8" font-family="Arial,sans-serif" font-weight="700">2</text>
+          <circle cx="62" cy="222" r="9" fill="#242424" stroke="#404040" stroke-width="1.5"/><text x="62" y="226" text-anchor="middle" fill="#777" font-size="8" font-family="Arial,sans-serif" font-weight="700">5</text>
+          <circle cx="118" cy="222" r="9" fill="#242424" stroke="#404040" stroke-width="1.5"/><text x="118" y="226" text-anchor="middle" fill="#777" font-size="8" font-family="Arial,sans-serif" font-weight="700">4</text>
+          <circle cx="90" cy="258" r="9" fill="#242424" stroke="#404040" stroke-width="1.5"/><text x="90" y="262" text-anchor="middle" fill="#777" font-size="8" font-family="Arial,sans-serif" font-weight="700">1</text>
+        </svg>
+      </div>
+
+      <h4 style="color:var(--cyan);margin-bottom:12px;">Player Actions by Zone</h4>
+      <div class="phases-grid" style="grid-template-columns:repeat(4,1fr);">
+        <div class="phase-block">
+          <div class="phase-title atk">Attacking</div>
+          <div class="zone-label">Def 1/3</div>
+          <ul><li>Position in central areas to support diagonally in spaces between the lines in order to receive ball &amp; play forward and/or to create space for teammate</li><li>Position to support if the ball cannot be played forward &amp; make diagonal passes to unbalance or destabilize the opponent</li></ul>
+          <div class="zone-label">Mid 1/3</div>
+          <ul><li>Align movements with other central midfielders/rotate positions &amp; triangulate</li><li>Dribble forward when there is no passing option &amp; there is open space, look to create 2v1, switch the field</li></ul>
+          <div class="zone-label">Off 1/3</div>
+          <ul><li>Support the attack with forward runs &amp; scoring goals</li><li>Position to take preventive defensive action</li></ul>
+        </div>
+        <div class="phase-block">
+          <div class="phase-title def">Defending</div>
+          <div class="zone-label">Def 1/3</div>
+          <ul><li>Make decision to switch from zonal marking to player tracking (also in middle third)</li></ul>
+          <div class="zone-label">Mid 1/3</div>
+          <ul><li>Position to defend the opponent &amp; passing lanes/central space in front of center backs</li><li>Pressure the ball &amp; help teammates to outnumber opponent</li></ul>
+          <div class="zone-label">Off 1/3</div>
+          <ul><li>Organize teammates where necessary to make/keep team compact</li><li>Deny penetration in 1v1 situations</li></ul>
+        </div>
+        <div class="phase-block">
+          <div class="phase-title da">Transition D→A</div>
+          <div class="zone-label">Def 1/3</div>
+          <ul><li>Move quickly into position to support in space &amp; wide</li><li>Make diagonal passes forward or dribble to create 2v1</li></ul>
+          <div class="zone-label">Mid 1/3</div>
+          <ul><li>Keep the ball when cannot play forward &amp; manage the pace of the game</li></ul>
+          <div class="zone-label">Off 1/3</div>
+          <ul><li>—</li></ul>
+        </div>
+        <div class="phase-block">
+          <div class="phase-title ta">Transition A→D</div>
+          <div class="zone-label">Def 1/3</div>
+          <ul><li>If closest to the situation, put pressure on the ball immediately to prevent danger</li></ul>
+          <div class="zone-label">Mid 1/3</div>
+          <ul><li>Quick decision to pressure the ball, delay the opponents attack when team is disorganized, or drop back</li></ul>
+          <div class="zone-label">Off 1/3</div>
+          <ul><li>Position to take preventive defensive action</li></ul>
+        </div>
+      </div>
+
+      <h4 style="color:var(--cyan);margin:20px 0 12px;">Principles of Play</h4>
+      <div class="principles-row">
+        <div class="principle-block">
+          <h4>Offensive — Build Out</h4>
+          <ul><li>Disorganize the opponent</li><li>Create diamond shape</li><li>Rotation in midfield</li><li>Eliminate defenders with pass</li><li>Awareness of position on the field</li><li>Awareness of space to exploit</li></ul>
+        </div>
+        <div class="principle-block">
+          <h4>Offensive — Advancement Phase</h4>
+          <ul><li>Create diamond shape</li><li>Create overloads</li><li>Eliminate defenders with pass</li><li>Disorganize opponent</li><li>Rotation in midfield</li><li>Overload one side to exploit the other</li></ul>
+        </div>
+        <div class="principle-block">
+          <h4>Offensive — Chance Creation / Scoring</h4>
+          <ul><li>Awareness of position on field</li><li>Create overloads</li><li>Disorganize opponent</li><li>Rotation in midfield</li><li>Overload one side to exploit the other</li><li>Shooting from outside the box</li></ul>
+        </div>
+        <div class="principle-block">
+          <h4>Defensive — Defensive Third</h4>
+          <ul><li>Organized and compact</li><li>Recover ball</li><li>Limit central penetration (opponent ½ space)</li><li>Communication to teammates in front</li><li>Condense field when ball played backward</li></ul>
+        </div>
+        <div class="principle-block">
+          <h4>Defensive — Middle Block</h4>
+          <ul><li>Organized and compact</li><li>Horizontal and vertical compactness</li><li>Make play predictable</li><li>Connected sub-groups</li><li>Limit central penetration (opponent ½ space)</li><li>Communication to teammates in front</li></ul>
+        </div>
+        <div class="principle-block">
+          <h4>Defensive — Press</h4>
+          <ul><li>Organized and compact</li><li>Horizontal and vertical compactness</li><li>Connected sub-groups</li><li>Limit central penetration</li><li>Communication to teammates in front</li></ul>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ─── CM / ACM ─── -->
+    <div class="position-section">
+      <div class="position-header">
+        <div class="position-badge cyan">#8 / #10</div>
+        <div class="position-title-block">
+          <h2>Central Midfielder &amp; Attacking CM — CM / ACM</h2>
+          <div class="key-qualities">
+            <div style="margin-bottom:4px;"><strong style="color:var(--gold);font-size:.72rem;">#8 CM:</strong>
+              <span class="key-quality-tag">High Level of Endurance</span>
+              <span class="key-quality-tag">Proficient Dribbler</span>
+              <span class="key-quality-tag">Calm Under Pressure</span>
+              <span class="key-quality-tag">Positionally Dominant</span>
+              <span class="key-quality-tag">Accurate, Efficient Passing</span>
+              <span class="key-quality-tag">Accurate Finishing 18–30yd</span>
+            </div>
+            <div><strong style="color:var(--cyan);font-size:.72rem;">#10 ACM:</strong>
+              <span class="key-quality-tag">Dynamic Dribbler</span>
+              <span class="key-quality-tag">Creative</span>
+              <span class="key-quality-tag">Calm Under Pressure</span>
+              <span class="key-quality-tag">Positionally Dominant</span>
+              <span class="key-quality-tag">Accurate, Dynamic Passing</span>
+              <span class="key-quality-tag">Accurate Finishing All Ranges</span>
+              <span class="key-quality-tag">Penetrate Opponent's Back Line</span>
+            </div>
+          </div>
+        </div>
+        <svg viewBox="0 0 180 280" width="140" height="218" style="flex-shrink:0;border-radius:6px;" xmlns="http://www.w3.org/2000/svg">
+          <rect width="180" height="280" fill="#0c150c" rx="6"/>
+          <rect x="8" y="8" width="164" height="264" fill="none" stroke="#1c3c1c" stroke-width="1.5"/>
+          <line x1="8" y1="140" x2="172" y2="140" stroke="#1c3c1c" stroke-width="1"/>
+          <circle cx="90" cy="140" r="26" fill="none" stroke="#1c3c1c" stroke-width="1"/>
+          <rect x="46" y="212" width="88" height="52" fill="none" stroke="#1c3c1c" stroke-width="1.5"/>
+          <rect x="66" y="246" width="48" height="18" fill="none" stroke="#1c3c1c" stroke-width="1"/>
+          <rect x="46" y="16" width="88" height="52" fill="none" stroke="#1c3c1c" stroke-width="1.5"/>
+          <rect x="66" y="16" width="48" height="18" fill="none" stroke="#1c3c1c" stroke-width="1"/>
+          <circle cx="90" cy="52" r="9" fill="#242424" stroke="#404040" stroke-width="1.5"/><text x="90" y="56" text-anchor="middle" fill="#777" font-size="8" font-family="Arial,sans-serif" font-weight="700">9</text>
+          <circle cx="18" cy="88" r="9" fill="#242424" stroke="#404040" stroke-width="1.5"/><text x="18" y="92" text-anchor="middle" fill="#777" font-size="8" font-family="Arial,sans-serif" font-weight="700">11</text>
+          <circle cx="162" cy="88" r="9" fill="#242424" stroke="#404040" stroke-width="1.5"/><text x="162" y="92" text-anchor="middle" fill="#777" font-size="8" font-family="Arial,sans-serif" font-weight="700">7</text>
+          <circle cx="52" cy="152" r="10" fill="#F5C518" stroke="#FAD84A" stroke-width="2"/><text x="52" y="156" text-anchor="middle" fill="#0D0D0D" font-size="8" font-family="Arial,sans-serif" font-weight="700">8</text>
+          <circle cx="128" cy="152" r="10" fill="#F5C518" stroke="#FAD84A" stroke-width="2"/><text x="128" y="156" text-anchor="middle" fill="#0D0D0D" font-size="8" font-family="Arial,sans-serif" font-weight="700">10</text>
+          <circle cx="90" cy="180" r="9" fill="#242424" stroke="#404040" stroke-width="1.5"/><text x="90" y="184" text-anchor="middle" fill="#777" font-size="8" font-family="Arial,sans-serif" font-weight="700">6</text>
+          <circle cx="18" cy="205" r="9" fill="#242424" stroke="#404040" stroke-width="1.5"/><text x="18" y="209" text-anchor="middle" fill="#777" font-size="8" font-family="Arial,sans-serif" font-weight="700">3</text>
+          <circle cx="162" cy="205" r="9" fill="#242424" stroke="#404040" stroke-width="1.5"/><text x="162" y="209" text-anchor="middle" fill="#777" font-size="8" font-family="Arial,sans-serif" font-weight="700">2</text>
+          <circle cx="62" cy="222" r="9" fill="#242424" stroke="#404040" stroke-width="1.5"/><text x="62" y="226" text-anchor="middle" fill="#777" font-size="8" font-family="Arial,sans-serif" font-weight="700">5</text>
+          <circle cx="118" cy="222" r="9" fill="#242424" stroke="#404040" stroke-width="1.5"/><text x="118" y="226" text-anchor="middle" fill="#777" font-size="8" font-family="Arial,sans-serif" font-weight="700">4</text>
+          <circle cx="90" cy="258" r="9" fill="#242424" stroke="#404040" stroke-width="1.5"/><text x="90" y="262" text-anchor="middle" fill="#777" font-size="8" font-family="Arial,sans-serif" font-weight="700">1</text>
+        </svg>
+      </div>
+
+      <h4 style="color:var(--cyan);margin-bottom:12px;">Player Actions by Zone</h4>
+      <div class="phases-grid" style="grid-template-columns:repeat(4,1fr);">
+        <div class="phase-block">
+          <div class="phase-title atk">Attacking</div>
+          <div class="zone-label">Def 1/3</div>
+          <ul><li>Position in central areas to support diagonally in spaces between the lines in order to receive ball &amp; play forward and/or to create space for teammate</li><li>Align movements with other central midfielders/rotate positions &amp; triangulate</li></ul>
+          <div class="zone-label">Mid 1/3</div>
+          <ul><li>Dribble forward when there is no passing option &amp; there is open space, look to create 2v1, switch the field</li><li>Make diagonal &amp; through passes to unbalance or destabilize the opponent</li></ul>
+          <div class="zone-label">Off 1/3</div>
+          <ul><li>Support the attack with forward runs behind the defensive line to create chances &amp; score goals</li><li>Position to support in the box, near the goal</li></ul>
+        </div>
+        <div class="phase-block">
+          <div class="phase-title def">Defending</div>
+          <div class="zone-label">Def 1/3</div>
+          <ul><li>Recover into defensive third to assist 6 &amp; 8 when needed</li><li>Take anticipated attacking action/position</li></ul>
+          <div class="zone-label">Mid 1/3</div>
+          <ul><li>Prevent opponent from dribbling or passing forward</li></ul>
+          <div class="zone-label">Off 1/3</div>
+          <ul><li>Organize &amp; coach teammates to press in identified situations</li><li>Decide to pressure the ball, stay in zonal space, or track opposition holding midfielder</li></ul>
+        </div>
+        <div class="phase-block">
+          <div class="phase-title da">Transition D→A</div>
+          <div class="zone-label">Def 1/3</div>
+          <ul><li>Move quickly into position to support in space</li><li>Make diagonal passes forward or dribble to create 2v1</li></ul>
+          <div class="zone-label">Mid 1/3</div>
+          <ul><li>Keep the ball when cannot play forward &amp; manage the pace of the game</li></ul>
+          <div class="zone-label">Off 1/3</div>
+          <ul><li>Position &amp; support quickly in space to exploit opponent &amp; create chances</li></ul>
+        </div>
+        <div class="phase-block">
+          <div class="phase-title ta">Transition A→D</div>
+          <div class="zone-label">Def 1/3</div>
+          <ul><li>If closest to the situation, put pressure on the ball immediately to prevent danger</li></ul>
+          <div class="zone-label">Mid 1/3</div>
+          <ul><li>Quick decision to pressure the ball, delay the opponents attack, or drop back</li></ul>
+          <div class="zone-label">Off 1/3</div>
+          <ul><li>If closest to the situation, put pressure on the ball immediately</li></ul>
+        </div>
+      </div>
+
+      <h4 style="color:var(--cyan);margin:20px 0 12px;">Principles of Play</h4>
+      <div class="principles-row">
+        <div class="principle-block">
+          <h4>Offensive — Build Out</h4>
+          <ul><li>Create overloads</li><li>Create diamond shape</li><li>Disorganize opponent</li><li>Rotation in midfield</li></ul>
+        </div>
+        <div class="principle-block">
+          <h4>Offensive — Advancement Phase</h4>
+          <ul><li>Occupy half space</li><li>Create overloads</li><li>Create diamond shape</li><li>Disorganize opponent</li><li>Draw opponent to one side to find isolation on opposite side</li><li>Penetrate opponent</li></ul>
+        </div>
+        <div class="principle-block">
+          <h4>Offensive — Chance Creation / Scoring</h4>
+          <ul><li>Create overloads</li><li>Penetrate through dribble or pass</li><li>Disorganize opponent</li><li>Rotation in midfield</li><li>Dynamic runs into the box</li><li>Shooting from outside the box</li></ul>
+        </div>
+        <div class="principle-block">
+          <h4>Defensive — Defensive Third</h4>
+          <ul><li>Organized and compact</li><li>Limit opponent's time on ball</li><li>Follow midfielder opposition into the box</li><li>Recover the ball</li></ul>
+        </div>
+        <div class="principle-block">
+          <h4>Defensive — Middle Block</h4>
+          <ul><li>Horizontal and vertical compactness</li><li>Make opponent play predictably</li><li>Move forward when opponent plays backward</li><li>Limit opponent's passes between line</li><li>Recover the ball</li></ul>
+        </div>
+        <div class="principle-block">
+          <h4>Defensive — Press</h4>
+          <ul><li>Organized and compact</li><li>Make play predictable</li><li>Identify and pressure hot spot</li><li>Recover ball in hot spot</li><li>Communication to teammates in front</li></ul>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ─── WIDE FWD ─── -->
+    <div class="position-section">
+      <div class="position-header">
+        <div class="position-badge">#7 / #11</div>
+        <div class="position-title-block">
+          <h2>Wide Forward — Wide FWD</h2>
+          <div class="key-qualities">
+            <span class="key-quality-tag">Dynamic Dribbler (1v1)</span>
+            <span class="key-quality-tag">Creative</span>
+            <span class="key-quality-tag">Positionally Dominant</span>
+            <span class="key-quality-tag">Accurate, Dynamic Crossing</span>
+            <span class="key-quality-tag">High Endurance, Good Speed</span>
+            <span class="key-quality-tag">Accurate Finishing Inside &amp; Outside Penalty Area</span>
+          </div>
+        </div>
+        <svg viewBox="0 0 180 280" width="140" height="218" style="flex-shrink:0;border-radius:6px;" xmlns="http://www.w3.org/2000/svg">
+          <rect width="180" height="280" fill="#0c150c" rx="6"/>
+          <rect x="8" y="8" width="164" height="264" fill="none" stroke="#1c3c1c" stroke-width="1.5"/>
+          <line x1="8" y1="140" x2="172" y2="140" stroke="#1c3c1c" stroke-width="1"/>
+          <circle cx="90" cy="140" r="26" fill="none" stroke="#1c3c1c" stroke-width="1"/>
+          <rect x="46" y="212" width="88" height="52" fill="none" stroke="#1c3c1c" stroke-width="1.5"/>
+          <rect x="66" y="246" width="48" height="18" fill="none" stroke="#1c3c1c" stroke-width="1"/>
+          <rect x="46" y="16" width="88" height="52" fill="none" stroke="#1c3c1c" stroke-width="1.5"/>
+          <rect x="66" y="16" width="48" height="18" fill="none" stroke="#1c3c1c" stroke-width="1"/>
+          <circle cx="90" cy="52" r="9" fill="#242424" stroke="#404040" stroke-width="1.5"/><text x="90" y="56" text-anchor="middle" fill="#777" font-size="8" font-family="Arial,sans-serif" font-weight="700">9</text>
+          <circle cx="18" cy="88" r="10" fill="#F5C518" stroke="#FAD84A" stroke-width="2"/><text x="18" y="92" text-anchor="middle" fill="#0D0D0D" font-size="8" font-family="Arial,sans-serif" font-weight="700">11</text>
+          <circle cx="162" cy="88" r="10" fill="#F5C518" stroke="#FAD84A" stroke-width="2"/><text x="162" y="92" text-anchor="middle" fill="#0D0D0D" font-size="8" font-family="Arial,sans-serif" font-weight="700">7</text>
+          <circle cx="52" cy="152" r="9" fill="#242424" stroke="#404040" stroke-width="1.5"/><text x="52" y="156" text-anchor="middle" fill="#777" font-size="8" font-family="Arial,sans-serif" font-weight="700">8</text>
+          <circle cx="128" cy="152" r="9" fill="#242424" stroke="#404040" stroke-width="1.5"/><text x="128" y="156" text-anchor="middle" fill="#777" font-size="8" font-family="Arial,sans-serif" font-weight="700">10</text>
+          <circle cx="90" cy="180" r="9" fill="#242424" stroke="#404040" stroke-width="1.5"/><text x="90" y="184" text-anchor="middle" fill="#777" font-size="8" font-family="Arial,sans-serif" font-weight="700">6</text>
+          <circle cx="18" cy="205" r="9" fill="#242424" stroke="#404040" stroke-width="1.5"/><text x="18" y="209" text-anchor="middle" fill="#777" font-size="8" font-family="Arial,sans-serif" font-weight="700">3</text>
+          <circle cx="162" cy="205" r="9" fill="#242424" stroke="#404040" stroke-width="1.5"/><text x="162" y="209" text-anchor="middle" fill="#777" font-size="8" font-family="Arial,sans-serif" font-weight="700">2</text>
+          <circle cx="62" cy="222" r="9" fill="#242424" stroke="#404040" stroke-width="1.5"/><text x="62" y="226" text-anchor="middle" fill="#777" font-size="8" font-family="Arial,sans-serif" font-weight="700">5</text>
+          <circle cx="118" cy="222" r="9" fill="#242424" stroke="#404040" stroke-width="1.5"/><text x="118" y="226" text-anchor="middle" fill="#777" font-size="8" font-family="Arial,sans-serif" font-weight="700">4</text>
+          <circle cx="90" cy="258" r="9" fill="#242424" stroke="#404040" stroke-width="1.5"/><text x="90" y="262" text-anchor="middle" fill="#777" font-size="8" font-family="Arial,sans-serif" font-weight="700">1</text>
+        </svg>
+      </div>
+
+      <h4 style="color:var(--cyan);margin-bottom:12px;">Player Actions by Zone</h4>
+      <div class="phases-grid" style="grid-template-columns:repeat(4,1fr);">
+        <div class="phase-block">
+          <div class="phase-title atk">Attacking</div>
+          <div class="zone-label">Def 1/3</div>
+          <ul><li>Position high &amp; wide as starting point to spread opposition &amp; create space for teammates</li></ul>
+          <div class="zone-label">Mid 1/3</div>
+          <ul><li>Vary supporting movements in space between or behind the defensive line of the opponent</li><li>Pass or dribble forward, create 1v1, 2v1, in both wide &amp; central areas</li></ul>
+          <div class="zone-label">Off 1/3</div>
+          <ul><li>Take on defenders 1v1 to unbalance opponent — on outside to create chances from crosses or inside to score goals</li><li>Move into goal scoring positions in the box or at the back post</li></ul>
+        </div>
+        <div class="phase-block">
+          <div class="phase-title def">Defending</div>
+          <div class="zone-label">Def 1/3</div>
+          <ul><li>Recover &amp; track into defensive third to assist fullback when needed</li></ul>
+          <div class="zone-label">Mid 1/3</div>
+          <ul><li>Move centrally to provide cover &amp; balance when ball is on opposite side</li></ul>
+          <div class="zone-label">Off 1/3</div>
+          <ul><li>Monitor situation to defend both space &amp; opponent &amp; press in identified situations</li><li>Prevent opponent from dribbling or passing forward (1v1)</li></ul>
+        </div>
+        <div class="phase-block">
+          <div class="phase-title da">Transition D→A</div>
+          <div class="zone-label">Def 1/3</div>
+          <ul><li>Move quickly into position to support in space</li></ul>
+          <div class="zone-label">Mid 1/3</div>
+          <ul><li>Keep the ball when cannot play forward</li></ul>
+          <div class="zone-label">Off 1/3</div>
+          <ul><li>Position &amp; support quickly in space to exploit opponent &amp; create chances</li></ul>
+        </div>
+        <div class="phase-block">
+          <div class="phase-title ta">Transition A→D</div>
+          <div class="zone-label">Def 1/3</div>
+          <ul><li>If closest to the situation, put pressure on the ball immediately to prevent danger</li></ul>
+          <div class="zone-label">Mid 1/3</div>
+          <ul><li>Quick decision to pressure the ball, delay the opponents attack, or drop back. Follow direction from teammates behind.</li></ul>
+          <div class="zone-label">Off 1/3</div>
+          <ul><li>If closest to the situation, put pressure on the ball immediately</li></ul>
+        </div>
+      </div>
+
+      <h4 style="color:var(--cyan);margin:20px 0 12px;">Principles of Play</h4>
+      <div class="principles-row">
+        <div class="principle-block">
+          <h4>Offensive — Build Out</h4>
+          <ul><li>Stretch opponent</li><li>Occupy half space</li><li>Create overloads</li><li>Create diamond shape</li><li>Disorganize opponent</li><li>Draw opponent to one side to find isolation on opposite side</li></ul>
+        </div>
+        <div class="principle-block">
+          <h4>Offensive — Advancement Phase</h4>
+          <ul><li>Occupy half space</li><li>Create overloads</li><li>Create diamond shape</li><li>Disorganize opponent</li><li>Draw opponent to one side to find isolation on opposite side</li><li>Eliminate defender on pass or dribble</li></ul>
+        </div>
+        <div class="principle-block">
+          <h4>Offensive — Chance Creation / Scoring</h4>
+          <ul><li>Eliminate defenders on pass or dribble</li><li>Occupy half space</li><li>Create overloads</li><li>Draw opponent to one side to find isolation on opposite side</li><li>Penetrate opponent in half space / box</li><li>Score and assist goals</li></ul>
+        </div>
+        <div class="principle-block">
+          <h4>Defensive — Defensive Third</h4>
+          <ul><li>Horizontal and vertical compactness</li><li>Make opponent play predictably</li><li>Move forward when opponent plays backward</li><li>Limit penetration in wide areas</li></ul>
+        </div>
+        <div class="principle-block">
+          <h4>Defensive — Middle Block</h4>
+          <ul><li>Horizontal and vertical compactness</li><li>Make opponent play predictably</li><li>Move forward when opponent plays backward</li><li>Limit opponent's passes between line</li><li>Recover the ball in wide areas</li></ul>
+        </div>
+        <div class="principle-block">
+          <h4>Defensive — Press</h4>
+          <ul><li>Make opponent play predictably</li><li>Limit opponent's passes between line</li><li>Recover the ball in wide areas</li><li>Identify and pressure the hot-spot</li></ul>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ─── FWD ─── -->
+    <div class="position-section">
+      <div class="position-header">
+        <div class="position-badge">#9</div>
+        <div class="position-title-block">
+          <h2>Forward — FWD</h2>
+          <div class="key-qualities">
+            <span class="key-quality-tag">Dynamic Dribbler</span>
+            <span class="key-quality-tag">Creative</span>
+            <span class="key-quality-tag">Good Touch / Control</span>
+            <span class="key-quality-tag">Positionally Dominant</span>
+            <span class="key-quality-tag">Aerially Dominant</span>
+            <span class="key-quality-tag">Athletic</span>
+            <span class="key-quality-tag">Accurate Finishing Inside &amp; Outside Penalty Area</span>
+          </div>
+        </div>
+        <svg viewBox="0 0 180 280" width="140" height="218" style="flex-shrink:0;border-radius:6px;" xmlns="http://www.w3.org/2000/svg">
+          <rect width="180" height="280" fill="#0c150c" rx="6"/>
+          <rect x="8" y="8" width="164" height="264" fill="none" stroke="#1c3c1c" stroke-width="1.5"/>
+          <line x1="8" y1="140" x2="172" y2="140" stroke="#1c3c1c" stroke-width="1"/>
+          <circle cx="90" cy="140" r="26" fill="none" stroke="#1c3c1c" stroke-width="1"/>
+          <rect x="46" y="212" width="88" height="52" fill="none" stroke="#1c3c1c" stroke-width="1.5"/>
+          <rect x="66" y="246" width="48" height="18" fill="none" stroke="#1c3c1c" stroke-width="1"/>
+          <rect x="46" y="16" width="88" height="52" fill="none" stroke="#1c3c1c" stroke-width="1.5"/>
+          <rect x="66" y="16" width="48" height="18" fill="none" stroke="#1c3c1c" stroke-width="1"/>
+          <circle cx="90" cy="52" r="10" fill="#F5C518" stroke="#FAD84A" stroke-width="2"/><text x="90" y="56" text-anchor="middle" fill="#0D0D0D" font-size="8" font-family="Arial,sans-serif" font-weight="700">9</text>
+          <circle cx="18" cy="88" r="9" fill="#242424" stroke="#404040" stroke-width="1.5"/><text x="18" y="92" text-anchor="middle" fill="#777" font-size="8" font-family="Arial,sans-serif" font-weight="700">11</text>
+          <circle cx="162" cy="88" r="9" fill="#242424" stroke="#404040" stroke-width="1.5"/><text x="162" y="92" text-anchor="middle" fill="#777" font-size="8" font-family="Arial,sans-serif" font-weight="700">7</text>
+          <circle cx="52" cy="152" r="9" fill="#242424" stroke="#404040" stroke-width="1.5"/><text x="52" y="156" text-anchor="middle" fill="#777" font-size="8" font-family="Arial,sans-serif" font-weight="700">8</text>
+          <circle cx="128" cy="152" r="9" fill="#242424" stroke="#404040" stroke-width="1.5"/><text x="128" y="156" text-anchor="middle" fill="#777" font-size="8" font-family="Arial,sans-serif" font-weight="700">10</text>
+          <circle cx="90" cy="180" r="9" fill="#242424" stroke="#404040" stroke-width="1.5"/><text x="90" y="184" text-anchor="middle" fill="#777" font-size="8" font-family="Arial,sans-serif" font-weight="700">6</text>
+          <circle cx="18" cy="205" r="9" fill="#242424" stroke="#404040" stroke-width="1.5"/><text x="18" y="209" text-anchor="middle" fill="#777" font-size="8" font-family="Arial,sans-serif" font-weight="700">3</text>
+          <circle cx="162" cy="205" r="9" fill="#242424" stroke="#404040" stroke-width="1.5"/><text x="162" y="209" text-anchor="middle" fill="#777" font-size="8" font-family="Arial,sans-serif" font-weight="700">2</text>
+          <circle cx="62" cy="222" r="9" fill="#242424" stroke="#404040" stroke-width="1.5"/><text x="62" y="226" text-anchor="middle" fill="#777" font-size="8" font-family="Arial,sans-serif" font-weight="700">5</text>
+          <circle cx="118" cy="222" r="9" fill="#242424" stroke="#404040" stroke-width="1.5"/><text x="118" y="226" text-anchor="middle" fill="#777" font-size="8" font-family="Arial,sans-serif" font-weight="700">4</text>
+          <circle cx="90" cy="258" r="9" fill="#242424" stroke="#404040" stroke-width="1.5"/><text x="90" y="262" text-anchor="middle" fill="#777" font-size="8" font-family="Arial,sans-serif" font-weight="700">1</text>
+        </svg>
+      </div>
+
+      <h4 style="color:var(--cyan);margin-bottom:12px;">Player Actions by Zone</h4>
+      <div class="phases-grid" style="grid-template-columns:repeat(4,1fr);">
+        <div class="phase-block">
+          <div class="phase-title atk">Attacking</div>
+          <div class="zone-label">Def 1/3</div>
+          <ul><li>Position high &amp; centrally as a target to occupy the opposition #4 &amp; #5, to receive, hold/protect, lay-off the ball &amp; create space for teammates (also for middle third to help team progress)</li></ul>
+          <div class="zone-label">Mid 1/3</div>
+          <ul><li>Make varied forward runs in space behind the defensive line of the opponent</li><li>Pass or dribble forward to create 1v1 or 2v1 in central areas</li></ul>
+          <div class="zone-label">Off 1/3</div>
+          <ul><li>Position to support, unmark, with varied, well timed runs in the box, near the goal to finish chances, or create chances for teammates</li></ul>
+        </div>
+        <div class="phase-block">
+          <div class="phase-title def">Defending</div>
+          <div class="zone-label">Def 1/3</div>
+          <ul><li>Take anticipated attacking action &amp; positioning</li></ul>
+          <div class="zone-label">Mid 1/3</div>
+          <ul><li>Position to force the opponent to play to one side/prevent opponent from switching the field</li><li>Pressure the ball &amp; help teammates to outnumber opponent</li></ul>
+          <div class="zone-label">Off 1/3</div>
+          <ul><li>Monitor situation to defend both space &amp; opponent &amp; press in identified situations</li><li>Decide to pressure the ball, stay in zonal space, or track opposition center back</li></ul>
+        </div>
+        <div class="phase-block">
+          <div class="phase-title da">Transition D→A</div>
+          <div class="zone-label">Def 1/3</div>
+          <ul><li>Move quickly into position (onside) to support in space high up the field</li></ul>
+          <div class="zone-label">Mid 1/3</div>
+          <ul><li>Keep the ball when cannot play forward, hold &amp; protect the ball while teammates support the attack</li></ul>
+          <div class="zone-label">Off 1/3</div>
+          <ul><li>Position &amp; support quickly in space to exploit opponent &amp; create chances</li></ul>
+        </div>
+        <div class="phase-block">
+          <div class="phase-title ta">Transition A→D</div>
+          <div class="zone-label">Def 1/3</div>
+          <ul><li>Position &amp; support on side of field for clearances</li><li>Prevent opponent from sustaining attack by playing backward</li></ul>
+          <div class="zone-label">Mid 1/3</div>
+          <ul><li>Quick decision to pressure the ball, delay the opponents attack, or drop back. Follow direction from teammates behind.</li></ul>
+          <div class="zone-label">Off 1/3</div>
+          <ul><li>If closest to the situation, put pressure on the ball immediately</li></ul>
+        </div>
+      </div>
+
+      <h4 style="color:var(--cyan);margin:20px 0 12px;">Principles of Play</h4>
+      <div class="principles-row">
+        <div class="principle-block">
+          <h4>Offensive — Build Out</h4>
+          <ul><li>Maintain possession for team</li><li>Occupy half space</li><li>Stretch opponent backline</li><li>Eliminate defenders on pass or dribble</li><li>Create overloads</li><li>Isolation on opposite side</li></ul>
+        </div>
+        <div class="principle-block">
+          <h4>Offensive — Advancement Phase</h4>
+          <ul><li>Maintain possession for team</li><li>Eliminate defenders on pass or dribble</li><li>Occupy half space</li><li>Create overloads</li><li>Penetrate opponent in half space / box</li><li>Score and assist goals</li><li>Stretch opponent backline</li></ul>
+        </div>
+        <div class="principle-block">
+          <h4>Offensive — Chance Creation / Scoring</h4>
+          <ul><li>Score and assist goals</li><li>Eliminate defenders on pass or dribble</li><li>Dribble forward</li><li>Create overloads</li><li>Penetrate opponent in half space / box</li><li>Dynamic runs in the box</li><li>Stretch opponent backline – create space</li></ul>
+        </div>
+        <div class="principle-block">
+          <h4>Defensive — Defensive Third</h4>
+          <ul><li>Force play to one side of field</li><li>Limit central penetration</li><li>Limit opponent #6 time on ball</li><li>Back pressure opponent midfield</li><li>Recover the ball</li></ul>
+        </div>
+        <div class="principle-block">
+          <h4>Defensive — Middle Block</h4>
+          <ul><li>Make play predictable</li><li>Force play to one side of the field</li><li>Pressure after first pass between CB</li><li>Back pressure opponent #6</li><li>Limit central penetration</li></ul>
+        </div>
+        <div class="principle-block">
+          <h4>Defensive — Press</h4>
+          <ul><li>Make play predictable</li><li>Force play to one side of the field</li><li>Recover the ball and attack</li><li>Connected sub-groups</li><li>Limit central penetration</li><li>Pressure after first pass from CB</li></ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════════════════ -->
+<footer>
+  <img src="assets/scwave-logo.png" alt="SC Wave" onerror="this.style.display='none'">
+  <p><strong>SC Wave Soccer Club</strong> — Development Stages &amp; Positional Roles + Key Qualities</p>
+  <p>MLS NEXT — Player Development · 2025–2026 Season</p>
+  <p style="margin-top:12px;font-size:.75rem;color:#555;">This document is intended for players, families, and club staff. All content is the property of SC Wave Soccer Club.</p>
+</footer>
+
+</body>
+</html>
