@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>USSF Key Qualities &amp; Positional Profiles — SC Wave Training Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .doc-wrap {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+    .doc-download-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #0D0D0D;
+      border: 1px solid rgba(245,197,24,0.2);
+      border-radius: 12px;
+      padding: 16px 24px;
+      margin-bottom: 40px;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .doc-download-bar span {
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      color: rgba(255,255,255,0.7);
+    }
+    .dl-btns { display: flex; gap: 10px; flex-wrap: wrap; }
+    .btn-download {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gold);
+      color: #0D0D0D;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 15px;
+      letter-spacing: 0.04em;
+      padding: 10px 18px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: opacity 0.15s;
+    }
+    .btn-download.secondary {
+      background: transparent;
+      color: var(--gold);
+      border: 1.5px solid var(--gold);
+    }
+    .btn-download:hover { opacity: 0.8; }
+
+    .section-heading {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 28px;
+      letter-spacing: 0.04em;
+      color: #fff;
+      margin: 48px 0 20px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid rgba(245,197,24,0.3);
+    }
+    .section-heading span { color: var(--gold); }
+
+    /* Philosophy bullets */
+    .philosophy-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+    .philosophy-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      background: #0D0D0D;
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 10px;
+      padding: 16px 18px;
+    }
+    .philosophy-item .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--gold);
+      flex-shrink: 0;
+      margin-top: 6px;
+    }
+    .philosophy-item p {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: rgba(255,255,255,0.75);
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    /* Key Quality cards */
+    .kq-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+    .kq-card {
+      background: #0D0D0D;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 20px 22px;
+    }
+    .kq-card-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 17px;
+      color: var(--cyan);
+      letter-spacing: 0.04em;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+    .kq-card ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .kq-card ul li {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: rgba(255,255,255,0.72);
+      line-height: 1.55;
+      padding: 4px 0;
+      padding-left: 14px;
+      position: relative;
+    }
+    .kq-card ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-size: 12px;
+    }
+
+    /* Position cards */
+    .position-card {
+      background: #0D0D0D;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      margin-bottom: 28px;
+      overflow: hidden;
+    }
+    .pos-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 20px 24px;
+      background: rgba(255,255,255,0.03);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .pos-number {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 44px;
+      color: var(--gold);
+      line-height: 1;
+      min-width: 52px;
+      text-align: center;
+    }
+    .pos-title-block h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 24px;
+      color: #fff;
+      margin: 0 0 4px;
+      letter-spacing: 0.03em;
+    }
+    .pos-title-block .pos-sub {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
+    }
+    .pos-body {
+      padding: 20px 24px;
+    }
+    .pos-body-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    @media (max-width: 640px) { .pos-body-cols { grid-template-columns: 1fr; } }
+    .pos-col-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+
+    /* Key Qualities chips */
+    .kq-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .kq-chip {
+      background: rgba(245,197,24,0.1);
+      border: 1px solid rgba(245,197,24,0.3);
+      border-radius: 20px;
+      padding: 5px 14px;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gold);
+    }
+
+    .pos-ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .pos-ul li {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.55;
+      padding: 4px 0 4px 16px;
+      position: relative;
+    }
+    .pos-ul li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--cyan);
+      font-size: 12px;
+      top: 5px;
+    }
+
+    .phase-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+    }
+    .phase-table th {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 13px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      padding: 8px 12px;
+      text-align: left;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .phase-table td {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: rgba(255,255,255,0.68);
+      padding: 8px 12px;
+      vertical-align: top;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      line-height: 1.5;
+    }
+    .phase-table tr:last-child td { border-bottom: none; }
+    .phase-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 13px;
+      color: var(--cyan);
+      white-space: nowrap;
+    }
+    .zone-label {
+      font-size: 12px;
+      color: rgba(255,255,255,0.4);
+      font-style: italic;
+    }
+    .physical-tag {
+      display: inline-block;
+      background: rgba(0,212,228,0.1);
+      border: 1px solid rgba(0,212,228,0.3);
+      border-radius: 20px;
+      padding: 4px 12px;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--cyan);
+      margin-top: 10px;
+    }
+    .divider {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      margin: 24px 0;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo-block">
+      <img class="sc-logo" src="assets/scwave-logo.png" alt="SC Wave" />
+      <div class="logo-text">
+        <span class="club">SC Wave</span>
+        <span class="hub">Player Training Hub</span>
+      </div>
+    </a>
+    <div class="header-right">
+      <nav>
+        <a href="tactical-mental.html" class="active">Tactical &amp; Mental</a>
+        <a href="technical.html">Technical</a>
+        <a href="physical.html">Physical</a>
+        <a href="club-documents.html">Club Docs</a>
+      </nav>
+      <div class="mls-badge">
+        <img src="assets/mlsnext-logo.png" alt="MLS NEXT" />
+        <span>MLS NEXT</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="page-hero">
+  <a href="club-documents.html" class="back-link">← Back to Club Documents</a>
+  <div class="page-icon" style="background:rgba(245,197,24,0.1);">🇺🇸</div>
+  <h1>USSF Key Qualities &amp; <span>Positional Profiles</span></h1>
+  <p>U.S. Soccer's elite player development framework — what scouts look for, what every position demands, and what SC Wave expects from each role on the field.</p>
+</div>
+
+<div class="doc-wrap">
+
+  <div class="doc-download-bar">
+    <span>📄 Available as PDF documents</span>
+    <div class="dl-btns">
+      <a href="docs/ussf-key-qualities.pdf" download class="btn-download">⬇ USSF Key Qualities</a>
+      <a href="docs/positional-profiles.pdf" download class="btn-download secondary">⬇ SC Wave Positional Profiles</a>
+    </div>
+  </div>
+
+  <!-- ── TALENT ID PHILOSOPHY ── -->
+  <div class="section-heading">USSF Talent <span>Identification Philosophy</span></div>
+
+  <div class="philosophy-grid">
+    <div class="philosophy-item"><div class="dot"></div><p>Talent is developed in the "right" environment — culture, coaching, and context all matter.</p></div>
+    <div class="philosophy-item"><div class="dot"></div><p>Talent identification starts with the clubs, who need quality, diverse, and expansive scouting networks.</p></div>
+    <div class="philosophy-item"><div class="dot"></div><p>Identification must happen in the context of the game, accounting for conditions, level, and demands.</p></div>
+    <div class="philosophy-item"><div class="dot"></div><p>Players develop at different rates — performance trajectories are non-linear. Don't peak too early.</p></div>
+    <div class="philosophy-item"><div class="dot"></div><p>Talent ID is a long-term process where current performance and future potential are influenced by environment, age, and maturation.</p></div>
+    <div class="philosophy-item"><div class="dot"></div><p>Key qualities differ by club and federation — they must connect to identity: core values, style of play, and culture.</p></div>
+    <div class="philosophy-item"><div class="dot"></div><p>Scouts use a common structure and language for examining players across the system.</p></div>
+    <div class="philosophy-item"><div class="dot"></div><p>Framework is gender-neutral with gender-specific scouting strategy, built on relationships with all communities.</p></div>
+  </div>
+
+  <!-- ── KEY QUALITIES ── -->
+  <div class="section-heading">Key <span>Qualities of a Player</span></div>
+
+  <div class="kq-grid">
+
+    <div class="kq-card">
+      <div class="kq-card-title">🧩 Game Understanding &amp; Decision-Making</div>
+      <ul>
+        <li>Reads situations, anticipates, and makes quick decisions under pressure</li>
+        <li>Identifies cues and intentions of teammates and opponents</li>
+        <li>Recognizes space, time, and risk opportunities</li>
+        <li>Processes information quickly — thinks ahead, acts fast</li>
+        <li>Manages pace of game; knows when to accelerate or slow down</li>
+        <li>Understands role based on style of play, team principles, and strategy</li>
+        <li>Scans continuously; adapts body shape</li>
+        <li>Versatile — can play multiple roles in different systems</li>
+        <li>Uses creativity to find new solutions</li>
+      </ul>
+    </div>
+
+    <div class="kq-card">
+      <div class="kq-card-title">🎯 Responsibility &amp; Initiative</div>
+      <ul>
+        <li>Demonstrates self-knowledge and applies it to their role within the team</li>
+        <li>Takes ownership — sets goals, plans, monitors, re-evaluates</li>
+        <li>Takes initiative; sees opportunities without being told</li>
+        <li>Manages personal lifestyle (rest, recovery, sleep, nutrition, mental health)</li>
+        <li>Behaves like a role model under all circumstances</li>
+        <li>Prepares for every game and session</li>
+        <li>Reflects on and evaluates own performance (self-critical)</li>
+        <li>Receives feedback, asks questions — coachable</li>
+        <li>Creates a personal development plan; holds self accountable</li>
+      </ul>
+    </div>
+
+    <div class="kq-card">
+      <div class="kq-card-title">🔥 Growth Mindset &amp; Winning Mentality</div>
+      <ul>
+        <li><strong style="color:rgba(255,255,255,0.85);">Intensity:</strong> Gives maximum effort; concentrates; commits to the process</li>
+        <li><strong style="color:rgba(255,255,255,0.85);">Communication:</strong> Communicates with teammates on and off the field to solve situations and improve</li>
+        <li>Shows joy, passion, and enthusiasm — fun and freedom</li>
+        <li>Challenges self; pursues goals; never gives up</li>
+        <li>Faces adversity and overcomes fear — brave</li>
+        <li>Pushes self to limits (body and mind)</li>
+        <li>Believes in self and contributes deliberately to team performance</li>
+        <li><strong style="color:rgba(255,255,255,0.85);">Emotional Stability:</strong> Overcomes setbacks, deals with pressure, stays composed, behaves maturely</li>
+      </ul>
+    </div>
+
+    <div class="kq-card">
+      <div class="kq-card-title">⚽ Technical Execution</div>
+      <ul>
+        <li>Moving easily with the ball, staying calm under pressure</li>
+        <li>Receiving and playing in tight spaces — use of both feet</li>
+        <li>Receiving to play forward; playing 1 and 2 touch</li>
+        <li>Precise passing that sets up the receiver (short, long, break lines)</li>
+        <li>Dribbling and running with the ball to break lines and accelerate attack</li>
+        <li>Making quick combinations; creating chances and finishing</li>
+        <li>Heading; dominating 1v1 duels</li>
+      </ul>
+    </div>
+
+    <div class="kq-card">
+      <div class="kq-card-title">💪 Physical Execution</div>
+      <ul>
+        <li>Moves efficiently — agility, coordination, balance</li>
+        <li>Uses body in duels to protect ball, control, or disrupt opponent</li>
+        <li>Makes quick, explosive movements to separate from opponent</li>
+        <li>Repeats high-intensity actions (sprints)</li>
+        <li>Exudes strength, power, and endurance</li>
+        <li>Has specialized physical attributes for positional role</li>
+      </ul>
+    </div>
+
+    <div class="kq-card">
+      <div class="kq-card-title">📈 Learning Ability</div>
+      <ul>
+        <li>Shows an ability to excel at a higher level</li>
+        <li>Adapts to new situations quickly</li>
+        <li>Absorbs and applies new information quickly</li>
+        <li><em style="color:rgba(255,255,255,0.45);">Observed over an extended time — includes both games and training sessions</em></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- ── POSITIONAL PROFILES ── -->
+  <div class="section-heading">SC Wave <span>Positional Profiles</span></div>
+
+  <!-- GK -->
+  <div class="position-card">
+    <div class="pos-header">
+      <div class="pos-number">#1</div>
+      <div class="pos-title-block">
+        <h3>Goalkeeper</h3>
+        <div class="pos-sub">GK · Last line of defense, first line of attack</div>
+      </div>
+    </div>
+    <div class="pos-body">
+      <div class="pos-col-label">Key Qualities</div>
+      <div class="kq-chips">
+        <span class="kq-chip">Confident</span>
+        <span class="kq-chip">Athletic</span>
+        <span class="kq-chip">Decisive</span>
+        <span class="kq-chip">Coach on the Field</span>
+        <span class="kq-chip">Accurate Passing (Short &amp; Long)</span>
+      </div>
+      <div class="pos-col-label">Player Actions</div>
+      <table class="phase-table">
+        <tr>
+          <th style="width:120px;">Phase</th><th>Key Actions</th>
+        </tr>
+        <tr>
+          <td><span class="phase-label">Attacking</span></td>
+          <td>Position to support for back pass; play forward or wide to begin build-up; push up with the team; disorganize opponent with variety and confidence in distribution</td>
+        </tr>
+        <tr>
+          <td><span class="phase-label">Defending</span></td>
+          <td>Command the box; secure hands when catching; aggression and confidence in 1v1; read opponent's body shape; organize teammates in front; position to cover long balls behind defensive line</td>
+        </tr>
+        <tr>
+          <td><span class="phase-label">Transition D→A</span></td>
+          <td>Pass forward (long) quickly to exploit the opponent and create 1v1; keep the ball when cannot play forward; push the defensive line up</td>
+        </tr>
+        <tr>
+          <td><span class="phase-label">Transition A→D</span></td>
+          <td>Stay connected to the back line; organize teammates — balanced and compact; position behind defensive line to take preventative action</td>
+        </tr>
+      </table>
+      <div class="physical-tag">Physical: Strength &amp; power, agility, quick reactions — control the area on air and ground</div>
+    </div>
+  </div>
+
+  <!-- CBs -->
+  <div class="position-card">
+    <div class="pos-header">
+      <div class="pos-number">#4/5</div>
+      <div class="pos-title-block">
+        <h3>Center Backs</h3>
+        <div class="pos-sub">CB · Defensive backbone and build-out starters</div>
+      </div>
+    </div>
+    <div class="pos-body">
+      <div class="pos-col-label">Key Qualities</div>
+      <div class="kq-chips">
+        <span class="kq-chip">Positionally Dominant</span>
+        <span class="kq-chip">Vocal Leader</span>
+        <span class="kq-chip">Technically Skilled</span>
+        <span class="kq-chip">Athletic</span>
+        <span class="kq-chip">Aerially Dominant</span>
+      </div>
+      <div class="pos-col-label">Player Actions</div>
+      <table class="phase-table">
+        <tr><th style="width:120px;">Phase</th><th>Key Actions</th></tr>
+        <tr>
+          <td><span class="phase-label">Attacking</span></td>
+          <td>Position to spread out and provide passing option for GK; make accurate forward/diagonal passes between or behind opposition lines; move forward with the ball to create 2v1; push defensive line and organize teammates</td>
+        </tr>
+        <tr>
+          <td><span class="phase-label">Defending</span></td>
+          <td>Deny opposition in 1v1 situations (air &amp; ground); be first to the ball on crosses; lead &amp; organize defensive line; intercept long &amp; through passes; movements in partnership with the other center back</td>
+        </tr>
+        <tr>
+          <td><span class="phase-label">Transition D→A</span></td>
+          <td>Move quickly into position to support in space; pass or dribble forward; coach defensive line to push up as a unit</td>
+        </tr>
+        <tr>
+          <td><span class="phase-label">Transition A→D</span></td>
+          <td>If closest to the situation, pressure the ball immediately to prevent danger; quick decision to pressure, delay, or drop back; take preventive defensive action</td>
+        </tr>
+      </table>
+      <div class="physical-tag">Physical: Strength &amp; power in duels (jumping), speed and agility</div>
+    </div>
+  </div>
+
+  <!-- FBs -->
+  <div class="position-card">
+    <div class="pos-header">
+      <div class="pos-number">#2/3</div>
+      <div class="pos-title-block">
+        <h3>Full Backs</h3>
+        <div class="pos-sub">FB · Wide defensive balance and attacking threat</div>
+      </div>
+    </div>
+    <div class="pos-body">
+      <div class="pos-col-label">Key Qualities</div>
+      <div class="kq-chips">
+        <span class="kq-chip">High Endurance</span>
+        <span class="kq-chip">Proficient Dribbler</span>
+        <span class="kq-chip">High Concentration &amp; Anticipation</span>
+        <span class="kq-chip">Proficient Cross &amp; Long Passing</span>
+        <span class="kq-chip">Strong Defending 1v1</span>
+      </div>
+      <div class="pos-col-label">Player Actions</div>
+      <table class="phase-table">
+        <tr><th style="width:120px;">Phase</th><th>Key Actions</th></tr>
+        <tr>
+          <td><span class="phase-label">Attacking</span></td>
+          <td>Position wide and high to receive and create space; support with runs behind; overlapping and underlapping runs to create 1v1 or 2v1; play early cross when space is behind the defensive line</td>
+        </tr>
+        <tr>
+          <td><span class="phase-label">Defending</span></td>
+          <td>Pressure the ball to regain or delay the attack; deny penetration and prevent crosses in 1v1; move centrally to provide cover when ball is on opposite side; reposition to intercept passes</td>
+        </tr>
+        <tr>
+          <td><span class="phase-label">Transition D→A</span></td>
+          <td>Give quick support in space (forward and wide); move up with defensive line as a collective unit; pass or dribble forward quickly to exploit disorganized opponent</td>
+        </tr>
+        <tr>
+          <td><span class="phase-label">Transition A→D</span></td>
+          <td>If closest to situation, pressure ball immediately; if farthest, drop back quickly to re-position with defensive line; make decision to pressure or drop based on situation</td>
+        </tr>
+      </table>
+      <div class="physical-tag">Physical: Speed, quickness, agility and endurance</div>
+    </div>
+  </div>
+
+  <!-- #6 DM -->
+  <div class="position-card">
+    <div class="pos-header">
+      <div class="pos-number">#6</div>
+      <div class="pos-title-block">
+        <h3>Defensive Midfielder</h3>
+        <div class="pos-sub">DCM · Engine room, shield, and tempo-setter</div>
+      </div>
+    </div>
+    <div class="pos-body">
+      <div class="pos-col-label">Key Qualities</div>
+      <div class="kq-chips">
+        <span class="kq-chip">Strong Tackling</span>
+        <span class="kq-chip">Athletic</span>
+        <span class="kq-chip">Positionally Dominant</span>
+        <span class="kq-chip">Accurate &amp; Efficient Distribution</span>
+        <span class="kq-chip">Controls &amp; Dictates Tempo</span>
+      </div>
+      <div class="pos-col-label">Player Actions</div>
+      <table class="phase-table">
+        <tr><th style="width:120px;">Phase</th><th>Key Actions</th></tr>
+        <tr>
+          <td><span class="phase-label">Attacking</span></td>
+          <td>Position centrally in spaces between lines to receive and play forward; make diagonal passes to unbalance the opponent; align movements with other central midfielders; dribble forward when space is open; support attack with forward runs</td>
+        </tr>
+        <tr>
+          <td><span class="phase-label">Defending</span></td>
+          <td>Defend central space in front of center backs; pressure the ball and help teammates outnumber opponent; organize teammates to stay compact; deny penetration in 1v1</td>
+        </tr>
+        <tr>
+          <td><span class="phase-label">Transition D→A</span></td>
+          <td>Move into space to support wide and forward; make diagonal passes or dribble to create 2v1; manage pace of game when cannot play forward</td>
+        </tr>
+        <tr>
+          <td><span class="phase-label">Transition A→D</span></td>
+          <td>Pressure ball immediately if closest to situation; quick decision to pressure, delay, or drop back; position to take preventive defensive action</td>
+        </tr>
+      </table>
+      <div class="physical-tag">Physical: Agility, endurance, quickness, and use of body to protect the ball</div>
+    </div>
+  </div>
+
+  <!-- #8 CM -->
+  <div class="position-card">
+    <div class="pos-header">
+      <div class="pos-number">#8</div>
+      <div class="pos-title-block">
+        <h3>Central Midfielder</h3>
+        <div class="pos-sub">CM · Box-to-box engine and link between lines</div>
+      </div>
+    </div>
+    <div class="pos-body">
+      <div class="pos-col-label">Key Qualities</div>
+      <div class="kq-chips">
+        <span class="kq-chip">High Endurance</span>
+        <span class="kq-chip">Proficient Dribbler</span>
+        <span class="kq-chip">Calm Under Pressure</span>
+        <span class="kq-chip">Positionally Dominant</span>
+        <span class="kq-chip">Accurate &amp; Efficient Passing</span>
+        <span class="kq-chip">Accurate Finishing 18–30 yds</span>
+      </div>
+      <div class="pos-col-label">Player Actions</div>
+      <table class="phase-table">
+        <tr><th style="width:120px;">Phase</th><th>Key Actions</th></tr>
+        <tr>
+          <td><span class="phase-label">Attacking</span></td>
+          <td>Position between lines to receive and play forward; align movements with other midfielders and triangulate; dribble forward when space is open; support attack with forward runs behind the defensive line; position to support in the box</td>
+        </tr>
+        <tr>
+          <td><span class="phase-label">Defending</span></td>
+          <td>Prevent opponent from dribbling or passing forward; recover to defensive third when needed; organize and coach teammates to press</td>
+        </tr>
+        <tr>
+          <td><span class="phase-label">Transition D→A</span></td>
+          <td>Move into space quickly; make diagonal passes forward or dribble to create 2v1; manage game pace when cannot play forward; position to exploit opponent and create chances</td>
+        </tr>
+        <tr>
+          <td><span class="phase-label">Transition A→D</span></td>
+          <td>Pressure ball immediately if closest; quick decision to pressure, delay, or drop back</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- #10 ACM -->
+  <div class="position-card">
+    <div class="pos-header">
+      <div class="pos-number">#10</div>
+      <div class="pos-title-block">
+        <h3>Attacking Central Midfielder</h3>
+        <div class="pos-sub">ACM · Creative force, final-third threat</div>
+      </div>
+    </div>
+    <div class="pos-body">
+      <div class="pos-col-label">Key Qualities</div>
+      <div class="kq-chips">
+        <span class="kq-chip">Dynamic Dribbler</span>
+        <span class="kq-chip">Creative</span>
+        <span class="kq-chip">Calm Under Pressure</span>
+        <span class="kq-chip">Positionally Dominant</span>
+        <span class="kq-chip">Accurate &amp; Dynamic Passing</span>
+        <span class="kq-chip">Accurate Finishing (All Ranges)</span>
+        <span class="kq-chip">Penetrates Back Line — With &amp; Without Ball</span>
+      </div>
+      <div class="pos-col-label">Player Actions</div>
+      <table class="phase-table">
+        <tr><th style="width:120px;">Phase</th><th>Key Actions</th></tr>
+        <tr>
+          <td><span class="phase-label">Attacking</span></td>
+          <td>Occupy half space; receive between lines and play forward; penetrate through dribble or pass; create overloads; dynamic runs into the box; shooting from outside the box</td>
+        </tr>
+        <tr>
+          <td><span class="phase-label">Defending</span></td>
+          <td>Organize teammates to press; decide to pressure ball, stay zonal, or track opposition holding midfielder; prevent forward passing or dribbling</td>
+        </tr>
+        <tr>
+          <td><span class="phase-label">Transition D→A</span></td>
+          <td>Position and support quickly in space to exploit opponent and create chances</td>
+        </tr>
+        <tr>
+          <td><span class="phase-label">Transition A→D</span></td>
+          <td>Pressure ball immediately if closest; quick decision to pressure, delay, or drop back</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Wide Forwards -->
+  <div class="position-card">
+    <div class="pos-header">
+      <div class="pos-number">#7/11</div>
+      <div class="pos-title-block">
+        <h3>Wide Forwards</h3>
+        <div class="pos-sub">WF · 1v1 creators, wide and central threat</div>
+      </div>
+    </div>
+    <div class="pos-body">
+      <div class="pos-col-label">Key Qualities</div>
+      <div class="kq-chips">
+        <span class="kq-chip">Dynamic Dribbler (1v1)</span>
+        <span class="kq-chip">Creative</span>
+        <span class="kq-chip">Positionally Dominant</span>
+        <span class="kq-chip">Accurate &amp; Dynamic Crossing</span>
+        <span class="kq-chip">High Endurance &amp; Good Speed</span>
+        <span class="kq-chip">Accurate Finishing (Inside &amp; Outside Box)</span>
+      </div>
+      <div class="pos-col-label">Player Actions</div>
+      <table class="phase-table">
+        <tr><th style="width:120px;">Phase</th><th>Key Actions</th></tr>
+        <tr>
+          <td><span class="phase-label">Attacking</span></td>
+          <td>Position high and wide to spread opposition; vary supporting movements in space between/behind defensive lines; take on defenders 1v1 — outside to cross or inside to score; move into goal-scoring positions in the box or at back post</td>
+        </tr>
+        <tr>
+          <td><span class="phase-label">Defending</span></td>
+          <td>Recover and track into defensive third to assist fullback; move centrally for cover when ball is on opposite side; monitor situation to press in identified moments; prevent opponent from dribbling or passing forward in 1v1</td>
+        </tr>
+        <tr>
+          <td><span class="phase-label">Transition D→A</span></td>
+          <td>Move quickly into position in space; position and support to exploit opponent and create chances</td>
+        </tr>
+        <tr>
+          <td><span class="phase-label">Transition A→D</span></td>
+          <td>Pressure ball immediately if closest; quick decision to pressure, delay, or drop — follow direction from teammates behind</td>
+        </tr>
+      </table>
+      <div class="physical-tag">Physical: Speed, change of direction, body feints, repeated accelerations</div>
+    </div>
+  </div>
+
+  <!-- #9 CF -->
+  <div class="position-card">
+    <div class="pos-header">
+      <div class="pos-number">#9</div>
+      <div class="pos-title-block">
+        <h3>Center Forward</h3>
+        <div class="pos-sub">FWD · Finisher, target man, and pressure starter</div>
+      </div>
+    </div>
+    <div class="pos-body">
+      <div class="pos-col-label">Key Qualities</div>
+      <div class="kq-chips">
+        <span class="kq-chip">Dynamic Dribbler</span>
+        <span class="kq-chip">Creative</span>
+        <span class="kq-chip">Good Touch &amp; Control</span>
+        <span class="kq-chip">Positionally Dominant</span>
+        <span class="kq-chip">Aerially Dominant</span>
+        <span class="kq-chip">Athletic</span>
+        <span class="kq-chip">Accurate Finishing (Inside &amp; Outside Box)</span>
+      </div>
+      <div class="pos-col-label">Player Actions</div>
+      <table class="phase-table">
+        <tr><th style="width:120px;">Phase</th><th>Key Actions</th></tr>
+        <tr>
+          <td><span class="phase-label">Attacking</span></td>
+          <td>Position high and centrally as a target to occupy opposition CBs; receive, hold/protect, and lay off the ball; make varied forward runs behind the defensive line; pass or dribble forward for 1v1 or 2v1; unmark with well-timed runs in the box to finish or create for teammates</td>
+        </tr>
+        <tr>
+          <td><span class="phase-label">Defending</span></td>
+          <td>Force the opponent to play to one side; prevent switching the field; pressure the ball and help teammates outnumber opponent; press in identified situations; track opposition center back when needed</td>
+        </tr>
+        <tr>
+          <td><span class="phase-label">Transition D→A</span></td>
+          <td>Move quickly onside and into space high up the field; hold and protect ball while teammates support the attack</td>
+        </tr>
+        <tr>
+          <td><span class="phase-label">Transition A→D</span></td>
+          <td>Position for clearances; prevent opponent from sustaining attack by playing backward; pressure ball immediately if closest</td>
+        </tr>
+      </table>
+      <div class="physical-tag">Physical: Strength to hold off opponent, explosiveness to separate</div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="assets/scwave-logo.png" alt="SC Wave" />
+      <span>SC Wave Soccer Club · Founded 1978</span>
+    </div>
+    <div class="footer-right">
+      <a href="mailto:danielmartini07@gmail.com">danielmartini07@gmail.com</a>
+      <div class="footer-mls">
+        <img src="assets/mlsnext-logo.png" alt="MLS NEXT" />
+        <span>MLS NEXT Member Club</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
