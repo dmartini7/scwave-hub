@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>In-Home & At-Field Workouts — SC Wave Training Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .workout-wrap {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 44px 24px 72px;
+    }
+
+    /* ── BRAND STRIP ── */
+    .brand-strip {
+      background: var(--black);
+      border-radius: 16px;
+      padding: 22px 30px;
+      margin-bottom: 32px;
+      border: 1px solid rgba(245,197,24,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .brand-strip-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .brand-strip-left img {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      object-fit: contain;
+      border: 2px solid var(--gold);
+    }
+
+    .brand-strip-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 26px;
+      font-weight: 900;
+      color: white;
+      line-height: 1;
+    }
+
+    .brand-strip-sub {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    /* ── OVERVIEW BANNER ── */
+    .overview-banner {
+      background: white;
+      border-radius: 14px;
+      border: 1px solid rgba(0,0,0,0.07);
+      box-shadow: 0 2px 14px rgba(0,0,0,0.07);
+      padding: 24px 28px;
+      margin-bottom: 36px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .overview-rules {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .overview-rule {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 15px;
+      color: #333;
+      line-height: 1.5;
+    }
+
+    .overview-rule .rule-icon {
+      font-size: 16px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .overview-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .nav-pill {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 18px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 18px;
+      font-weight: 900;
+      letter-spacing: 0.03em;
+      transition: all 0.2s ease;
+    }
+
+    .nav-pill.green  { background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.2); color: #065F46; }
+    .nav-pill.gold   { background: rgba(245,197,24,0.1);  border: 1px solid rgba(245,197,24,0.25); color: #7a5c00; }
+    .nav-pill.black  { background: rgba(0,0,0,0.05);      border: 1px solid rgba(0,0,0,0.1);       color: var(--black); }
+
+    .nav-pill:hover { transform: translateX(4px); }
+
+    /* ── SECTION HEADERS ── */
+    .workout-section { margin-bottom: 56px; }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 24px;
+      padding-bottom: 14px;
+      border-bottom: 3px solid var(--gold);
+    }
+
+    .section-header.cyan { border-bottom-color: var(--cyan); }
+    .section-header.green { border-bottom-color: #10B981; }
+
+    .section-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      flex-shrink: 0;
+    }
+
+    .section-icon.gold-bg  { background: rgba(245,197,24,0.12); }
+    .section-icon.cyan-bg  { background: rgba(0,212,228,0.1); }
+    .section-icon.green-bg { background: rgba(16,185,129,0.1); }
+
+    .section-header-text h2 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 30px;
+      font-weight: 900;
+      color: var(--black);
+      line-height: 1;
+    }
+
+    .section-header-text p {
+      font-size: 14px;
+      color: var(--gray);
+      margin-top: 3px;
+    }
+
+    /* ── WORKOUT BLOCKS ── */
+    .workout-block {
+      background: white;
+      border-radius: 14px;
+      border: 1px solid rgba(0,0,0,0.07);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .block-header {
+      background: var(--black);
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .block-header.gold-accent  { border-left: 4px solid var(--gold); }
+    .block-header.cyan-accent  { border-left: 4px solid var(--cyan); }
+    .block-header.green-accent { border-left: 4px solid #10B981; }
+
+    .block-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 22px;
+      font-weight: 900;
+      color: white;
+    }
+
+    .block-subtitle {
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
+      margin-top: 2px;
+    }
+
+    .block-body { padding: 22px 24px; }
+
+    /* ── WEEK TABLE ── */
+    .week-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 15px;
+      margin-bottom: 4px;
+    }
+
+    .week-table th {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 14px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--gray);
+      text-align: left;
+      padding: 8px 14px;
+      background: rgba(0,0,0,0.04);
+      border-bottom: 2px solid rgba(0,0,0,0.08);
+    }
+
+    .week-table td {
+      padding: 12px 14px;
+      font-size: 15px;
+      color: #333;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .week-table tr:last-child td { border-bottom: none; }
+
+    .week-table td:first-child {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 17px;
+      font-weight: 900;
+      color: var(--black);
+    }
+
+    .week-table td.highlight {
+      font-weight: 700;
+      color: var(--black);
+    }
+
+    .week-table td.gold-val {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 18px;
+      font-weight: 900;
+      color: var(--gold);
+    }
+
+    /* ── MOVEMENT PREP LIST ── */
+    .prep-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .prep-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 15px;
+      color: #333;
+      line-height: 1.45;
+      padding: 8px 12px;
+      background: rgba(0,0,0,0.03);
+      border-radius: 8px;
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .prep-list li .prep-icon {
+      color: var(--gold);
+      font-weight: 900;
+      flex-shrink: 0;
+      font-size: 14px;
+      margin-top: 1px;
+    }
+
+    .prep-sets {
+      font-size: 13px;
+      color: var(--gray);
+      font-weight: 600;
+      white-space: nowrap;
+      margin-left: auto;
+      padding-left: 8px;
+    }
+
+    /* ── CIRCUIT TABLE ── */
+    .circuit-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .circuit-table th {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 14px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--gray);
+      text-align: left;
+      padding: 8px 16px;
+      background: rgba(0,0,0,0.04);
+      border-bottom: 2px solid rgba(0,0,0,0.08);
+    }
+
+    .circuit-table td {
+      padding: 11px 16px;
+      font-size: 15px;
+      color: #333;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      vertical-align: middle;
+    }
+
+    .circuit-table tr:last-child td { border-bottom: none; }
+
+    .circuit-table tr:hover td { background: rgba(245,197,24,0.04); }
+
+    .circuit-table td:first-child {
+      font-weight: 700;
+      color: var(--black);
+    }
+
+    .circuit-table td.reps-val {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 17px;
+      font-weight: 900;
+      color: var(--gold);
+      white-space: nowrap;
+    }
+
+    .vid-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--cyan);
+      text-decoration: none;
+      background: rgba(0,212,228,0.08);
+      border: 1px solid rgba(0,212,228,0.2);
+      padding: 3px 10px;
+      border-radius: 10px;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+
+    .vid-link:hover { background: rgba(0,212,228,0.15); }
+
+    /* ── DRILL CARDS (Speed & Agility) ── */
+    .drill-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 14px;
+    }
+
+    .drill-card {
+      background: white;
+      border-radius: 12px;
+      border: 1px solid rgba(0,0,0,0.07);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      overflow: hidden;
+    }
+
+    .drill-card .vid-thumb {
+      position: relative;
+      padding-top: 56.25%;
+      background: var(--black);
+    }
+
+    .drill-card .vid-thumb iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .drill-info {
+      padding: 14px 16px;
+    }
+
+    .drill-info h4 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 18px;
+      font-weight: 900;
+      color: var(--black);
+      margin-bottom: 3px;
+    }
+
+    .drill-info p {
+      font-size: 13px;
+      color: var(--gray);
+      line-height: 1.45;
+    }
+
+    /* ── RUN PROTOCOL ── */
+    .run-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .run-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 12px 16px;
+      background: rgba(0,0,0,0.03);
+      border-radius: 10px;
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .run-step-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--gold);
+      line-height: 1;
+      min-width: 28px;
+      flex-shrink: 0;
+    }
+
+    .run-step-text {
+      font-size: 15px;
+      color: #333;
+      line-height: 1.5;
+    }
+
+    .run-step-text strong { color: var(--black); }
+
+    /* ── CALLOUT BOX ── */
+    .callout {
+      padding: 14px 18px;
+      border-radius: 10px;
+      font-size: 14px;
+      line-height: 1.6;
+      margin-top: 14px;
+    }
+
+    .callout.gold  { background: rgba(245,197,24,0.08); border-left: 3px solid var(--gold); color: #5a4300; }
+    .callout.cyan  { background: rgba(0,212,228,0.07);  border-left: 3px solid var(--cyan);  color: #0a4a55; }
+    .callout.green { background: rgba(16,185,129,0.07); border-left: 3px solid #10B981;      color: #065F46; }
+
+    /* ── SECTION ANCHOR LABELS ── */
+    .anchor-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--gray);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .anchor-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(0,0,0,0.1);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .overview-banner { grid-template-columns: 1fr; }
+      .prep-list       { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      .workout-wrap { padding: 24px 16px 56px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo-block">
+      <img class="sc-logo" src="assets/scwave-logo.png" alt="SC Wave" />
+      <div class="logo-text">
+        <span class="club">SC Wave</span>
+        <span class="hub">Player Training Hub</span>
+      </div>
+    </a>
+    <div class="header-right">
+      <nav>
+        <a href="tactical-mental.html">Tactical &amp; Mental</a>
+        <a href="technical.html">Technical</a>
+        <a href="physical.html" class="active">Physical</a>
+        <a href="club-documents.html">Club Docs</a>
+      </nav>
+      <div class="mls-badge">
+        <img src="assets/mlsnext-logo.png" alt="MLS NEXT" />
+        <span>MLS NEXT</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="page-hero">
+  <a href="physical.html" class="back-link">← Back to Physical</a>
+  <div class="page-icon" style="background:rgba(16,185,129,0.12);">🏟️</div>
+  <h1>In-Home &amp; <span>At-Field Workouts</span></h1>
+  <p>The complete SC Wave workout program — field conditioning, speed &amp; agility, and three progressive in-home circuits. No excuses.</p>
+</div>
+
+<div class="workout-wrap">
+
+  <!-- ── BRAND STRIP ── -->
+  <div class="brand-strip">
+    <div class="brand-strip-left">
+      <img src="assets/scwave-logo.png" alt="SC Wave" />
+      <div>
+        <div class="brand-strip-title">SC WAVE SOCCER CLUB</div>
+        <div class="brand-strip-sub">In-Home &amp; At-Field Workout Program · 2025–26</div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;">
+      <div style="padding:7px 16px;background:rgba(245,197,24,0.1);border:1px solid rgba(245,197,24,0.3);border-radius:20px;font-size:13px;font-weight:700;color:var(--gold);letter-spacing:0.06em;text-transform:uppercase;">MLS NEXT</div>
+      <img src="assets/mlsnext-logo.png" alt="MLS NEXT" style="height:30px;opacity:0.85;" />
+    </div>
+  </div>
+
+  <!-- ── OVERVIEW ── -->
+  <div class="overview-banner">
+    <div>
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:900;color:var(--black);margin-bottom:16px;">Program Overview</div>
+      <div class="overview-rules">
+        <div class="overview-rule"><span class="rule-icon">🏟️</span> Includes in-home workouts and at-field workouts</div>
+        <div class="overview-rule"><span class="rule-icon">📝</span> Field workouts have adapting notes if you have no field access</div>
+        <div class="overview-rule"><span class="rule-icon">▶️</span> Video links included for each circuit exercise</div>
+        <div class="overview-rule"><span class="rule-icon">⏱️</span> Complete each workout as fast as possible — take breaks when needed</div>
+        <div class="overview-rule"><span class="rule-icon">📊</span> Record your times and try to beat them each time you repeat</div>
+      </div>
+    </div>
+    <div class="overview-nav">
+      <div style="font-size:13px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px;">Jump to Section</div>
+      <a href="#at-field-conditioning" class="nav-pill gold">🏃 At-Field Conditioning</a>
+      <a href="#speed-agility"         class="nav-pill green">⚡ Speed &amp; Agility</a>
+      <a href="#inhome-1"              class="nav-pill black">🏠 In-Home Workout 1</a>
+      <a href="#inhome-2"              class="nav-pill black">🏠 In-Home Workout 2</a>
+      <a href="#inhome-3"              class="nav-pill black">🏠 In-Home Workout 3</a>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- AT FIELD — CONDITIONING                                      -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <div class="workout-section" id="at-field-conditioning">
+    <div class="section-header">
+      <div class="section-icon gold-bg">🏃</div>
+      <div class="section-header-text">
+        <h2>AT FIELD — Conditioning</h2>
+        <p>Field-based fitness. Record your times and track improvement week over week.</p>
+      </div>
+    </div>
+
+    <!-- 300 Yard Shuttles -->
+    <div class="workout-block">
+      <div class="block-header gold-accent">
+        <div>
+          <div class="block-title">300 Yard Shuttles</div>
+          <div class="block-subtitle">Place two cones 25 yards apart · Sprint back and forth 6 times · Foot touches the line each time</div>
+        </div>
+      </div>
+      <div class="block-body">
+        <table class="week-table">
+          <thead>
+            <tr>
+              <th>Week</th>
+              <th>Sets</th>
+              <th>Time to Complete</th>
+              <th>Rest Between Sets</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Week 1</td>
+              <td class="highlight">3 sets</td>
+              <td class="gold-val">60 sec</td>
+              <td>3 min</td>
+            </tr>
+            <tr>
+              <td>Week 2</td>
+              <td class="highlight">4 sets</td>
+              <td class="gold-val">60 sec</td>
+              <td>2 min 45 sec</td>
+            </tr>
+            <tr>
+              <td>Week 3</td>
+              <td class="highlight">5 sets</td>
+              <td class="gold-val">60 sec</td>
+              <td>2 min 30 sec</td>
+            </tr>
+            <tr>
+              <td>Week 4</td>
+              <td class="highlight">5 sets</td>
+              <td class="gold-val">60 sec</td>
+              <td>2 min</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Death by 300s -->
+    <div class="workout-block">
+      <div class="block-header gold-accent">
+        <div>
+          <div class="block-title">Death by 300s</div>
+          <div class="block-subtitle">3 rounds · Each round = one 300-yard shuttle + 7 exercises. Complete all exercises before the next shuttle.</div>
+        </div>
+      </div>
+      <div class="block-body">
+        <div class="callout gold" style="margin-top:0;margin-bottom:18px;">
+          <strong>Each round:</strong> Sprint 300 yards (6 × 25 yds) in under 1 minute → immediately complete all 7 exercises below → repeat for 3 rounds total.
+        </div>
+        <table class="circuit-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Exercise</th>
+              <th>Reps / Distance</th>
+              <th>Video</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;color:var(--gold);">1</td>
+              <td>Broad Jumps</td>
+              <td class="reps-val">50 yards — stick landing</td>
+              <td><a href="https://www.youtube.com/watch?v=XqpN9AbLMe4" target="_blank" class="vid-link">▶ Watch</a></td>
+            </tr>
+            <tr>
+              <td style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;color:var(--gold);">2</td>
+              <td>Push Up Ladder</td>
+              <td class="reps-val">1, 2, 3, 4 … up</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;color:var(--gold);">3</td>
+              <td>Spiderman Crunches</td>
+              <td class="reps-val">50 reps</td>
+              <td><a href="https://www.youtube.com/watch?v=DVXT7xBA_jU" target="_blank" class="vid-link">▶ Watch</a></td>
+            </tr>
+            <tr>
+              <td style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;color:var(--gold);">4</td>
+              <td>Burpees</td>
+              <td class="reps-val">50 reps</td>
+              <td><a href="https://www.youtube.com/watch?v=TU8QYVW0gDU" target="_blank" class="vid-link">▶ Watch</a></td>
+            </tr>
+            <tr>
+              <td style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;color:var(--gold);">5</td>
+              <td>Lunge Jumps</td>
+              <td class="reps-val">50 reps</td>
+              <td><a href="https://www.youtube.com/watch?v=RtY9kyhuh5I" target="_blank" class="vid-link">▶ Watch</a></td>
+            </tr>
+            <tr>
+              <td style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;color:var(--gold);">6</td>
+              <td>Plyo Push Ups</td>
+              <td class="reps-val">50 reps</td>
+              <td><a href="https://www.youtube.com/watch?v=Z1hBVYb3Gi0" target="_blank" class="vid-link">▶ Watch</a></td>
+            </tr>
+            <tr>
+              <td style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;color:var(--gold);">7</td>
+              <td>Knee Hug Crunches</td>
+              <td class="reps-val">50 reps</td>
+              <td><a href="https://www.youtube.com/watch?v=O0CXYaPWs90" target="_blank" class="vid-link">▶ Watch</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Field Interval Runs -->
+    <div class="workout-block">
+      <div class="block-header gold-accent">
+        <div>
+          <div class="block-title">Field Interval Runs</div>
+          <div class="block-subtitle">Full-field running protocol · Sidelines = 100 yds · Endlines = 60 yds</div>
+        </div>
+      </div>
+      <div class="block-body">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:18px;">
+          <div>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:900;color:var(--black);margin-bottom:10px;">Laps Protocol</div>
+            <div class="run-steps">
+              <div class="run-step" style="background:rgba(245,197,24,0.06);">
+                <div class="run-step-num">1</div>
+                <div class="run-step-text"><strong>Set 1:</strong> Start at corner — jog sidelines, sprint endlines for 4 laps</div>
+              </div>
+              <div class="run-step">
+                <div class="run-step-num" style="color:var(--cyan);">R</div>
+                <div class="run-step-text"><strong>Active Rest:</strong> Hydrate and walk 3 minutes</div>
+              </div>
+              <div class="run-step" style="background:rgba(245,197,24,0.06);">
+                <div class="run-step-num">2</div>
+                <div class="run-step-text"><strong>Set 2:</strong> Jog endlines, stride (near-sprint) the sidelines for 4 laps</div>
+              </div>
+              <div class="run-step">
+                <div class="run-step-num" style="color:#10B981;">↓</div>
+                <div class="run-step-text"><strong>Cool Down:</strong> Jog 1 lap then stretch / foam roll</div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:900;color:var(--black);margin-bottom:10px;">Interval Run Workout</div>
+            <table class="circuit-table">
+              <tbody>
+                <tr><td>1</td><td>Walking Lunges</td><td class="reps-val">100 yds</td><td><a href="https://www.youtube.com/watch?v=L8fvypPrzzs" target="_blank" class="vid-link">▶</a></td></tr>
+                <tr><td>2</td><td>Sprint endline, jog sideline</td><td class="reps-val">1 lap</td><td>—</td></tr>
+                <tr><td>3</td><td>Burpees</td><td class="reps-val">25 reps</td><td><a href="https://www.youtube.com/watch?v=TU8QYVW0gDU" target="_blank" class="vid-link">▶</a></td></tr>
+                <tr><td>4</td><td>Sprint endline, jog sideline</td><td class="reps-val">1 lap</td><td>—</td></tr>
+                <tr><td>5</td><td>Push Ups</td><td class="reps-val">20 reps</td><td>—</td></tr>
+                <tr><td>6</td><td>Sprint endline, jog sideline</td><td class="reps-val">1 lap</td><td>—</td></tr>
+                <tr><td>7</td><td>Straight Leg Sit Ups (w/ ball)</td><td class="reps-val">25 reps</td><td><a href="https://www.youtube.com/watch?v=K8p_O3Djdyk" target="_blank" class="vid-link">▶</a></td></tr>
+                <tr><td>8</td><td>Sprint endline, jog sideline</td><td class="reps-val">1 lap</td><td>—</td></tr>
+                <tr><td>9</td><td>Walking Lunges</td><td class="reps-val">100 yds</td><td><a href="https://www.youtube.com/watch?v=L8fvypPrzzs" target="_blank" class="vid-link">▶</a></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="callout cyan">
+          <strong>No field?</strong> Mark 100 yards for jogging (50–60% effort) and 60 yards for sprinting (90–100% effort) outside — a park or large parking lot works.
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabata + Interval Runs -->
+    <div class="workout-block">
+      <div class="block-header gold-accent">
+        <div>
+          <div class="block-title">Tabata Treadmill Run</div>
+          <div class="block-subtitle">High-intensity interval run — treadmill or outside</div>
+        </div>
+      </div>
+      <div class="block-body">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+          <div>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:900;color:var(--black);margin-bottom:12px;">Treadmill Protocol</div>
+            <div class="run-steps">
+              <div class="run-step"><div class="run-step-num" style="color:var(--cyan);">①</div><div class="run-step-text">Warm up at moderate pace — <strong>3 minutes</strong></div></div>
+              <div class="run-step"><div class="run-step-num" style="color:var(--gold);">②</div><div class="run-step-text">Increase to speed 10, incline 1.0 (adjust if too easy)</div></div>
+              <div class="run-step"><div class="run-step-num" style="color:var(--gold);">③</div><div class="run-step-text"><strong>Sprint 20 sec / Rest 10 sec</strong> (straddle belt) — repeat for 4 minutes</div></div>
+              <div class="run-step"><div class="run-step-num" style="color:var(--cyan);">④</div><div class="run-step-text">Active rest jog — <strong>3 minutes</strong></div></div>
+              <div class="run-step"><div class="run-step-num" style="color:var(--gold);">⑤</div><div class="run-step-text">Repeat Tabata set — 2 more times (3 sets total)</div></div>
+              <div class="run-step"><div class="run-step-num" style="color:#10B981;">↓</div><div class="run-step-text">Cool down at 5 mph — <strong>3 minutes</strong></div></div>
+            </div>
+            <div class="callout cyan" style="margin-top:12px;">
+              <strong>No treadmill?</strong> Time 20 sec sprint (90–100%) and 10 sec walk outside.
+            </div>
+          </div>
+          <div>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:900;color:var(--black);margin-bottom:12px;">Interval Runs</div>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;color:var(--gold);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">Part 1 — Descending</div>
+            <div class="run-steps" style="gap:6px;">
+              <div class="run-step"><div class="run-step-num">5'</div><div class="run-step-text">Run 5:00 → Walk 1:00</div></div>
+              <div class="run-step"><div class="run-step-num">4'</div><div class="run-step-text">Run 4:00 → Walk 1:00</div></div>
+              <div class="run-step"><div class="run-step-num">3'</div><div class="run-step-text">Run 3:00 → Walk 1:00</div></div>
+              <div class="run-step"><div class="run-step-num">2'</div><div class="run-step-text">Run 2:00 → Walk 1:00</div></div>
+              <div class="run-step"><div class="run-step-num">1'</div><div class="run-step-text">Run 1:00 → Walk 1:00</div></div>
+            </div>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;color:var(--cyan);letter-spacing:0.1em;text-transform:uppercase;margin:14px 0 8px;">Part 2 — 8:00 EMOM</div>
+            <div class="run-steps" style="gap:6px;">
+              <div class="run-step"><div class="run-step-num" style="color:var(--gold);">0–4'</div><div class="run-step-text">Sprint down &amp; back (60 yds × 2), rest remainder of minute. Alternate starting sides.</div></div>
+              <div class="run-step"><div class="run-step-num" style="color:var(--cyan);">4–8'</div><div class="run-step-text">Sprint down / back / down (60 yds × 3), rest remainder of minute.</div></div>
+            </div>
+            <div class="callout gold" style="margin-top:12px;font-size:13px;">Set up a cone <strong>60 yards</strong> away before you start.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- AT FIELD — SPEED & AGILITY                                   -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <div class="workout-section" id="speed-agility">
+    <div class="section-header green">
+      <div class="section-icon green-bg">⚡</div>
+      <div class="section-header-text">
+        <h2>AT FIELD — Speed &amp; Agility</h2>
+        <p>Linear speed and lateral change of direction. Study each video before heading to the field.</p>
+      </div>
+    </div>
+
+    <div class="anchor-label">Linear Speed</div>
+    <div class="drill-grid" style="margin-bottom:28px;">
+
+      <div class="drill-card">
+        <div style="padding:18px 18px 14px;">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;color:var(--black);margin-bottom:4px;">Lean Fall Run</div>
+          <div style="font-size:14px;color:#333;line-height:1.5;"><strong>2 × 10 yards each leg</strong> — 2 reps per leg, punch out with alternating legs on fall</div>
+        </div>
+      </div>
+
+      <div class="drill-card">
+        <div class="vid-thumb" style="position:relative;padding-top:56.25%;background:var(--black);">
+          <iframe style="position:absolute;inset:0;width:100%;height:100%;border:none;" src="https://www.youtube.com/embed/-qbXjsPxCo4" title="T-Test Agility" allowfullscreen></iframe>
+        </div>
+        <div class="drill-info">
+          <h4>T-Test</h4>
+          <p>3 reps · standard agility test measuring speed and change of direction</p>
+        </div>
+      </div>
+
+      <div class="drill-card">
+        <div class="vid-thumb" style="position:relative;padding-top:56.25%;background:var(--black);">
+          <iframe style="position:absolute;inset:0;width:100%;height:100%;border:none;" src="https://www.youtube.com/embed/IVoKRyWyoyo" title="Flying 30s" allowfullscreen></iframe>
+        </div>
+        <div class="drill-info">
+          <h4>Flying 30s</h4>
+          <p>3 reps · cones at 15, 45, 60 yds — build speed through 15, full speed to 45, decelerate to 60</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="anchor-label">Lateral Speed</div>
+    <div class="drill-grid">
+
+      <div class="drill-card">
+        <div class="vid-thumb" style="position:relative;padding-top:56.25%;background:var(--black);">
+          <iframe style="position:absolute;inset:0;width:100%;height:100%;border:none;" src="https://www.youtube.com/embed/lahLZmfMyJQ" title="Pro Agility 5-10-5" allowfullscreen></iframe>
+        </div>
+        <div class="drill-info">
+          <h4>Pro Agility (5-10-5)</h4>
+          <p>2 × each direction · low start, explode and cut clean</p>
+        </div>
+      </div>
+
+      <div class="drill-card">
+        <div class="vid-thumb" style="position:relative;padding-top:56.25%;background:var(--black);">
+          <iframe style="position:absolute;inset:0;width:100%;height:100%;border:none;" src="https://www.youtube.com/embed/NibdOUr5GkA" title="Shuffle-Sprint" allowfullscreen></iframe>
+        </div>
+        <div class="drill-info">
+          <h4>Shuffle-Sprint</h4>
+          <p>2 × each direction · lateral shuffle 10 yds, turn and sprint 10 yds</p>
+        </div>
+      </div>
+
+      <div class="drill-card">
+        <div style="padding:18px 18px 14px;">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;color:var(--black);margin-bottom:4px;">Outside X Drill</div>
+          <div style="font-size:14px;color:#333;line-height:1.5;"><strong>2 × each direction</strong> — 5×5 yard box, run the outside of the X both ways</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- IN HOME — WORKOUT 1                                          -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <div class="workout-section" id="inhome-1">
+    <div class="section-header cyan">
+      <div class="section-icon cyan-bg">🏠</div>
+      <div class="section-header-text">
+        <h2>In-Home — Workout 1</h2>
+        <p>Movement prep + 3-round circuit · No equipment needed</p>
+      </div>
+    </div>
+
+    <!-- Movement Prep -->
+    <div class="workout-block" style="margin-bottom:16px;">
+      <div class="block-header cyan-accent">
+        <div>
+          <div class="block-title">Movement Prep / Prehab</div>
+          <div class="block-subtitle">Complete before starting the circuit</div>
+        </div>
+      </div>
+      <div class="block-body">
+        <ul class="prep-list">
+          <li><span class="prep-icon">→</span>3-Way Lunges<span class="prep-sets">1 set × 3/3</span></li>
+          <li><span class="prep-icon">→</span>Reverse Lunge w/ OH Reach<span class="prep-sets">1 set × 5/5</span></li>
+          <li><span class="prep-icon">→</span>90/90 Pigeon Stretch Pulses (5 sec hold)<span class="prep-sets">1 set × 5/5</span></li>
+          <li><span class="prep-icon">→</span>Seated Hip Openers<span class="prep-sets">1 set × 10/10</span></li>
+          <li><span class="prep-icon">→</span>Quad T-Spine Rotations<span class="prep-sets">1 set × 10/10</span></li>
+          <li><span class="prep-icon">→</span>Half Kneel Adductor Rocks<span class="prep-sets">1 set × 5/5</span></li>
+          <li><span class="prep-icon">→</span>Dead Bugs<span class="prep-sets">1 set × 8/8</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Circuit -->
+    <div class="workout-block">
+      <div class="block-header cyan-accent">
+        <div>
+          <div class="block-title">Circuit — 3 Rounds</div>
+          <div class="block-subtitle">Complete all exercises in order · Rest 90–120 sec between rounds</div>
+        </div>
+      </div>
+      <div class="block-body">
+        <table class="circuit-table">
+          <thead>
+            <tr><th>#</th><th>Exercise</th><th>Reps / Time</th><th>Video</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;color:var(--cyan);">1</td>
+              <td>Reverse Lunge to Knee Drive</td>
+              <td class="reps-val">25 each leg</td>
+              <td><a href="https://www.youtube.com/watch?v=kr0y8Ohighs" target="_blank" class="vid-link">▶ Watch</a></td>
+            </tr>
+            <tr>
+              <td style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;color:var(--cyan);">2</td>
+              <td>Push Ups</td>
+              <td class="reps-val">25 reps</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;color:var(--cyan);">3</td>
+              <td>SL Glute Bridge (3 sec pause)</td>
+              <td class="reps-val">10 each leg</td>
+              <td><a href="https://www.youtube.com/watch?v=3NXv0Nany-Q" target="_blank" class="vid-link">▶ Watch</a></td>
+            </tr>
+            <tr>
+              <td style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;color:var(--cyan);">4</td>
+              <td>Burpees</td>
+              <td class="reps-val">10 reps</td>
+              <td><a href="https://www.youtube.com/watch?v=TU8QYVW0gDU" target="_blank" class="vid-link">▶ Watch</a></td>
+            </tr>
+            <tr>
+              <td style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;color:var(--cyan);">5</td>
+              <td>Wall Sit</td>
+              <td class="reps-val">1 min</td>
+              <td><a href="https://www.youtube.com/watch?v=-cdph8hv0O0" target="_blank" class="vid-link">▶ Watch</a></td>
+            </tr>
+            <tr>
+              <td style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;color:var(--cyan);">6</td>
+              <td>Plank Ups</td>
+              <td class="reps-val">5 each side</td>
+              <td><a href="https://www.youtube.com/watch?v=LICrkuVmD4M" target="_blank" class="vid-link">▶ Watch</a></td>
+            </tr>
+            <tr>
+              <td style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;color:var(--cyan);">7</td>
+              <td>Lunge Jumps</td>
+              <td class="reps-val">20 reps</td>
+              <td><a href="https://www.youtube.com/watch?v=RtY9kyhuh5I" target="_blank" class="vid-link">▶ Watch</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- IN HOME — WORKOUT 2                                          -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <div class="workout-section" id="inhome-2">
+    <div class="section-header cyan">
+      <div class="section-icon cyan-bg">🏠</div>
+      <div class="section-header-text">
+        <h2>In-Home — Workout 2</h2>
+        <p>Movement prep + 3-round circuit · No equipment needed</p>
+      </div>
+    </div>
+
+    <div class="workout-block" style="margin-bottom:16px;">
+      <div class="block-header cyan-accent">
+        <div>
+          <div class="block-title">Movement Prep / Prehab</div>
+          <div class="block-subtitle">Complete before starting the circuit</div>
+        </div>
+      </div>
+      <div class="block-body">
+        <ul class="prep-list">
+          <li><span class="prep-icon">→</span>T-Spine Open Book<span class="prep-sets">1 set × 10/10</span></li>
+          <li><span class="prep-icon">→</span>90/90 Rear Foot Lifts (5 sec hold)<span class="prep-sets">1 set × 5/5</span></li>
+          <li><span class="prep-icon">→</span>90/90 Front &amp; Rear Leg Lifts (5 sec hold)<span class="prep-sets">1 set × 5/5</span></li>
+          <li><span class="prep-icon">→</span>SL Squat 3 Cone Touch<span class="prep-sets">2 sets × 3/3</span></li>
+          <li><span class="prep-icon">→</span>Cook Hip Lift<span class="prep-sets">1 set × 10/10</span></li>
+          <li><span class="prep-icon">→</span>3-Way Ankle Rocks<span class="prep-sets">1 set × 5 each way</span></li>
+          <li><span class="prep-icon">→</span>Up Dog to Down Dog<span class="prep-sets">1 set × 5</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="workout-block">
+      <div class="block-header cyan-accent">
+        <div>
+          <div class="block-title">Circuit — 3 Rounds</div>
+          <div class="block-subtitle">Complete all exercises in order · Rest 90–120 sec between rounds</div>
+        </div>
+      </div>
+      <div class="block-body">
+        <table class="circuit-table">
+          <thead>
+            <tr><th>#</th><th>Exercise</th><th>Reps / Time</th><th>Video</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;color:var(--cyan);">1</td>
+              <td>Split Squat Jumps</td>
+              <td class="reps-val">10 each leg</td>
+              <td><a href="https://www.youtube.com/watch?v=RtY9kyhuh5I" target="_blank" class="vid-link">▶ Watch</a></td>
+            </tr>
+            <tr>
+              <td style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;color:var(--cyan);">2</td>
+              <td>Flutter Kicks</td>
+              <td class="reps-val">1 min</td>
+              <td><a href="https://www.youtube.com/watch?v=F2UAWc_ubjg" target="_blank" class="vid-link">▶ Watch</a></td>
+            </tr>
+            <tr>
+              <td style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;color:var(--cyan);">3</td>
+              <td>Lunge Hold Left (knee hovering)</td>
+              <td class="reps-val">1 min</td>
+              <td><a href="https://www.youtube.com/watch?v=6etRQUy6SE0" target="_blank" class="vid-link">▶ Watch</a></td>
+            </tr>
+            <tr>
+              <td style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;color:var(--cyan);">4</td>
+              <td>Skater Hops</td>
+              <td class="reps-val">20 reps</td>
+              <td><a href="https://www.youtube.com/watch?v=JkacHtlPYds" target="_blank" class="vid-link">▶ Watch</a></td>
+            </tr>
+            <tr>
+              <td style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;color:var(--cyan);">5</td>
+              <td>Lunge Hold Right (knee hovering)</td>
+              <td class="reps-val">1 min</td>
+              <td><a href="https://www.youtube.com/watch?v=6etRQUy6SE0" target="_blank" class="vid-link">▶ Watch</a></td>
+            </tr>
+            <tr>
+              <td style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;color:var(--cyan);">6</td>
+              <td>Close Grip Push Ups</td>
+              <td class="reps-val">25 reps</td>
+              <td><a href="https://www.youtube.com/watch?v=NPmRYbIneTE" target="_blank" class="vid-link">▶ Watch</a></td>
+            </tr>
+            <tr>
+              <td style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;color:var(--cyan);">7</td>
+              <td>Side Star Plank Hold Left</td>
+              <td class="reps-val">30 sec</td>
+              <td><a href="https://www.youtube.com/watch?v=5oB44pBFIVE" target="_blank" class="vid-link">▶ Watch</a></td>
+            </tr>
+            <tr>
+              <td style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;color:var(--cyan);">8</td>
+              <td>Glute Bridge March</td>
+              <td class="reps-val">20 each leg</td>
+              <td><a href="https://www.youtube.com/watch?v=c_4Y0I8vgzY" target="_blank" class="vid-link">▶ Watch</a></td>
+            </tr>
+            <tr>
+              <td style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;color:var(--cyan);">9</td>
+              <td>Side Star Plank Hold Right</td>
+              <td class="reps-val">30 sec</td>
+              <td><a href="https://www.youtube.com/watch?v=5oB44pBFIVE" target="_blank" class="vid-link">▶ Watch</a></td>
+            </tr>
+            <tr>
+              <td style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;color:var(--cyan);">10</td>
+              <td>Push Up Position Bird Dogs</td>
+              <td class="reps-val">10 each side</td>
+              <td><a href="https://www.youtube.com/watch?v=No6UL8H36M8" target="_blank" class="vid-link">▶ Watch</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- IN HOME — WORKOUT 3                                          -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <div class="workout-section" id="inhome-3">
+    <div class="section-header cyan">
+      <div class="section-icon cyan-bg">🏠</div>
+      <div class="section-header-text">
+        <h2>In-Home — Workout 3</h2>
+        <p>Movement prep + 3-round circuit · No equipment needed</p>
+      </div>
+    </div>
+
+    <div class="workout-block" style="margin-bottom:16px;">
+      <div class="block-header cyan-accent">
+        <div>
+          <div class="block-title">Movement Prep / Prehab</div>
+          <div class="block-subtitle">Complete before starting the circuit</div>
+        </div>
+      </div>
+      <div class="block-body">
+        <ul class="prep-list">
+          <li><span class="prep-icon">→</span>Half Kneel Hip Flexor Rocks (5 sec hold)<span class="prep-sets">1 set × 5/5</span></li>
+          <li><span class="prep-icon">→</span>Frog Stretch (5 sec hold, rock out)<span class="prep-sets">1 set × 5/5</span></li>
+          <li><span class="prep-icon">→</span>Shoulder Taps<span class="prep-sets">1 set × 10/10</span></li>
+          <li><span class="prep-icon">→</span>Pigeon Stretch w/ Thoracic Rotation<span class="prep-sets">1 set × 8/8</span></li>
+          <li><span class="prep-icon">→</span>Lying Alternating Hamstring Stretch<span class="prep-sets">1 set × 8/8</span></li>
+          <li><span class="prep-icon">→</span>Spiderman Crawl (3 sec holds)<span class="prep-sets">1 set × 5/5</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="workout-block">
+      <div class="block-header cyan-accent">
+        <div>
+          <div class="block-title">Circuit — 3 Rounds</div>
+          <div class="block-subtitle">Complete all exercises in order · Rest 90–120 sec between rounds</div>
+        </div>
+      </div>
+      <div class="block-body">
+        <table class="circuit-table">
+          <thead>
+            <tr><th>#</th><th>Exercise</th><th>Reps / Time</th><th>Video</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;color:var(--cyan);">1</td>
+              <td>Single Leg Squat Jumps (opp knee to floor)</td>
+              <td class="reps-val">15 each leg</td>
+              <td><a href="https://www.youtube.com/watch?v=zSCiNR0b6Ms" target="_blank" class="vid-link">▶ Watch</a></td>
+            </tr>
+            <tr>
+              <td style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;color:var(--cyan);">2</td>
+              <td>Copenhagen Side Plank w/ Knee Drive</td>
+              <td class="reps-val">10 each side</td>
+              <td><a href="https://www.youtube.com/watch?v=6RkKqEn_txQ" target="_blank" class="vid-link">▶ Watch</a></td>
+            </tr>
+            <tr>
+              <td style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;color:var(--cyan);">3</td>
+              <td>Plyo Push Ups</td>
+              <td class="reps-val">15 reps</td>
+              <td><a href="https://www.youtube.com/watch?v=Z1hBVYb3Gi0" target="_blank" class="vid-link">▶ Watch</a></td>
+            </tr>
+            <tr>
+              <td style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;color:var(--cyan);">4</td>
+              <td>Jump Tucks</td>
+              <td class="reps-val">10 reps</td>
+              <td><a href="https://www.youtube.com/watch?v=r7oBejx1PHM" target="_blank" class="vid-link">▶ Watch</a></td>
+            </tr>
+            <tr>
+              <td style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;color:var(--cyan);">5</td>
+              <td>Plank Hold</td>
+              <td class="reps-val">1 min</td>
+              <td><a href="https://www.youtube.com/watch?v=ASdvN_XEl_c" target="_blank" class="vid-link">▶ Watch</a></td>
+            </tr>
+            <tr>
+              <td style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;color:var(--cyan);">6</td>
+              <td>Mountain Climbers</td>
+              <td class="reps-val">30 each leg</td>
+              <td><a href="https://www.youtube.com/watch?v=De3Gl-nC7IQ" target="_blank" class="vid-link">▶ Watch</a></td>
+            </tr>
+            <tr>
+              <td style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;color:var(--cyan);">7</td>
+              <td>Broad Jumps (stick landing)</td>
+              <td class="reps-val">10 reps</td>
+              <td><a href="https://www.youtube.com/watch?v=XqpN9AbLMe4" target="_blank" class="vid-link">▶ Watch</a></td>
+            </tr>
+            <tr>
+              <td style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;color:var(--cyan);">8</td>
+              <td>Wall Sit</td>
+              <td class="reps-val">1 min</td>
+              <td><a href="https://www.youtube.com/watch?v=-cdph8hv0O0" target="_blank" class="vid-link">▶ Watch</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="assets/scwave-logo.png" alt="SC Wave" />
+      <span>SC Wave Soccer Club · Founded 1978</span>
+    </div>
+    <div class="footer-right">
+      <a href="mailto:danielmartini07@gmail.com">danielmartini07@gmail.com</a>
+      <div class="footer-mls">
+        <img src="assets/mlsnext-logo.png" alt="MLS NEXT" />
+        <span>MLS NEXT Member Club</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
