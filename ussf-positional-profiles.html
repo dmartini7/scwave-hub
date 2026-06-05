@@ -8,96 +8,154 @@
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
   <style>
+    /* ── USSF × SC WAVE PALETTE ── */
+    :root {
+      --ussf-navy:     #001A57;
+      --ussf-navy-mid: #0b2460;
+      --ussf-navy-card:#0d2a6e;
+      --ussf-red:      #BF0D3E;
+      --ussf-red-dark: #8B0A2D;
+      --scw-gold:      #F5C518;
+      --scw-cyan:      #00D4E4;
+    }
+
+    /* Override page background */
+    body { background: #00112e; }
+
+    /* Hero override to navy */
+    .page-hero {
+      background: linear-gradient(160deg, #001A57 0%, #000d2e 100%) !important;
+      border-bottom: 3px solid var(--ussf-red) !important;
+    }
+    .page-hero h1 { color: #fff; }
+    .page-hero h1 span { color: var(--scw-gold); }
+    .page-hero p { color: rgba(255,255,255,0.72); }
+    .back-link { color: rgba(255,255,255,0.55) !important; }
+    .back-link:hover { color: var(--scw-gold) !important; }
+
+    /* ── CO-BRAND STRIP ── */
+    .cobrand-strip {
+      background: var(--ussf-navy);
+      border-bottom: 1px solid rgba(191,13,62,0.4);
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .cobrand-left, .cobrand-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .cobrand-flag {
+      font-size: 28px;
+      line-height: 1;
+    }
+    .cobrand-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 15px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #fff;
+    }
+    .cobrand-sub {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.04em;
+    }
+    .cobrand-divider {
+      width: 1px;
+      height: 36px;
+      background: rgba(255,255,255,0.2);
+    }
+    .cobrand-x {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 22px;
+      color: var(--ussf-red);
+      letter-spacing: 0.04em;
+    }
+
+    /* ── WRAP ── */
     .doc-wrap {
       max-width: 960px;
       margin: 0 auto;
       padding: 0 24px 80px;
     }
-    .doc-download-bar {
+
+    /* ── SECTION HEADINGS ── */
+    .ussf-section-heading {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      background: #0D0D0D;
-      border: 1px solid rgba(245,197,24,0.2);
-      border-radius: 12px;
-      padding: 16px 24px;
-      margin-bottom: 40px;
-      gap: 16px;
-      flex-wrap: wrap;
+      gap: 14px;
+      margin: 52px 0 22px;
     }
-    .doc-download-bar span {
-      font-family: 'Inter', sans-serif;
-      font-size: 15px;
-      color: rgba(255,255,255,0.7);
+    .ussf-section-heading .sh-bar {
+      width: 5px;
+      height: 36px;
+      background: var(--ussf-red);
+      border-radius: 3px;
+      flex-shrink: 0;
     }
-    .dl-btns { display: flex; gap: 10px; flex-wrap: wrap; }
-    .btn-download {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--gold);
-      color: #0D0D0D;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 800;
-      font-size: 15px;
-      letter-spacing: 0.04em;
-      padding: 10px 18px;
-      border-radius: 8px;
-      text-decoration: none;
-      transition: opacity 0.15s;
-    }
-    .btn-download.secondary {
-      background: transparent;
-      color: var(--gold);
-      border: 1.5px solid var(--gold);
-    }
-    .btn-download:hover { opacity: 0.8; }
-
-    .section-heading {
+    .ussf-section-heading .sh-text {
       font-family: 'Barlow Condensed', sans-serif;
       font-weight: 900;
-      font-size: 28px;
+      font-size: 30px;
       letter-spacing: 0.04em;
       color: #fff;
-      margin: 48px 0 20px;
-      padding-bottom: 12px;
-      border-bottom: 2px solid rgba(245,197,24,0.3);
+      text-transform: uppercase;
+      line-height: 1;
     }
-    .section-heading span { color: var(--gold); }
+    .ussf-section-heading .sh-text span { color: var(--scw-gold); }
+    .ussf-section-heading .sh-badge {
+      margin-left: auto;
+      background: var(--ussf-red);
+      color: #fff;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 4px;
+    }
 
-    /* Philosophy bullets */
+    /* ── PHILOSOPHY GRID ── */
     .philosophy-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 12px;
+      gap: 10px;
       margin-bottom: 32px;
     }
     .philosophy-item {
       display: flex;
-      gap: 12px;
+      gap: 14px;
       align-items: flex-start;
-      background: #0D0D0D;
+      background: var(--ussf-navy);
       border: 1px solid rgba(255,255,255,0.07);
-      border-radius: 10px;
-      padding: 16px 18px;
+      border-left: 3px solid var(--ussf-red);
+      border-radius: 8px;
+      padding: 14px 16px;
     }
-    .philosophy-item .dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--gold);
+    .philosophy-item .star {
+      color: var(--ussf-red);
+      font-size: 14px;
       flex-shrink: 0;
-      margin-top: 6px;
+      margin-top: 2px;
     }
     .philosophy-item p {
       font-family: 'Inter', sans-serif;
       font-size: 14px;
-      color: rgba(255,255,255,0.75);
+      color: rgba(255,255,255,0.78);
       margin: 0;
       line-height: 1.5;
     }
 
-    /* Key Quality cards */
+    /* ── KEY QUALITIES GRID ── */
     .kq-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -105,20 +163,25 @@
       margin-bottom: 40px;
     }
     .kq-card {
-      background: #0D0D0D;
-      border: 1px solid rgba(255,255,255,0.08);
+      background: var(--ussf-navy);
+      border: 1px solid rgba(255,255,255,0.07);
       border-radius: 12px;
-      padding: 20px 22px;
+      overflow: hidden;
+    }
+    .kq-card-header {
+      background: var(--ussf-red);
+      padding: 10px 18px;
     }
     .kq-card-title {
       font-family: 'Barlow Condensed', sans-serif;
       font-weight: 900;
-      font-size: 17px;
-      color: var(--cyan);
-      letter-spacing: 0.04em;
-      margin-bottom: 12px;
+      font-size: 16px;
+      color: #fff;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
+      margin: 0;
     }
+    .kq-card-body { padding: 16px 18px; }
     .kq-card ul {
       margin: 0;
       padding: 0;
@@ -127,138 +190,125 @@
     .kq-card ul li {
       font-family: 'Inter', sans-serif;
       font-size: 14px;
-      color: rgba(255,255,255,0.72);
+      color: rgba(255,255,255,0.75);
       line-height: 1.55;
       padding: 4px 0;
-      padding-left: 14px;
+      padding-left: 16px;
       position: relative;
     }
     .kq-card ul li::before {
-      content: '—';
+      content: '★';
       position: absolute;
       left: 0;
-      color: var(--gold);
-      font-size: 12px;
+      color: var(--scw-gold);
+      font-size: 10px;
+      top: 6px;
     }
 
-    /* Position cards */
+    /* ── POSITION CARDS ── */
     .position-card {
-      background: #0D0D0D;
-      border: 1px solid rgba(255,255,255,0.08);
+      background: var(--ussf-navy);
+      border: 1px solid rgba(255,255,255,0.07);
       border-radius: 14px;
-      margin-bottom: 28px;
+      margin-bottom: 24px;
       overflow: hidden;
     }
     .pos-header {
       display: flex;
       align-items: center;
-      gap: 16px;
-      padding: 20px 24px;
-      background: rgba(255,255,255,0.03);
-      border-bottom: 1px solid rgba(255,255,255,0.07);
+      gap: 0;
+      background: linear-gradient(90deg, var(--ussf-navy-mid) 0%, var(--ussf-navy) 100%);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      overflow: hidden;
     }
-    .pos-number {
+    .pos-number-badge {
+      background: var(--ussf-red);
       font-family: 'Barlow Condensed', sans-serif;
       font-weight: 900;
-      font-size: 44px;
-      color: var(--gold);
+      font-size: 36px;
+      color: #fff;
       line-height: 1;
-      min-width: 52px;
+      padding: 20px 24px;
+      min-width: 80px;
       text-align: center;
+      align-self: stretch;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      letter-spacing: -0.02em;
+    }
+    .pos-title-block {
+      padding: 18px 20px;
     }
     .pos-title-block h3 {
       font-family: 'Barlow Condensed', sans-serif;
       font-weight: 900;
-      font-size: 24px;
+      font-size: 26px;
       color: #fff;
       margin: 0 0 4px;
       letter-spacing: 0.03em;
+      text-transform: uppercase;
     }
     .pos-title-block .pos-sub {
       font-family: 'Inter', sans-serif;
       font-size: 13px;
-      color: rgba(255,255,255,0.5);
+      color: rgba(255,255,255,0.45);
     }
-    .pos-body {
-      padding: 20px 24px;
-    }
-    .pos-body-cols {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
-    @media (max-width: 640px) { .pos-body-cols { grid-template-columns: 1fr; } }
+    .pos-body { padding: 20px 24px; }
+
     .pos-col-label {
       font-family: 'Barlow Condensed', sans-serif;
       font-weight: 900;
       font-size: 12px;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--gold);
+      color: rgba(255,255,255,0.4);
       margin-bottom: 10px;
+      margin-top: 18px;
     }
+    .pos-col-label:first-child { margin-top: 0; }
 
-    /* Key Qualities chips */
+    /* KQ chips */
     .kq-chips {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin-bottom: 20px;
+      margin-bottom: 4px;
     }
     .kq-chip {
       background: rgba(245,197,24,0.1);
-      border: 1px solid rgba(245,197,24,0.3);
-      border-radius: 20px;
-      padding: 5px 14px;
-      font-family: 'Inter', sans-serif;
+      border: 1px solid rgba(245,197,24,0.35);
+      border-radius: 4px;
+      padding: 5px 12px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
       font-size: 13px;
-      font-weight: 600;
-      color: var(--gold);
+      letter-spacing: 0.04em;
+      color: var(--scw-gold);
+      text-transform: uppercase;
     }
 
-    .pos-ul {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-    .pos-ul li {
-      font-family: 'Inter', sans-serif;
-      font-size: 14px;
-      color: rgba(255,255,255,0.7);
-      line-height: 1.55;
-      padding: 4px 0 4px 16px;
-      position: relative;
-    }
-    .pos-ul li::before {
-      content: '→';
-      position: absolute;
-      left: 0;
-      color: var(--cyan);
-      font-size: 12px;
-      top: 5px;
-    }
-
+    /* Phase table */
     .phase-table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 16px;
     }
     .phase-table th {
       font-family: 'Barlow Condensed', sans-serif;
       font-weight: 800;
-      font-size: 13px;
-      letter-spacing: 0.06em;
+      font-size: 12px;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.5);
+      color: rgba(255,255,255,0.35);
       padding: 8px 12px;
       text-align: left;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
     }
     .phase-table td {
       font-family: 'Inter', sans-serif;
       font-size: 13px;
-      color: rgba(255,255,255,0.68);
-      padding: 8px 12px;
+      color: rgba(255,255,255,0.72);
+      padding: 9px 12px;
       vertical-align: top;
       border-bottom: 1px solid rgba(255,255,255,0.04);
       line-height: 1.5;
@@ -266,32 +316,55 @@
     .phase-table tr:last-child td { border-bottom: none; }
     .phase-label {
       font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 800;
+      font-weight: 900;
       font-size: 13px;
-      color: var(--cyan);
       white-space: nowrap;
+      letter-spacing: 0.04em;
     }
-    .zone-label {
-      font-size: 12px;
-      color: rgba(255,255,255,0.4);
-      font-style: italic;
-    }
+    .phase-label.atk  { color: var(--scw-gold); }
+    .phase-label.def  { color: var(--ussf-red); }
+    .phase-label.trda { color: var(--scw-cyan); }
+    .phase-label.trad { color: #a78bfa; }
+
     .physical-tag {
-      display: inline-block;
-      background: rgba(0,212,228,0.1);
-      border: 1px solid rgba(0,212,228,0.3);
-      border-radius: 20px;
-      padding: 4px 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(0,212,228,0.08);
+      border: 1px solid rgba(0,212,228,0.25);
+      border-radius: 6px;
+      padding: 6px 14px;
       font-family: 'Inter', sans-serif;
       font-size: 13px;
       font-weight: 600;
-      color: var(--cyan);
-      margin-top: 10px;
+      color: var(--scw-cyan);
+      margin-top: 14px;
     }
-    .divider {
-      border: none;
-      border-top: 1px solid rgba(255,255,255,0.07);
-      margin: 24px 0;
+
+    /* Phase legend */
+    .phase-legend {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+      padding: 12px 16px;
+      background: rgba(255,255,255,0.03);
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .phase-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: rgba(255,255,255,0.6);
+    }
+    .phase-legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 2px;
+      flex-shrink: 0;
     }
   </style>
 </head>
@@ -323,128 +396,170 @@
 
 <div class="page-hero">
   <a href="club-documents.html" class="back-link">← Back to Club Documents</a>
-  <div class="page-icon" style="background:rgba(245,197,24,0.1);">🇺🇸</div>
+  <div class="page-icon" style="background:rgba(191,13,62,0.15);">🇺🇸</div>
   <h1>USSF Key Qualities &amp; <span>Positional Profiles</span></h1>
-  <p>U.S. Soccer's elite player development framework — what scouts look for, what every position demands, and what SC Wave expects from each role on the field.</p>
+  <p>U.S. Soccer's elite player development framework — what scouts identify, what every position demands, and what SC Wave expects from each role on the field.</p>
+</div>
+
+<!-- Co-brand strip -->
+<div class="cobrand-strip">
+  <div class="cobrand-left">
+    <div class="cobrand-flag">🇺🇸</div>
+    <div>
+      <div class="cobrand-label">U.S. Soccer Federation</div>
+      <div class="cobrand-sub">Talent Identification Framework</div>
+    </div>
+  </div>
+  <div class="cobrand-divider"></div>
+  <div class="cobrand-x">×</div>
+  <div class="cobrand-divider"></div>
+  <div class="cobrand-right">
+    <img src="assets/scwave-logo.png" alt="SC Wave" style="width:30px;height:30px;object-fit:contain;" />
+    <div>
+      <div class="cobrand-label">SC Wave Soccer Club</div>
+      <div class="cobrand-sub">MLS NEXT · Player Development</div>
+    </div>
+  </div>
 </div>
 
 <div class="doc-wrap">
 
-  <div class="doc-download-bar">
-    <span>📄 Available as PDF documents</span>
-    <div class="dl-btns">
-      <a href="docs/ussf-key-qualities.pdf" download class="btn-download">⬇ USSF Key Qualities</a>
-      <a href="docs/positional-profiles.pdf" download class="btn-download secondary">⬇ SC Wave Positional Profiles</a>
-    </div>
+  <!-- ── TALENT ID PHILOSOPHY ── -->
+  <div class="ussf-section-heading">
+    <div class="sh-bar"></div>
+    <div class="sh-text">Talent ID <span>Philosophy</span></div>
+    <div class="sh-badge">USSF</div>
   </div>
 
-  <!-- ── TALENT ID PHILOSOPHY ── -->
-  <div class="section-heading">USSF Talent <span>Identification Philosophy</span></div>
-
   <div class="philosophy-grid">
-    <div class="philosophy-item"><div class="dot"></div><p>Talent is developed in the "right" environment — culture, coaching, and context all matter.</p></div>
-    <div class="philosophy-item"><div class="dot"></div><p>Talent identification starts with the clubs, who need quality, diverse, and expansive scouting networks.</p></div>
-    <div class="philosophy-item"><div class="dot"></div><p>Identification must happen in the context of the game, accounting for conditions, level, and demands.</p></div>
-    <div class="philosophy-item"><div class="dot"></div><p>Players develop at different rates — performance trajectories are non-linear. Don't peak too early.</p></div>
-    <div class="philosophy-item"><div class="dot"></div><p>Talent ID is a long-term process where current performance and future potential are influenced by environment, age, and maturation.</p></div>
-    <div class="philosophy-item"><div class="dot"></div><p>Key qualities differ by club and federation — they must connect to identity: core values, style of play, and culture.</p></div>
-    <div class="philosophy-item"><div class="dot"></div><p>Scouts use a common structure and language for examining players across the system.</p></div>
-    <div class="philosophy-item"><div class="dot"></div><p>Framework is gender-neutral with gender-specific scouting strategy, built on relationships with all communities.</p></div>
+    <div class="philosophy-item"><div class="star">★</div><p>Talent is developed in the <strong style="color:#fff;">right environment</strong> — culture, coaching, and context all matter.</p></div>
+    <div class="philosophy-item"><div class="star">★</div><p>Talent ID starts with clubs, who need quality, diverse, and expansive scouting networks.</p></div>
+    <div class="philosophy-item"><div class="star">★</div><p>Identification must happen in the <strong style="color:#fff;">context of the game</strong> — accounting for conditions, level, and demands.</p></div>
+    <div class="philosophy-item"><div class="star">★</div><p>Players develop at different rates — performance trajectories are <strong style="color:#fff;">non-linear</strong>. Don't peak too early.</p></div>
+    <div class="philosophy-item"><div class="star">★</div><p>Talent ID is a long-term process influenced by environment, age, and maturation — not just current performance.</p></div>
+    <div class="philosophy-item"><div class="star">★</div><p>Key qualities must connect to the club's <strong style="color:#fff;">identity</strong>: core values, style of play, and culture.</p></div>
+    <div class="philosophy-item"><div class="star">★</div><p>Scouts use a <strong style="color:#fff;">common structure and language</strong> for examining players across the entire system.</p></div>
+    <div class="philosophy-item"><div class="star">★</div><p>Gender-neutral framework with gender-specific scouting strategy, built on community relationships.</p></div>
   </div>
 
   <!-- ── KEY QUALITIES ── -->
-  <div class="section-heading">Key <span>Qualities of a Player</span></div>
+  <div class="ussf-section-heading">
+    <div class="sh-bar"></div>
+    <div class="sh-text">Key <span>Qualities of a Player</span></div>
+    <div class="sh-badge">6 PILLARS</div>
+  </div>
 
   <div class="kq-grid">
 
     <div class="kq-card">
-      <div class="kq-card-title">🧩 Game Understanding &amp; Decision-Making</div>
-      <ul>
-        <li>Reads situations, anticipates, and makes quick decisions under pressure</li>
-        <li>Identifies cues and intentions of teammates and opponents</li>
-        <li>Recognizes space, time, and risk opportunities</li>
-        <li>Processes information quickly — thinks ahead, acts fast</li>
-        <li>Manages pace of game; knows when to accelerate or slow down</li>
-        <li>Understands role based on style of play, team principles, and strategy</li>
-        <li>Scans continuously; adapts body shape</li>
-        <li>Versatile — can play multiple roles in different systems</li>
-        <li>Uses creativity to find new solutions</li>
-      </ul>
+      <div class="kq-card-header"><div class="kq-card-title">🧩 Game Understanding &amp; Decision-Making</div></div>
+      <div class="kq-card-body">
+        <ul>
+          <li>Reads situations, anticipates, and makes quick decisions under pressure</li>
+          <li>Identifies cues and intentions of teammates and opponents</li>
+          <li>Recognizes space, time, and risk opportunities</li>
+          <li>Processes information quickly — thinks ahead, acts fast</li>
+          <li>Manages pace of game; knows when to accelerate or slow down</li>
+          <li>Understands role based on style of play, principles, and strategy</li>
+          <li>Scans continuously; adapts body shape; versatile across systems</li>
+          <li>Uses creativity to find new solutions</li>
+        </ul>
+      </div>
     </div>
 
     <div class="kq-card">
-      <div class="kq-card-title">🎯 Responsibility &amp; Initiative</div>
-      <ul>
-        <li>Demonstrates self-knowledge and applies it to their role within the team</li>
-        <li>Takes ownership — sets goals, plans, monitors, re-evaluates</li>
-        <li>Takes initiative; sees opportunities without being told</li>
-        <li>Manages personal lifestyle (rest, recovery, sleep, nutrition, mental health)</li>
-        <li>Behaves like a role model under all circumstances</li>
-        <li>Prepares for every game and session</li>
-        <li>Reflects on and evaluates own performance (self-critical)</li>
-        <li>Receives feedback, asks questions — coachable</li>
-        <li>Creates a personal development plan; holds self accountable</li>
-      </ul>
+      <div class="kq-card-header"><div class="kq-card-title">🎯 Responsibility &amp; Initiative</div></div>
+      <div class="kq-card-body">
+        <ul>
+          <li>Demonstrates self-knowledge and applies it to their role</li>
+          <li>Takes ownership — sets goals, plans, monitors, re-evaluates</li>
+          <li>Takes initiative; sees opportunities without being told</li>
+          <li>Manages personal lifestyle (rest, recovery, sleep, nutrition, mental health)</li>
+          <li>Behaves like a role model under all circumstances</li>
+          <li>Reflects and evaluates own performance — self-critical</li>
+          <li>Receives feedback, asks questions — coachable</li>
+          <li>Holds self accountable; creates a personal development plan</li>
+        </ul>
+      </div>
     </div>
 
     <div class="kq-card">
-      <div class="kq-card-title">🔥 Growth Mindset &amp; Winning Mentality</div>
-      <ul>
-        <li><strong style="color:rgba(255,255,255,0.85);">Intensity:</strong> Gives maximum effort; concentrates; commits to the process</li>
-        <li><strong style="color:rgba(255,255,255,0.85);">Communication:</strong> Communicates with teammates on and off the field to solve situations and improve</li>
-        <li>Shows joy, passion, and enthusiasm — fun and freedom</li>
-        <li>Challenges self; pursues goals; never gives up</li>
-        <li>Faces adversity and overcomes fear — brave</li>
-        <li>Pushes self to limits (body and mind)</li>
-        <li>Believes in self and contributes deliberately to team performance</li>
-        <li><strong style="color:rgba(255,255,255,0.85);">Emotional Stability:</strong> Overcomes setbacks, deals with pressure, stays composed, behaves maturely</li>
-      </ul>
+      <div class="kq-card-header"><div class="kq-card-title">🔥 Growth Mindset &amp; Winning Mentality</div></div>
+      <div class="kq-card-body">
+        <ul>
+          <li><strong style="color:var(--scw-gold);">Intensity:</strong> Maximum effort, full concentration, committed to the process</li>
+          <li><strong style="color:var(--scw-gold);">Communication:</strong> On and off the field — solves situations and improves self and team</li>
+          <li>Shows joy, passion, and enthusiasm — fun and freedom</li>
+          <li>Challenges self; pursues goals; never gives up</li>
+          <li>Faces adversity and overcomes fear — brave</li>
+          <li>Pushes self to limits — body and mind</li>
+          <li><strong style="color:var(--scw-gold);">Emotional Stability:</strong> Overcomes setbacks, stays composed under pressure, behaves maturely</li>
+        </ul>
+      </div>
     </div>
 
     <div class="kq-card">
-      <div class="kq-card-title">⚽ Technical Execution</div>
-      <ul>
-        <li>Moving easily with the ball, staying calm under pressure</li>
-        <li>Receiving and playing in tight spaces — use of both feet</li>
-        <li>Receiving to play forward; playing 1 and 2 touch</li>
-        <li>Precise passing that sets up the receiver (short, long, break lines)</li>
-        <li>Dribbling and running with the ball to break lines and accelerate attack</li>
-        <li>Making quick combinations; creating chances and finishing</li>
-        <li>Heading; dominating 1v1 duels</li>
-      </ul>
+      <div class="kq-card-header"><div class="kq-card-title">⚽ Technical Execution</div></div>
+      <div class="kq-card-body">
+        <ul>
+          <li>Moves easily with the ball; stays calm under pressure</li>
+          <li>Receives and plays in tight spaces — both feet</li>
+          <li>Receives to play forward; plays 1 and 2 touch</li>
+          <li>Precise passing that sets up the receiver (short, long, break lines)</li>
+          <li>Dribbling and running to break lines and accelerate attack</li>
+          <li>Making quick combinations; creating chances and finishing</li>
+          <li>Heading; dominating 1v1 duels</li>
+        </ul>
+      </div>
     </div>
 
     <div class="kq-card">
-      <div class="kq-card-title">💪 Physical Execution</div>
-      <ul>
-        <li>Moves efficiently — agility, coordination, balance</li>
-        <li>Uses body in duels to protect ball, control, or disrupt opponent</li>
-        <li>Makes quick, explosive movements to separate from opponent</li>
-        <li>Repeats high-intensity actions (sprints)</li>
-        <li>Exudes strength, power, and endurance</li>
-        <li>Has specialized physical attributes for positional role</li>
-      </ul>
+      <div class="kq-card-header"><div class="kq-card-title">💪 Physical Execution</div></div>
+      <div class="kq-card-body">
+        <ul>
+          <li>Moves efficiently — agility, coordination, balance</li>
+          <li>Uses body in duels to protect ball or disrupt opponent</li>
+          <li>Quick, explosive movements to separate from opponent</li>
+          <li>Repeats high-intensity actions (sprints)</li>
+          <li>Exudes strength, power, and endurance</li>
+          <li>Specialized physical attributes for positional role</li>
+        </ul>
+      </div>
     </div>
 
     <div class="kq-card">
-      <div class="kq-card-title">📈 Learning Ability</div>
-      <ul>
-        <li>Shows an ability to excel at a higher level</li>
-        <li>Adapts to new situations quickly</li>
-        <li>Absorbs and applies new information quickly</li>
-        <li><em style="color:rgba(255,255,255,0.45);">Observed over an extended time — includes both games and training sessions</em></li>
-      </ul>
+      <div class="kq-card-header"><div class="kq-card-title">📈 Learning Ability</div></div>
+      <div class="kq-card-body">
+        <ul>
+          <li>Shows an ability to excel at a higher level</li>
+          <li>Adapts to new situations quickly</li>
+          <li>Absorbs and applies new information quickly</li>
+          <li style="color:rgba(255,255,255,0.4);font-style:italic;">Observed over extended time — includes games and training sessions</li>
+        </ul>
+      </div>
     </div>
 
   </div>
 
   <!-- ── POSITIONAL PROFILES ── -->
-  <div class="section-heading">SC Wave <span>Positional Profiles</span></div>
+  <div class="ussf-section-heading">
+    <div class="sh-bar"></div>
+    <div class="sh-text">SC Wave <span>Positional Profiles</span></div>
+    <div class="sh-badge">8 POSITIONS</div>
+  </div>
+
+  <!-- Phase legend -->
+  <div class="phase-legend">
+    <div class="phase-legend-item"><div class="phase-legend-dot" style="background:var(--scw-gold);"></div> Attacking</div>
+    <div class="phase-legend-item"><div class="phase-legend-dot" style="background:var(--ussf-red);"></div> Defending</div>
+    <div class="phase-legend-item"><div class="phase-legend-dot" style="background:var(--scw-cyan);"></div> Transition: Defending → Attacking</div>
+    <div class="phase-legend-item"><div class="phase-legend-dot" style="background:#a78bfa;"></div> Transition: Attacking → Defending</div>
+  </div>
 
   <!-- GK -->
   <div class="position-card">
     <div class="pos-header">
-      <div class="pos-number">#1</div>
+      <div class="pos-number-badge">#1</div>
       <div class="pos-title-block">
         <h3>Goalkeeper</h3>
         <div class="pos-sub">GK · Last line of defense, first line of attack</div>
@@ -459,36 +574,34 @@
         <span class="kq-chip">Coach on the Field</span>
         <span class="kq-chip">Accurate Passing (Short &amp; Long)</span>
       </div>
-      <div class="pos-col-label">Player Actions</div>
+      <div class="pos-col-label">Player Actions by Phase</div>
       <table class="phase-table">
+        <tr><th style="width:130px;">Phase</th><th>Key Actions</th></tr>
         <tr>
-          <th style="width:120px;">Phase</th><th>Key Actions</th>
+          <td><span class="phase-label atk">⚡ Attacking</span></td>
+          <td>Support for back pass; play forward or wide to begin build-up; push up with the team; disorganize opponent with variety and confidence in distribution</td>
         </tr>
         <tr>
-          <td><span class="phase-label">Attacking</span></td>
-          <td>Position to support for back pass; play forward or wide to begin build-up; push up with the team; disorganize opponent with variety and confidence in distribution</td>
+          <td><span class="phase-label def">🛡 Defending</span></td>
+          <td>Command the box; secure hands when catching; aggression and confidence in 1v1; read opponent's body shape; organize teammates; cover long balls behind defensive line</td>
         </tr>
         <tr>
-          <td><span class="phase-label">Defending</span></td>
-          <td>Command the box; secure hands when catching; aggression and confidence in 1v1; read opponent's body shape; organize teammates in front; position to cover long balls behind defensive line</td>
+          <td><span class="phase-label trda">↗ Trans D→A</span></td>
+          <td>Pass forward (long) quickly to exploit and create 1v1; keep the ball when cannot play forward; push the defensive line up</td>
         </tr>
         <tr>
-          <td><span class="phase-label">Transition D→A</span></td>
-          <td>Pass forward (long) quickly to exploit the opponent and create 1v1; keep the ball when cannot play forward; push the defensive line up</td>
-        </tr>
-        <tr>
-          <td><span class="phase-label">Transition A→D</span></td>
+          <td><span class="phase-label trad">↙ Trans A→D</span></td>
           <td>Stay connected to the back line; organize teammates — balanced and compact; position behind defensive line to take preventative action</td>
         </tr>
       </table>
-      <div class="physical-tag">Physical: Strength &amp; power, agility, quick reactions — control the area on air and ground</div>
+      <div class="physical-tag">⚡ Strength &amp; power, agility, quick reactions — dominate the area on air and ground</div>
     </div>
   </div>
 
   <!-- CBs -->
   <div class="position-card">
     <div class="pos-header">
-      <div class="pos-number">#4/5</div>
+      <div class="pos-number-badge">#4/5</div>
       <div class="pos-title-block">
         <h3>Center Backs</h3>
         <div class="pos-sub">CB · Defensive backbone and build-out starters</div>
@@ -503,34 +616,34 @@
         <span class="kq-chip">Athletic</span>
         <span class="kq-chip">Aerially Dominant</span>
       </div>
-      <div class="pos-col-label">Player Actions</div>
+      <div class="pos-col-label">Player Actions by Phase</div>
       <table class="phase-table">
-        <tr><th style="width:120px;">Phase</th><th>Key Actions</th></tr>
+        <tr><th style="width:130px;">Phase</th><th>Key Actions</th></tr>
         <tr>
-          <td><span class="phase-label">Attacking</span></td>
-          <td>Position to spread out and provide passing option for GK; make accurate forward/diagonal passes between or behind opposition lines; move forward with the ball to create 2v1; push defensive line and organize teammates</td>
+          <td><span class="phase-label atk">⚡ Attacking</span></td>
+          <td>Spread out and provide passing option for GK; make accurate forward/diagonal passes between or behind opposition lines; move forward to create 2v1; push defensive line and organize teammates</td>
         </tr>
         <tr>
-          <td><span class="phase-label">Defending</span></td>
-          <td>Deny opposition in 1v1 situations (air &amp; ground); be first to the ball on crosses; lead &amp; organize defensive line; intercept long &amp; through passes; movements in partnership with the other center back</td>
+          <td><span class="phase-label def">🛡 Defending</span></td>
+          <td>Deny opposition in 1v1 (air &amp; ground); first to the ball on crosses; lead &amp; organize defensive line; intercept long &amp; through passes; coordinate movements with partner center back</td>
         </tr>
         <tr>
-          <td><span class="phase-label">Transition D→A</span></td>
-          <td>Move quickly into position to support in space; pass or dribble forward; coach defensive line to push up as a unit</td>
+          <td><span class="phase-label trda">↗ Trans D→A</span></td>
+          <td>Move quickly into space; pass or dribble forward; coach defensive line to push up as a unit</td>
         </tr>
         <tr>
-          <td><span class="phase-label">Transition A→D</span></td>
-          <td>If closest to the situation, pressure the ball immediately to prevent danger; quick decision to pressure, delay, or drop back; take preventive defensive action</td>
+          <td><span class="phase-label trad">↙ Trans A→D</span></td>
+          <td>If closest to situation, pressure ball immediately; quick decision to pressure, delay, or drop; take preventive defensive action</td>
         </tr>
       </table>
-      <div class="physical-tag">Physical: Strength &amp; power in duels (jumping), speed and agility</div>
+      <div class="physical-tag">⚡ Strength &amp; power in duels (jumping), speed and agility</div>
     </div>
   </div>
 
   <!-- FBs -->
   <div class="position-card">
     <div class="pos-header">
-      <div class="pos-number">#2/3</div>
+      <div class="pos-number-badge">#2/3</div>
       <div class="pos-title-block">
         <h3>Full Backs</h3>
         <div class="pos-sub">FB · Wide defensive balance and attacking threat</div>
@@ -543,36 +656,36 @@
         <span class="kq-chip">Proficient Dribbler</span>
         <span class="kq-chip">High Concentration &amp; Anticipation</span>
         <span class="kq-chip">Proficient Cross &amp; Long Passing</span>
-        <span class="kq-chip">Strong Defending 1v1</span>
+        <span class="kq-chip">Strong 1v1 Defending</span>
       </div>
-      <div class="pos-col-label">Player Actions</div>
+      <div class="pos-col-label">Player Actions by Phase</div>
       <table class="phase-table">
-        <tr><th style="width:120px;">Phase</th><th>Key Actions</th></tr>
+        <tr><th style="width:130px;">Phase</th><th>Key Actions</th></tr>
         <tr>
-          <td><span class="phase-label">Attacking</span></td>
-          <td>Position wide and high to receive and create space; support with runs behind; overlapping and underlapping runs to create 1v1 or 2v1; play early cross when space is behind the defensive line</td>
+          <td><span class="phase-label atk">⚡ Attacking</span></td>
+          <td>Position wide and high to receive and create space; overlapping and underlapping runs to create 1v1 or 2v1; play early cross when space is behind defensive line</td>
         </tr>
         <tr>
-          <td><span class="phase-label">Defending</span></td>
-          <td>Pressure the ball to regain or delay the attack; deny penetration and prevent crosses in 1v1; move centrally to provide cover when ball is on opposite side; reposition to intercept passes</td>
+          <td><span class="phase-label def">🛡 Defending</span></td>
+          <td>Pressure ball to regain or delay attack; deny penetration and prevent crosses in 1v1; move centrally for cover when ball is on opposite side</td>
         </tr>
         <tr>
-          <td><span class="phase-label">Transition D→A</span></td>
-          <td>Give quick support in space (forward and wide); move up with defensive line as a collective unit; pass or dribble forward quickly to exploit disorganized opponent</td>
+          <td><span class="phase-label trda">↗ Trans D→A</span></td>
+          <td>Quick support in space (forward and wide); move up with defensive line as a unit; dribble or pass forward quickly to exploit disorganized opponent</td>
         </tr>
         <tr>
-          <td><span class="phase-label">Transition A→D</span></td>
-          <td>If closest to situation, pressure ball immediately; if farthest, drop back quickly to re-position with defensive line; make decision to pressure or drop based on situation</td>
+          <td><span class="phase-label trad">↙ Trans A→D</span></td>
+          <td>If closest, pressure ball immediately; if farthest, drop back to re-position with defensive line; decide based on situation</td>
         </tr>
       </table>
-      <div class="physical-tag">Physical: Speed, quickness, agility and endurance</div>
+      <div class="physical-tag">⚡ Speed, quickness, agility, and endurance</div>
     </div>
   </div>
 
   <!-- #6 DM -->
   <div class="position-card">
     <div class="pos-header">
-      <div class="pos-number">#6</div>
+      <div class="pos-number-badge">#6</div>
       <div class="pos-title-block">
         <h3>Defensive Midfielder</h3>
         <div class="pos-sub">DCM · Engine room, shield, and tempo-setter</div>
@@ -587,34 +700,34 @@
         <span class="kq-chip">Accurate &amp; Efficient Distribution</span>
         <span class="kq-chip">Controls &amp; Dictates Tempo</span>
       </div>
-      <div class="pos-col-label">Player Actions</div>
+      <div class="pos-col-label">Player Actions by Phase</div>
       <table class="phase-table">
-        <tr><th style="width:120px;">Phase</th><th>Key Actions</th></tr>
+        <tr><th style="width:130px;">Phase</th><th>Key Actions</th></tr>
         <tr>
-          <td><span class="phase-label">Attacking</span></td>
-          <td>Position centrally in spaces between lines to receive and play forward; make diagonal passes to unbalance the opponent; align movements with other central midfielders; dribble forward when space is open; support attack with forward runs</td>
+          <td><span class="phase-label atk">⚡ Attacking</span></td>
+          <td>Position centrally between lines to receive and play forward; diagonal passes to unbalance opponent; align movements with other midfielders; dribble forward when space is open; support attack with forward runs</td>
         </tr>
         <tr>
-          <td><span class="phase-label">Defending</span></td>
-          <td>Defend central space in front of center backs; pressure the ball and help teammates outnumber opponent; organize teammates to stay compact; deny penetration in 1v1</td>
+          <td><span class="phase-label def">🛡 Defending</span></td>
+          <td>Defend central space in front of center backs; pressure ball and help teammates outnumber opponent; organize teammates to stay compact; deny penetration in 1v1</td>
         </tr>
         <tr>
-          <td><span class="phase-label">Transition D→A</span></td>
-          <td>Move into space to support wide and forward; make diagonal passes or dribble to create 2v1; manage pace of game when cannot play forward</td>
+          <td><span class="phase-label trda">↗ Trans D→A</span></td>
+          <td>Support wide and forward; diagonal passes or dribble to create 2v1; manage game pace when cannot play forward</td>
         </tr>
         <tr>
-          <td><span class="phase-label">Transition A→D</span></td>
-          <td>Pressure ball immediately if closest to situation; quick decision to pressure, delay, or drop back; position to take preventive defensive action</td>
+          <td><span class="phase-label trad">↙ Trans A→D</span></td>
+          <td>Pressure ball immediately if closest; quick decision to pressure, delay, or drop; position for preventive defensive action</td>
         </tr>
       </table>
-      <div class="physical-tag">Physical: Agility, endurance, quickness, and use of body to protect the ball</div>
+      <div class="physical-tag">⚡ Agility, endurance, quickness, and body to protect the ball</div>
     </div>
   </div>
 
   <!-- #8 CM -->
   <div class="position-card">
     <div class="pos-header">
-      <div class="pos-number">#8</div>
+      <div class="pos-number-badge">#8</div>
       <div class="pos-title-block">
         <h3>Central Midfielder</h3>
         <div class="pos-sub">CM · Box-to-box engine and link between lines</div>
@@ -630,23 +743,23 @@
         <span class="kq-chip">Accurate &amp; Efficient Passing</span>
         <span class="kq-chip">Accurate Finishing 18–30 yds</span>
       </div>
-      <div class="pos-col-label">Player Actions</div>
+      <div class="pos-col-label">Player Actions by Phase</div>
       <table class="phase-table">
-        <tr><th style="width:120px;">Phase</th><th>Key Actions</th></tr>
+        <tr><th style="width:130px;">Phase</th><th>Key Actions</th></tr>
         <tr>
-          <td><span class="phase-label">Attacking</span></td>
-          <td>Position between lines to receive and play forward; align movements with other midfielders and triangulate; dribble forward when space is open; support attack with forward runs behind the defensive line; position to support in the box</td>
+          <td><span class="phase-label atk">⚡ Attacking</span></td>
+          <td>Position between lines; align movements and triangulate with other midfielders; dribble forward when space is open; support attack with runs behind defensive line; position in the box near goal</td>
         </tr>
         <tr>
-          <td><span class="phase-label">Defending</span></td>
-          <td>Prevent opponent from dribbling or passing forward; recover to defensive third when needed; organize and coach teammates to press</td>
+          <td><span class="phase-label def">🛡 Defending</span></td>
+          <td>Prevent opponent from dribbling or passing forward; recover to defensive third when needed; coach teammates to press in identified moments</td>
         </tr>
         <tr>
-          <td><span class="phase-label">Transition D→A</span></td>
-          <td>Move into space quickly; make diagonal passes forward or dribble to create 2v1; manage game pace when cannot play forward; position to exploit opponent and create chances</td>
+          <td><span class="phase-label trda">↗ Trans D→A</span></td>
+          <td>Move into space quickly; diagonal passes or dribble to create 2v1; manage game pace; position to exploit opponent and create chances</td>
         </tr>
         <tr>
-          <td><span class="phase-label">Transition A→D</span></td>
+          <td><span class="phase-label trad">↙ Trans A→D</span></td>
           <td>Pressure ball immediately if closest; quick decision to pressure, delay, or drop back</td>
         </tr>
       </table>
@@ -656,7 +769,7 @@
   <!-- #10 ACM -->
   <div class="position-card">
     <div class="pos-header">
-      <div class="pos-number">#10</div>
+      <div class="pos-number-badge">#10</div>
       <div class="pos-title-block">
         <h3>Attacking Central Midfielder</h3>
         <div class="pos-sub">ACM · Creative force, final-third threat</div>
@@ -673,23 +786,23 @@
         <span class="kq-chip">Accurate Finishing (All Ranges)</span>
         <span class="kq-chip">Penetrates Back Line — With &amp; Without Ball</span>
       </div>
-      <div class="pos-col-label">Player Actions</div>
+      <div class="pos-col-label">Player Actions by Phase</div>
       <table class="phase-table">
-        <tr><th style="width:120px;">Phase</th><th>Key Actions</th></tr>
+        <tr><th style="width:130px;">Phase</th><th>Key Actions</th></tr>
         <tr>
-          <td><span class="phase-label">Attacking</span></td>
-          <td>Occupy half space; receive between lines and play forward; penetrate through dribble or pass; create overloads; dynamic runs into the box; shooting from outside the box</td>
+          <td><span class="phase-label atk">⚡ Attacking</span></td>
+          <td>Occupy half space; receive between lines and play forward; penetrate through dribble or pass; create overloads; dynamic runs into the box; shoot from outside the box</td>
         </tr>
         <tr>
-          <td><span class="phase-label">Defending</span></td>
+          <td><span class="phase-label def">🛡 Defending</span></td>
           <td>Organize teammates to press; decide to pressure ball, stay zonal, or track opposition holding midfielder; prevent forward passing or dribbling</td>
         </tr>
         <tr>
-          <td><span class="phase-label">Transition D→A</span></td>
+          <td><span class="phase-label trda">↗ Trans D→A</span></td>
           <td>Position and support quickly in space to exploit opponent and create chances</td>
         </tr>
         <tr>
-          <td><span class="phase-label">Transition A→D</span></td>
+          <td><span class="phase-label trad">↙ Trans A→D</span></td>
           <td>Pressure ball immediately if closest; quick decision to pressure, delay, or drop back</td>
         </tr>
       </table>
@@ -699,7 +812,7 @@
   <!-- Wide Forwards -->
   <div class="position-card">
     <div class="pos-header">
-      <div class="pos-number">#7/11</div>
+      <div class="pos-number-badge">#7/11</div>
       <div class="pos-title-block">
         <h3>Wide Forwards</h3>
         <div class="pos-sub">WF · 1v1 creators, wide and central threat</div>
@@ -715,34 +828,34 @@
         <span class="kq-chip">High Endurance &amp; Good Speed</span>
         <span class="kq-chip">Accurate Finishing (Inside &amp; Outside Box)</span>
       </div>
-      <div class="pos-col-label">Player Actions</div>
+      <div class="pos-col-label">Player Actions by Phase</div>
       <table class="phase-table">
-        <tr><th style="width:120px;">Phase</th><th>Key Actions</th></tr>
+        <tr><th style="width:130px;">Phase</th><th>Key Actions</th></tr>
         <tr>
-          <td><span class="phase-label">Attacking</span></td>
-          <td>Position high and wide to spread opposition; vary supporting movements in space between/behind defensive lines; take on defenders 1v1 — outside to cross or inside to score; move into goal-scoring positions in the box or at back post</td>
+          <td><span class="phase-label atk">⚡ Attacking</span></td>
+          <td>Position high and wide to spread opposition; vary movements between/behind defensive lines; take on defenders 1v1 — outside to cross, inside to score; move into goal-scoring positions in the box or at back post</td>
         </tr>
         <tr>
-          <td><span class="phase-label">Defending</span></td>
-          <td>Recover and track into defensive third to assist fullback; move centrally for cover when ball is on opposite side; monitor situation to press in identified moments; prevent opponent from dribbling or passing forward in 1v1</td>
+          <td><span class="phase-label def">🛡 Defending</span></td>
+          <td>Recover and track into defensive third to assist fullback; move centrally for cover when ball is opposite; press in identified moments; prevent opponent dribbling or passing forward in 1v1</td>
         </tr>
         <tr>
-          <td><span class="phase-label">Transition D→A</span></td>
-          <td>Move quickly into position in space; position and support to exploit opponent and create chances</td>
+          <td><span class="phase-label trda">↗ Trans D→A</span></td>
+          <td>Move quickly into space; position and support to exploit opponent and create chances</td>
         </tr>
         <tr>
-          <td><span class="phase-label">Transition A→D</span></td>
+          <td><span class="phase-label trad">↙ Trans A→D</span></td>
           <td>Pressure ball immediately if closest; quick decision to pressure, delay, or drop — follow direction from teammates behind</td>
         </tr>
       </table>
-      <div class="physical-tag">Physical: Speed, change of direction, body feints, repeated accelerations</div>
+      <div class="physical-tag">⚡ Speed, change of direction, body feints, and repeated accelerations</div>
     </div>
   </div>
 
   <!-- #9 CF -->
   <div class="position-card">
     <div class="pos-header">
-      <div class="pos-number">#9</div>
+      <div class="pos-number-badge">#9</div>
       <div class="pos-title-block">
         <h3>Center Forward</h3>
         <div class="pos-sub">FWD · Finisher, target man, and pressure starter</div>
@@ -759,27 +872,27 @@
         <span class="kq-chip">Athletic</span>
         <span class="kq-chip">Accurate Finishing (Inside &amp; Outside Box)</span>
       </div>
-      <div class="pos-col-label">Player Actions</div>
+      <div class="pos-col-label">Player Actions by Phase</div>
       <table class="phase-table">
-        <tr><th style="width:120px;">Phase</th><th>Key Actions</th></tr>
+        <tr><th style="width:130px;">Phase</th><th>Key Actions</th></tr>
         <tr>
-          <td><span class="phase-label">Attacking</span></td>
-          <td>Position high and centrally as a target to occupy opposition CBs; receive, hold/protect, and lay off the ball; make varied forward runs behind the defensive line; pass or dribble forward for 1v1 or 2v1; unmark with well-timed runs in the box to finish or create for teammates</td>
+          <td><span class="phase-label atk">⚡ Attacking</span></td>
+          <td>Position high and centrally as a target to occupy opposition CBs; receive, hold, protect, and lay off the ball; make varied forward runs behind defensive line; unmark with well-timed runs in the box to finish or create for teammates</td>
         </tr>
         <tr>
-          <td><span class="phase-label">Defending</span></td>
-          <td>Force the opponent to play to one side; prevent switching the field; pressure the ball and help teammates outnumber opponent; press in identified situations; track opposition center back when needed</td>
+          <td><span class="phase-label def">🛡 Defending</span></td>
+          <td>Force opponent to one side; prevent switching the field; pressure ball and help outnumber opponent; press in identified situations; track opposition center back when needed</td>
         </tr>
         <tr>
-          <td><span class="phase-label">Transition D→A</span></td>
-          <td>Move quickly onside and into space high up the field; hold and protect ball while teammates support the attack</td>
+          <td><span class="phase-label trda">↗ Trans D→A</span></td>
+          <td>Move quickly onside and into space high up the field; hold and protect ball while teammates join the attack</td>
         </tr>
         <tr>
-          <td><span class="phase-label">Transition A→D</span></td>
-          <td>Position for clearances; prevent opponent from sustaining attack by playing backward; pressure ball immediately if closest</td>
+          <td><span class="phase-label trad">↙ Trans A→D</span></td>
+          <td>Position for clearances; prevent opponent from sustaining attack; pressure ball immediately if closest</td>
         </tr>
       </table>
-      <div class="physical-tag">Physical: Strength to hold off opponent, explosiveness to separate</div>
+      <div class="physical-tag">⚡ Strength to hold off opponent, explosiveness to separate</div>
     </div>
   </div>
 
