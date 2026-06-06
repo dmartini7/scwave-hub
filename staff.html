@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MLS NEXT Staff — SC Wave Training Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .staff-wrap {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    .staff-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    @media (max-width: 760px) { .staff-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; } }
+    @media (max-width: 480px) { .staff-grid { grid-template-columns: 1fr; } }
+
+    .staff-card {
+      background: #0D0D0D;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.15s, border-color 0.15s;
+    }
+    .staff-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(245,197,24,0.3);
+    }
+
+    .staff-photo-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: #1a1a1a;
+      overflow: hidden;
+    }
+    .staff-photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+    }
+    .staff-photo-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #1a1a1a 0%, #111 100%);
+      flex-direction: column;
+      gap: 10px;
+    }
+    .staff-photo-placeholder .initials {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 52px;
+      color: rgba(245,197,24,0.3);
+      letter-spacing: 0.04em;
+    }
+    .staff-photo-placeholder .placeholder-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: rgba(255,255,255,0.2);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .staff-name-bar {
+      background: var(--gold);
+      padding: 8px 14px 6px;
+    }
+    .staff-name-bar .name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 20px;
+      color: #0D0D0D;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      line-height: 1;
+    }
+
+    .staff-info {
+      padding: 14px 16px 18px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .staff-title {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.4;
+    }
+    .staff-contacts {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      margin-top: auto;
+      padding-top: 10px;
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+    .staff-contact-row {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: rgba(255,255,255,0.6);
+    }
+    .staff-contact-row .icon { font-size: 13px; flex-shrink: 0; }
+    .staff-contact-row a {
+      color: var(--cyan);
+      text-decoration: none;
+      word-break: break-all;
+    }
+    .staff-contact-row a:hover { text-decoration: underline; }
+
+    .section-divider {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 40px 0 28px;
+    }
+    .section-divider .sd-bar {
+      width: 4px;
+      height: 28px;
+      background: var(--gold);
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+    .section-divider .sd-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 22px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo-block">
+      <img class="sc-logo" src="assets/scwave-logo.png" alt="SC Wave" />
+      <div class="logo-text">
+        <span class="club">SC Wave</span>
+        <span class="hub">Player Training Hub</span>
+      </div>
+    </a>
+    <div class="header-right">
+      <nav>
+        <a href="tactical-mental.html">Tactical &amp; Mental</a>
+        <a href="technical.html">Technical</a>
+        <a href="physical.html">Physical</a>
+        <a href="staff.html" class="active">Staff</a>
+        <a href="club-documents.html">Club Docs</a>
+      </nav>
+      <div class="mls-badge">
+        <img src="assets/mlsnext-logo.png" alt="MLS NEXT" />
+        <span>MLS NEXT</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="page-hero">
+  <a href="index.html" class="back-link">← Back to Hub</a>
+  <div class="page-icon" style="background:rgba(245,197,24,0.1);">🏆</div>
+  <h1>MLS NEXT <span>Staff</span></h1>
+  <p>Meet the full SC Wave MLS NEXT coaching staff — directors, head coaches, and specialists committed to elite player development.</p>
+</div>
+
+<div class="staff-wrap">
+
+  <!-- Leadership -->
+  <div class="section-divider">
+    <div class="sd-bar"></div>
+    <div class="sd-label">Club Leadership</div>
+  </div>
+
+  <div class="staff-grid">
+
+    <!-- Marcio Leite -->
+    <div class="staff-card">
+      <div class="staff-photo-wrap">
+        <img src="assets/coach-marcio.jpg" alt="Marcio Leite" />
+      </div>
+      <div class="staff-name-bar"><div class="name">Marcio Leite</div></div>
+      <div class="staff-info">
+        <div class="staff-title">Director of Coaching · SC Wave Soccer Club</div>
+        <div class="staff-contacts">
+          <div class="staff-contact-row"><span class="icon">📧</span><a href="mailto:Marcioleite7@hotmail.com">Marcioleite7@hotmail.com</a></div>
+          <div class="staff-contact-row"><span class="icon">📱</span><span>414-460-9165</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Daniel Mattos -->
+    <div class="staff-card">
+      <div class="staff-photo-wrap">
+        <img src="assets/coach-daniel.jpg" alt="Daniel Mattos" />
+      </div>
+      <div class="staff-name-bar"><div class="name">Daniel Mattos</div></div>
+      <div class="staff-info">
+        <div class="staff-title">MLS NEXT Homegrown Director &amp; Head Coach</div>
+        <div class="staff-contacts">
+          <div class="staff-contact-row"><span class="icon">📧</span><a href="mailto:danielmartini07@gmail.com">danielmartini07@gmail.com</a></div>
+          <div class="staff-contact-row"><span class="icon">📱</span><span>850-791-0998</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Andre Hayne -->
+    <div class="staff-card">
+      <div class="staff-photo-wrap">
+        <img src="assets/coach-andre.jpg" alt="Andre Hayne" />
+      </div>
+      <div class="staff-name-bar"><div class="name">Andre Hayne</div></div>
+      <div class="staff-info">
+        <div class="staff-title">MLS NEXT Academy Director &amp; Head Coach</div>
+        <div class="staff-contacts">
+          <div class="staff-contact-row"><span class="icon">📧</span><a href="mailto:andre_hayne@hotmail.com">andre_hayne@hotmail.com</a></div>
+          <div class="staff-contact-row"><span class="icon">📱</span><span>636-634-5212</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Coaching Staff -->
+  <div class="section-divider">
+    <div class="sd-bar"></div>
+    <div class="sd-label">Coaching Staff</div>
+  </div>
+
+  <div class="staff-grid">
+
+    <!-- Fernando Souza -->
+    <div class="staff-card">
+      <div class="staff-photo-wrap">
+        <div class="staff-photo-placeholder">
+          <div class="initials">FS</div>
+          <div class="placeholder-label">Photo coming soon</div>
+        </div>
+      </div>
+      <div class="staff-name-bar"><div class="name">Fernando Souza</div></div>
+      <div class="staff-info">
+        <div class="staff-title">MLS NEXT Homegrown Assistant Coach</div>
+      </div>
+    </div>
+
+    <!-- Hugo Quintanilha -->
+    <div class="staff-card">
+      <div class="staff-photo-wrap">
+        <img src="assets/coach-hugo.jpg" alt="Hugo Quintanilha" />
+      </div>
+      <div class="staff-name-bar"><div class="name">Hugo Quintanilha</div></div>
+      <div class="staff-info">
+        <div class="staff-title">MLS NEXT Homegrown &amp; Pre-MLS NEXT Head Coach</div>
+        <div class="staff-contacts">
+          <div class="staff-contact-row"><span class="icon">📧</span><a href="mailto:coach.hugofq@gmail.com">coach.hugofq@gmail.com</a></div>
+          <div class="staff-contact-row"><span class="icon">📱</span><span>630-362-7656</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tom Torres -->
+    <div class="staff-card">
+      <div class="staff-photo-wrap">
+        <img src="assets/coach-tom.jpg" alt="Tom Torres" />
+      </div>
+      <div class="staff-name-bar"><div class="name">Tom Torres</div></div>
+      <div class="staff-info">
+        <div class="staff-title">MLS NEXT Homegrown Head Coach</div>
+        <div class="staff-contacts">
+          <div class="staff-contact-row"><span class="icon">📧</span><a href="mailto:tftorres7@gmail.com">tftorres7@gmail.com</a></div>
+          <div class="staff-contact-row"><span class="icon">📱</span><span>703-624-6167</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tyler Howard -->
+    <div class="staff-card">
+      <div class="staff-photo-wrap">
+        <img src="assets/coach-tyler.jpg" alt="Tyler Howard" />
+      </div>
+      <div class="staff-name-bar"><div class="name">Tyler Howard</div></div>
+      <div class="staff-info">
+        <div class="staff-title">MLS NEXT Academy Head Coach</div>
+        <div class="staff-contacts">
+          <div class="staff-contact-row"><span class="icon">📧</span><a href="mailto:tylerh@mksc.org">tylerh@mksc.org</a></div>
+          <div class="staff-contact-row"><span class="icon">📱</span><span>414-526-5688</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Steve Sagadin -->
+    <div class="staff-card">
+      <div class="staff-photo-wrap">
+        <img src="assets/coach-steve.jpg" alt="Steve Sagadin" />
+      </div>
+      <div class="staff-name-bar"><div class="name">Steve Sagadin</div></div>
+      <div class="staff-info">
+        <div class="staff-title">MLS NEXT Homegrown Assistant Coach</div>
+        <div class="staff-contacts">
+          <div class="staff-contact-row"><span class="icon">📧</span><a href="mailto:sagadin78@hotmail.com">sagadin78@hotmail.com</a></div>
+          <div class="staff-contact-row"><span class="icon">📱</span><span>262-880-7243</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gabriel Greenfield -->
+    <div class="staff-card">
+      <div class="staff-photo-wrap">
+        <img src="assets/coach-gabriel.jpg" alt="Gabriel Greenfield" />
+      </div>
+      <div class="staff-name-bar"><div class="name">Gabriel Greenfield</div></div>
+      <div class="staff-info">
+        <div class="staff-title">MLS NEXT GK Coach</div>
+        <div class="staff-contacts">
+          <div class="staff-contact-row"><span class="icon">📧</span><a href="mailto:gabrielsgreenfield@gmail.com">gabrielsgreenfield@gmail.com</a></div>
+          <div class="staff-contact-row"><span class="icon">📱</span><span>260-304-9022</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="assets/scwave-logo.png" alt="SC Wave" />
+      <span>SC Wave Soccer Club · Founded 1978</span>
+    </div>
+    <div class="footer-right">
+      <a href="mailto:danielmartini07@gmail.com">danielmartini07@gmail.com</a>
+      <div class="footer-mls">
+        <img src="assets/mlsnext-logo.png" alt="MLS NEXT" />
+        <span>MLS NEXT Member Club</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
