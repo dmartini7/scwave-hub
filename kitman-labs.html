@@ -17,6 +17,11 @@
   <link rel="stylesheet" href="css/style.css" />
   <style>
 
+    body {
+      background: #0D0D0D;
+      color: #fff;
+    }
+
     .kl-wrap {
       max-width: 900px;
       margin: 0 auto;
@@ -28,16 +33,16 @@
       display: flex;
       align-items: flex-start;
       gap: 16px;
-      background: rgba(239,68,68,0.08);
-      border: 1px solid rgba(239,68,68,0.4);
+      background: rgba(239,68,68,0.15);
+      border: 1px solid rgba(239,68,68,0.5);
       border-left: 4px solid #EF4444;
       border-radius: 12px;
       padding: 18px 22px;
       margin-bottom: 32px;
     }
     .kl-urgent .u-icon { font-size: 22px; flex-shrink: 0; padding-top: 2px; }
-    .kl-urgent .u-body { font-family: 'Inter', sans-serif; font-size: 14px; color: rgba(255,255,255,0.85); line-height: 1.6; }
-    .kl-urgent .u-body strong { color: #EF4444; }
+    .kl-urgent .u-body { font-family: 'Inter', sans-serif; font-size: 14px; color: #fff; line-height: 1.6; }
+    .kl-urgent .u-body strong { color: #ff6b6b; }
 
     /* ── Before-you-begin tips ── */
     .kl-tips {
@@ -514,6 +519,11 @@
       <div class="kl-warning" style="border-left-color:var(--cyan);border-color:rgba(0,212,228,0.25);background:rgba(0,212,228,0.05);">
         <div class="w-icon">⏰</div>
         <div>You should have received an email from Kitman Labs to create your account. <strong style="color:var(--cyan);">This link expires within 24 hours</strong> — create your account right away, even if you aren't ready to complete the full process yet.</div>
+      </div>
+
+      <div class="kl-warning" style="border-left-color:var(--gold);border-color:rgba(245,197,24,0.25);background:rgba(245,197,24,0.06);margin-top:12px;">
+        <div class="w-icon">📱</div>
+        <div><strong style="color:var(--gold);">Check the PlayMetrics account owner's email.</strong> The Kitman Labs invitation was sent to the email address of the <strong>PlayMetrics account owner</strong> for your player — check that inbox if you haven't received it.</div>
       </div>
 
       <br />
