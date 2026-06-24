@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-T9ZL1CM490"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-T9ZL1CM490');
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kitman Labs Registration — SC Wave Training Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+
+    .kl-wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    /* ── Urgent banner ── */
+    .kl-urgent {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      background: rgba(239,68,68,0.08);
+      border: 1px solid rgba(239,68,68,0.4);
+      border-left: 4px solid #EF4444;
+      border-radius: 12px;
+      padding: 18px 22px;
+      margin-bottom: 32px;
+    }
+    .kl-urgent .u-icon { font-size: 22px; flex-shrink: 0; padding-top: 2px; }
+    .kl-urgent .u-body { font-family: 'Inter', sans-serif; font-size: 14px; color: rgba(255,255,255,0.85); line-height: 1.6; }
+    .kl-urgent .u-body strong { color: #EF4444; }
+
+    /* ── Before-you-begin tips ── */
+    .kl-tips {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-bottom: 36px;
+    }
+    @media (max-width: 600px) { .kl-tips { grid-template-columns: 1fr; } }
+    .kl-tip {
+      background: #0D0D0D;
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px;
+      padding: 16px 18px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .kl-tip .tip-icon { font-size: 20px; flex-shrink: 0; }
+    .kl-tip .tip-text { font-family: 'Inter', sans-serif; font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.5; }
+    .kl-tip .tip-text strong { color: rgba(255,255,255,0.9); display: block; margin-bottom: 2px; font-size: 13px; }
+
+    /* ── Section divider ── */
+    .kl-divider {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 44px 0 24px;
+    }
+    .kl-divider .kd-bar {
+      width: 4px;
+      height: 30px;
+      background: var(--gold);
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+    .kl-divider .kd-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 26px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #fff;
+      line-height: 1;
+    }
+    .kl-divider .kd-sub {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: rgba(255,255,255,0.35);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-left: 4px;
+    }
+
+    /* ── Player type cards ── */
+    .kl-card {
+      background: #0D0D0D;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+    .kl-card-header {
+      padding: 16px 22px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .kl-card-header.gold  { background: rgba(245,197,24,0.1);  border-bottom: 1px solid rgba(245,197,24,0.15); }
+    .kl-card-header.cyan  { background: rgba(0,212,228,0.08);  border-bottom: 1px solid rgba(0,212,228,0.15); }
+    .kl-card-header.green { background: rgba(16,185,129,0.08); border-bottom: 1px solid rgba(16,185,129,0.15); }
+    .kl-card-header .ch-icon { font-size: 26px; }
+    .kl-card-header .ch-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 22px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #fff;
+      line-height: 1;
+    }
+    .kl-card-header.gold  .ch-title { color: var(--gold); }
+    .kl-card-header.cyan  .ch-title { color: var(--cyan); }
+    .kl-card-header.green .ch-title { color: #10B981; }
+    .kl-card-header .ch-sub {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: rgba(255,255,255,0.4);
+      margin-top: 2px;
+    }
+    .kl-card-body { padding: 22px; }
+
+    /* ── Step list ── */
+    .kl-steps { list-style: none; padding: 0; margin: 0 0 20px; display: flex; flex-direction: column; gap: 12px; }
+    .kl-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+    .step-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--gold);
+      color: #0D0D0D;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .kl-card-header.cyan  ~ .kl-card-body .step-num { background: var(--cyan); }
+    .kl-card-header.green ~ .kl-card-body .step-num { background: #10B981; }
+    .step-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.6;
+      padding-top: 4px;
+    }
+    .step-text strong { color: #fff; }
+    .step-text a { color: var(--cyan); text-decoration: none; }
+    .step-text a:hover { text-decoration: underline; }
+
+    /* ── Checklist ── */
+    .kl-checklist { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+    .kl-check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.5;
+    }
+    .kl-check-item .ci-icon { flex-shrink: 0; font-size: 15px; margin-top: 1px; }
+    .kl-check-item strong { color: #fff; }
+    .kl-check-item a { color: var(--cyan); text-decoration: none; }
+    .kl-check-item a:hover { text-decoration: underline; }
+
+    /* ── Warning callout ── */
+    .kl-warning {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: rgba(245,197,24,0.06);
+      border: 1px solid rgba(245,197,24,0.25);
+      border-left: 3px solid var(--gold);
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-top: 16px;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.6;
+    }
+    .kl-warning .w-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+    .kl-warning strong { color: var(--gold); }
+
+    /* ── Code pill ── */
+    .code-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(245,197,24,0.12);
+      border: 1px solid rgba(245,197,24,0.4);
+      border-radius: 8px;
+      padding: 6px 14px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 18px;
+      letter-spacing: 0.06em;
+      color: var(--gold);
+      margin: 4px 0;
+    }
+
+    /* ── Link button ── */
+    .kl-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gold);
+      color: #0D0D0D;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 15px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: opacity 0.15s;
+      margin-top: 14px;
+    }
+    .kl-btn:hover { opacity: 0.85; }
+    .kl-btn.cyan { background: var(--cyan); }
+
+    /* ── Video embed ── */
+    .video-section { margin-bottom: 36px; }
+    .video-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 14px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+    .video-container {
+      position: relative;
+      width: 100%;
+      max-width: 560px;
+      aspect-ratio: 16/9;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .video-container iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: none;
+    }
+
+    /* ── ImPACT screenshots ── */
+    .impact-screens {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 20px 0;
+    }
+    @media (max-width: 600px) { .impact-screens { grid-template-columns: 1fr; } }
+    .impact-screen-item {}
+    .impact-screen-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 8px;
+    }
+    .impact-screen-item img {
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.1);
+      display: block;
+    }
+
+    /* ── Contact box ── */
+    .kl-contact {
+      background: linear-gradient(135deg, #0D0D0D 0%, #1a1a1a 100%);
+      border: 2px solid var(--gold);
+      border-radius: 14px;
+      padding: 28px 32px;
+      margin-top: 44px;
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      flex-wrap: wrap;
+    }
+    .kl-contact img {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: top;
+      border: 2px solid var(--gold);
+      flex-shrink: 0;
+    }
+    .kl-contact .contact-info h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 22px;
+      color: #fff;
+      letter-spacing: 0.03em;
+      margin: 0 0 4px;
+    }
+    .kl-contact .contact-info .ctitle {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .kl-contact .contact-info .cdetails {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.7;
+    }
+    .kl-contact .contact-info a { color: var(--cyan); text-decoration: none; }
+    .kl-contact .contact-note {
+      flex: 1;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.7;
+      border-left: 1px solid rgba(255,255,255,0.1);
+      padding-left: 22px;
+    }
+    .kl-contact .contact-note strong { color: rgba(255,255,255,0.85); }
+    @media (max-width: 600px) {
+      .kl-contact { flex-direction: column; }
+      .kl-contact .contact-note { border-left: none; border-top: 1px solid rgba(255,255,255,0.1); padding-left: 0; padding-top: 16px; }
+    }
+
+    .divider-line {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      margin: 28px 0;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo-block">
+      <img class="sc-logo" src="assets/scwave-logo.png" alt="SC Wave" />
+      <div class="logo-text">
+        <span class="club">SC Wave</span>
+        <span class="hub">Player Training Hub</span>
+      </div>
+    </a>
+    <div class="header-right">
+      <nav>
+        <a href="tactical-mental.html">Tactical &amp; Mental</a>
+        <a href="technical.html">Technical</a>
+        <a href="physical.html">Physical</a>
+        <a href="staff.html">Staff</a>
+        <a href="kitman-labs.html" class="active">Kitman Labs</a>
+        <a href="club-documents.html">Club Docs</a>
+      </nav>
+      <div class="mls-badge">
+        <img src="assets/mlsnext-logo.png" alt="MLS NEXT" />
+        <span>MLS NEXT</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="page-hero">
+  <a href="index.html" class="back-link">← Back to Hub</a>
+  <div class="page-icon" style="background:rgba(245,197,24,0.1);">🏥</div>
+  <h1>Kitman Labs <span>Registration</span></h1>
+  <p>Required registration for all Full-Time / Homegrown (Tier 1) MLS NEXT players. Follow the instructions for your player type below — complete ASAP.</p>
+</div>
+
+<div class="kl-wrap">
+
+  <!-- Urgent banner -->
+  <div class="kl-urgent">
+    <div class="u-icon">🚨</div>
+    <div class="u-body">
+      <strong>Registration Deadline is Active — Complete ASAP.</strong> We are onboarding players into SC Wave MLS NEXT Homegrown (Tier 1) teams now and need all players registered without delay.<br />
+      <span style="color:rgba(255,255,255,0.55);font-size:13px;">⚠️ Academy (Tier 2) players register through <strong style="color:rgba(255,255,255,0.75);">LeagueApps</strong> — that info will be sent separately. Do <strong style="color:rgba(255,255,255,0.75);">NOT</strong> start on Kitman Labs if you are Tier 2.</span>
+    </div>
+  </div>
+
+  <!-- Before you begin -->
+  <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;letter-spacing:0.1em;text-transform:uppercase;color:var(--cyan);margin-bottom:14px;">Before You Begin</div>
+  <div class="kl-tips">
+    <div class="kl-tip">
+      <div class="tip-icon">💻</div>
+      <div class="tip-text"><strong>Use a laptop or desktop</strong>Do not use a mobile device to complete registration.</div>
+    </div>
+    <div class="kl-tip">
+      <div class="tip-icon">🌐</div>
+      <div class="tip-text"><strong>Use Google Chrome</strong>Best performance and compatibility for the platform.</div>
+    </div>
+    <div class="kl-tip">
+      <div class="tip-icon">💾</div>
+      <div class="tip-text"><strong>You can save and return</strong>New this season — you don't have to complete it in one sitting.</div>
+    </div>
+  </div>
+
+  <!-- Video -->
+  <div class="video-section">
+    <div class="video-label">🎥 Step-by-Step Registration Video Guide (6 min) — Watch Before You Begin</div>
+    <div class="video-container">
+      <iframe src="https://www.youtube.com/embed/G5OE3_PDjH8" title="Kitman Labs Registration Guide — SC Wave 2026-27" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <p style="font-family:'Inter',sans-serif;font-size:12px;color:rgba(255,255,255,0.35);margin-top:8px;">⚠️ Note: this video shows the 25-26 website look. Use the screenshots in the ImPACT Test section below for the updated 26-27 interface.</p>
+  </div>
+
+  <!-- ── RETURNING PLAYERS ── -->
+  <div class="kl-divider">
+    <div class="kd-bar"></div>
+    <div>
+      <div class="kd-label">Returning Players</div>
+      <div class="kd-sub">Includes transfers from another MLS NEXT club &amp; former guest players</div>
+    </div>
+  </div>
+
+  <div class="kl-card">
+    <div class="kl-card-header gold">
+      <div class="ch-icon">🔄</div>
+      <div>
+        <div class="ch-title">Returning Players</div>
+        <div class="ch-sub">Current full-time players · Former guest players · Transfers from another MLS NEXT club</div>
+      </div>
+    </div>
+    <div class="kl-card-body">
+
+      <div class="kl-warning">
+        <div class="w-icon">⚠️</div>
+        <div>You will <strong>NOT receive a new email invitation</strong>. Go directly to the portal and log into your existing account.</div>
+      </div>
+
+      <br />
+      <ul class="kl-steps">
+        <li class="kl-step">
+          <div class="step-num">1</div>
+          <div class="step-text">Go to <a href="http://scwave.injuryprofiler.com" target="_blank">scwave.injuryprofiler.com</a> and log into your existing account.</div>
+        </li>
+        <li class="kl-step">
+          <div class="step-num">2</div>
+          <div class="step-text">Complete the <strong>2026-27 waivers</strong> inside your account.</div>
+        </li>
+        <li class="kl-step">
+          <div class="step-num">3</div>
+          <div class="step-text">Check and upload the required documents below (only re-upload if prompted).</div>
+        </li>
+      </ul>
+
+      <div class="kl-warning" style="margin-top:0;margin-bottom:20px;">
+        <div class="w-icon">🔒</div>
+        <div><strong>Login lockout:</strong> 2 failed login attempts will lock your account for <strong>20 minutes</strong>. If you forgot your password, use the reset link on the login page. For your username, contact Coach Daniel directly.</div>
+      </div>
+
+      <hr class="divider-line" />
+
+      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:14px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:14px;">Documents to Check / Upload</div>
+      <ul class="kl-checklist">
+        <li class="kl-check-item">
+          <div class="ci-icon">✅</div>
+          <div><strong>Proof of Birth</strong> — Birth Certificate or Passport. Only re-upload if prompted by the system.</div>
+        </li>
+        <li class="kl-check-item">
+          <div class="ci-icon">✅</div>
+          <div><strong>ImPACT Test Certificate</strong> — Valid for 2 seasons. If yours has expired or you don't have one, complete it using the instructions in the ImPACT Test section below.<br />
+            Division Code: <span class="code-pill">HomegrownDivision26</span>
+          </div>
+        </li>
+      </ul>
+
+      <a href="http://scwave.injuryprofiler.com" target="_blank" class="kl-btn">→ Go to Kitman Labs Portal</a>
+    </div>
+  </div>
+
+  <!-- ── NEW PLAYERS ── -->
+  <div class="kl-divider">
+    <div class="kd-bar" style="background:var(--cyan);"></div>
+    <div>
+      <div class="kd-label" style="color:var(--cyan);">New Players</div>
+      <div class="kd-sub">First time registering with SC Wave on Kitman Labs</div>
+    </div>
+  </div>
+
+  <div class="kl-card">
+    <div class="kl-card-header cyan">
+      <div class="ch-icon">🆕</div>
+      <div>
+        <div class="ch-title">New Players</div>
+        <div class="ch-sub">First-time Kitman Labs users — account creation required</div>
+      </div>
+    </div>
+    <div class="kl-card-body">
+
+      <div class="kl-warning" style="border-left-color:var(--cyan);border-color:rgba(0,212,228,0.25);background:rgba(0,212,228,0.05);">
+        <div class="w-icon">⏰</div>
+        <div>You should have received an email from Kitman Labs to create your account. <strong style="color:var(--cyan);">This link expires within 24 hours</strong> — create your account right away, even if you aren't ready to complete the full process yet.</div>
+      </div>
+
+      <br />
+
+      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:14px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:14px;">Have these ready before you begin</div>
+      <ul class="kl-checklist" style="margin-bottom:22px;">
+        <li class="kl-check-item">
+          <div class="ci-icon">✅</div>
+          <div><strong>Proof of Birth</strong> — Birth Certificate or Passport.</div>
+        </li>
+        <li class="kl-check-item">
+          <div class="ci-icon">✅</div>
+          <div><strong>ImPACT Test Certificate or screenshot</strong> (with name and date of completion). You can complete it before starting your workflow — see the ImPACT Test section below.<br />
+            Division Code: <span class="code-pill">HomegrownDivision26</span>
+          </div>
+        </li>
+        <li class="kl-check-item">
+          <div class="ci-icon">🌍</div>
+          <div><strong>Born outside the U.S.?</strong> You will also need <strong>International Clearance (ITC)</strong>. Contact Coach Daniel immediately at <strong>850-791-0998</strong> by text to begin that process.</div>
+        </li>
+      </ul>
+
+      <hr class="divider-line" />
+
+      <ul class="kl-steps">
+        <li class="kl-step">
+          <div class="step-num">1</div>
+          <div class="step-text">Check your email for the Kitman Labs invite and <strong>create your account immediately</strong> (link expires in 24 hours).</div>
+        </li>
+        <li class="kl-step">
+          <div class="step-num">2</div>
+          <div class="step-text">Gather your Proof of Birth and ImPACT Test certificate before proceeding with the full workflow.</div>
+        </li>
+        <li class="kl-step">
+          <div class="step-num">3</div>
+          <div class="step-text">Complete the full registration workflow inside Kitman Labs, uploading all required documents.</div>
+        </li>
+      </ul>
+
+      <div class="kl-warning">
+        <div class="w-icon">📧</div>
+        <div><strong>Unique email required:</strong> Each player must register with a unique email address. If you have more than one player and didn't receive an invite, or if two players share the same address, contact Coach Daniel with an alternate email for one of them.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── TRANSFERS ── -->
+  <div class="kl-divider">
+    <div class="kd-bar" style="background:#10B981;"></div>
+    <div>
+      <div class="kd-label" style="color:#10B981;">Transfers from Another MLS NEXT Club</div>
+    </div>
+  </div>
+
+  <div class="kl-card">
+    <div class="kl-card-header green">
+      <div class="ch-icon">🔀</div>
+      <div>
+        <div class="ch-title">New Transfers</div>
+        <div class="ch-sub">Transferring from another MLS NEXT club to SC Wave</div>
+      </div>
+    </div>
+    <div class="kl-card-body">
+      <div style="font-family:'Inter',sans-serif;font-size:14px;color:rgba(255,255,255,0.75);line-height:1.7;margin-bottom:16px;">
+        If you are transferring from another MLS NEXT club, you already have a Kitman Labs account from your previous club. Follow the <strong style="color:var(--gold);">Returning Player</strong> instructions above to complete your SC Wave registration.
+      </div>
+      <ul class="kl-checklist">
+        <li class="kl-check-item">
+          <div class="ci-icon">🔄</div>
+          <div>Go to <a href="http://scwave.injuryprofiler.com" target="_blank">scwave.injuryprofiler.com</a> and log in with your existing credentials.</div>
+        </li>
+        <li class="kl-check-item">
+          <div class="ci-icon">📄</div>
+          <div>Complete the 2026-27 SC Wave waivers and verify your documents are current.</div>
+        </li>
+        <li class="kl-check-item">
+          <div class="ci-icon">🔒</div>
+          <div>Remember: 2 failed login attempts = 20-minute lockout. Use the password reset if needed.</div>
+        </li>
+      </ul>
+      <a href="http://scwave.injuryprofiler.com" target="_blank" class="kl-btn" style="background:#10B981;">→ Go to Kitman Labs Portal</a>
+    </div>
+  </div>
+
+  <!-- ── ImPACT TEST ── -->
+  <div class="kl-divider">
+    <div class="kd-bar" style="background:var(--cyan);"></div>
+    <div>
+      <div class="kd-label">ImPACT Test</div>
+      <div class="kd-sub">Baseline concussion test — required for all players</div>
+    </div>
+  </div>
+
+  <div class="kl-card">
+    <div class="kl-card-header" style="background:rgba(0,212,228,0.08);border-bottom:1px solid rgba(0,212,228,0.15);">
+      <div class="ch-icon">🧠</div>
+      <div>
+        <div class="ch-title" style="color:var(--cyan);">ImPACT Baseline Test</div>
+        <div class="ch-sub">Valid for 2 seasons · Complete before or during Kitman Labs workflow</div>
+      </div>
+    </div>
+    <div class="kl-card-body">
+
+      <div style="font-family:'Inter',sans-serif;font-size:14px;color:rgba(255,255,255,0.75);line-height:1.7;margin-bottom:20px;">
+        The ImPACT baseline test is required for all players. If your certificate is still valid (within 2 seasons), you can upload the existing certificate or screenshot. If you need to complete a new test, use the steps and screenshots below — the website has been updated since the video guide above.
+      </div>
+
+      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:14px;letter-spacing:0.08em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;">Division Code</div>
+      <div style="margin-bottom:24px;">
+        <span class="code-pill" style="font-size:22px;padding:10px 20px;">HomegrownDivision26</span>
+        <div style="font-family:'Inter',sans-serif;font-size:12px;color:rgba(255,255,255,0.35);margin-top:8px;">Enter this code when prompted for a coupon or division code on the ImPACT site.</div>
+      </div>
+
+      <hr class="divider-line" />
+
+      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:14px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:16px;">26-27 Updated Website — Step-by-Step Screenshots</div>
+
+      <ul class="kl-steps" style="margin-bottom:24px;">
+        <li class="kl-step">
+          <div class="step-num" style="background:var(--cyan);">1</div>
+          <div class="step-text">Go to the ImPACT test link provided in your Kitman Labs workflow (or use the link provided by Coach Daniel). On the first screen, enter the Division Code <strong>HomegrownDivision26</strong> in the coupon field and click <strong>Apply Coupon</strong>. Then fill in your personal info and proceed.</div>
+        </li>
+        <li class="kl-step">
+          <div class="step-num" style="background:var(--cyan);">2</div>
+          <div class="step-text">On the next screen you'll see <strong>"Almost there — Before you begin."</strong> Confirm your Division is set to <strong>Homegrown</strong> and your Club is set to <strong>SC Wave</strong>, then click <strong>Complete &amp; Continue to Baseline Test</strong>.</div>
+        </li>
+        <li class="kl-step">
+          <div class="step-num" style="background:var(--cyan);">3</div>
+          <div class="step-text">Complete the baseline test. When finished, <strong>take a screenshot or download your certificate</strong> with your name and date of completion — you will need to upload it in Kitman Labs.</div>
+        </li>
+      </ul>
+
+      <!-- Screenshots -->
+      <div class="impact-screens">
+        <div class="impact-screen-item">
+          <div class="impact-screen-label">Step 1 — Enter Division Code</div>
+          <img src="assets/impact-code-entry.png" alt="ImPACT Test — Enter Division Code HomegrownDivision26" />
+        </div>
+        <div class="impact-screen-item">
+          <div class="impact-screen-label">Step 2 — Confirm Division &amp; Club</div>
+          <img src="assets/impact-first-screen.png" alt="ImPACT Test — Before You Begin screen showing Division: Homegrown, Club: SC Wave" />
+        </div>
+      </div>
+
+      <div class="kl-warning">
+        <div class="w-icon">ℹ️</div>
+        <div>The video guide above shows the <strong>25-26 ImPACT website</strong>. The screenshots above reflect the current <strong>26-27 interface</strong>. Use both as reference — the process is the same, only the visual layout has changed.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact -->
+  <div class="kl-contact">
+    <img src="assets/coach-daniel.jpg" alt="Coach Daniel Mattos" />
+    <div class="contact-info">
+      <h3>Daniel Mattos</h3>
+      <div class="ctitle">MLS NEXT Director · Kitman Labs Contact</div>
+      <div class="cdetails">
+        📧 <a href="mailto:danielmartini07@gmail.com">danielmartini07@gmail.com</a><br />
+        📱 850-791-0998
+      </div>
+    </div>
+    <div class="contact-note">
+      <strong>I am the only person designated to help with Kitman Labs registration.</strong> Please do not contact your coach, team manager, or club office for this matter.<br /><br />
+      ⚠️ <strong>I will be out of the country July 21 – August 10.</strong> Please use the video guide and all resources on this page to complete registration while I'm away. Text me at 850-791-0998 for urgent matters.
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="assets/scwave-logo.png" alt="SC Wave" />
+      <span>SC Wave Soccer Club · Founded 1978</span>
+    </div>
+    <div class="footer-right">
+      <a href="mailto:danielmartini07@gmail.com">danielmartini07@gmail.com</a>
+      <div class="footer-mls">
+        <img src="assets/mlsnext-logo.png" alt="MLS NEXT" />
+        <span>MLS NEXT Member Club</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
