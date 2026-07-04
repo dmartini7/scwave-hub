@@ -1007,6 +1007,150 @@ nav a {
   letter-spacing: 0.06em;
 }
 
+/* ── 2026 FIFA WORLD CUP VIDEO SECTION ──────────────────────────────────── */
+.wc-section-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+
+.wc-live-badge {
+  background: #cc0000;
+  color: #fff;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 20px;
+  animation: wc-pulse 2s ease-in-out infinite;
+}
+
+@keyframes wc-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.7; }
+}
+
+.wc-subtitle {
+  font-size: 13px;
+  color: rgba(0,0,0,0.45);
+  font-weight: 600;
+}
+
+.wc-hub-link {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--cyan);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  margin-left: auto;
+}
+
+.wc-hub-link:hover { text-decoration: underline; }
+
+.wc-video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.video-card {
+  display: block;
+  background: #111;
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 12px;
+  overflow: hidden;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.video-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(245,197,24,0.45);
+  box-shadow: 0 6px 24px rgba(0,0,0,0.3);
+}
+
+.video-thumb {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: #1a1a1a;
+  overflow: hidden;
+}
+
+.video-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.video-play-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.25);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.video-card:hover .video-play-overlay { opacity: 1; }
+
+.video-play-btn {
+  width: 48px;
+  height: 48px;
+  background: rgba(245,197,24,0.92);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.video-play-btn::after {
+  content: '';
+  border-left: 18px solid #0D0D0D;
+  border-top: 11px solid transparent;
+  border-bottom: 11px solid transparent;
+  margin-left: 5px;
+}
+
+.video-meta { padding: 14px 16px 16px; }
+
+.video-date {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 6px;
+}
+
+.video-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-size: 17px;
+  color: #fff;
+  line-height: 1.25;
+  margin-bottom: 8px;
+  letter-spacing: 0.01em;
+}
+
+.video-desc {
+  font-size: 13px;
+  color: rgba(255,255,255,0.52);
+  line-height: 1.5;
+}
+
+@media (max-width: 640px) {
+  .wc-hub-link { margin-left: 0; }
+  .wc-video-grid { grid-template-columns: 1fr; }
+}
+
 /* Value badges in coach profile */
 .value-name {
   font-family: 'Barlow Condensed', sans-serif;
