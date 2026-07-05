@@ -1147,6 +1147,60 @@ nav a {
   line-height: 1.5;
 }
 
+/* ── YOUTUBE FACADE (click-to-embed) ─────────────────────────────────────── */
+.yt-wrap {
+  position: relative;
+  padding-top: 56.25%;
+  background: #111;
+  overflow: hidden;
+}
+
+.yt-facade {
+  position: absolute;
+  inset: 0;
+  cursor: pointer;
+}
+
+.yt-facade img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.yt-play {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.2);
+  transition: background 0.2s;
+}
+
+.yt-facade:hover .yt-play { background: rgba(0,0,0,0.4); }
+
+.yt-play-btn {
+  width: 56px;
+  height: 56px;
+  background: rgba(245,197,24,0.92);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s;
+}
+
+.yt-facade:hover .yt-play-btn { transform: scale(1.1); }
+
+.yt-play-btn::after {
+  content: '';
+  border-left: 20px solid #0D0D0D;
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+  margin-left: 5px;
+}
+
 /* ── HOME PAGE WORLD CUP SECTION ─────────────────────────────────────────── */
 .wc-home-section {
   background: var(--black);
