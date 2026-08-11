@@ -14,6 +14,7 @@
   --gray:       #6B6B6B;
   --gray-light: #A0A0A0;
   --cyan:       #00D4E4;   /* MLS NEXT accent */
+  --cyan-dark:  #0B6E77;   /* MLS NEXT accent, darkened for legible text on white/off-white backgrounds */
   --shadow:     0 4px 24px rgba(0,0,0,0.15);
   --shadow-lg:  0 12px 48px rgba(0,0,0,0.22);
   --radius:     14px;
