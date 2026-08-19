@@ -257,8 +257,7 @@
     btn.textContent = 'Signing in…';
     err.style.display = 'none';
     try {
-      await signInWithPopup(auth, googleProvider);
-      window.location.href = 'index.html';
+      await signInWithRedirect(auth, googleProvider);
     } catch (e) {
       err.textContent = 'Sign-in failed. Please try again or contact Daniel.';
       err.style.display = 'block';
