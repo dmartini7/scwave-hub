@@ -206,12 +206,24 @@
 
 <script type="module">
   import { auth, googleProvider } from './js/firebase-auth.js';
-  import { onAuthStateChanged, signInWithPopup, sendSignInLinkToEmail, isSignInWithEmailLink, signInWithEmailLink } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
+  import { onAuthStateChanged, signInWithRedirect, getRedirectResult, sendSignInLinkToEmail, isSignInWithEmailLink, signInWithEmailLink } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
 
   const actionCodeSettings = {
     url: 'https://scwaveplayerhub.com/login.html',
     handleCodeInApp: true
   };
+
+  // Complete Google sign-in if returning from the redirect (Safari-safe: avoids
+  // the popup + cross-site iframe relay that Safari's tracking prevention blocks)
+  getRedirectResult(auth)
+    .then((result) => {
+      if (result) window.location.href = 'index.html';
+    })
+    .catch(() => {
+      const err = document.getElementById('error-msg');
+      err.textContent = 'Sign-in failed. Please try again or contact Daniel.';
+      err.style.display = 'block';
+    });
 
   // Complete email link sign-in if returning from email link
   if (isSignInWithEmailLink(auth, window.location.href)) {
