@@ -298,6 +298,7 @@
   /* ── Build thumbnail strip ─────────────────────────────────────────────── */
   function pad(n) { return String(n).padStart(2, '0'); }
   function slideSrc(n) { return FOLDER + 'slide-' + pad(n) + '.jpg'; }
+  function thumbSrc(n) { return FOLDER + 'thumbs/slide-' + pad(n) + '.jpg'; }
 
   for (let i = 1; i <= TOTAL; i++) {
     const item = document.createElement('div');
@@ -305,8 +306,10 @@
     item.dataset.slide = i;
 
     const img = document.createElement('img');
-    img.src = slideSrc(i);
+    img.src = thumbSrc(i);
     img.alt = 'Slide ' + i;
+    img.width = 320; img.height = 180;
+    img.decoding = 'async';
     img.loading = 'lazy';
     img.draggable = false;
     img.oncontextmenu = () => false;

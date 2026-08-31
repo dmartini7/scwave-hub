@@ -5,3 +5,5 @@
 node_modules
 wrangler.jsonc
 .assetsignore
+_originals
+_to_delete
