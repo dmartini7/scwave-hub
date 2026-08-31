@@ -173,6 +173,8 @@
       display: flex; justify-content: space-between; align-items: baseline;
       margin-bottom: 10px;
     }
+    .rating-name .req { color: #F5C518; margin-left: 2px; }
+    .rating-btns.missing { outline: 1px solid #ef4444; outline-offset: 4px; border-radius: 4px; }
     .rating-name {
       font-family: 'Barlow Condensed', sans-serif; font-weight: 900;
       font-size: 15px; letter-spacing: 0.06em; text-transform: uppercase; color: #fff;
@@ -397,8 +399,8 @@
             <input type="text" name="opponent" placeholder="Club name" required />
           </div>
           <div class="field">
-            <label>Final Score</label>
-            <input type="text" name="score" placeholder="e.g. 2 – 1" />
+            <label>Final Score <span class="req">*</span></label>
+            <input type="text" name="score" placeholder="e.g. 2 – 1" required />
           </div>
         </div>
         <div class="field-row wide field-gap">
@@ -412,8 +414,8 @@
             <input type="hidden" name="result" id="resultHidden" />
           </div>
           <div class="field">
-            <label>Minutes Played</label>
-            <select name="minutes">
+            <label>Minutes Played <span class="req">*</span></label>
+            <select name="minutes" required>
               <option value="" disabled selected>Select</option>
               <option>0 – 30 min</option>
               <option>30 – 60 min</option>
@@ -432,7 +434,7 @@
         <!-- Technical -->
         <div class="rating-block">
           <div class="rating-header">
-            <span class="rating-name">Technical</span>
+            <span class="rating-name">Technical <span class="req">*</span></span>
             <span class="rating-hint" id="tech-val">Tap to rate</span>
           </div>
           <div class="rating-sub">Ball control · 1st touch · Passing · Finishing</div>
@@ -445,7 +447,7 @@
         <!-- Tactical -->
         <div class="rating-block">
           <div class="rating-header">
-            <span class="rating-name">Tactical</span>
+            <span class="rating-name">Tactical <span class="req">*</span></span>
             <span class="rating-hint" id="tact-val">Tap to rate</span>
           </div>
           <div class="rating-sub">Decision-making · Positioning · Off-ball movement · Game reading</div>
@@ -458,7 +460,7 @@
         <!-- Physical -->
         <div class="rating-block">
           <div class="rating-header">
-            <span class="rating-name">Physical</span>
+            <span class="rating-name">Physical <span class="req">*</span></span>
             <span class="rating-hint" id="phys-val">Tap to rate</span>
           </div>
           <div class="rating-sub">Intensity · Duels · Endurance · Speed</div>
@@ -471,7 +473,7 @@
         <!-- Mental -->
         <div class="rating-block">
           <div class="rating-header">
-            <span class="rating-name">Mental</span>
+            <span class="rating-name">Mental <span class="req">*</span></span>
             <span class="rating-hint" id="ment-val">Tap to rate</span>
           </div>
           <div class="rating-sub">Focus · Composure · Communication · Leadership</div>
@@ -494,12 +496,12 @@
           <textarea name="challenge" placeholder="What felt difficult? When did you struggle — and why?" required></textarea>
         </div>
         <div class="field field-gap">
-          <label>One moment you would handle differently</label>
-          <textarea name="differently" placeholder="Describe a specific moment — what happened, what would you change?"></textarea>
+          <label>One moment you would handle differently <span class="req">*</span></label>
+          <textarea name="differently" required placeholder="Describe a specific moment — what happened, what would you change?"></textarea>
         </div>
         <div class="field field-gap">
-          <label>How did you apply the SC Wave game model?</label>
-          <textarea name="game_model" placeholder="Pressing triggers, building out from the back, combination play in tight spaces..."></textarea>
+          <label>How did you apply the SC Wave game model? <span class="req">*</span></label>
+          <textarea name="game_model" required placeholder="Pressing triggers, building out from the back, combination play in tight spaces..."></textarea>
         </div>
       </div>
 
@@ -516,10 +518,23 @@
         </div>
       </div>
 
+      <!-- 5 · Your Copy -->
+      <div class="form-section">
+        <div class="section-label">05 &middot; Your Copy</div>
+        <div class="field">
+          <label>Email(s) you would also like to receive your own responses <span style="font-size:10px;opacity:0.4;">(optional)</span></label>
+          <input type="text" name="cc_emails" id="ccEmails" placeholder="you@email.com, parent@email.com" />
+          <p style="font-family:'Inter',sans-serif;font-size:12px;line-height:1.5;color:rgba(255,255,255,0.4);margin:2px 0 0;">
+            Separate multiple addresses with commas. A copy of this analysis will be sent to each one, so you and your family can track your progress over the season.
+          </p>
+          <p id="ccError" style="display:none;font-family:'Inter',sans-serif;font-size:12px;line-height:1.5;color:#ef4444;margin:4px 0 0;"></p>
+        </div>
+      </div>
+
       <!-- Submit -->
       <div class="form-section" style="border-top-color:transparent;background:transparent;padding:8px 0 0;">
         <div class="submit-row">
-          <p class="submit-note">Fields marked <span style="color:#F5C518;">*</span> are required.<br>Your response goes directly to Coach Daniel.</p>
+          <p class="submit-note">All fields marked <span style="color:#F5C518;">*</span> are required.<br>Your response goes to your team&rsquo;s coaches &mdash; and to any email you list in section 05.</p>
           <button type="submit" class="submit-btn">Submit Analysis →</button>
         </div>
       </div>
@@ -604,21 +619,42 @@
     const pos    = this.position.value;
     const date   = this.match_date.value;
     const opp    = this.opponent.value.trim();
+    const score  = this.score.value.trim();
+    const mins   = this.minutes.value;
     const result = document.getElementById('resultHidden').value;
     const well   = this.went_well.value.trim();
     const chal   = this.challenge.value.trim();
+    const diff   = this.differently.value.trim();
+    const model  = this.game_model.value.trim();
     const focus  = this.next_focus.value.trim();
 
-    if (!name || !sector || !pos || !date || !opp || !result || !well || !chal || !focus) {
+    // All four ratings are required
+    const ratingIds = ['ratingTech','ratingTact','ratingPhys','ratingMent'];
+    const missingRatings = ratingIds.filter(id => !document.getElementById(id).value);
+    document.querySelectorAll('.rating-btns').forEach(g => g.classList.remove('missing'));
+
+    if (!name || !sector || !pos || !date || !opp || !score || !mins || !result
+        || !well || !chal || !diff || !model || !focus || missingRatings.length) {
+
       // Highlight missing fields
-      [this.player_name, this.team_sector, this.position, this.match_date, this.opponent, this.went_well, this.challenge, this.next_focus].forEach(f => {
-        if (!f.value.trim()) f.style.borderColor = '#ef4444';
-        else f.style.borderColor = '';
+      [this.player_name, this.team_sector, this.position, this.match_date, this.opponent,
+       this.score, this.minutes, this.went_well, this.challenge, this.differently,
+       this.game_model, this.next_focus].forEach(f => {
+        f.style.borderColor = f.value.trim() ? '' : '#ef4444';
       });
-      if (!result) {
-        document.querySelectorAll('.result-btn').forEach(b => b.style.borderColor = '#ef4444');
-      }
-      window.scrollTo({ top: 300, behavior: 'smooth' });
+
+      document.querySelectorAll('.result-btn').forEach(b => b.style.borderColor = result ? '' : '#ef4444');
+
+      // Outline any unrated block
+      missingRatings.forEach(id => {
+        const grp = document.getElementById(id).closest('.rating-block').querySelector('.rating-btns');
+        if (grp) grp.classList.add('missing');
+      });
+
+      // Jump to the first thing that's actually missing
+      const firstBad = document.querySelector('[style*="rgb(239, 68, 68)"], .rating-btns.missing');
+      if (firstBad) firstBad.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      else window.scrollTo({ top: 300, behavior: 'smooth' });
       return;
     }
 
@@ -662,31 +698,78 @@
       data.get('notes') || '—',
     ];
 
+    // Fernando Souza — assistant coach across the Homegrown teams only
+    const HOMEGROWN_ASSISTANT = 'ferhsouza88@gmail.com';
+
+    const ANDRE  = 'andre_hayne@hotmail.com';   // Academy Director — on every Academy team
+    const TYLER  = 'tylerh@mksc.org';           // Tyler Howard
+    const TYLOR  = 'tylor.bacher09@gmail.com';  // Tylor Bacher
+
     // Route email by team sector
     const emailMap = {
-      'U13 (2014) Homegrown':  { to: 'coach.hugofq@gmail.com',                          coach: 'Coach Hugo' },
-      'U14 (2013) Homegrown':  { to: 'coach.hugofq@gmail.com',                          coach: 'Coach Hugo' },
-      'U15 (2012) Homegrown':  { to: 'danielmartini07@gmail.com',                       coach: 'Coach Daniel' },
-      'U16 (2011) Homegrown':  { to: 'danielmartini07@gmail.com',                       coach: 'Coach Daniel' },
-      'U17 (2010) Homegrown':  { to: 'akohel@carrollu.edu,sagadin78@hotmail.com',       coach: 'Coach Andy & Coach Steve' },
-      'U19 (2009/08) Homegrown':{ to: 'akohel@carrollu.edu,sagadin78@hotmail.com',      coach: 'Coach Andy & Coach Steve' },
-      'U13 Academy':           { to: 'tylerh@mksc.org',                                 coach: 'Coach Tyler' },
-      'U14 Academy':           { to: 'tylerh@mksc.org',                                 coach: 'Coach Tyler' },
-      'U15 Academy':           { to: 'tylerh@mksc.org',                                 coach: 'Coach Tyler' },
-      'U16 Academy':           { to: 'andre_hayne@hotmail.com',                         coach: 'Coach Andre' },
-      'U17 Academy':           { to: 'andre_hayne@hotmail.com',                         coach: 'Coach Andre' },
-      'U19 Academy':           { to: 'andre_hayne@hotmail.com',                         coach: 'Coach Andre' },
+      // ── Homegrown (Coach Fernando added automatically below) ──
+      'U13 (2014) Homegrown':   { to: 'coach.hugofq@gmail.com',                    coach: ['Coach Hugo'] },
+      'U14 (2013) Homegrown':   { to: 'coach.hugofq@gmail.com',                    coach: ['Coach Hugo'] },
+      'U15 (2012) Homegrown':   { to: 'danielmartini07@gmail.com',                 coach: ['Coach Daniel'] },
+      'U16 (2011) Homegrown':   { to: 'danielmartini07@gmail.com',                 coach: ['Coach Daniel'] },
+      'U17 (2010) Homegrown':   { to: 'akohel@carrollu.edu,sagadin78@hotmail.com', coach: ['Coach Andy','Coach Steve'] },
+      'U19 (2009/08) Homegrown':{ to: 'akohel@carrollu.edu,sagadin78@hotmail.com', coach: ['Coach Andy','Coach Steve'] },
+
+      // ── Academy (Coach Andre on all; no Coach Fernando) ──
+      'U13 Academy':            { to: TYLOR + ',' + ANDRE,                         coach: ['Coach Tylor','Coach Andre'] },
+      'U14 Academy':            { to: TYLER + ',' + ANDRE,                         coach: ['Coach Tyler','Coach Andre'] },
+      'U15 Academy':            { to: TYLER + ',' + ANDRE,                         coach: ['Coach Tyler','Coach Andre'] },
+      'U16 Academy':            { to: ANDRE,                                       coach: ['Coach Andre'] },
+      'U17 Academy':            { to: ANDRE,                                       coach: ['Coach Andre'] },
+      'U19 Academy':            { to: ANDRE,                                       coach: ['Coach Andre'] },
     };
-    const route  = emailMap[sector] || { to: 'danielmartini07@gmail.com', coach: 'your coach' };
+
+    const route  = emailMap[sector] || { to: 'danielmartini07@gmail.com', coach: ['Your coach'] };
+
+    // Coach Fernando assists every Homegrown team — added to those only
+    const isHomegrown = sector.includes('Homegrown');
+    const recipients  = route.to.split(',').map(x => x.trim()).filter(Boolean);
+    if (isHomegrown && !recipients.includes(HOMEGROWN_ASSISTANT)) recipients.push(HOMEGROWN_ASSISTANT);
+    const toLine = recipients.join(',');
+    const names = route.coach.slice();
+    if (isHomegrown) names.push('Coach Fernando');
+    const coachLabel = names.length > 1
+      ? names.slice(0, -1).join(', ') + ' and ' + names[names.length - 1]
+      : names[0];
+
+    // ── Copy-to-me addresses (optional) ───────────────────────────────────
+    const ccField = document.getElementById('ccEmails');
+    const ccError = document.getElementById('ccError');
+    const ccRaw   = ccField.value.trim();
+    let ccList    = [];
+
+    ccError.style.display = 'none';
+    ccField.style.borderColor = '';
+
+    if (ccRaw) {
+      ccList = ccRaw.split(/[,;\s]+/).filter(Boolean);
+      const bad = ccList.filter(a => !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(a));
+      if (bad.length) {
+        ccField.style.borderColor = '#ef4444';
+        ccError.textContent = 'Check this address' + (bad.length > 1 ? 'es' : '') + ': ' + bad.join(', ');
+        ccError.style.display = 'block';
+        ccField.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+    }
+
 
     const subject = encodeURIComponent('Game Analysis — ' + (data.get('player_name') || 'Player') + ' vs ' + (data.get('opponent') || 'Opponent') + ' (' + (data.get('match_date') || '') + ')');
     const body    = encodeURIComponent(lines.join('\n'));
 
-    window.location.href = 'mailto:' + route.to + '?subject=' + subject + '&body=' + body;
+    const ccParam = ccList.length ? '&cc=' + encodeURIComponent(ccList.join(',')) : '';
+    window.location.href = 'mailto:' + toLine + '?subject=' + subject + ccParam + '&body=' + body;
 
     // Update thank-you coach name
     document.querySelector('.ty-sub').textContent =
-      route.coach + ' will review your self-analysis. See you at training — come ready to work on what you identified.';
+      coachLabel + ' will review your self-analysis.'
+      + (ccList.length ? ' A copy is on its way to ' + ccList.join(', ') + '.' : '')
+      + ' See you at training — come ready to work on what you identified.';
 
     // Show thank-you
     document.getElementById('gameForm').style.display = 'none';

@@ -283,7 +283,6 @@
         style="display:none;"
       >
         <source id="videoSrcMp4" src="" type="video/mp4" />
-        <source id="videoSrcMov" src="" type="video/quicktime" />
       </video>
     </div>
 
@@ -329,7 +328,7 @@
   const VIDEO_BASE = 'assets/slides/videos/';
   let current  = 1;
 
-  // Map of slide number → video filename (mp4 base name, .mov as fallback)
+  // Map of slide number → video filename (mp4)
   const VIDEO_SLIDES = {
     5:  'style-of-play-video-1',
     8:  'style-of-play-video-2',
@@ -340,7 +339,6 @@
   const mainSlide    = document.getElementById('mainSlide');
   const slideVideo   = document.getElementById('slideVideo');
   const videoSrcMp4  = document.getElementById('videoSrcMp4');
-  const videoSrcMov  = document.getElementById('videoSrcMov');
   const prevBtn      = document.getElementById('prevBtn');
   const nextBtn      = document.getElementById('nextBtn');
   const slideCounter = document.getElementById('slideCounter');
@@ -350,6 +348,7 @@
   /* ── Build thumbnail strip ─────────────────────────────────────────────── */
   function pad(n) { return String(n).padStart(2, '0'); }
   function slideSrc(n) { return FOLDER + 'slide-' + pad(n) + '.jpg'; }
+  function thumbSrc(n) { return FOLDER + 'thumbs/slide-' + pad(n) + '.jpg'; }
 
   for (let i = 1; i <= TOTAL; i++) {
     const item = document.createElement('div');
@@ -357,8 +356,10 @@
     item.dataset.slide = i;
 
     const img = document.createElement('img');
-    img.src = slideSrc(i);
+    img.src = thumbSrc(i);
     img.alt = 'Slide ' + i;
+    img.width = 320; img.height = 180;
+    img.decoding = 'async';
     img.loading = 'lazy';
     img.draggable = false;
     img.oncontextmenu = () => false;
@@ -395,14 +396,12 @@
       // Pause and reset before changing src
       slideVideo.pause();
       videoSrcMp4.src = VIDEO_BASE + videoName + '.mp4';
-      videoSrcMov.src = VIDEO_BASE + videoName + '.mov';
       slideVideo.load();
       slideVideo.style.display = 'block';
     } else {
       slideVideo.pause();
       slideVideo.style.display = 'none';
       videoSrcMp4.src = '';
-      videoSrcMov.src = '';
     }
 
     // Update thumbnail active state
