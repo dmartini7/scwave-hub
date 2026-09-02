@@ -700,6 +700,8 @@
 
     // Fernando Souza — assistant coach across the Homegrown teams only
     const HOMEGROWN_ASSISTANT = 'ferhsouza88@gmail.com';
+    // Daniel Mattos — MLS NEXT Director, copied on every Homegrown team
+    const HOMEGROWN_DIRECTOR = 'danielmartini07@gmail.com';
 
     const ANDRE  = 'andre_hayne@hotmail.com';   // Academy Director — on every Academy team
     const TYLER  = 'tylerh@mksc.org';           // Tyler Howard
@@ -730,9 +732,11 @@
     const isHomegrown = sector.includes('Homegrown');
     const recipients  = route.to.split(',').map(x => x.trim()).filter(Boolean);
     if (isHomegrown && !recipients.includes(HOMEGROWN_ASSISTANT)) recipients.push(HOMEGROWN_ASSISTANT);
+    if (isHomegrown && !recipients.includes(HOMEGROWN_DIRECTOR)) recipients.push(HOMEGROWN_DIRECTOR);
     const toLine = recipients.join(',');
     const names = route.coach.slice();
     if (isHomegrown) names.push('Coach Fernando');
+    if (isHomegrown && !names.includes('Coach Daniel')) names.push('Coach Daniel');
     const coachLabel = names.length > 1
       ? names.slice(0, -1).join(', ') + ' and ' + names[names.length - 1]
       : names[0];
