@@ -857,6 +857,17 @@ footer {
   text-transform: uppercase;
 }
 
+.footer-copyright {
+  max-width: 1140px;
+  margin: 16px auto 0;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  font-size: 11px;
+  color: rgba(255,255,255,0.32);
+  text-align: center;
+  line-height: 1.65;
+}
+
 /* ── HAMBURGER MENU TOGGLE ─────────────────────────────────────────────── */
 .menu-toggle {
   display: none;
