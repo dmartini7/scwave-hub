@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-T9ZL1CM490"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-T9ZL1CM490');
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MLS NEXT Fest 2026 — SC Wave Training Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+
+    body {
+      background: #0D0D0D !important;
+      color: #fff !important;
+    }
+
+    .kl-wrap {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+      background: #0D0D0D;
+    }
+
+    /* ── Urgent banner ── */
+    .kl-urgent {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      background: #2a0a0a;
+      border: 1px solid #7f1d1d;
+      border-left: 4px solid #EF4444;
+      border-radius: 12px;
+      padding: 18px 22px;
+      margin-bottom: 24px;
+    }
+    .kl-urgent .u-icon { font-size: 22px; flex-shrink: 0; padding-top: 2px; }
+    .kl-urgent .u-body { font-family: 'Inter', sans-serif; font-size: 14px; color: #fca5a5; line-height: 1.6; }
+    .kl-urgent .u-body strong { color: #ff6b6b; }
+
+    /* ── Key info tiles ── */
+    .kl-tips {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-bottom: 36px;
+    }
+    @media (max-width: 700px) { .kl-tips { grid-template-columns: 1fr; } }
+    .kl-tip {
+      background: #0D0D0D;
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px;
+      padding: 16px 18px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .kl-tip .tip-icon { font-size: 20px; flex-shrink: 0; }
+    .kl-tip .tip-text { font-family: 'Inter', sans-serif; font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.5; }
+    .kl-tip .tip-text strong { color: rgba(255,255,255,0.9); display: block; margin-bottom: 2px; font-size: 13px; }
+
+    /* ── Section divider ── */
+    .kl-divider {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 44px 0 20px;
+    }
+    .kl-divider .kd-bar {
+      width: 4px;
+      height: 30px;
+      background: var(--gold);
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+    .kl-divider .kd-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 24px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #fff;
+      line-height: 1;
+    }
+    .kl-divider .kd-sub {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: #6b7280;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-left: 4px;
+    }
+
+    /* ── Warning callout ── */
+    .kl-warning {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: #1a1400;
+      border: 1px solid #3d2e00;
+      border-left: 3px solid var(--gold);
+      border-radius: 10px;
+      padding: 16px 18px;
+      margin-top: 16px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: #d1b96a;
+      line-height: 1.65;
+    }
+    .kl-warning .w-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+    .kl-warning strong { color: var(--gold); }
+
+    /* ── Card ── */
+    .kl-card {
+      background: #0D0D0D;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+    .kl-card-header {
+      padding: 16px 22px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .kl-card-header.gold  { background: rgba(245,197,24,0.1);  border-bottom: 1px solid rgba(245,197,24,0.15); }
+    .kl-card-header.cyan  { background: rgba(0,212,228,0.08);  border-bottom: 1px solid rgba(0,212,228,0.15); }
+    .kl-card-header .ch-icon { font-size: 26px; }
+    .kl-card-header .ch-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 20px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #fff;
+      line-height: 1;
+    }
+    .kl-card-header.gold  .ch-title { color: var(--gold); }
+    .kl-card-header.cyan  .ch-title { color: var(--cyan); }
+    .kl-card-header .ch-sub {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: rgba(255,255,255,0.4);
+      margin-top: 2px;
+    }
+    .kl-card-body { padding: 22px; }
+    .kl-card-body p { font-family: 'Inter', sans-serif; font-size: 14px; color: #b0b8c8; line-height: 1.65; margin: 0 0 12px; }
+    .kl-card-body p:last-child { margin-bottom: 0; }
+    .kl-card-body a { color: var(--cyan); text-decoration: none; }
+    .kl-card-body a:hover { text-decoration: underline; }
+    .kl-card-body strong { color: #fff; }
+
+    /* ── Checklist ── */
+    .kl-checklist { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+    .kl-check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: #b0b8c8;
+      line-height: 1.5;
+    }
+    .kl-check-item .ci-icon { flex-shrink: 0; font-size: 15px; margin-top: 1px; }
+    .kl-check-item strong { color: #fff; }
+    .kl-check-item a { color: var(--cyan); text-decoration: none; }
+    .kl-check-item a:hover { text-decoration: underline; }
+
+    /* ── Link button ── */
+    .kl-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gold);
+      color: #0D0D0D;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 15px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: opacity 0.15s;
+      margin-top: 4px;
+    }
+    .kl-btn:hover { opacity: 0.85; }
+    .kl-btn.cyan { background: var(--cyan); }
+    .kl-card-body a.kl-btn { color: #0D0D0D; }
+
+    /* ── Summary schedule table ── */
+    .fest-summary {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'Inter', sans-serif;
+      font-size: 13.5px;
+    }
+    .fest-summary th {
+      text-align: left;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      padding: 0 10px 10px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .fest-summary td {
+      padding: 12px 10px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      color: #d7dbe2;
+      vertical-align: middle;
+    }
+    .fest-summary tr:last-child td { border-bottom: none; }
+    .fest-summary .age-pill {
+      display: inline-block;
+      background: rgba(245,197,24,0.12);
+      border: 1px solid rgba(245,197,24,0.35);
+      color: var(--gold);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 14px;
+      letter-spacing: 0.04em;
+      padding: 3px 10px;
+      border-radius: 6px;
+    }
+
+    /* ── Visual calendar grid ── */
+    .fest-cal-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08); }
+    .fest-cal {
+      width: 100%;
+      min-width: 760px;
+      border-collapse: collapse;
+      font-family: 'Inter', sans-serif;
+    }
+    .fest-cal th, .fest-cal td {
+      text-align: center;
+      padding: 10px 4px;
+      font-size: 12px;
+    }
+    .fest-cal thead th {
+      background: #161616;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      color: rgba(255,255,255,0.5);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .fest-cal thead th:first-child { text-align: left; padding-left: 16px; }
+    .fest-cal tbody th {
+      text-align: left;
+      padding-left: 16px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 15px;
+      letter-spacing: 0.03em;
+      color: #fff;
+      background: #121212;
+      white-space: nowrap;
+    }
+    .fest-cal tbody td { background: #0D0D0D; border-top: 1px solid rgba(255,255,255,0.05); }
+    .fest-cal tbody tr:first-child td, .fest-cal tbody tr:first-child th { border-top: none; }
+    .fest-cal .play {
+      background: rgba(245,197,24,0.18) !important;
+      color: var(--gold);
+      font-weight: 800;
+      font-family: 'Barlow Condensed', sans-serif;
+      letter-spacing: 0.03em;
+      font-size: 11px;
+    }
+    .fest-cal .play:first-of-type { border-radius: 6px 0 0 6px; }
+
+    .fest-legend {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 12px;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: rgba(255,255,255,0.4);
+    }
+    .fest-legend .swatch { width: 14px; height: 14px; border-radius: 3px; background: rgba(245,197,24,0.18); border: 1px solid rgba(245,197,24,0.4); }
+
+    /* ── Contact box ── */
+    .kl-contact {
+      background: linear-gradient(135deg, #0D0D0D 0%, #1a1a1a 100%);
+      border: 2px solid var(--gold);
+      border-radius: 14px;
+      padding: 28px 32px;
+      margin-top: 44px;
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      flex-wrap: wrap;
+    }
+    .kl-contact img {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: top;
+      border: 2px solid var(--gold);
+      flex-shrink: 0;
+    }
+    .kl-contact .contact-info h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 22px;
+      color: #fff;
+      letter-spacing: 0.03em;
+      margin: 0 0 4px;
+    }
+    .kl-contact .contact-info .ctitle {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .kl-contact .contact-info .cdetails {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.7;
+    }
+    .kl-contact .contact-info a { color: var(--cyan); text-decoration: none; }
+    @media (max-width: 600px) { .kl-contact { flex-direction: column; text-align: center; } }
+
+    .divider-line {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      margin: 28px 0;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo-block">
+      <img class="sc-logo" src="assets/scwave-logo.png" alt="SC Wave" />
+      <div class="logo-text">
+        <span class="club">SC Wave</span>
+        <span class="hub">Player Training Hub</span>
+      </div>
+    </a>
+    <div class="header-right">
+      <nav>
+        <a href="tactical-mental.html">Tactical &amp; Mental</a>
+        <a href="technical.html">Technical</a>
+        <a href="physical.html">Physical</a>
+        <a href="staff.html">Staff</a>
+        <a href="kitman-labs.html">Kitman Labs</a>
+        <a href="mls-next-fest.html" class="active">MLS NEXT Fest</a>
+        <a href="club-documents.html">Club Docs</a>
+      </nav>
+      <div class="mls-badge">
+        <img src="assets/mlsnext-logo.png" alt="MLS NEXT" />
+        <span>MLS NEXT</span>
+      </div>
+      <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false">&#9776;</button>
+    </div>
+  </div>
+</header>
+
+<div class="page-hero">
+  <a href="index.html" class="back-link">← Back to Hub</a>
+  <div class="page-icon" style="background:rgba(245,197,24,0.1);">🏆</div>
+  <h1>MLS NEXT <span>Fest 2026</span></h1>
+  <p>December 2 – 13, 2026 · Arizona (Scottsdale &amp; Mesa). Everything SC Wave Homegrown and Academy families need to know — dates, kickoff windows, and travel guidance.</p>
+</div>
+
+<div class="kl-wrap">
+
+  <!-- Flight booking warning -->
+  <div class="kl-urgent">
+    <div class="u-icon">✈️</div>
+    <div class="u-body">
+      <strong>Book travel carefully — MLS NEXT will not adjust the schedule for early flights.</strong> Kickoff times are not finalized until closer to the event, so flights must be booked around the <strong style="color:#fff;">potential</strong> first and last kickoff times below — not a guess at the actual match time.<br />
+      <span style="color:rgba(255,255,255,0.6);font-size:13px;">Do not book an outbound flight assuming a late first kickoff, and do not book a return flight assuming an early finish on the last day. Clubs that book outside these windows are on their own — MLS NEXT has confirmed the schedule will not be adjusted to accommodate early travel.</span>
+    </div>
+  </div>
+
+  <!-- Key info tiles -->
+  <div class="kl-tips">
+    <div class="kl-tip">
+      <div class="tip-icon">📅</div>
+      <div class="tip-text"><strong>Event Dates</strong>December 2 – 13, 2026. Each age group plays on a specific window within that range — see the calendar below.</div>
+    </div>
+    <div class="tip-icon-wrap kl-tip">
+      <div class="tip-icon">📍</div>
+      <div class="tip-text"><strong>Location</strong>Scottsdale (U13/U14) and Mesa, Arizona (U15–U19) — Arizona Athletic Grounds, Red Mountain, Scottsdale Sports Complex, Bell 94 &amp; Reata.</div>
+    </div>
+    <div class="kl-tip">
+      <div class="tip-icon">🏨</div>
+      <div class="tip-text"><strong>Hotel Booking</strong>Required through MLS NEXT's official travel partner, On Location — see details below.</div>
+    </div>
+  </div>
+
+  <!-- Teams Attending -->
+  <div class="kl-divider">
+    <div class="kd-bar"></div>
+    <div>
+      <div class="kd-label">SC Wave Teams Attending</div>
+      <div class="kd-sub">Homegrown &amp; Academy Division</div>
+    </div>
+  </div>
+
+  <div class="kl-card">
+    <div class="kl-card-header gold">
+      <div class="ch-icon">🏅</div>
+      <div>
+        <div class="ch-title">Homegrown Division</div>
+        <div class="ch-sub">All 6 age groups attending</div>
+      </div>
+    </div>
+    <div class="kl-card-body">
+      <div style="display:flex;flex-wrap:wrap;gap:8px;">
+        <span class="age-pill">U13</span><span class="age-pill">U14</span><span class="age-pill">U15</span><span class="age-pill">U16</span><span class="age-pill">U17</span><span class="age-pill">U19</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="kl-card">
+    <div class="kl-card-header cyan">
+      <div class="ch-icon">🏅</div>
+      <div>
+        <div class="ch-title">Academy Division</div>
+        <div class="ch-sub">U13, U14, U16 &amp; U17 attending — not U15 or U19</div>
+      </div>
+    </div>
+    <div class="kl-card-body">
+      <div style="display:flex;flex-wrap:wrap;gap:8px;">
+        <span class="age-pill" style="background:rgba(0,212,228,0.12);border-color:rgba(0,212,228,0.35);color:var(--cyan);">U13</span><span class="age-pill" style="background:rgba(0,212,228,0.12);border-color:rgba(0,212,228,0.35);color:var(--cyan);">U14</span><span class="age-pill" style="background:rgba(0,212,228,0.12);border-color:rgba(0,212,228,0.35);color:var(--cyan);">U16</span><span class="age-pill" style="background:rgba(0,212,228,0.12);border-color:rgba(0,212,228,0.35);color:var(--cyan);">U17</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Schedule -->
+  <div class="kl-divider">
+    <div class="kd-bar"></div>
+    <div>
+      <div class="kd-label">Age Group Schedule</div>
+      <div class="kd-sub">SC Wave MLS NEXT Homegrown &amp; Academy Division</div>
+    </div>
+  </div>
+
+  <div class="fest-cal-scroll">
+    <table class="fest-summary" style="min-width:600px;">
+      <thead>
+        <tr><th>Age Group</th><th>Format</th><th>Dates</th><th>Matches</th><th>Division(s)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><span class="age-pill">U13</span></td><td>Tournament</td><td>Dec 11 – 13</td><td>4 matches in 3 days</td><td>Homegrown + Academy</td></tr>
+        <tr><td><span class="age-pill">U14</span></td><td>Tournament</td><td>Dec 8 – 10</td><td>4 matches in 3 days</td><td>Homegrown + Academy</td></tr>
+        <tr><td><span class="age-pill">U15</span></td><td>Tournament</td><td>Dec 10 – 13</td><td>4 matches in 4 days</td><td>Homegrown only</td></tr>
+        <tr><td><span class="age-pill">U16</span></td><td>Tournament</td><td>Dec 8 – 11</td><td>4 matches in 4 days</td><td>Homegrown + Academy</td></tr>
+        <tr><td><span class="age-pill">U17</span></td><td>Showcase</td><td>Dec 2 – 4</td><td>3 matches in 3 days</td><td>Homegrown + Academy</td></tr>
+        <tr><td><span class="age-pill">U19</span></td><td>Showcase</td><td>Dec 5 – 7</td><td>3 matches in 3 days</td><td>Homegrown only</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="kl-warning" style="margin-top:20px;">
+    <div class="w-icon">ℹ️</div>
+    <div>For U13, U14, U16 &amp; U17, Homegrown and Academy teams compete on the same dates at MLS NEXT Fest. This covers each team's regular schedule — it does not include invite-only "Best Of" showcase matches, which are a separate, coach-nomination-based selection. Your team's coach will reach out directly if your player is selected for one of those.</div>
+  </div>
+
+  <div style="margin-top:28px;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:14px;">Day-by-Day Calendar</div>
+
+  <div class="fest-cal-scroll">
+    <table class="fest-cal">
+      <thead>
+        <tr>
+          <th>Age</th>
+          <th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>13</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>U13</th>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+          <td class="play">PLAY</td><td class="play">PLAY</td><td class="play">PLAY</td>
+        </tr>
+        <tr>
+          <th>U14</th>
+          <td></td><td></td><td></td><td></td><td></td><td></td>
+          <td class="play">PLAY</td><td class="play">PLAY</td><td class="play">PLAY</td>
+          <td></td><td></td><td></td>
+        </tr>
+        <tr>
+          <th>U15</th>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+          <td class="play">PLAY</td><td class="play">PLAY</td><td class="play">PLAY</td><td class="play">PLAY</td>
+        </tr>
+        <tr>
+          <th>U16</th>
+          <td></td><td></td><td></td><td></td><td></td><td></td>
+          <td class="play">PLAY</td><td class="play">PLAY</td><td class="play">PLAY</td><td class="play">PLAY</td>
+          <td></td><td></td>
+        </tr>
+        <tr>
+          <th>U17</th>
+          <td class="play">PLAY</td><td class="play">PLAY</td><td class="play">PLAY</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr>
+          <th>U19</th>
+          <td></td><td></td><td></td>
+          <td class="play">PLAY</td><td class="play">PLAY</td><td class="play">PLAY</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="fest-legend"><span class="swatch"></span> Match days for that age group (December 2026)</div>
+
+  <!-- Kickoff windows -->
+  <div class="kl-divider">
+    <div class="kd-bar"></div>
+    <div>
+      <div class="kd-label">Kickoff Windows</div>
+      <div class="kd-sub">For flight planning</div>
+    </div>
+  </div>
+
+  <div class="kl-card">
+    <div class="kl-card-header gold">
+      <div class="ch-icon">⏰</div>
+      <div>
+        <div class="ch-title">U13 &amp; U14</div>
+        <div class="ch-sub">Scottsdale venues</div>
+      </div>
+    </div>
+    <div class="kl-card-body">
+      <p><strong>Potential first kickoff:</strong> 8:00 AM &nbsp;·&nbsp; <strong>Potential last kickoff (on your travel day):</strong> 6:30 PM</p>
+    </div>
+  </div>
+
+  <div class="kl-card">
+    <div class="kl-card-header gold">
+      <div class="ch-icon">⏰</div>
+      <div>
+        <div class="ch-title">U15 – U19</div>
+        <div class="ch-sub">Mesa venues</div>
+      </div>
+    </div>
+    <div class="kl-card-body">
+      <p><strong>Potential first kickoff:</strong> 8:00 AM &nbsp;·&nbsp; <strong>Potential last kickoff (on your travel day):</strong> 8:45 PM</p>
+    </div>
+  </div>
+
+  <!-- Hotel & travel -->
+  <div class="kl-divider">
+    <div class="kd-bar"></div>
+    <div>
+      <div class="kd-label">Hotel &amp; Travel</div>
+    </div>
+  </div>
+
+  <div class="kl-card">
+    <div class="kl-card-body">
+      <p>Hotel accommodations are booked through the official travel partner, <strong>On Location</strong> — it guarantees the lowest flexible rate and free cancellations/changes.</p>
+      <ul class="kl-checklist">
+        <li class="kl-check-item"><div class="ci-icon">📞</div><div>On Location contact: <strong>866-939-4625</strong></div></li>
+        <li class="kl-check-item"><div class="ci-icon">🚗</div><div>On Location can also help with flights, ground transportation, and group logistics — not just hotels.</div></li>
+        <li class="kl-check-item"><div class="ci-icon">👥</div><div>Each team's <strong>team manager</strong> is coordinating hotel and travel booking with their group — reach out to your team manager with questions before booking.</div></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Age eligibility -->
+  <div class="kl-divider">
+    <div class="kd-bar"></div>
+    <div>
+      <div class="kd-label">Age Eligibility</div>
+    </div>
+  </div>
+
+  <div class="kl-card">
+    <div class="kl-card-body">
+      <table class="fest-summary">
+        <tbody>
+          <tr><td><span class="age-pill">U13</span></td><td>Born on or after January 1, 2014</td></tr>
+          <tr><td><span class="age-pill">U14</span></td><td>Born on or after January 1, 2013</td></tr>
+          <tr><td><span class="age-pill">U15</span></td><td>Born on or after January 1, 2012</td></tr>
+          <tr><td><span class="age-pill">U16</span></td><td>Born on or after January 1, 2011</td></tr>
+          <tr><td><span class="age-pill">U17</span></td><td>Born on or after January 1, 2010</td></tr>
+          <tr><td><span class="age-pill">U19</span></td><td>Born on or after January 1, 2008</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Documents -->
+  <div class="kl-divider">
+    <div class="kd-bar"></div>
+    <div>
+      <div class="kd-label">Documents</div>
+    </div>
+  </div>
+
+  <div class="kl-card">
+    <div class="kl-card-header cyan">
+      <div class="ch-icon">🎓</div>
+      <div>
+        <div class="ch-title">MLS NEXT Fest School Absence Letter</div>
+        <div class="ch-sub">Official letter supporting excused absences for Fest travel (Dec 2 – 13)</div>
+      </div>
+    </div>
+    <div class="kl-card-body">
+      <p>Signed by the MLS NEXT General Manager — share this with your player's school if games fall during the school week.</p>
+      <a href="docs/mlsnext-fest-2026-school-letter.pdf" target="_blank" class="kl-btn cyan">↓ Download School Absence Letter</a>
+    </div>
+  </div>
+
+  <p style="font-family:'Inter',sans-serif;font-size:13px;color:rgba(255,255,255,0.4);text-align:center;margin-top:8px;">Looking for other club documents? Visit <a href="club-documents.html" style="color:var(--cyan);text-decoration:none;">Club Documents</a>.</p>
+
+  <!-- Contact -->
+  <div class="kl-contact">
+    <img src="assets/coach-daniel.jpg" alt="Coach Daniel Mattos" />
+    <div class="contact-info">
+      <h3>Daniel Mattos</h3>
+      <div class="ctitle">MLS NEXT Director</div>
+      <div class="cdetails">
+        📧 <a href="mailto:danielmartini07@gmail.com">danielmartini07@gmail.com</a><br />
+        📱 850-791-0998
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="assets/scwave-logo.png" alt="SC Wave" />
+      <span>SC Wave Soccer Club · Founded 1978</span>
+    </div>
+    <div class="footer-right">
+      <a href="mailto:danielmartini07@gmail.com">danielmartini07@gmail.com</a>
+      <div class="footer-mls">
+        <img src="assets/mlsnext-logo.png" alt="MLS NEXT" />
+        <span>MLS NEXT Member Club</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/nav.js"></script>
+</body>
+</html>
