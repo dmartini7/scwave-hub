@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-T9ZL1CM490"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-T9ZL1CM490');
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Parent Education — SC Wave Training Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+
+    body {
+      background: #0D0D0D !important;
+      color: #fff !important;
+    }
+
+    .kl-wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+      background: #0D0D0D;
+    }
+
+    .kl-tips {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-bottom: 36px;
+    }
+    @media (max-width: 700px) { .kl-tips { grid-template-columns: 1fr; } }
+    .kl-tip {
+      background: #0D0D0D;
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px;
+      padding: 16px 18px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .kl-tip .tip-icon { font-size: 20px; flex-shrink: 0; }
+    .kl-tip .tip-text { font-family: 'Inter', sans-serif; font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.5; }
+    .kl-tip .tip-text strong { color: rgba(255,255,255,0.9); display: block; margin-bottom: 2px; font-size: 13px; }
+
+    .kl-divider {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 44px 0 20px;
+    }
+    .kl-divider .kd-bar {
+      width: 4px;
+      height: 30px;
+      background: var(--gold);
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+    .kl-divider .kd-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 24px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #fff;
+      line-height: 1;
+    }
+    .kl-divider .kd-sub {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: #6b7280;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-left: 4px;
+    }
+
+    .kl-card {
+      background: #0D0D0D;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+    .kl-card-header {
+      padding: 16px 22px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .kl-card-header.gold  { background: rgba(245,197,24,0.1);  border-bottom: 1px solid rgba(245,197,24,0.15); }
+    .kl-card-header .ch-icon { font-size: 26px; }
+    .kl-card-header .ch-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 20px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #fff;
+      line-height: 1;
+    }
+    .kl-card-header.gold  .ch-title { color: var(--gold); }
+    .kl-card-header .ch-sub {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: rgba(255,255,255,0.4);
+      margin-top: 2px;
+    }
+    .kl-card-body { padding: 22px; }
+    .kl-card-body p { font-family: 'Inter', sans-serif; font-size: 14px; color: #b0b8c8; line-height: 1.65; margin: 0 0 12px; }
+    .kl-card-body p:last-child { margin-bottom: 0; }
+    .kl-card-body a { color: var(--cyan); text-decoration: none; }
+    .kl-card-body a:hover { text-decoration: underline; }
+    .kl-card-body strong { color: #fff; }
+
+    .kl-checklist { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+    .kl-check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: #b0b8c8;
+      line-height: 1.5;
+    }
+    .kl-check-item .ci-icon { flex-shrink: 0; font-size: 15px; margin-top: 1px; }
+    .kl-check-item strong { color: #fff; }
+
+    .kl-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gold);
+      color: #0D0D0D;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 15px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: opacity 0.15s;
+      margin-top: 4px;
+    }
+    .kl-btn:hover { opacity: 0.85; }
+    .kl-card-body a.kl-btn { color: #0D0D0D; }
+
+    .kl-status-note {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: rgba(16,185,129,0.08);
+      border: 1px solid rgba(16,185,129,0.35);
+      border-left: 3px solid #10B981;
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-top: 16px;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: #b8f0d8;
+      line-height: 1.6;
+    }
+    .kl-status-note .sn-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+    .kl-status-note strong { color: #10B981; }
+
+    .kl-contact {
+      background: linear-gradient(135deg, #0D0D0D 0%, #1a1a1a 100%);
+      border: 2px solid var(--gold);
+      border-radius: 14px;
+      padding: 28px 32px;
+      margin-top: 44px;
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      flex-wrap: wrap;
+    }
+    .kl-contact img {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: top;
+      border: 2px solid var(--gold);
+      flex-shrink: 0;
+    }
+    .kl-contact .contact-info h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 22px;
+      color: #fff;
+      letter-spacing: 0.03em;
+      margin: 0 0 4px;
+    }
+    .kl-contact .contact-info .ctitle {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .kl-contact .contact-info .cdetails {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.7;
+    }
+    .kl-contact .contact-info a { color: var(--cyan); text-decoration: none; }
+    @media (max-width: 600px) { .kl-contact { flex-direction: column; text-align: center; } }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo-block">
+      <img class="sc-logo" src="assets/scwave-logo.png" alt="SC Wave" />
+      <div class="logo-text">
+        <span class="club">SC Wave</span>
+        <span class="hub">Player Training Hub</span>
+      </div>
+    </a>
+    <div class="header-right">
+      <nav>
+        <a href="tactical-mental.html">Tactical &amp; Mental</a>
+        <a href="technical.html">Technical</a>
+        <a href="physical.html">Physical</a>
+        <a href="staff.html">Staff</a>
+        <a href="kitman-labs.html">Kitman Labs</a>
+        <a href="mls-next-fest.html">MLS NEXT Fest</a>
+        <a href="parent-education.html" class="active">Parent Education</a>
+        <a href="club-documents.html">Club Docs</a>
+      </nav>
+      <div class="mls-badge">
+        <img src="assets/mlsnext-logo.png" alt="MLS NEXT" />
+        <span>MLS NEXT</span>
+      </div>
+      <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false">&#9776;</button>
+    </div>
+  </div>
+</header>
+
+<div class="page-hero">
+  <a href="index.html" class="back-link">← Back to Hub</a>
+  <div class="page-icon" style="background:rgba(245,197,24,0.1);">📚</div>
+  <h1>Parent &amp; Guardian <span>Education</span></h1>
+  <p>MLS NEXT's league-wide educational resource for parents, powered by The Sideline Project — free content covering the youth soccer journey.</p>
+</div>
+
+<div class="kl-wrap">
+
+  <div class="kl-tips">
+    <div class="kl-tip">
+      <div class="tip-icon">🎓</div>
+      <div class="tip-text"><strong>What it is</strong>A league-wide parent/guardian educational hub from MLS NEXT, built with The Sideline Project.</div>
+    </div>
+    <div class="kl-tip">
+      <div class="tip-icon">🆓</div>
+      <div class="tip-text"><strong>Cost</strong>Core content is free. Optional individual courses can be purchased directly on the Leaderboard page if you want to go deeper.</div>
+    </div>
+    <div class="kl-tip">
+      <div class="tip-icon">🏆</div>
+      <div class="tip-text"><strong>Leaderboard</strong>Tracks participation across MLS NEXT clubs — a fun way to see SC Wave families engaging league-wide.</div>
+    </div>
+  </div>
+
+  <div class="kl-divider">
+    <div class="kd-bar"></div>
+    <div>
+      <div class="kd-label">Access the Hub</div>
+      <div class="kd-sub">For SC Wave parents &amp; guardians</div>
+    </div>
+  </div>
+
+  <div class="kl-card">
+    <div class="kl-card-header gold">
+      <div class="ch-icon">📖</div>
+      <div>
+        <div class="ch-title">Participant Leaderboard</div>
+        <div class="ch-sub">The main MLS NEXT Parent/Guardian Hub</div>
+      </div>
+    </div>
+    <div class="kl-card-body">
+      <p>This page has everything for parents — educational resources, the participation leaderboard, and the option to purchase individual courses if you'd like full access.</p>
+      <a href="https://leader.thesidelineproject.com/mlsnext/" target="_blank" class="kl-btn">→ Open the Parent/Guardian Hub</a>
+    </div>
+  </div>
+
+  <div class="kl-status-note">
+    <div class="sn-icon">✅</div>
+    <div>This link is safe to share with any SC Wave MLS NEXT family — forward it, post it, text it.</div>
+  </div>
+
+  <p style="font-family:'Inter',sans-serif;font-size:13px;color:rgba(255,255,255,0.4);text-align:center;margin-top:28px;">Missed the webinar with Skye Eddy, or have questions? Reach out to Daniel Mattos below.</p>
+
+  <!-- Contact -->
+  <div class="kl-contact">
+    <img src="assets/coach-daniel.jpg" alt="Coach Daniel Mattos" />
+    <div class="contact-info">
+      <h3>Daniel Mattos</h3>
+      <div class="ctitle">MLS NEXT Director</div>
+      <div class="cdetails">
+        📧 <a href="mailto:danielmartini07@gmail.com">danielmartini07@gmail.com</a><br />
+        📱 850-791-0998
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="assets/scwave-logo.png" alt="SC Wave" />
+      <span>SC Wave Soccer Club · Founded 1978</span>
+    </div>
+    <div class="footer-right">
+      <a href="mailto:danielmartini07@gmail.com">danielmartini07@gmail.com</a>
+      <div class="footer-mls">
+        <img src="assets/mlsnext-logo.png" alt="MLS NEXT" />
+        <span>MLS NEXT Member Club</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/nav.js"></script>
+</body>
+</html>

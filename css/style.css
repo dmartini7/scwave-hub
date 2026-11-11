@@ -886,10 +886,14 @@ footer {
   .hero-logos img.main-logo { width: 130px; height: 130px; }
   .jersey-img { width: 90px; }
   .mls-badge { display: none; }
+}
 
-  /* Nav switches to the hamburger menu here rather than at the 640px
-     breakpoint below — with 7 top-level links, the inline nav runs out
-     of room well before 640px. */
+/* Nav switches to the hamburger menu here rather than at the 640px
+   breakpoint below — with 8 top-level links, the inline nav runs out
+   of room well before 640px (or even 900px). Kept as its own
+   breakpoint, wider than the 900px one above, since it's governed by
+   nav's own content width, not the hero/mls-badge layout concerns. */
+@media (max-width: 1150px) {
   .menu-toggle { display: flex; align-items: center; justify-content: center; }
   nav {
     display: none;
