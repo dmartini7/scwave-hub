@@ -341,6 +341,50 @@
       border-top: 1px solid rgba(255,255,255,0.07);
       margin: 28px 0;
     }
+
+    /* ── College programs list ── */
+    .college-search {
+      width: 100%;
+      box-sizing: border-box;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 10px;
+      padding: 11px 14px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: #fff;
+      margin: 14px 0 16px;
+    }
+    .college-search::placeholder { color: rgba(255,255,255,0.35); }
+    .college-search:focus { outline: none; border-color: var(--gold); }
+    .college-count {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 10px;
+    }
+    .college-list-scroll {
+      max-height: 480px;
+      overflow-y: auto;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 4px 16px;
+    }
+    .college-list {
+      columns: 3;
+      column-gap: 20px;
+    }
+    @media (max-width: 760px) { .college-list { columns: 2; } }
+    @media (max-width: 480px) { .college-list { columns: 1; } }
+    .college-item {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: #d7dbe2;
+      padding: 7px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      break-inside: avoid;
+    }
+    .college-item.hidden { display: none; }
   </style>
 </head>
 <body>
@@ -709,6 +753,388 @@
     </div>
   </div>
 
+  <!-- College Programs -->
+  <div class="kl-divider">
+    <div class="kd-bar"></div>
+    <div>
+      <div class="kd-label">College Programs Attending</div>
+      <div class="kd-sub">Scouting throughout the Event</div>
+    </div>
+  </div>
+
+  <div class="kl-card">
+    <div class="kl-card-body">
+      <p><strong>360 college programs</strong> — from NCAA Division I, II, III, NAIA, and junior colleges — are expected to have coaches or staff in attendance during MLS NEXT Fest. This reflects programs that have registered to attend the Event overall, not a guarantee of exposure to any specific team or player. Players interested in being seen by a particular program should talk to their coach about outreach ahead of the Event.</p>
+      <a href="docs/mlsnext-fest-2026-college-programs.pdf" target="_blank" class="kl-btn" style="margin:4px 0 4px;">↓ Download Full List (PDF)</a>
+      <input type="text" id="college-search" class="college-search" placeholder="Search colleges (e.g. "Michigan", "UC", "State")..." oninput="filterColleges(this.value)" />
+      <div class="college-count" id="college-count">360 programs</div>
+      <div class="college-list-scroll">
+        <div class="college-list" id="college-list">
+            <div class="college-item">Adrian College</div>
+            <div class="college-item">Allegheny College</div>
+            <div class="college-item">Alvernia University</div>
+            <div class="college-item">Amherst College</div>
+            <div class="college-item">Angelina College</div>
+            <div class="college-item">Aquinas College</div>
+            <div class="college-item">Arcadia University</div>
+            <div class="college-item">Arizona Christian University</div>
+            <div class="college-item">Augustana College</div>
+            <div class="college-item">Babson College</div>
+            <div class="college-item">Baldwin Wallace University</div>
+            <div class="college-item">Barton Community College</div>
+            <div class="college-item">Bates College</div>
+            <div class="college-item">Batten University</div>
+            <div class="college-item">Bellarmine University</div>
+            <div class="college-item">Belmont University</div>
+            <div class="college-item">Benedictine University</div>
+            <div class="college-item">Bentley University</div>
+            <div class="college-item">Berry College</div>
+            <div class="college-item">Binghamton University</div>
+            <div class="college-item">Biola University</div>
+            <div class="college-item">Blackburn College</div>
+            <div class="college-item">Blinn College</div>
+            <div class="college-item">Boston University</div>
+            <div class="college-item">Bowdoin College</div>
+            <div class="college-item">Brandeis University</div>
+            <div class="college-item">Brown University</div>
+            <div class="college-item">Bryant University</div>
+            <div class="college-item">Bucknell University</div>
+            <div class="college-item">Butler University</div>
+            <div class="college-item">Cal Poly San Luis Obispo</div>
+            <div class="college-item">Cal State Dominguez Hills</div>
+            <div class="college-item">Cal State East Bay</div>
+            <div class="college-item">Cal State LA</div>
+            <div class="college-item">Caldwell University</div>
+            <div class="college-item">California Lutheran University</div>
+            <div class="college-item">Caltech</div>
+            <div class="college-item">Calvin University</div>
+            <div class="college-item">Carnegie Mellon University</div>
+            <div class="college-item">Carroll University</div>
+            <div class="college-item">Carthage College</div>
+            <div class="college-item">Case Western Reserve University</div>
+            <div class="college-item">Catholic University of America</div>
+            <div class="college-item">Centre College</div>
+            <div class="college-item">Chatham University</div>
+            <div class="college-item">Claremont McKenna College</div>
+            <div class="college-item">Clark University</div>
+            <div class="college-item">Clarkson University</div>
+            <div class="college-item">Clemson University</div>
+            <div class="college-item">Cleveland State University</div>
+            <div class="college-item">Coastal Carolina University</div>
+            <div class="college-item">Colby College</div>
+            <div class="college-item">Colgate University</div>
+            <div class="college-item">College of Southern Idaho</div>
+            <div class="college-item">College of the Holy Cross</div>
+            <div class="college-item">College of Wooster</div>
+            <div class="college-item">Colorado College</div>
+            <div class="college-item">Colorado Mesa University</div>
+            <div class="college-item">Colorado Northwestern Community College</div>
+            <div class="college-item">Columbia University</div>
+            <div class="college-item">Concordia University Chicago</div>
+            <div class="college-item">Concordia University Irvine</div>
+            <div class="college-item">Concordia University Wisconsin</div>
+            <div class="college-item">Connecticut College</div>
+            <div class="college-item">Corban University</div>
+            <div class="college-item">Cornell College</div>
+            <div class="college-item">Cornell University</div>
+            <div class="college-item">Cornerstone University</div>
+            <div class="college-item">Creighton University</div>
+            <div class="college-item">Dartmouth College</div>
+            <div class="college-item">Davidson College</div>
+            <div class="college-item">Denison University</div>
+            <div class="college-item">DePaul University</div>
+            <div class="college-item">DePauw University</div>
+            <div class="college-item">Dominican University</div>
+            <div class="college-item">Dominican University of California</div>
+            <div class="college-item">Drury University</div>
+            <div class="college-item">Duke University</div>
+            <div class="college-item">Duquesne University</div>
+            <div class="college-item">Earlham College</div>
+            <div class="college-item">East Texas Baptist University</div>
+            <div class="college-item">Eastern Mennonite University</div>
+            <div class="college-item">Eastern Oregon University</div>
+            <div class="college-item">Eckerd College</div>
+            <div class="college-item">Elmhurst University</div>
+            <div class="college-item">Elon University</div>
+            <div class="college-item">Emmanuel College</div>
+            <div class="college-item">Emory University</div>
+            <div class="college-item">Endicott College</div>
+            <div class="college-item">Fairfield University</div>
+            <div class="college-item">Felician University</div>
+            <div class="college-item">Florida Gulf Coast University</div>
+            <div class="college-item">Foothill-De Anza Community College District</div>
+            <div class="college-item">Fort Lewis College</div>
+            <div class="college-item">Franklin &amp; Marshall College</div>
+            <div class="college-item">Frostburg State University</div>
+            <div class="college-item">Furman University</div>
+            <div class="college-item">George Fox University</div>
+            <div class="college-item">George Washington University</div>
+            <div class="college-item">Georgetown University</div>
+            <div class="college-item">Georgia Southern University</div>
+            <div class="college-item">Georgia State University</div>
+            <div class="college-item">Gettysburg College</div>
+            <div class="college-item">Gonzaga University</div>
+            <div class="college-item">Goucher College</div>
+            <div class="college-item">Grand Canyon University</div>
+            <div class="college-item">Grand Rapids Community College</div>
+            <div class="college-item">Grove City College</div>
+            <div class="college-item">Gustavus Adolphus College</div>
+            <div class="college-item">Hampden-Sydney College</div>
+            <div class="college-item">Harvard University</div>
+            <div class="college-item">Haverford College</div>
+            <div class="college-item">Heidelberg University</div>
+            <div class="college-item">High Point University</div>
+            <div class="college-item">Hofstra University</div>
+            <div class="college-item">Hope College</div>
+            <div class="college-item">Houston Christian University</div>
+            <div class="college-item">Huntingdon College</div>
+            <div class="college-item">Illinois Institute of Technology</div>
+            <div class="college-item">Illinois Wesleyan University</div>
+            <div class="college-item">Indiana University</div>
+            <div class="college-item">Indiana University Indy</div>
+            <div class="college-item">Indiana University East</div>
+            <div class="college-item">Iowa Western Community College</div>
+            <div class="college-item">Ithaca College</div>
+            <div class="college-item">James Madison University</div>
+            <div class="college-item">John Carroll University</div>
+            <div class="college-item">Johns Hopkins University</div>
+            <div class="college-item">Johnson &amp; Wales University</div>
+            <div class="college-item">Johnson County Community College</div>
+            <div class="college-item">Juniata College</div>
+            <div class="college-item">Kalamazoo College</div>
+            <div class="college-item">Kansas Wesleyan University</div>
+            <div class="college-item">Kenyon College</div>
+            <div class="college-item">King's College</div>
+            <div class="college-item">La Salle University</div>
+            <div class="college-item">Lafayette College</div>
+            <div class="college-item">Lake Erie College</div>
+            <div class="college-item">Lawrence Technological University</div>
+            <div class="college-item">Lawrence University</div>
+            <div class="college-item">Le Moyne College</div>
+            <div class="college-item">Lebanon Valley College</div>
+            <div class="college-item">Lee University</div>
+            <div class="college-item">Lewis University</div>
+            <div class="college-item">Lindenwood University</div>
+            <div class="college-item">Lipscomb University</div>
+            <div class="college-item">Loyola Marymount University</div>
+            <div class="college-item">Loyola University Chicago</div>
+            <div class="college-item">Loyola University Maryland</div>
+            <div class="college-item">Lubbock Christian University</div>
+            <div class="college-item">Madison College</div>
+            <div class="college-item">Maine Maritime Academy</div>
+            <div class="college-item">Manchester University</div>
+            <div class="college-item">Marist College</div>
+            <div class="college-item">Marquette University</div>
+            <div class="college-item">Marymount University</div>
+            <div class="college-item">McDaniel College</div>
+            <div class="college-item">Mercer University</div>
+            <div class="college-item">Merrimack College</div>
+            <div class="college-item">Messiah University</div>
+            <div class="college-item">Miami Dade College</div>
+            <div class="college-item">Michigan State University</div>
+            <div class="college-item">Middlebury College</div>
+            <div class="college-item">Milwaukee Area Technical College</div>
+            <div class="college-item">Milwaukee School of Engineering</div>
+            <div class="college-item">MIT</div>
+            <div class="college-item">Mohave Community College</div>
+            <div class="college-item">Montclair State University</div>
+            <div class="college-item">Moravian University</div>
+            <div class="college-item">Muhlenberg College</div>
+            <div class="college-item">Nazareth University</div>
+            <div class="college-item">NC State University</div>
+            <div class="college-item">Nebraska Wesleyan University</div>
+            <div class="college-item">Neumann University</div>
+            <div class="college-item">New York University</div>
+            <div class="college-item">Nichols College</div>
+            <div class="college-item">North Central College</div>
+            <div class="college-item">North Central University</div>
+            <div class="college-item">North Greenville University</div>
+            <div class="college-item">North Park University</div>
+            <div class="college-item">Northeastern University</div>
+            <div class="college-item">Northern Illinois University</div>
+            <div class="college-item">Northwestern University</div>
+            <div class="college-item">Northwood University</div>
+            <div class="college-item">Norwich University</div>
+            <div class="college-item">Oberlin College</div>
+            <div class="college-item">Occidental College</div>
+            <div class="college-item">Ohio Northern University</div>
+            <div class="college-item">Ohio Wesleyan University</div>
+            <div class="college-item">Old Dominion University</div>
+            <div class="college-item">Oregon State University</div>
+            <div class="college-item">Ottawa University</div>
+            <div class="college-item">Ouachita Baptist University</div>
+            <div class="college-item">Our Lady of the Lake University</div>
+            <div class="college-item">Pace University</div>
+            <div class="college-item">Palm Beach Atlantic University</div>
+            <div class="college-item">Paradise Valley Community College</div>
+            <div class="college-item">Penn State University</div>
+            <div class="college-item">Piedmont University</div>
+            <div class="college-item">Pima Community College</div>
+            <div class="college-item">Pomona College</div>
+            <div class="college-item">Prince George's Community College</div>
+            <div class="college-item">Princeton University</div>
+            <div class="college-item">Providence College</div>
+            <div class="college-item">Quinnipiac University</div>
+            <div class="college-item">Randolph College</div>
+            <div class="college-item">Regent University</div>
+            <div class="college-item">Rhodes College</div>
+            <div class="college-item">Rider University</div>
+            <div class="college-item">Ripon College</div>
+            <div class="college-item">Rivier University</div>
+            <div class="college-item">Roanoke College</div>
+            <div class="college-item">Robert Morris University</div>
+            <div class="college-item">Rochester Institute of Technology</div>
+            <div class="college-item">Rockhurst University</div>
+            <div class="college-item">Rose-Hulman Institute of Technology</div>
+            <div class="college-item">Rowan University</div>
+            <div class="college-item">Sacramento State</div>
+            <div class="college-item">Sacred Heart University</div>
+            <div class="college-item">Saint Louis University</div>
+            <div class="college-item">Saint Mary's College of California</div>
+            <div class="college-item">Saint Mary's University of Minnesota</div>
+            <div class="college-item">Saint Michael's College</div>
+            <div class="college-item">Salve Regina University</div>
+            <div class="college-item">San Diego State University</div>
+            <div class="college-item">San Jose State University</div>
+            <div class="college-item">Santa Clara University</div>
+            <div class="college-item">Seattle University</div>
+            <div class="college-item">Seton Hall University</div>
+            <div class="college-item">Sewanee: The University of the South</div>
+            <div class="college-item">Shorter University</div>
+            <div class="college-item">Siena College</div>
+            <div class="college-item">Skidmore College</div>
+            <div class="college-item">Southern Methodist University</div>
+            <div class="college-item">Southwestern University</div>
+            <div class="college-item">St. Ambrose University</div>
+            <div class="college-item">St. Edward's University</div>
+            <div class="college-item">St. John Fisher University</div>
+            <div class="college-item">St. John's University</div>
+            <div class="college-item">St. Olaf College</div>
+            <div class="college-item">Stanford University</div>
+            <div class="college-item">Stetson University</div>
+            <div class="college-item">Stevens Institute of Technology</div>
+            <div class="college-item">Stevenson University</div>
+            <div class="college-item">Stonehill College</div>
+            <div class="college-item">Stony Brook University</div>
+            <div class="college-item">Suffolk University</div>
+            <div class="college-item">Sul Ross State University</div>
+            <div class="college-item">SUNY Buffalo State University</div>
+            <div class="college-item">SUNY Cortland</div>
+            <div class="college-item">SUNY Oneonta</div>
+            <div class="college-item">SUNY Oswego</div>
+            <div class="college-item">SUNY Plattsburgh</div>
+            <div class="college-item">SUNY Potsdam</div>
+            <div class="college-item">Susquehanna University</div>
+            <div class="college-item">Swarthmore College</div>
+            <div class="college-item">Temple University</div>
+            <div class="college-item">Texas A&amp;M International University</div>
+            <div class="college-item">The College of New Jersey</div>
+            <div class="college-item">The Master's University</div>
+            <div class="college-item">Trine University</div>
+            <div class="college-item">Tufts University</div>
+            <div class="college-item">UC Berkeley</div>
+            <div class="college-item">UC Irvine</div>
+            <div class="college-item">UC Merced</div>
+            <div class="college-item">UC Riverside</div>
+            <div class="college-item">UC San Diego</div>
+            <div class="college-item">UC Santa Barbara</div>
+            <div class="college-item">UC Santa Cruz</div>
+            <div class="college-item">UCLA</div>
+            <div class="college-item">UMBC</div>
+            <div class="college-item">UNC Chapel Hill</div>
+            <div class="college-item">UNC Greensboro</div>
+            <div class="college-item">UNC Wilmington</div>
+            <div class="college-item">Union College</div>
+            <div class="college-item">Union University</div>
+            <div class="college-item">University of Alabama at Birmingham</div>
+            <div class="college-item">University of Central Arkansas</div>
+            <div class="college-item">University of Chicago</div>
+            <div class="college-item">University of Connecticut</div>
+            <div class="college-item">University of Dayton</div>
+            <div class="college-item">University of Delaware</div>
+            <div class="college-item">University of Denver</div>
+            <div class="college-item">University of Evansville</div>
+            <div class="college-item">University of Hawaii</div>
+            <div class="college-item">University of Illinois Chicago</div>
+            <div class="college-item">University of Kentucky</div>
+            <div class="college-item">University of Louisville</div>
+            <div class="college-item">University of Lynchburg</div>
+            <div class="college-item">University of Mary Hardin-Baylor</div>
+            <div class="college-item">University of Memphis</div>
+            <div class="college-item">University of Michigan</div>
+            <div class="college-item">University of Minnesota Morris</div>
+            <div class="college-item">University of Missouri-Kansas City</div>
+            <div class="college-item">University of Mount Olive</div>
+            <div class="college-item">University of Mount Saint Vincent</div>
+            <div class="college-item">University of Mount Union</div>
+            <div class="college-item">University of Nebraska Omaha</div>
+            <div class="college-item">University of Notre Dame</div>
+            <div class="college-item">University of Pennsylvania</div>
+            <div class="college-item">University of Portland</div>
+            <div class="college-item">University of Redlands</div>
+            <div class="college-item">University of Rochester</div>
+            <div class="college-item">University of San Diego</div>
+            <div class="college-item">University of San Francisco</div>
+            <div class="college-item">University of Scranton</div>
+            <div class="college-item">University of South Carolina</div>
+            <div class="college-item">University of South Florida</div>
+            <div class="college-item">University of St. Thomas (Houston)</div>
+            <div class="college-item">University of St. Thomas (Minnesota)</div>
+            <div class="college-item">University of Texas at Dallas</div>
+            <div class="college-item">University of the Incarnate Word</div>
+            <div class="college-item">University of Tulsa</div>
+            <div class="college-item">University of Vermont</div>
+            <div class="college-item">University of Virginia</div>
+            <div class="college-item">University of Washington</div>
+            <div class="college-item">University of Wisconsin-Green Bay</div>
+            <div class="college-item">University of Wisconsin-Madison</div>
+            <div class="college-item">University of Wisconsin-Platteville</div>
+            <div class="college-item">University of Wisconsin-Stevens Point</div>
+            <div class="college-item">UNLV</div>
+            <div class="college-item">US Air Force Academy</div>
+            <div class="college-item">US Military Academy (West Point)</div>
+            <div class="college-item">US Naval Academy</div>
+            <div class="college-item">Utah State University</div>
+            <div class="college-item">Utah Tech University</div>
+            <div class="college-item">Vanguard University</div>
+            <div class="college-item">Vassar College</div>
+            <div class="college-item">Villanova University</div>
+            <div class="college-item">Virginia Tech</div>
+            <div class="college-item">Wabash College</div>
+            <div class="college-item">Wake Forest University</div>
+            <div class="college-item">Wartburg College</div>
+            <div class="college-item">Washington College</div>
+            <div class="college-item">Washington University in St. Louis</div>
+            <div class="college-item">Waynesburg University</div>
+            <div class="college-item">Webster University</div>
+            <div class="college-item">Wentworth Institute of Technology</div>
+            <div class="college-item">West Chester University</div>
+            <div class="college-item">West Liberty University</div>
+            <div class="college-item">West Texas A&amp;M University</div>
+            <div class="college-item">Western Michigan University</div>
+            <div class="college-item">Westminster University</div>
+            <div class="college-item">Westmont College</div>
+            <div class="college-item">Wheaton College (MA)</div>
+            <div class="college-item">Whitman College</div>
+            <div class="college-item">Whittier College</div>
+            <div class="college-item">Whitworth University</div>
+            <div class="college-item">Willamette University</div>
+            <div class="college-item">William &amp; Mary</div>
+            <div class="college-item">William Peace University</div>
+            <div class="college-item">William Woods University</div>
+            <div class="college-item">Williams College</div>
+            <div class="college-item">Wisconsin Lutheran College</div>
+            <div class="college-item">Wofford College</div>
+            <div class="college-item">Worcester Polytechnic Institute</div>
+            <div class="college-item">Wright State University</div>
+            <div class="college-item">Xavier University</div>
+            <div class="college-item">Yale University</div>
+            <div class="college-item">Yavapai College</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Documents -->
   <div class="kl-divider">
     <div class="kd-bar"></div>
@@ -779,5 +1205,19 @@
 </footer>
 
 <script src="js/nav.js"></script>
+<script>
+  function filterColleges(query) {
+    var q = query.trim().toLowerCase();
+    var items = document.querySelectorAll('#college-list .college-item');
+    var visible = 0;
+    items.forEach(function (el) {
+      var match = el.textContent.toLowerCase().indexOf(q) !== -1;
+      el.classList.toggle('hidden', !match);
+      if (match) visible++;
+    });
+    var countEl = document.getElementById('college-count');
+    if (countEl) countEl.textContent = visible + (visible === 1 ? ' program' : ' programs');
+  }
+</script>
 </body>
 </html>
