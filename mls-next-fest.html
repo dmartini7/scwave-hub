@@ -291,6 +291,19 @@
     }
     .fest-legend .swatch { width: 14px; height: 14px; border-radius: 3px; background: rgba(245,197,24,0.18); border: 1px solid rgba(245,197,24,0.4); }
 
+    /* ── Facility tables & maps ── */
+    .facility-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08); margin-bottom: 14px; }
+    .facility-table { width: 100%; min-width: 520px; border-collapse: collapse; font-family: 'Inter', sans-serif; font-size: 13px; }
+    .facility-table th, .facility-table td { padding: 10px 14px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .facility-table th { background: rgba(245,197,24,0.1); color: var(--gold); font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 13px; letter-spacing: 0.03em; }
+    .facility-table td.attr-label { text-align: left; font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.4); background: #121212; white-space: nowrap; }
+    .facility-table td { color: #d7dbe2; }
+    .facility-table tr:last-child td { border-bottom: none; }
+    .facility-maps { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; margin-top: 4px; }
+    .facility-map-card { background: #0D0D0D; border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; overflow: hidden; }
+    .facility-map-card img { width: 100%; display: block; background: #000; }
+    .facility-map-card .fmc-label { padding: 10px 14px; font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 13px; letter-spacing: 0.03em; color: #fff; border-top: 1px solid rgba(255,255,255,0.08); }
+
     /* ── Contact box ── */
     .kl-contact {
       background: linear-gradient(135deg, #0D0D0D 0%, #1a1a1a 100%);
@@ -605,6 +618,77 @@
     </div>
   </div>
 
+  <!-- Facilities & Field Maps -->
+  <div class="kl-divider">
+    <div class="kd-bar"></div>
+    <div>
+      <div class="kd-label">Facilities &amp; Field Maps</div>
+      <div class="kd-sub">Where each age group plays</div>
+    </div>
+  </div>
+
+  <div class="kl-card">
+    <div class="kl-card-header gold">
+      <div class="ch-icon">📍</div>
+      <div>
+        <div class="ch-title">U15 – U19 Facilities</div>
+        <div class="ch-sub">Mesa, AZ</div>
+      </div>
+    </div>
+    <div class="kl-card-body">
+      <div class="facility-scroll">
+        <table class="facility-table">
+          <tbody>
+            <tr><th>Venue</th><th>Arizona Athletic Grounds</th><th>Red Mountain North</th><th>Lehi Sports Park</th></tr>
+            <tr><td class="attr-label">Address</td><td>6321 S Ellsworth Rd, Mesa, AZ</td><td>7750 E Brown Rd, Mesa, AZ</td><td>2228 N Center St, Mesa, AZ</td></tr>
+            <tr><td class="attr-label">Dates</td><td>Dec 2 – 13</td><td>Dec 2–4, 7, 10–11, 13</td><td>Dec 5 – 6</td></tr>
+            <tr><td class="attr-label">Fields</td><td>24</td><td>10</td><td>5</td></tr>
+            <tr><td class="attr-label">Players' Lounge</td><td>Yes</td><td>No</td><td>No</td></tr>
+            <tr><td class="attr-label">Retail</td><td>Yes</td><td>Yes</td><td>No</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="facility-maps">
+        <div class="facility-map-card">
+          <img src="assets/fest-map-arizona-athletic-grounds.png" alt="Arizona Athletic Grounds field map" loading="lazy" />
+          <div class="fmc-label">Arizona Athletic Grounds — Fields 1–24</div>
+        </div>
+        <div class="facility-map-card">
+          <img src="assets/fest-map-red-mountain-north.png" alt="Red Mountain North field map" loading="lazy" />
+          <div class="fmc-label">Red Mountain North — Fields 7–16</div>
+        </div>
+        <div class="facility-map-card">
+          <img src="assets/fest-map-lehi-sports-park.png" alt="Lehi Sports Park field map" loading="lazy" />
+          <div class="fmc-label">Lehi Sports Park — Fields 1–5</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="kl-card">
+    <div class="kl-card-header gold">
+      <div class="ch-icon">📍</div>
+      <div>
+        <div class="ch-title">U13 – U14 Facilities</div>
+        <div class="ch-sub">Scottsdale, AZ</div>
+      </div>
+    </div>
+    <div class="kl-card-body">
+      <div class="facility-scroll">
+        <table class="facility-table">
+          <tbody>
+            <tr><th>Venue</th><th>Bell 94 Sports Complex</th><th>Reata Fields</th><th>Scottsdale Sports Complex</th></tr>
+            <tr><td class="attr-label">Address</td><td>9390 E Bell Rd, Scottsdale, AZ</td><td>9809 E McDowell Mountain Ranch Rd, Scottsdale, AZ</td><td>8081 E Princess Dr, Scottsdale, AZ</td></tr>
+            <tr><td class="attr-label">Dates</td><td colspan="3">Dec 8 – 13</td></tr>
+            <tr><td class="attr-label">Fields</td><td>6</td><td>5</td><td>10</td></tr>
+            <tr><td class="attr-label">Retail</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-family:'Inter',sans-serif;font-size:12px;color:rgba(255,255,255,0.4);margin-top:8px;">Field maps for the U13–U14 venues weren't included in the official orientation deck — we'll add them here if the league publishes them.</p>
+    </div>
+  </div>
+
   <!-- Hotel & travel -->
   <div class="kl-divider">
     <div class="kd-bar"></div>
@@ -750,6 +834,21 @@
         <div class="w-icon">⏰</div>
         <div>Interest form due <strong>Monday, November 30 at 5:00 PM ET</strong>. Talk to Coach Daniel if your U17/U19 player wants to sign up.</div>
       </div>
+    </div>
+  </div>
+
+  <div class="kl-card">
+    <div class="kl-card-header cyan">
+      <div class="ch-icon">🏫</div>
+      <div>
+        <div class="ch-title">College Recruiting — For U17/U19 Players</div>
+        <div class="ch-sub">What older players should know about exposure at Fest</div>
+      </div>
+    </div>
+    <div class="kl-card-body">
+      <p>MLS NEXT expects <strong>500+ college coaches and scouts</strong> to attend Fest, with 250+ programs already registered. College staff get sideline access to every match, the full event schedule and rosters, and post-event match video — so U17/U19 players are being watched throughout the event, not just in marquee matches.</p>
+      <p>Friday's Player Pathway Speaker Series session (<strong>"The Pathway," Dec 11, 1:30–4:30 PM</strong>) covers college recruiting directly, alongside the MLS Draft/Pathway to Pro, Youth National Team, and mentorship — it's open to players, coaches, and parents with no registration needed.</p>
+      <p style="margin-bottom:0;">See the full list of college programs expected to attend below.</p>
     </div>
   </div>
 
