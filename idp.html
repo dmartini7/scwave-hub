@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-T9ZL1CM490"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-T9ZL1CM490');
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Individual Development Plan — SC Wave Training Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    body { background: #1A1A1A !important; }
+
+    /* ── Toolbar ── */
+    .bar-top { max-width: 900px; margin: 22px auto 0; padding: 0 20px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
+    .bar-top p { color: #A0A0A0; font-size: 13px; line-height: 1.5; }
+    .bar-top p b { color: #F5C518; }
+    .btns { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+    .btn { font: 700 13px 'Inter', sans-serif; border-radius: 8px; padding: 9px 14px; cursor: pointer; border: 1px solid rgba(255,255,255,.2); background: #242424; color: #fff; }
+    .btn:hover { border-color: #F5C518; }
+    .btn.gold { background: #F5C518; color: #0D0D0D; border-color: #F5C518; }
+    #saved { color: #A0A0A0; font-size: 12px; min-width: 60px; }
+
+    /* ── Pages ── */
+    .doc { max-width: 900px; margin: 14px auto 70px; padding: 0 20px; }
+    .page { background: #fff; color: #0D0D0D; border-radius: 12px; overflow: hidden; box-shadow: 0 12px 40px rgba(0,0,0,.35); margin-bottom: 22px; }
+    .pad { padding: 20px 24px 22px; }
+    @media screen and (max-width: 640px) { .pad { padding: 16px 14px; } .doc, .bar-top { padding: 0 10px; } }
+
+    .head { background: #0D0D0D; color: #fff; border-bottom: 4px solid #F5C518; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .head .l { display: flex; align-items: center; gap: 12px; }
+    .head img { height: 44px; }
+    .head h1 { font: 900 26px/1 'Barlow Condensed', sans-serif; text-transform: uppercase; letter-spacing: .4px; }
+    .head h1 span { color: #F5C518; }
+    .head small { display: block; font: 600 10.5px 'Inter'; color: #A0A0A0; letter-spacing: 1.4px; text-transform: uppercase; margin-top: 4px; }
+    @media screen and (max-width: 640px) { .head { padding: 12px 14px; } .head h1 { font-size: 20px; } .head .mls { display: none; } }
+
+    h2 { font: 800 17px/1 'Barlow Condensed', sans-serif; text-transform: uppercase; letter-spacing: .5px; margin: 18px 0 8px; display: flex; align-items: center; gap: 8px; }
+    h2::before { content: ''; width: 5px; height: 16px; background: #F5C518; border-radius: 2px; }
+    .note { font-size: 11.5px; color: #6B6B6B; margin: -4px 0 8px; }
+    .lbl { display: block; font: 700 9.5px 'Inter'; color: #6B6B6B; text-transform: uppercase; letter-spacing: .8px; margin-bottom: 2px; }
+
+    /* editable */
+    .f { font: inherit; color: inherit; width: 100%; background: #FFFBEA; border: 1px dashed #E8CF6A; border-radius: 5px; padding: 3px 6px; }
+    .f:focus { outline: 2px solid #F5C518; background: #fff; }
+    textarea.f { resize: vertical; line-height: 1.4; min-height: 0; }
+
+    /* player row */
+    .info { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 8px 12px; }
+    .info .name input { font: 900 24px/1.1 'Barlow Condensed'; text-transform: uppercase; }
+    .info div { font-size: 13px; }
+    .stats { display: flex; gap: 8px; }
+    .stats div { flex: 1; background: #0D0D0D; border-radius: 8px; padding: 6px 8px; }
+    .stats .lbl { color: #A0A0A0; }
+    .stats input { background: transparent; border: 1px dashed #555; color: #F5C518; font: 800 20px 'Barlow Condensed'; }
+    @media screen and (max-width: 700px) { .info { grid-template-columns: 1fr 1fr; } .info .name { grid-column: 1 / -1; } }
+
+    /* role */
+    .role { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+    .role div { background: #F6F6F3; border-radius: 8px; padding: 8px 10px; border-top: 3px solid #0D0D0D; }
+    .role .lbl { color: #0D0D0D; }
+    .role textarea { font-size: 11.5px; background: transparent; }
+    .quals { margin-bottom: 8px; font-size: 12.5px; }
+    @media screen and (max-width: 700px) { .role { grid-template-columns: 1fr 1fr; } }
+
+    /* four corners */
+    .legend { display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: 11px; color: #444; margin-bottom: 8px; }
+    .legend b { background: #0D0D0D; color: #F5C518; border-radius: 4px; padding: 0 5px; font-family: 'Barlow Condensed'; font-size: 13px; }
+    .legend i { display: inline-block; width: 18px; height: 7px; border-radius: 3px; vertical-align: middle; margin-right: 4px; }
+    .corners { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media screen and (max-width: 700px) { .corners { grid-template-columns: 1fr; } }
+    .corner { border: 1px solid #E3E3DE; border-radius: 10px; overflow: hidden; }
+    .corner-h { background: #0D0D0D; color: #fff; padding: 7px 12px; display: flex; justify-content: space-between; align-items: baseline; }
+    .corner-h b { font: 800 16px 'Barlow Condensed'; text-transform: uppercase; letter-spacing: .5px; }
+    .corner-h span { font: 800 18px 'Barlow Condensed'; color: #F5C518; }
+    .corner-h span small { color: #A0A0A0; font-size: 12px; }
+    .row { padding: 7px 12px; border-bottom: 1px solid #EEE; }
+    .row:last-child { border-bottom: none; }
+    .row-top { display: grid; grid-template-columns: 1fr 52px 52px; gap: 6px; align-items: end; }
+    .row-top input.nm { font: 700 12.5px 'Inter'; }
+    .row-top select { font: 800 15px 'Barlow Condensed'; text-align: center; padding: 1px; }
+    .row-top .lbl { text-align: center; }
+    .tag { display: inline-block; font: 700 9px 'Inter'; text-transform: uppercase; letter-spacing: .4px; border-radius: 10px; padding: 2px 6px; margin: 3px 4px 0 0; }
+    .tag.ph { background: #0D0D0D; color: #F5C518; } .tag.tk { background: #E0F9FB; color: #0B6E77; }
+    .track { position: relative; height: 16px; margin-top: 5px; background: repeating-linear-gradient(90deg, transparent 0 calc(25% - 1px), #EEE calc(25% - 1px) 25%); }
+    .track .b { position: absolute; left: 0; border-radius: 0 4px 4px 0; transition: width .2s; }
+    .track .b0 { top: 1px; height: 5px; background: #C9C9C4; }
+    .track .b1 { top: 7px; height: 8px; background: linear-gradient(90deg, #C49A10, #F5C518); }
+    .track .t { position: absolute; left: 75%; top: -2px; bottom: -2px; border-left: 2px dashed #0B6E77; }
+
+    /* strengths / work on */
+    .sw { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media screen and (max-width: 700px) { .sw { grid-template-columns: 1fr; } }
+    .sw > div { border-radius: 10px; padding: 10px 12px; }
+    .sw .s { background: #FFF8DC; border: 1px solid #F5C518; }
+    .sw .w { background: #F4F4F1; border: 1px solid #D4D4CF; }
+    .sw h3 { font: 800 15px 'Barlow Condensed'; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 6px; }
+    .sw textarea { font-size: 12.5px; background: rgba(255,255,255,.6); }
+
+    /* TAKA */
+    .taka { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; }
+    @media screen and (max-width: 700px) { .taka { grid-template-columns: repeat(3, 1fr); } }
+    .taka div { border-radius: 8px; padding: 6px 8px; background: #0D1B26; color: #fff; }
+    .taka input { background: transparent; border-color: #2A4A5A; color: #fff; font: 700 12.5px 'Inter'; }
+    .taka select { background: transparent; border-color: #2A4A5A; font: 700 10.5px 'Inter'; margin-top: 3px; }
+    .taka select.Strength { color: #4ADE80; } .taka select.OnPar { color: #A0A0A0; } .taka select.Develop { color: #FBBF24; }
+    .taka select option { color: #000; }
+    .powered { font: 700 10px 'Inter'; letter-spacing: .8px; color: #0B6E77; text-transform: uppercase; }
+
+    /* goals */
+    table { width: 100%; border-collapse: collapse; font-size: 12px; }
+    th { text-align: left; font: 700 9.5px 'Inter'; text-transform: uppercase; letter-spacing: .6px; color: #6B6B6B; padding: 4px 6px; border-bottom: 2px solid #0D0D0D; }
+    td { padding: 5px 6px; border-bottom: 1px solid #EEE; vertical-align: top; }
+    td textarea, td input, td select { font-size: 12px !important; }
+    .goal-n { font: 900 20px 'Barlow Condensed'; color: #C49A10; width: 26px; }
+    .scroll { overflow-x: auto; }
+    .x, .add { cursor: pointer; font: 700 12px 'Inter'; border-radius: 6px; }
+    .x { background: none; border: 1px solid #DDD; color: #999; width: 26px; height: 24px; }
+    .x:hover { color: #DC2626; border-color: #DC2626; }
+    .add { background: #0D0D0D; color: #F5C518; border: none; padding: 6px 12px; margin-top: 6px; }
+
+    /* games mini chart */
+    .gchart { display: flex; gap: 10px; align-items: flex-end; height: 70px; border-bottom: 2px solid #0D0D0D; position: relative; margin-bottom: 6px; padding: 0 4px; }
+    .gchart .tl { position: absolute; left: 0; right: 0; bottom: 75%; border-top: 2px dashed #0B6E77; }
+    .gchart .g { width: 46px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; font: 700 10px 'Inter'; }
+    .gchart .g i { width: 20px; background: linear-gradient(180deg, #F5C518, #C49A10); border-radius: 4px 4px 0 0; margin-top: 2px; }
+
+    .signs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 26px; }
+    .signs div { border-top: 2px solid #0D0D0D; padding-top: 4px; }
+    .foot { background: #0D0D0D; color: #A0A0A0; font-size: 10.5px; padding: 8px 24px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+    .foot b { color: #F5C518; }
+
+    /* ── Print: 2 Letter pages ── */
+    @page { size: letter; margin: 0.35in; }
+    @media print {
+      header, footer, .bar-top, .np { display: none !important; }
+      body { background: #fff !important; }
+      * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .doc { margin: 0; padding: 0; max-width: none; }
+      .page { box-shadow: none; border-radius: 0; margin: 0; break-after: page; }
+      .page:last-child { break-after: auto; }
+      .f { background: transparent !important; border-color: transparent !important; padding-left: 0; padding-right: 0; }
+      select.f { appearance: none; -webkit-appearance: none; }
+      textarea.f { resize: none; overflow: hidden; }
+      .corner, .row, tr { break-inside: avoid; }
+      .page { zoom: 0.8; }
+      .stats div { padding: 4px 8px; }
+      .row { padding: 5px 12px; }
+      h2 { margin: 12px 0 6px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo-block">
+      <img class="sc-logo" src="assets/scwave-logo.png" alt="SC Wave" />
+      <div class="logo-text">
+        <span class="club">SC Wave</span>
+        <span class="hub">Player Training Hub</span>
+      </div>
+    </a>
+    <div class="header-right">
+      <nav>
+        <a href="tactical-mental.html">Tactical &amp; Mental</a>
+        <a href="technical.html">Technical</a>
+        <a href="physical.html">Physical</a>
+        <a href="staff.html">Staff</a>
+        <a href="kitman-labs.html">Kitman Labs</a>
+        <a href="mls-next-fest.html">MLS NEXT Fest</a>
+        <a href="parent-education.html">Parent Education</a>
+        <a href="club-documents.html">Club Docs</a>
+      </nav>
+      <div class="mls-badge">
+        <img src="assets/mlsnext-logo.png" alt="MLS NEXT" />
+        <span>MLS NEXT</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="bar-top">
+  <p>Type in any <b>yellow field</b> and pick ratings from <b>1 to 4</b>. Changes save automatically in this browser.<br><b>Save Player File</b> keeps a copy per player; <b>Print / PDF</b> gives the 2-page plan.</p>
+  <div class="btns">
+    <span id="saved"></span>
+    <button class="btn gold" onclick="window.print()">Print / PDF</button>
+    <button class="btn" onclick="exportJSON()">Save Player File</button>
+    <button class="btn" onclick="document.getElementById('file').click()">Open Player File</button>
+    <button class="btn" onclick="newBlank()">New Blank IDP</button>
+    <button class="btn" onclick="resetSample()">Reset to Sample</button>
+    <input type="file" id="file" accept=".json" hidden onchange="importJSON(this)" />
+  </div>
+</div>
+
+<main class="doc" id="doc"></main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="assets/scwave-logo.png" alt="SC Wave" />
+      <span>SC Wave Soccer Club · Founded 1978</span>
+    </div>
+    <div class="footer-right">
+      <a href="mailto:danielmartini07@gmail.com">danielmartini07@gmail.com</a>
+      <div class="footer-mls">
+        <img src="assets/mlsnext-logo.png" alt="MLS NEXT" />
+        <span>MLS NEXT Member Club</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* SC Wave Individual Development Plan — simple 2-page format.
+   Page 1: player, role in the Game Model, four-corner ratings, strengths / work-ons.
+   Page 2: TAKA (MLS NEXT) snapshot, 2–3 goals, game log, comments & sign-off. */
+const KEY = 'scwave-idp-v2';
+const R = ['', '1', '1.5', '2', '2.5', '3', '3.5', '4'];
+const TAKA_STATUS = ['Key Strength', 'On Par', 'Dev. Opportunity', 'No data'];
+
+const SAMPLE = {
+  p: { name: 'Kareem Ahmad', num: '33', pos: 'Central Midfielder (#8) / ACM (#10)', age: 'U17 Boys',
+       team: 'SC Wave MLS NEXT U17 AD', season: '2026–27', coach: '', date: 'Nov 27, 2026',
+       games: '6', goals: '1', mins: '', before: 'Aug 2026', now: 'Nov 2026', review: 'March 2027' },
+  role: {
+    quals: 'High endurance · Proficient dribbler · Calm under pressure · Accurate, efficient passing · Finishing from 18–30 yds',
+    att: 'Find space between the lines and in the half space; combine in triangles; dribble or pass forward to break lines; arrive in the box.',
+    atod: 'If closest, press the ball immediately; otherwise delay or drop to protect the middle.',
+    def: 'Stop forward passes and dribbles in our mid/high block; recover to help the #6.',
+    dtoa: 'Support quickly in space; play forward if it is on, keep the ball and set the tempo if not.'
+  },
+  corners: [
+    { t: 'Technical', items: [
+      { n: 'Passing — accuracy & range', ph: 'Attacking', tk: 'Passing', b: '2', c: '2.5' },
+      { n: 'Dribbling & 1v1 to progress', ph: 'Attacking', tk: 'Creativity', b: '3', c: '3.5' },
+      { n: 'Finishing 18–30 yds', ph: 'Attacking', tk: 'Finishing', b: '2.5', c: '3' } ] },
+    { t: 'Tactical', items: [
+      { n: 'Positioning between the lines', ph: 'Attacking', tk: 'Off Ball', b: '2.5', c: '3' },
+      { n: 'Transition decisions', ph: 'Transitions', tk: '', b: '2', c: '2.5' },
+      { n: 'Defensive shape & recovery runs', ph: 'Defending', tk: 'Defending', b: '1.5', c: '2' } ] },
+    { t: 'Physical', items: [
+      { n: 'Endurance — box to box, 90 min', ph: 'All phases', tk: '', b: '2.5', c: '3' },
+      { n: 'Speed & acceleration', ph: 'Transitions', tk: 'Physical', b: '2.5', c: '2.5' },
+      { n: 'Strength in duels', ph: 'Defending', tk: 'Physical', b: '2', c: '2.5' } ] },
+    { t: 'Mental', items: [
+      { n: 'Composure under pressure', ph: 'All phases', tk: '', b: '2.5', c: '3' },
+      { n: 'Initiative & bravery on the ball', ph: 'Attacking', tk: '', b: '3', c: '3.5' },
+      { n: 'Communication & leadership', ph: 'Defending', tk: '', b: '2', c: '2.5' } ] }
+  ],
+  strengths: '1. Dribbling & 1v1 — breaks lines on the dribble and creates 2v1s in midfield (TAKA: Creativity).\n2. Initiative & bravery — always wants the ball and takes players on.',
+  workon: '1. Defensive shape & recovery runs — stop forward play and recover to support the #6 (TAKA: Defending).\n2. Passing — play forward and diagonally more often, scan before receiving (TAKA: Passing).',
+  taka: { note: '2025–26 · CM · compared to the Top 20% of U16 CMs in MLS NEXT',
+    skills: [ { n: 'Creativity', s: 'Key Strength' }, { n: 'Finishing', s: 'Key Strength' }, { n: 'Physical', s: 'On Par' },
+              { n: 'Off Ball', s: 'On Par' }, { n: 'Passing', s: 'Dev. Opportunity' }, { n: 'Defending', s: 'Dev. Opportunity' } ] },
+  goals: [
+    { g: 'Defend the middle: block forward passes and recover to support the #6 (rating 2 → 3).',
+      a: 'Tue/Wed: 4v4+2 and 6v6 games with transition rules. Bi-weekly TAKA Defending clip review with coach.',
+      m: 'Coach rating 3+. TAKA Defending improves from Development Opportunity.', by: 'Mar 2027' },
+    { g: 'Pass forward with quality: scan before receiving and play diagonal and through passes (2.5 → 3).',
+      a: 'Monday 2-touch rondos with scanning cues. Weekly winter futsal. Wall-pass homework 3× per week.',
+      m: 'Coach rating 3+. TAKA Passing reaches On Par.', by: 'Mar 2027' }
+  ],
+  games: [
+    { d: 'Nov 13', o: 'Saint Paul Blackhawks', ha: 'H', r: 'L 0–2', mins: '', rt: '2.5', n: 'Strong on the ball; late to recover in transition.' },
+    { d: 'Nov 14', o: 'Manitou F.C.', ha: 'H', r: 'L 2–4', mins: '', rt: '3', n: 'Broke lines on the dribble; arrived in the box.' }
+  ],
+  coach: 'Kareem is a creative, brave central midfielder who drives our attacking phase. To be the best player in his position at U17, his next steps are the defensive side of the role and faster forward passing decisions.',
+  player: ''
+};
+
+let S = load() || clone(SAMPLE);
+function clone(o) { return JSON.parse(JSON.stringify(o)); }
+function load() { try { const v = localStorage.getItem(KEY); return v ? JSON.parse(v) : null; } catch (e) { return null; } }
+let tm; function save() { try { localStorage.setItem(KEY, JSON.stringify(S)); msg('Saved ✓'); } catch (e) { msg('Not saved'); } }
+function msg(t) { const m = document.getElementById('saved'); m.textContent = t; clearTimeout(tm); tm = setTimeout(() => m.textContent = '', 1400); }
+const esc = s => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+const get = p => p.split('.').reduce((o, k) => o?.[k], S);
+function put(p, v) { const k = p.split('.'); const l = k.pop(); k.reduce((o, x) => o[x], S)[l] = v; }
+const num = v => { const n = parseFloat(v); return isNaN(n) ? null : n; };
+
+const I = (p, ph = '', c = '') => `<input class="f ${c}" data-p="${p}" value="${esc(get(p))}" placeholder="${esc(ph)}">`;
+const T = (p, ph = '', rows = 2) => `<textarea class="f" data-p="${p}" rows="${rows}" placeholder="${esc(ph)}">${esc(get(p))}</textarea>`;
+const SEL = (p, o, c = '') => `<select class="f ${c}" data-p="${p}">${o.map(x => `<option value="${esc(x)}" ${String(get(p)) === x ? 'selected' : ''}>${x === '' ? '–' : esc(x)}</option>`).join('')}</select>`;
+const cls = s => s === 'Key Strength' ? 'Strength' : s === 'Dev. Opportunity' ? 'Develop' : 'OnPar';
+
+function avg(c, k) { const v = c.items.map(i => num(i[k])).filter(x => x !== null); return v.length ? v.reduce((a, b) => a + b) / v.length : null; }
+const f1 = n => n === null ? '–' : n.toFixed(1);
+const track = it => `<div class="track"><div class="b b0" style="width:${(num(it.b) || 0) * 25}%"></div><div class="b b1" style="width:${(num(it.c) || 0) * 25}%"></div><div class="t"></div></div>`;
+const cornerScore = c => `${f1(avg(c, 'c'))}<small> / 4</small>`;
+
+function render() {
+  const P = S.p;
+  const corners = S.corners.map((c, ci) => `
+    <div class="corner">
+      <div class="corner-h"><b>${esc(c.t)}</b><span id="cs${ci}">${cornerScore(c)}</span></div>
+      ${c.items.map((it, ii) => { const b = `corners.${ci}.items.${ii}`; return `
+        <div class="row" id="r${ci}-${ii}">
+          <div class="row-top">
+            <div>${I(b + '.n', 'Capability', 'nm')}</div>
+            <div><span class="lbl">Before</span>${SEL(b + '.b', R)}</div>
+            <div><span class="lbl">Now</span>${SEL(b + '.c', R)}</div>
+          </div>
+          <span class="tag ph">${esc(it.ph)}</span>${it.tk ? `<span class="tag tk">TAKA · ${esc(it.tk)}</span>` : ''}
+          ${track(it)}
+        </div>`; }).join('')}
+    </div>`).join('');
+
+  const taka = S.taka.skills.map((s, i) => `<div>${I(`taka.skills.${i}.n`)}${SEL(`taka.skills.${i}.s`, TAKA_STATUS, cls(s.s))}</div>`).join('');
+
+  const goals = S.goals.map((g, i) => `<tr>
+      <td class="goal-n">${i + 1}</td>
+      <td style="min-width:170px">${T(`goals.${i}.g`, 'Goal', 3)}</td>
+      <td style="min-width:170px">${T(`goals.${i}.a`, 'Actions in training / at home', 3)}</td>
+      <td style="min-width:130px">${T(`goals.${i}.m`, 'How we measure it', 3)}</td>
+      <td style="min-width:72px">${I(`goals.${i}.by`, 'Date')}</td>
+      <td class="np"><button class="x" onclick="del('goals',${i})">×</button></td></tr>`).join('');
+
+  const games = S.games.map((g, i) => `<tr>
+      <td style="min-width:62px">${I(`games.${i}.d`, 'Date')}</td>
+      <td style="min-width:140px">${I(`games.${i}.o`, 'Opponent')}</td>
+      <td style="min-width:44px">${SEL(`games.${i}.ha`, ['H', 'A', 'N'])}</td>
+      <td style="min-width:58px">${I(`games.${i}.r`, 'W 1–0')}</td>
+      <td style="min-width:44px">${I(`games.${i}.mins`, '–')}</td>
+      <td style="min-width:52px">${SEL(`games.${i}.rt`, R)}</td>
+      <td style="min-width:180px">${T(`games.${i}.n`, 'Note', 1)}</td>
+      <td class="np"><button class="x" onclick="del('games',${i})">×</button></td></tr>`).join('');
+
+  const chart = S.games.length ? `<div class="gchart"><div class="tl"></div>${S.games.map(g => `<div class="g">${esc(g.r)}<i style="height:${(num(g.rt) || 0) * 25}%"></i></div>`).join('')}</div>` : '';
+
+  document.getElementById('doc').innerHTML = `
+  <section class="page">
+    <div class="head">
+      <div class="l"><img src="assets/scwave-logo.png" alt="SC Wave"><div><h1>Individual <span>Development Plan</span></h1><small>SC Wave · MLS NEXT · ${esc(P.season)}</small></div></div>
+      <img class="mls" src="assets/mlsnext-logo.png" alt="MLS NEXT">
+    </div>
+    <div class="pad">
+      <div class="info">
+        <div class="name"><span class="lbl">Player</span>${I('p.name', 'Player name')}</div>
+        <div><span class="lbl">Jersey #</span>${I('p.num')}</div>
+        <div><span class="lbl">Age group</span>${I('p.age')}</div>
+        <div style="grid-column:span 2"><span class="lbl">Position</span>${I('p.pos')}</div>
+        <div style="grid-column:span 2"><span class="lbl">Team</span>${I('p.team')}</div>
+        <div style="grid-column:span 2" class="stats">
+          <div><span class="lbl">Games</span>${I('p.games')}</div>
+          <div><span class="lbl">Goals</span>${I('p.goals')}</div>
+          <div><span class="lbl">Minutes</span>${I('p.mins', '–')}</div>
+        </div>
+        <div><span class="lbl">Season</span>${I('p.season')}</div>
+        <div><span class="lbl">Head coach</span>${I('p.coach', 'Coach name')}</div>
+        <div><span class="lbl">Evaluation date</span>${I('p.date')}</div>
+        <div><span class="lbl">Next review</span>${I('p.review')}</div>
+      </div>
+
+      <h2>Role in the SC Wave Game Model</h2>
+      <div class="quals"><span class="lbl">Key qualities for the position</span>${T('role.quals', '', 1)}</div>
+      <div class="role">
+        <div><span class="lbl">Attacking</span>${T('role.att', '', 3)}</div>
+        <div><span class="lbl">Attack → Defend</span>${T('role.atod', '', 3)}</div>
+        <div><span class="lbl">Defending</span>${T('role.def', '', 3)}</div>
+        <div><span class="lbl">Defend → Attack</span>${T('role.dtoa', '', 3)}</div>
+      </div>
+
+      <h2>Four-Corner Assessment</h2>
+      <div class="legend">
+        <span><b>4</b> Above this level</span><span><b>3</b> High level — target</span><span><b>2</b> On par — area to improve</span><span><b>1</b> Needs improvement</span>
+        <span><i style="background:#C9C9C4"></i>Before (${esc(P.before)})</span><span><i style="background:#F5C518"></i>Now (${esc(P.now)})</span><span><i style="border-left:2px dashed #0B6E77;width:0;height:12px;border-radius:0"></i>Target 3</span>
+      </div>
+      <div class="corners">${corners}</div>
+
+    </div>
+  </section>
+
+  <section class="page">
+    <div class="head">
+      <div class="l"><img src="assets/scwave-logo.png" alt="SC Wave"><div><h1>${esc(P.name || 'Player')} · <span>Plan &amp; Progress</span></h1><small>${esc(P.pos)} · ${esc(P.team)}</small></div></div>
+      <img class="mls" src="assets/mlsnext-logo.png" alt="MLS NEXT">
+    </div>
+    <div class="pad">
+      <h2>Summary — Strengths &amp; Areas to Work On</h2>
+      <div class="sw">
+        <div class="s"><h3>★ Key Strengths</h3>${T('strengths', 'Top 2 strengths', 3)}</div>
+        <div class="w"><h3>◎ Areas to Work On</h3>${T('workon', 'Top 2 areas to improve', 3)}</div>
+      </div>
+
+      <h2>MLS NEXT Data — TAKA Skill Analysis</h2>
+      <div class="note"><span class="powered">Powered by TAKA</span> · ${I('taka.note')}</div>
+      <div class="taka">${taka}</div>
+
+      <h2>Development Goals</h2>
+      <div class="note">Two goals, taken from the Areas to Work On.</div>
+      <div class="scroll"><table><thead><tr><th></th><th>Goal</th><th>Actions</th><th>Measure</th><th>Review</th><th class="np"></th></tr></thead><tbody>${goals}</tbody></table></div>
+      <button class="add np" onclick="addRow('goals')">+ Add goal</button>
+
+      <h2>Game Log</h2>
+      <div class="note">Coach rating (1–4) for each game. The dashed line is the target of 3.</div>
+      ${chart}
+      <div class="scroll"><table><thead><tr><th>Date</th><th>Opponent</th><th>H/A</th><th>Result</th><th>Min</th><th>Rating</th><th>Note</th><th class="np"></th></tr></thead><tbody>${games}</tbody></table></div>
+      <button class="add np" onclick="addRow('games')">+ Add game</button>
+
+      <h2>Comments</h2>
+      <div class="sw">
+        <div style="border:1px solid #E3E3DE"><span class="lbl">Coach</span>${T('coach', '', 4)}</div>
+        <div style="border:1px solid #E3E3DE"><span class="lbl">Player — my goals &amp; reflection</span>${T('player', 'Player writes here', 4)}</div>
+      </div>
+      <div class="signs"><div><span class="lbl">Player</span></div><div><span class="lbl">Head Coach</span></div><div><span class="lbl">MLS NEXT Director</span></div></div>
+    </div>
+    <div class="foot"><span><b>SC WAVE</b> · Meritocracy · Team Spirit · Respect · Resilience · Creativity</span><span>Individual Development Plan · ${esc(P.season)}</span></div>
+  </section>`;
+  fitAll();
+}
+
+document.addEventListener('input', e => { const p = e.target.dataset?.p; if (!p) return; put(p, e.target.value); save(); if (e.target.tagName === 'TEXTAREA') fit(e.target); });
+document.addEventListener('change', e => {
+  const p = e.target.dataset?.p; if (!p) return; put(p, e.target.value); save();
+  const m = p.match(/^corners\.(\d+)\.items\.(\d+)\./);
+  if (m) { const it = S.corners[m[1]].items[m[2]]; const row = document.getElementById(`r${m[1]}-${m[2]}`); row.querySelector('.track').outerHTML = track(it); document.getElementById('cs' + m[1]).innerHTML = cornerScore(S.corners[m[1]]); }
+  else if (p.startsWith('games.') || p.startsWith('taka.')) render();
+});
+function fit(t) { t.style.height = 'auto'; t.style.height = (t.scrollHeight + 2) + 'px'; }
+function fitAll() { document.querySelectorAll('textarea.f').forEach(fit); }
+window.addEventListener('beforeprint', fitAll);
+
+function addRow(k) { S[k].push(k === 'goals' ? { g: '', a: '', m: '', by: '' } : { d: '', o: '', ha: 'H', r: '', mins: '', rt: '', n: '' }); save(); render(); }
+function del(k, i) { if (confirm('Remove this row?')) { S[k].splice(i, 1); save(); render(); } }
+function exportJSON() {
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([JSON.stringify(S, null, 2)], { type: 'application/json' }));
+  a.download = `SC-Wave-IDP_${(S.p.name || 'player').trim().replace(/\s+/g, '-')}.json`; a.click();
+}
+function importJSON(el) {
+  const f = el.files[0]; if (!f) return; const r = new FileReader();
+  r.onload = () => { try { S = JSON.parse(r.result); save(); render(); } catch (e) { alert('That is not an SC Wave IDP file.'); } el.value = ''; };
+  r.readAsText(f);
+}
+function resetSample() { if (confirm('Replace this plan with the Kareem Ahmad sample?')) { S = clone(SAMPLE); save(); render(); } }
+function newBlank() {
+  if (!confirm('Start a new blank IDP? Save the current player file first if you need it.')) return;
+  const b = clone(SAMPLE);
+  Object.keys(b.p).forEach(k => { if (k !== 'season') b.p[k] = ''; });
+  b.corners.forEach(c => c.items.forEach(i => { i.b = ''; i.c = ''; }));
+  b.taka.skills.forEach(s => s.s = 'No data');
+  b.strengths = ''; b.workon = ''; b.coach = ''; b.player = ''; b.games = [];
+  b.goals = [{ g: '', a: '', m: '', by: '' }, { g: '', a: '', m: '', by: '' }];
+  S = b; save(); render();
+}
+render();
+</script>
+</body>
+</html>
