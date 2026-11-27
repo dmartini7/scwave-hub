@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+  <title>Player IDPs — SC Wave Coaches</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/coaches/coaches.css" />
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="/coaches/" class="logo-block">
+      <img class="sc-logo" src="/assets/scwave-logo.png" alt="SC Wave" />
+      <div class="logo-text">
+        <span class="club">SC Wave</span>
+        <span class="hub">Coaches Area</span>
+      </div>
+    </a>
+    <div class="header-right">
+      <nav>
+        <a href="/coaches/" class="active">Player IDPs</a>
+        <a href="/">Player Hub</a>
+      </nav>
+      <div class="who" id="who"></div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="title-row">
+    <div>
+      <h1 class="page-title">Individual Development Plans</h1>
+      <p class="sub">MLS NEXT Homegrown &amp; Academy · 2026–27 · visible to SC Wave coaching staff only</p>
+    </div>
+    <div class="btns">
+      <button class="btn" onclick="document.getElementById('file').click()">Import IDP file</button>
+      <button class="btn gold" onclick="openNew()">+ Player not on roster</button>
+      <input type="file" id="file" accept=".json" hidden onchange="importFile(this)" />
+    </div>
+  </div>
+
+  <div class="filters">
+    <input id="q" class="in" placeholder="Search player…" oninput="draw()" />
+    <select id="fteam" class="in" onchange="draw()"><option value="">All teams</option></select>
+    <select id="fstatus" class="in" onchange="draw()">
+      <option value="">All statuses</option><option value="none">Not started</option><option value="draft">Draft</option><option value="review">Ready for review</option><option value="approved">Approved</option>
+    </select>
+  </div>
+
+  <div class="counts" id="counts"></div>
+  <div class="card"><div class="scroll"><table class="list">
+    <thead><tr><th>Player</th><th>Team</th><th>Position</th><th>Status</th><th>Last edited</th><th></th></tr></thead>
+    <tbody id="rows"><tr><td colspan="6" class="empty">Loading…</td></tr></tbody>
+  </table></div></div>
+</main>
+
+<div class="modal" id="newModal" hidden>
+  <div class="dialog">
+    <h2>New IDP</h2>
+    <label>Player name<input id="nName" class="in" placeholder="First Last" /></label>
+    <label>Team<select id="nTeam" class="in"></select></label>
+    <label>Position (fills the Game Model role)<select id="nPos" class="in"></select></label>
+    <div class="dlg-btns"><button class="btn" onclick="closeNew()">Cancel</button><button class="btn gold" id="nGo" onclick="createNew()">Create &amp; open</button></div>
+  </div>
+</div>
+
+<script src="/coaches/idp-lib.js"></script>
+<script>
+let ME = null, LIST = [], ROSTER = [], ROWS = [];
+
+async function init() {
+  const me = await idpApi('me');
+  if (!me.ok) return;
+  ME = me.body;
+  document.getElementById('who').innerHTML = `<span>${idpEsc(ME.name)}${ME.role === 'director' ? ' · Director' : ''}</span><a href="/api/logout">Sign out</a>`;
+  const teamOpts = IDP_TEAMS.map(t => `<option>${idpEsc(t)}</option>`).join('');
+  document.getElementById('fteam').insertAdjacentHTML('beforeend', teamOpts);
+  document.getElementById('nTeam').innerHTML = teamOpts;
+  document.getElementById('nPos').innerHTML = Object.entries(IDP_POSITIONS).map(([k, v]) => `<option value="${k}">${idpEsc(v.label)}</option>`).join('');
+  await load();
+}
+
+async function load() {
+  const [r, ro] = await Promise.all([idpApi('idps'), idpApi('roster')]);
+  LIST = r.ok ? r.body : []; ROSTER = ro.ok ? ro.body : [];
+  // One row per roster player; link an IDP by roster id, or by same player name when it was imported/created by hand.
+  const used = new Set();
+  const norm = s => String(s || '').toLowerCase().replace(/[^a-z]/g, '');
+  ROWS = ROSTER.map(p => {
+    let idp = LIST.find(i => i.roster_id === p.id) || LIST.find(i => !i.roster_id && !used.has(i.id) && norm(i.player) === norm(p.name));
+    if (idp) used.add(idp.id);
+    return { roster: p, idp, player: p.name, team: p.team, position: p.position || (IDP_POSITIONS[p.pos_key] || {}).label || '', status: idp ? idp.status : 'none' };
+  });
+  LIST.filter(i => !used.has(i.id)).forEach(i => ROWS.push({ roster: null, idp: i, player: i.player, team: i.team, position: i.position, status: i.status }));
+  draw();
+}
+
+const ST = { none: { label: 'Not started', color: '#3A3A3A' }, ...IDP_STATUS };
+
+function draw() {
+  const q = document.getElementById('q').value.trim().toLowerCase();
+  const ft = document.getElementById('fteam').value, fs = document.getElementById('fstatus').value;
+  const rows = ROWS.filter(r => (!q || r.player.toLowerCase().includes(q)) && (!ft || r.team === ft) && (!fs || r.status === fs));
+  const scope = ft ? ROWS.filter(r => r.team === ft) : ROWS;
+  const c = s => scope.filter(r => r.status === s).length;
+  document.getElementById('counts').innerHTML =
+    `<span><b>${scope.length - c('none')}</b> of ${scope.length} players started</span>` +
+    ['none', 'draft', 'review', 'approved'].map(s => `<span><i style="background:${ST[s].color}"></i>${c(s)} ${ST[s].label.toLowerCase()}</span>`).join('');
+  document.getElementById('rows').innerHTML = rows.length ? rows.map((r, i) => {
+    const idx = ROWS.indexOf(r);
+    const open = r.idp ? `location.href='/coaches/idp.html?id=${r.idp.id}'` : `startIdp(${idx})`;
+    return `<tr onclick="${open}">
+      <td class="pl">${idpEsc(r.player || '(no name)')}${r.roster && r.roster.num ? ` <span class="num">#${idpEsc(r.roster.num)}</span>` : ''}</td>
+      <td>${idpEsc(r.team)}</td>
+      <td>${idpEsc(r.position)}</td>
+      <td><span class="badge" style="--c:${ST[r.status].color}">${ST[r.status].label}</span></td>
+      <td class="muted">${r.idp ? `${idpEsc(r.idp.updated_by_name)} · ${idpWhen(r.idp.updated_at)}` : ''}</td>
+      <td class="right">${r.idp && ME.role === 'director' ? `<button class="x" title="Delete" onclick="event.stopPropagation();remove('${r.idp.id}','${idpEsc(r.player).replace(/'/g, '')}')">Delete</button>` : ''}<span class="open">${r.idp ? 'Open →' : 'Start IDP →'}</span></td>
+    </tr>`; }).join('') : `<tr><td colspan="6" class="empty">${ROWS.length ? 'No players match these filters.' : 'No players yet.'}</td></tr>`;
+}
+
+async function startIdp(idx) {
+  const r = ROWS[idx], p = r.roster; if (!p) return;
+  if (!confirm(`Start an IDP for ${p.name} (${p.team})?`)) return;
+  const posKey = p.pos_key || '';
+  const data = buildIdp(p.name, p.team, posKey);
+  data.p.num = p.num || '';
+  if (p.position) data.p.pos = p.position + (IDP_POSITIONS[posKey] ? '' : '');
+  if (p.birth_year) data.p.age = (data.p.age ? data.p.age + ' · ' : '') + 'Born ' + p.birth_year;
+  const res = await idpApi('idps', { method: 'POST', body: { data, roster_id: p.id } });
+  if (res.ok) location.href = '/coaches/idp.html?id=' + res.body.id; else alert('Could not start the IDP. Try again.');
+}
+
+function buildIdp(name, team, posKey) {
+  const data = idpBlank(), pre = IDP_POSITIONS[posKey];
+  data.p.name = name; data.p.team = team;
+  const age = team.match(/U\d+(?:[-\/]U\d+)?/); data.p.age = age ? age[0] + ' Boys' : '';
+  data.p.coach = ME.name;
+  data.p.date = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+  data.p.before = 'Dec 2025';
+  data.p.now = new Date().toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+  data.p.takaUrl = takaSearchUrl(name);
+  if (pre) { data.p.posKey = posKey; data.p.pos = pre.label; data.role = { quals: pre.quals, att: pre.att, atod: pre.atod, def: pre.def, dtoa: pre.dtoa }; }
+  return data;
+}
+
+function openNew() { document.getElementById('newModal').hidden = false; document.getElementById('nName').focus(); }
+function closeNew() { document.getElementById('newModal').hidden = true; }
+
+async function createNew() {
+  const name = document.getElementById('nName').value.trim();
+  if (!name) { document.getElementById('nName').focus(); return; }
+  const data = buildIdp(name, document.getElementById('nTeam').value, document.getElementById('nPos').value);
+  document.getElementById('nGo').disabled = true;
+  const r = await idpApi('idps', { method: 'POST', body: { data } });
+  document.getElementById('nGo').disabled = false;
+  if (r.ok) location.href = '/coaches/idp.html?id=' + r.body.id;
+  else alert('Could not create the IDP. Try again.');
+}
+
+async function importFile(el) {
+  const f = el.files[0]; if (!f) return;
+  try {
+    const data = JSON.parse(await f.text());
+    if (!data || !data.p || !data.corners) throw new Error('shape');
+    const r = await idpApi('idps', { method: 'POST', body: { data } });
+    if (r.ok) location.href = '/coaches/idp.html?id=' + r.body.id;
+  } catch (e) { alert('That file is not an SC Wave IDP file.'); }
+  el.value = '';
+}
+
+async function remove(id, name) {
+  if (!confirm(`Delete the IDP for ${name}? This permanently removes it and its saved versions.`)) return;
+  const r = await idpApi('idps/' + id, { method: 'DELETE' });
+  if (r.ok) load(); else alert((r.body && r.body.message) || 'Could not delete.');
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNew(); if (e.key === 'Enter' && !document.getElementById('newModal').hidden) createNew(); });
+init();
+</script>
+</body>
+</html>

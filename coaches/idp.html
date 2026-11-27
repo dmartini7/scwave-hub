@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-T9ZL1CM490"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -11,10 +9,12 @@
   </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Individual Development Plan — SC Wave Training Hub</title>
+  <meta name="robots" content="noindex" />
+  <title>IDP — SC Wave Coaches</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/coaches/coaches.css" />
   <style>
     body { background: #1A1A1A !important; }
 
@@ -127,11 +127,15 @@
     .add { background: #0D0D0D; color: #F5C518; border: none; padding: 6px 12px; margin-top: 6px; }
 
     /* games mini chart */
-    .gchart { display: flex; gap: 10px; align-items: flex-end; height: 70px; border-bottom: 2px solid #0D0D0D; position: relative; margin-bottom: 6px; padding: 0 4px; }
-    .gchart .tl { position: absolute; left: 0; right: 0; bottom: 75%; border-top: 2px dashed #0B6E77; }
-    .gchart .g { width: 46px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; font: 700 10px 'Inter'; }
+    .gchart { display: flex; gap: 6px; align-items: flex-end; height: 110px; border-bottom: 2px solid #0D0D0D; position: relative; margin-bottom: 6px; padding: 0 4px; }
+    .gchart .tl { position: absolute; left: 0; right: 0; bottom: 66.7%; border-top: 2px dashed #0B6E77; }
+    .gchart .g { flex: 1 1 0; min-width: 0; max-width: 56px; white-space: nowrap; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; font: 700 9px 'Inter'; }
     .gchart .g i { width: 20px; background: linear-gradient(180deg, #F5C518, #C49A10); border-radius: 4px 4px 0 0; margin-top: 2px; }
 
+    .glist { display: none; grid-template-columns: 1fr 1fr; gap: 0 18px; font-size: 11.5px; }
+    .glist div { display: grid; grid-template-columns: 46px 1fr 22px 44px 26px; gap: 6px; padding: 3px 4px; border-bottom: 1px solid #EEE; }
+    .glist b { text-align: right; color: #C49A10; }
+    .glist em { grid-column: 2 / -1; font-style: normal; color: #6B6B6B; font-size: 10.5px; margin-top: -2px; }
     .signs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 26px; }
     .signs div { border-top: 2px solid #0D0D0D; padding-top: 4px; }
     .foot { background: #0D0D0D; color: #A0A0A0; font-size: 10.5px; padding: 8px 24px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
@@ -140,7 +144,7 @@
     /* ── Print: 2 Letter pages ── */
     @page { size: letter; margin: 0.35in; }
     @media print {
-      header, footer, .bar-top, .np { display: none !important; }
+      header, footer, .bar-top, .np, .banner, .modal { display: none !important; }
       body { background: #fff !important; }
       * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
       .doc { margin: 0; padding: 0; max-width: none; }
@@ -151,6 +155,11 @@
       textarea.f { resize: none; overflow: hidden; }
       .corner, .row, tr { break-inside: avoid; }
       .page { zoom: 0.8; }
+      .f::placeholder { color: transparent; }
+      textarea.f { field-sizing: content; height: auto !important; }
+      #gwrap { display: none !important; }
+      .glist { display: grid !important; }
+      .signs { margin-top: 18px; }
       .stats div { padding: 4px 8px; }
       .row { padding: 5px 12px; }
       h2 { margin: 12px 0 6px; }
@@ -161,126 +170,143 @@
 
 <header>
   <div class="header-inner">
-    <a href="index.html" class="logo-block">
-      <img class="sc-logo" src="assets/scwave-logo.png" alt="SC Wave" />
+    <a href="/coaches/" class="logo-block">
+      <img class="sc-logo" src="/assets/scwave-logo.png" alt="SC Wave" />
       <div class="logo-text">
         <span class="club">SC Wave</span>
-        <span class="hub">Player Training Hub</span>
+        <span class="hub">Coaches Area</span>
       </div>
     </a>
     <div class="header-right">
       <nav>
-        <a href="tactical-mental.html">Tactical &amp; Mental</a>
-        <a href="technical.html">Technical</a>
-        <a href="physical.html">Physical</a>
-        <a href="staff.html">Staff</a>
-        <a href="kitman-labs.html">Kitman Labs</a>
-        <a href="mls-next-fest.html">MLS NEXT Fest</a>
-        <a href="parent-education.html">Parent Education</a>
-        <a href="club-documents.html">Club Docs</a>
+        <a href="/coaches/" class="active">Player IDPs</a>
+        <a href="/">Player Hub</a>
       </nav>
-      <div class="mls-badge">
-        <img src="assets/mlsnext-logo.png" alt="MLS NEXT" />
-        <span>MLS NEXT</span>
-      </div>
+      <div class="who" id="who"></div>
     </div>
   </div>
 </header>
 
 <div class="bar-top">
-  <p>Type in any <b>yellow field</b> and pick ratings from <b>1 to 4</b>. Changes save automatically in this browser.<br><b>Save Player File</b> keeps a copy per player; <b>Print / PDF</b> gives the 2-page plan.</p>
-  <div class="btns">
+  <div class="bar-l">
+    <a class="back" href="/coaches/">← All IDPs</a>
+    <select id="status" class="in st" onchange="setStatus(this.value)">
+      <option value="draft">Draft</option><option value="review">Ready for review</option><option value="approved">Approved</option>
+    </select>
     <span id="saved"></span>
+  </div>
+  <div class="btns">
+    <a class="btn" id="findTaka" target="_blank" rel="noopener">Find in TAKA ↗</a>
+    <button class="btn" onclick="openPaste()">Paste from TAKA</button>
     <button class="btn gold" onclick="window.print()">Print / PDF</button>
-    <button class="btn" onclick="exportJSON()">Save Player File</button>
-    <button class="btn" onclick="document.getElementById('file').click()">Open Player File</button>
-    <button class="btn" onclick="newBlank()">New Blank IDP</button>
-    <button class="btn" onclick="resetSample()">Reset to Sample</button>
-    <input type="file" id="file" accept=".json" hidden onchange="importJSON(this)" />
+    <button class="btn" onclick="exportJSON()">Download file</button>
   </div>
 </div>
+<div class="banner" id="banner" hidden></div>
 
 <main class="doc" id="doc"></main>
+
+<div class="modal" id="pasteModal" hidden>
+  <div class="dialog wide">
+    <h2>Paste from TAKA</h2>
+    <p>1. Click <b>Find in TAKA</b> and open the player's IDP in TAKA (Assistant Coach → Individual Development Plan).<br>
+       2. On the <b>Skill Analysis</b> tab, press <b>Cmd+A</b> then <b>Cmd+C</b>, and paste below. Do the same on the <b>Performance Monitoring</b> tab to add the games. You can paste both, one after the other.</p>
+    <label>TAKA page text<textarea id="pasteText" class="in" rows="7" placeholder="Paste here…" oninput="previewPaste()"></textarea></label>
+    <label>Only games from<input id="pasteFrom" class="in" type="month" value="2025-12" onchange="previewPaste()"></label>
+    <div id="pastePreview" class="paste-preview"></div>
+    <div class="dlg-btns"><button class="btn" onclick="closePaste()">Cancel</button><button class="btn gold" id="pasteGo" onclick="applyPaste()" disabled>Fill the IDP</button></div>
+  </div>
+</div>
 
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">
-      <img src="assets/scwave-logo.png" alt="SC Wave" />
+      <img src="/assets/scwave-logo.png" alt="SC Wave" />
       <span>SC Wave Soccer Club · Founded 1978</span>
     </div>
     <div class="footer-right">
       <a href="mailto:danielmartini07@gmail.com">danielmartini07@gmail.com</a>
       <div class="footer-mls">
-        <img src="assets/mlsnext-logo.png" alt="MLS NEXT" />
+        <img src="/assets/mlsnext-logo.png" alt="MLS NEXT" />
         <span>MLS NEXT Member Club</span>
       </div>
     </div>
   </div>
 </footer>
 
+<script src="/coaches/idp-lib.js"></script>
 <script>
 /* SC Wave Individual Development Plan — simple 2-page format.
    Page 1: player, role in the Game Model, four-corner ratings, strengths / work-ons.
    Page 2: TAKA (MLS NEXT) snapshot, 2–3 goals, game log, comments & sign-off. */
-const KEY = 'scwave-idp-v2';
 const R = ['', '1', '1.5', '2', '2.5', '3', '3.5', '4'];
 const TAKA_STATUS = ['Key Strength', 'On Par', 'Dev. Opportunity', 'No data'];
 
-const SAMPLE = {
-  p: { name: 'Kareem Ahmad', num: '33', pos: 'Central Midfielder (#8) / ACM (#10)', age: 'U17 Boys',
-       team: 'SC Wave MLS NEXT U17 AD', season: '2026–27', coach: '', date: 'Nov 27, 2026',
-       games: '6', goals: '1', mins: '', before: 'Aug 2026', now: 'Nov 2026', review: 'March 2027' },
-  role: {
-    quals: 'High endurance · Proficient dribbler · Calm under pressure · Accurate, efficient passing · Finishing from 18–30 yds',
-    att: 'Find space between the lines and in the half space; combine in triangles; dribble or pass forward to break lines; arrive in the box.',
-    atod: 'If closest, press the ball immediately; otherwise delay or drop to protect the middle.',
-    def: 'Stop forward passes and dribbles in our mid/high block; recover to help the #6.',
-    dtoa: 'Support quickly in space; play forward if it is on, keep the ball and set the tempo if not.'
-  },
-  corners: [
-    { t: 'Technical', items: [
-      { n: 'Passing — accuracy & range', ph: 'Attacking', tk: 'Passing', b: '2', c: '2.5' },
-      { n: 'Dribbling & 1v1 to progress', ph: 'Attacking', tk: 'Creativity', b: '3', c: '3.5' },
-      { n: 'Finishing 18–30 yds', ph: 'Attacking', tk: 'Finishing', b: '2.5', c: '3' } ] },
-    { t: 'Tactical', items: [
-      { n: 'Positioning between the lines', ph: 'Attacking', tk: 'Off Ball', b: '2.5', c: '3' },
-      { n: 'Transition decisions', ph: 'Transitions', tk: '', b: '2', c: '2.5' },
-      { n: 'Defensive shape & recovery runs', ph: 'Defending', tk: 'Defending', b: '1.5', c: '2' } ] },
-    { t: 'Physical', items: [
-      { n: 'Endurance — box to box, 90 min', ph: 'All phases', tk: '', b: '2.5', c: '3' },
-      { n: 'Speed & acceleration', ph: 'Transitions', tk: 'Physical', b: '2.5', c: '2.5' },
-      { n: 'Strength in duels', ph: 'Defending', tk: 'Physical', b: '2', c: '2.5' } ] },
-    { t: 'Mental', items: [
-      { n: 'Composure under pressure', ph: 'All phases', tk: '', b: '2.5', c: '3' },
-      { n: 'Initiative & bravery on the ball', ph: 'Attacking', tk: '', b: '3', c: '3.5' },
-      { n: 'Communication & leadership', ph: 'Defending', tk: '', b: '2', c: '2.5' } ] }
-  ],
-  strengths: '1. Dribbling & 1v1 — breaks lines on the dribble and creates 2v1s in midfield (TAKA: Creativity).\n2. Initiative & bravery — always wants the ball and takes players on.',
-  workon: '1. Defensive shape & recovery runs — stop forward play and recover to support the #6 (TAKA: Defending).\n2. Passing — play forward and diagonally more often, scan before receiving (TAKA: Passing).',
-  taka: { note: '2025–26 · CM · compared to the Top 20% of U16 CMs in MLS NEXT',
-    skills: [ { n: 'Creativity', s: 'Key Strength' }, { n: 'Finishing', s: 'Key Strength' }, { n: 'Physical', s: 'On Par' },
-              { n: 'Off Ball', s: 'On Par' }, { n: 'Passing', s: 'Dev. Opportunity' }, { n: 'Defending', s: 'Dev. Opportunity' } ] },
-  goals: [
-    { g: 'Defend the middle: block forward passes and recover to support the #6 (rating 2 → 3).',
-      a: 'Tue/Wed: 4v4+2 and 6v6 games with transition rules. Bi-weekly TAKA Defending clip review with coach.',
-      m: 'Coach rating 3+. TAKA Defending improves from Development Opportunity.', by: 'Mar 2027' },
-    { g: 'Pass forward with quality: scan before receiving and play diagonal and through passes (2.5 → 3).',
-      a: 'Monday 2-touch rondos with scanning cues. Weekly winter futsal. Wall-pass homework 3× per week.',
-      m: 'Coach rating 3+. TAKA Passing reaches On Par.', by: 'Mar 2027' }
-  ],
-  games: [
-    { d: 'Nov 13', o: 'Saint Paul Blackhawks', ha: 'H', r: 'L 0–2', mins: '', rt: '2.5', n: 'Strong on the ball; late to recover in transition.' },
-    { d: 'Nov 14', o: 'Manitou F.C.', ha: 'H', r: 'L 2–4', mins: '', rt: '3', n: 'Broke lines on the dribble; arrived in the box.' }
-  ],
-  coach: 'Kareem is a creative, brave central midfielder who drives our attacking phase. To be the best player in his position at U17, his next steps are the defensive side of the role and faster forward passing decisions.',
-  player: ''
-};
+const ID = new URLSearchParams(location.search).get('id');
+let S = null, META = null, BASE = null, STATUS = 'draft', ME = null;
+let dirty = false, saving = false, blocked = false, timer = null;
 
-let S = load() || clone(SAMPLE);
 function clone(o) { return JSON.parse(JSON.stringify(o)); }
-function load() { try { const v = localStorage.getItem(KEY); return v ? JSON.parse(v) : null; } catch (e) { return null; } }
-let tm; function save() { try { localStorage.setItem(KEY, JSON.stringify(S)); msg('Saved ✓'); } catch (e) { msg('Not saved'); } }
-function msg(t) { const m = document.getElementById('saved'); m.textContent = t; clearTimeout(tm); tm = setTimeout(() => m.textContent = '', 1400); }
+function msg(t) { document.getElementById('saved').textContent = t; }
+function banner(html) { const b = document.getElementById('banner'); b.innerHTML = html; b.hidden = !html; }
+function save() {
+  if (blocked || !S) return;
+  dirty = true; msg('Saving…');
+  clearTimeout(timer); timer = setTimeout(flush, 900);
+}
+async function flush(extra = {}) {
+  if (saving) { timer = setTimeout(flush, 400); return null; }
+  saving = true; dirty = false;
+  let r;
+  try { r = await idpApi('idps/' + ID, { method: 'PUT', body: { data: S, base: BASE, ...extra } }); }
+  catch (e) { r = { ok: false, status: 0 }; }
+  saving = false;
+  if (r.ok) {
+    BASE = r.body.updated_at; STATUS = r.body.status;
+    msg('Saved ✓ ' + new Date(BASE).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' }));
+    if (dirty) save();
+    return true;
+  }
+  if (r.status === 409) {
+    blocked = true; msg('Not saved');
+    banner(`<b>${idpEsc(r.body.updated_by_name)}</b> saved a newer version of this IDP (${idpWhen(r.body.updated_at)}). Your latest changes here were <b>not</b> saved. <a href="">Reload</a> to see their version.`);
+  } else if (r.status === 403) {
+    blocked = true; msg('Not saved'); banner(idpEsc((r.body && r.body.message) || 'You can\'t edit this IDP.'));
+  } else {
+    dirty = true; msg('Not saved — retrying…'); timer = setTimeout(flush, 4000);
+  }
+  return false;
+}
+async function setStatus(v) {
+  const prev = STATUS; clearTimeout(timer);
+  const ok = await flush({ status: v });
+  if (!ok) { document.getElementById('status').value = prev; return; }
+  STATUS = v; applyLock();
+}
+function applyLock() {
+  const locked = STATUS === 'approved' && !(META && META.can_approve);
+  document.querySelectorAll('#doc .f, #doc .np button, .bar-top button').forEach(el => { if (!el.closest('.btns') || el.textContent.includes('TAKA')) el.disabled = locked; });
+  document.getElementById('status').disabled = locked;
+  if (locked) banner('This IDP is <b>approved</b>. Only a director can change it.');
+  else if (!blocked) banner('');
+}
+window.addEventListener('beforeunload', e => { if (dirty || saving) { e.preventDefault(); e.returnValue = ''; } });
+
+async function init() {
+  if (!ID) { location.href = '/coaches/'; return; }
+  const [me, r] = await Promise.all([idpApi('me'), idpApi('idps/' + ID)]);
+  if (!r.ok) { document.getElementById('doc').innerHTML = '<p class="loadmsg">This IDP was not found. <a href="/coaches/">Back to all IDPs</a></p>'; return; }
+  ME = me.body; META = r.body; S = r.body.data; BASE = r.body.updated_at; STATUS = r.body.status;
+  S.taka = S.taka || { note: '', skills: [] };
+  document.getElementById('who').innerHTML = `<span>${idpEsc(ME.name)}${ME.role === 'director' ? ' · Director' : ''}</span><a href="/api/logout">Sign out</a>`;
+  const st = document.getElementById('status');
+  st.value = STATUS; st.querySelector('[value=approved]').disabled = !META.can_approve && STATUS !== 'approved';
+  document.getElementById('findTaka').href = S.p.takaUrl || takaSearchUrl(S.p.name);
+  document.title = (S.p.name || 'IDP') + ' — SC Wave IDP';
+  render(); applyLock();
+  msg(`Saved · ${META.updated_by_name} · ${idpWhen(BASE)}`);
+}
+
 const esc = s => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const get = p => p.split('.').reduce((o, k) => o?.[k], S);
 function put(p, v) { const k = p.split('.'); const l = k.pop(); k.reduce((o, x) => o[x], S)[l] = v; }
@@ -325,21 +351,20 @@ function render() {
 
   const games = S.games.map((g, i) => `<tr>
       <td style="min-width:62px">${I(`games.${i}.d`, 'Date')}</td>
-      <td style="min-width:140px">${I(`games.${i}.o`, 'Opponent')}</td>
+      <td style="min-width:180px">${I(`games.${i}.o`, 'Opponent')}</td>
       <td style="min-width:44px">${SEL(`games.${i}.ha`, ['H', 'A', 'N'])}</td>
       <td style="min-width:58px">${I(`games.${i}.r`, 'W 1–0')}</td>
-      <td style="min-width:44px">${I(`games.${i}.mins`, '–')}</td>
       <td style="min-width:52px">${SEL(`games.${i}.rt`, R)}</td>
-      <td style="min-width:180px">${T(`games.${i}.n`, 'Note', 1)}</td>
+      <td style="min-width:180px">${I(`games.${i}.n`, 'Note')}</td>
       <td class="np"><button class="x" onclick="del('games',${i})">×</button></td></tr>`).join('');
 
-  const chart = S.games.length ? `<div class="gchart"><div class="tl"></div>${S.games.map(g => `<div class="g">${esc(g.r)}<i style="height:${(num(g.rt) || 0) * 25}%"></i></div>`).join('')}</div>` : '';
+  const chart = S.games.length ? `<div class="gchart"><div class="tl"></div>${S.games.map(g => `<div class="g">${esc(g.r)}<i style="height:${num(g.rt) ? Math.max(4, (num(g.rt) - 1) / 3 * 100) : 0}%"></i></div>`).join('')}</div>` : '';
 
   document.getElementById('doc').innerHTML = `
   <section class="page">
     <div class="head">
-      <div class="l"><img src="assets/scwave-logo.png" alt="SC Wave"><div><h1>Individual <span>Development Plan</span></h1><small>SC Wave · MLS NEXT · ${esc(P.season)}</small></div></div>
-      <img class="mls" src="assets/mlsnext-logo.png" alt="MLS NEXT">
+      <div class="l"><img src="/assets/scwave-logo.png" alt="SC Wave"><div><h1>Individual <span>Development Plan</span></h1><small>SC Wave · MLS NEXT · ${esc(P.season)}</small></div></div>
+      <img class="mls" src="/assets/mlsnext-logo.png" alt="MLS NEXT">
     </div>
     <div class="pad">
       <div class="info">
@@ -351,7 +376,7 @@ function render() {
         <div style="grid-column:span 2" class="stats">
           <div><span class="lbl">Games</span>${I('p.games')}</div>
           <div><span class="lbl">Goals</span>${I('p.goals')}</div>
-          <div><span class="lbl">Minutes</span>${I('p.mins', '–')}</div>
+          <div><span class="lbl">Avg. minutes (approx.)</span>${I('p.mins', '~__ / game')}</div>
         </div>
         <div><span class="lbl">Season</span>${I('p.season')}</div>
         <div><span class="lbl">Head coach</span>${I('p.coach', 'Coach name')}</div>
@@ -359,7 +384,7 @@ function render() {
         <div><span class="lbl">Next review</span>${I('p.review')}</div>
       </div>
 
-      <h2>Role in the SC Wave Game Model</h2>
+      <h2>Role in the SC Wave Game Model <select class="in np preset" onchange="applyPosition(this.value)"><option value="">Fill from a position profile…</option>${Object.entries(IDP_POSITIONS).map(([k, v]) => `<option value="${k}" ${S.p.posKey === k ? 'selected' : ''}>${idpEsc(v.label)}</option>`).join('')}</select></h2>
       <div class="quals"><span class="lbl">Key qualities for the position</span>${T('role.quals', '', 1)}</div>
       <div class="role">
         <div><span class="lbl">Attacking</span>${T('role.att', '', 3)}</div>
@@ -380,8 +405,8 @@ function render() {
 
   <section class="page">
     <div class="head">
-      <div class="l"><img src="assets/scwave-logo.png" alt="SC Wave"><div><h1>${esc(P.name || 'Player')} · <span>Plan &amp; Progress</span></h1><small>${esc(P.pos)} · ${esc(P.team)}</small></div></div>
-      <img class="mls" src="assets/mlsnext-logo.png" alt="MLS NEXT">
+      <div class="l"><img src="/assets/scwave-logo.png" alt="SC Wave"><div><h1>${esc(P.name || 'Player')} · <span>Plan &amp; Progress</span></h1><small>${esc(P.pos)} · ${esc(P.team)}</small></div></div>
+      <img class="mls" src="/assets/mlsnext-logo.png" alt="MLS NEXT">
     </div>
     <div class="pad">
       <h2>Summary — Strengths &amp; Areas to Work On</h2>
@@ -392,7 +417,7 @@ function render() {
 
       <h2>MLS NEXT Data — TAKA Skill Analysis</h2>
       <div class="note"><span class="powered">Powered by TAKA</span> · ${I('taka.note')}</div>
-      <div class="taka">${taka}</div>
+      ${S.taka.skills.length ? `<div class="taka">${taka}</div>` : `<div class="taka-empty">No TAKA data yet. Use <b>Paste from TAKA</b> at the top of the page.</div>`}
 
       <h2>Development Goals</h2>
       <div class="note">Two goals, taken from the Areas to Work On.</div>
@@ -400,15 +425,16 @@ function render() {
       <button class="add np" onclick="addRow('goals')">+ Add goal</button>
 
       <h2>Game Log</h2>
-      <div class="note">Coach rating (1–4) for each game. The dashed line is the target of 3.</div>
+      <div class="note">Rating (1–4) for each game, based on the coach's review and TAKA's game assessment. The chart starts at 1; the dashed line is the target of 3.</div>
       ${chart}
-      <div class="scroll"><table><thead><tr><th>Date</th><th>Opponent</th><th>H/A</th><th>Result</th><th>Min</th><th>Rating</th><th>Note</th><th class="np"></th></tr></thead><tbody>${games}</tbody></table></div>
+      <div class="glist" style="grid-template-rows:repeat(${Math.ceil(S.games.length / 2) || 1}, auto);grid-auto-flow:column">${S.games.map(g => `<div><span>${esc(g.d)}</span><span>${esc(g.o)}</span><span>${esc(g.ha)}</span><span>${esc(g.r)}</span><b>${esc(g.rt)}</b>${g.n ? `<em>${esc(g.n)}</em>` : ''}</div>`).join('')}</div>
+      <div class="scroll" id="gwrap"><table id="gtable"><thead><tr><th>Date</th><th>Opponent</th><th>H/A</th><th>Result</th><th>Rating</th><th>Note</th><th class="np"></th></tr></thead><tbody>${games}</tbody></table></div>
       <button class="add np" onclick="addRow('games')">+ Add game</button>
 
       <h2>Comments</h2>
       <div class="sw">
-        <div style="border:1px solid #E3E3DE"><span class="lbl">Coach</span>${T('coach', '', 4)}</div>
-        <div style="border:1px solid #E3E3DE"><span class="lbl">Player — my goals &amp; reflection</span>${T('player', 'Player writes here', 4)}</div>
+        <div style="border:1px solid #E3E3DE"><span class="lbl">Coach</span>${T('coach', '', 3)}</div>
+        <div style="border:1px solid #E3E3DE"><span class="lbl">Player — my goals &amp; reflection</span>${T('player', 'Player writes here', 3)}</div>
       </div>
       <div class="signs"><div><span class="lbl">Player</span></div><div><span class="lbl">Head Coach</span></div><div><span class="lbl">MLS NEXT Director</span></div></div>
     </div>
@@ -422,36 +448,76 @@ document.addEventListener('change', e => {
   const p = e.target.dataset?.p; if (!p) return; put(p, e.target.value); save();
   const m = p.match(/^corners\.(\d+)\.items\.(\d+)\./);
   if (m) { const it = S.corners[m[1]].items[m[2]]; const row = document.getElementById(`r${m[1]}-${m[2]}`); row.querySelector('.track').outerHTML = track(it); document.getElementById('cs' + m[1]).innerHTML = cornerScore(S.corners[m[1]]); }
-  else if (p.startsWith('games.') || p.startsWith('taka.')) render();
+  else if (p.startsWith('games.') || p.startsWith('taka.')) { render(); applyLock(); }
+  if (p === 'p.name') document.getElementById('findTaka').href = S.p.takaUrl || takaSearchUrl(S.p.name);
 });
 function fit(t) { t.style.height = 'auto'; t.style.height = (t.scrollHeight + 2) + 'px'; }
 function fitAll() { document.querySelectorAll('textarea.f').forEach(fit); }
 window.addEventListener('beforeprint', fitAll);
 
-function addRow(k) { S[k].push(k === 'goals' ? { g: '', a: '', m: '', by: '' } : { d: '', o: '', ha: 'H', r: '', mins: '', rt: '', n: '' }); save(); render(); }
-function del(k, i) { if (confirm('Remove this row?')) { S[k].splice(i, 1); save(); render(); } }
+function addRow(k) { S[k].push(k === 'goals' ? { g: '', a: '', m: '', by: '' } : { d: '', o: '', ha: 'H', r: '', mins: '', rt: '', n: '' }); save(); render(); applyLock(); }
+function del(k, i) { if (confirm('Remove this row?')) { S[k].splice(i, 1); save(); render(); applyLock(); } }
 function exportJSON() {
   const a = document.createElement('a');
   a.href = URL.createObjectURL(new Blob([JSON.stringify(S, null, 2)], { type: 'application/json' }));
   a.download = `SC-Wave-IDP_${(S.p.name || 'player').trim().replace(/\s+/g, '-')}.json`; a.click();
 }
-function importJSON(el) {
-  const f = el.files[0]; if (!f) return; const r = new FileReader();
-  r.onload = () => { try { S = JSON.parse(r.result); save(); render(); } catch (e) { alert('That is not an SC Wave IDP file.'); } el.value = ''; };
-  r.readAsText(f);
+function applyPosition(k) {
+  const pre = IDP_POSITIONS[k]; if (!pre) return;
+  const hasText = Object.values(S.role || {}).some(v => String(v).trim());
+  if (hasText && !confirm(`Replace the role text with the ${pre.label} profile?`)) { render(); applyLock(); return; }
+  S.p.posKey = k; if (!S.p.pos) S.p.pos = pre.label;
+  S.role = { quals: pre.quals, att: pre.att, atod: pre.atod, def: pre.def, dtoa: pre.dtoa };
+  save(); render(); applyLock();
 }
-function resetSample() { if (confirm('Replace this plan with the Kareem Ahmad sample?')) { S = clone(SAMPLE); save(); render(); } }
-function newBlank() {
-  if (!confirm('Start a new blank IDP? Save the current player file first if you need it.')) return;
-  const b = clone(SAMPLE);
-  Object.keys(b.p).forEach(k => { if (k !== 'season') b.p[k] = ''; });
-  b.corners.forEach(c => c.items.forEach(i => { i.b = ''; i.c = ''; }));
-  b.taka.skills.forEach(s => s.s = 'No data');
-  b.strengths = ''; b.workon = ''; b.coach = ''; b.player = ''; b.games = [];
-  b.goals = [{ g: '', a: '', m: '', by: '' }, { g: '', a: '', m: '', by: '' }];
-  S = b; save(); render();
+
+/* ── Paste from TAKA ── */
+let PARSED = null;
+function openPaste() { document.getElementById('pasteModal').hidden = false; document.getElementById('pasteText').focus(); }
+function closePaste() { document.getElementById('pasteModal').hidden = true; }
+function previewPaste() {
+  const text = document.getElementById('pasteText').value;
+  const from = document.getElementById('pasteFrom').value;
+  const res = parseTaka(text);
+  if (from) res.games = res.games.filter(g => g.iso >= from + '-01');
+  PARSED = res;
+  const h = res.header, bits = [];
+  if (h.name) bits.push(`<b>${idpEsc(h.name)}</b>${h.num ? ' #' + idpEsc(h.num) : ''}${h.posCode ? ' · ' + idpEsc(h.posCode) : ''}`);
+  if (h.goals) bits.push(`Goals: <b>${idpEsc(h.goals)}</b>`);
+  if (res.skills.length) bits.push(`Skills: ${res.skills.map(x => `${idpEsc(x.n)} (${idpEsc(x.s)})`).join(', ')}`);
+  if (res.games.length) bits.push(`Games: <b>${res.games.length}</b> (${idpEsc(res.games[0].d)} → ${idpEsc(res.games[res.games.length - 1].d)})`);
+  if (h.name && S.p.name && h.name.toLowerCase() !== S.p.name.trim().toLowerCase()) bits.push(`<span class="warn">⚠ This TAKA page is for ${idpEsc(h.name)}, not ${idpEsc(S.p.name)}.</span>`);
+  if (text.trim() && !res.skills.length && !res.games.length) bits.push('<span class="warn">No TAKA skills or games found. Copy the whole IDP page (Cmd+A, then Cmd+C).</span>');
+  if (res.games.length) bits.push('<span class="hint">Opponent names are not in TAKA\'s text — type them in after filling.</span>');
+  document.getElementById('pastePreview').innerHTML = bits.map(x => `<div>${x}</div>`).join('');
+  document.getElementById('pasteGo').disabled = !(res.skills.length || res.games.length);
 }
-render();
+function applyPaste() {
+  const r = PARSED; if (!r) return;
+  const h = r.header;
+  if (h.num) S.p.num = h.num;
+  if (h.goals) S.p.goals = h.goals;
+  if (r.skills.length) S.taka.skills = r.skills;
+  if (r.games.length) {
+    const key = g => `${g.d}|${g.r}`;
+    const old = new Map(S.games.map(g => [key(g), g]));
+    const merged = r.games.map(g => { const o = old.get(key(g)); if (o) old.delete(key(g)); return o ? { ...g, o: o.o, rt: o.rt, n: o.n, mins: o.mins } : g; });
+    S.games = merged.concat([...old.values()]);
+    S.p.games = String(S.games.length);
+    const from = document.getElementById('pasteFrom').value;
+    if (from && !S.p.before) { const [y, m] = from.split('-'); S.p.before = `${MONTHS[Number(m) - 1]} ${y}`; }
+  }
+  const bits = [];
+  const fromV = document.getElementById('pasteFrom').value;
+  if (fromV) { const [y, m] = fromV.split('-'); bits.push(`${MONTHS[Number(m) - 1]} ${y} – now`); }
+  if (S.games.length) bits.push(`${S.games.length} games tracked`);
+  if (r.benchmark) bits.push(`compared to the ${r.benchmark} in MLS NEXT`);
+  if (bits.length && (r.skills.length || r.games.length)) S.taka.note = bits.join(' · ');
+  closePaste(); document.getElementById('pasteText').value = ''; PARSED = null;
+  save(); render(); applyLock();
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closePaste(); });
+init();
 </script>
 </body>
 </html>

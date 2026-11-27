@@ -7,3 +7,12 @@ wrangler.jsonc
 .assetsignore
 _originals
 _to_delete
+src
+migrations
+.dev.vars
+.wrangler
+Claude outputs
+package.json
+package-lock.json
+COACHES-SETUP.md
+_redirects

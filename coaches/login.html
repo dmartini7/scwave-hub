@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+  <title>Coach Sign-in — SC Wave</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/coaches/coaches.css" />
+  <style>
+    body { margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 16px; font-family: 'Inter', Arial, sans-serif; }
+    .box { width: min(400px, 100%); background: #0D0D0D; border: 1px solid #2A2A2A; border-top: 4px solid #F5C518; border-radius: 14px; padding: 28px 26px; }
+    .brand { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+    .brand img { height: 52px; }
+    .brand b { display: block; font: 900 22px/1 'Barlow Condensed', sans-serif; text-transform: uppercase; letter-spacing: .5px; color: #fff; }
+    .brand span { font: 700 11px 'Inter'; color: #F5C518; letter-spacing: 1.4px; text-transform: uppercase; }
+    h1 { font: 900 28px/1 'Barlow Condensed', sans-serif; text-transform: uppercase; color: #fff; margin: 0 0 6px; }
+    p.lead { color: #A0A0A0; font-size: 13px; margin: 0 0 18px; line-height: 1.5; }
+    label { display: block; font: 700 11px 'Inter'; color: #A0A0A0; text-transform: uppercase; letter-spacing: .6px; margin-bottom: 14px; }
+    label .in { display: block; width: 100%; margin-top: 6px; font-size: 15px; padding: 11px 12px; box-sizing: border-box; }
+    #code { text-transform: uppercase; letter-spacing: 1px; }
+    .btn.gold { width: 100%; padding: 12px; font-size: 14px; }
+    .msg { min-height: 20px; font-size: 13px; color: #F87171; margin: 4px 0 10px; }
+    .msg.ok { color: #4ADE80; }
+    .foot { margin-top: 16px; font-size: 12px; color: #6B6B6B; text-align: center; }
+    .foot a { color: #A0A0A0; }
+  </style>
+</head>
+<body>
+  <form class="box" id="f" autocomplete="on">
+    <div class="brand"><img src="/assets/scwave-logo.png" alt="SC Wave" /><div><b>SC Wave</b><span>Coaches Area</span></div></div>
+    <h1>Coach sign-in</h1>
+    <p class="lead">For SC Wave MLS NEXT coaching staff. Use the email you have on PlayMetrics and the club coach code.</p>
+    <label>Email<input class="in" id="email" type="email" autocomplete="email" required /></label>
+    <label>Club coach code<input class="in" id="code" type="password" autocomplete="current-password" required /></label>
+    <div class="msg" id="msg"></div>
+    <button class="btn gold" id="go" type="submit">Sign in</button>
+    <div class="foot">Need access? Contact Daniel Mattos · <a href="/">Back to the Player Hub</a></div>
+  </form>
+<script>
+const params = new URLSearchParams(location.search);
+const next = params.get('next');
+const safeNext = next && next.startsWith('/coaches') && !next.startsWith('//') ? next : '/coaches/';
+const msg = document.getElementById('msg');
+if (params.get('out')) { msg.textContent = 'You are signed out.'; msg.className = 'msg ok'; }
+try { const e = localStorage.getItem('scw-coach-email'); if (e) { document.getElementById('email').value = e; document.getElementById('code').focus(); } } catch (e) {}
+document.getElementById('f').addEventListener('submit', async ev => {
+  ev.preventDefault();
+  const email = document.getElementById('email').value.trim(), code = document.getElementById('code').value.trim();
+  const go = document.getElementById('go'); go.disabled = true; msg.className = 'msg'; msg.textContent = '';
+  try {
+    const res = await fetch('/api/login', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email, code }) });
+    const body = await res.json().catch(() => ({}));
+    if (res.ok) { try { localStorage.setItem('scw-coach-email', email); } catch (e) {} location.href = safeNext; return; }
+    msg.textContent = body.message || 'Sign-in failed. Try again.';
+  } catch (e) { msg.textContent = 'Could not reach the server. Check your connection.'; }
+  go.disabled = false;
+});
+</script>
+</body>
+</html>
