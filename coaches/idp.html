@@ -178,6 +178,7 @@ if (/(^|\.)scwaveplayerhub\.com$|\.pages\.dev$/.test(location.hostname) && !loca
     .shot-box .add { display: inline-block; }
     .ev-img { display: block; width: 100%; border: 1px solid #E3E3DE; border-radius: 8px; margin: 6px 0 14px; break-inside: avoid; }
     @media print { .evidence .ev-img { max-height: 8.2in; object-fit: contain; } }
+    #pasteGo.dim { opacity: .55; }
   </style>
 </head>
 <body>
@@ -228,7 +229,7 @@ if (/(^|\.)scwaveplayerhub\.com$|\.pages\.dev$/.test(location.hostname) && !loca
     <label>TAKA page text<textarea id="pasteText" class="in" rows="7" placeholder="Paste here…" oninput="previewPaste()"></textarea></label>
     <label>Only games from<input id="pasteFrom" class="in" type="month" value="2025-12" onchange="previewPaste()"></label>
     <div id="pastePreview" class="paste-preview"></div>
-    <div class="dlg-btns"><button class="btn" onclick="closePaste()">Cancel</button><button class="btn gold" id="pasteGo" onclick="applyPaste()" disabled>Fill the IDP</button></div>
+    <div class="dlg-btns"><button class="btn" onclick="closePaste()">Cancel</button><button class="btn gold dim" id="pasteGo" onclick="applyPaste()">Fill the IDP</button></div>
   </div>
 </div>
 
@@ -572,10 +573,15 @@ function previewPaste() {
   if (text.trim() && !res.skills.length && !res.games.length) bits.push('<span class="warn">No TAKA skills or games found. Copy the whole IDP page (Cmd+A, then Cmd+C).</span>');
   if (res.games.length) bits.push('<span class="hint">Opponent names are not in TAKA\'s text — type them in after filling.</span>');
   document.getElementById('pastePreview').innerHTML = bits.map(x => `<div>${x}</div>`).join('');
-  document.getElementById('pasteGo').disabled = !(res.skills.length || res.games.length);
+  document.getElementById('pasteGo').classList.toggle('dim', !(res.skills.length || res.games.length));
 }
 function applyPaste() {
-  const r = PARSED; if (!r) return;
+  previewPaste();
+  const r = PARSED;
+  if (!r || !(r.skills.length || r.games.length)) {
+    alert('Nothing to fill yet — the pasted text has no TAKA skills or games.\n\nIn TAKA, open the player\'s IDP, click an empty part of the page, press Cmd+A then Cmd+C, and paste here with Cmd+V.');
+    return;
+  }
   const h = r.header;
   if (h.num) S.p.num = h.num;
   if (h.goals) S.p.goals = h.goals;
