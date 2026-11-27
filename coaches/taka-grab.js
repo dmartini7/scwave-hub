@@ -94,8 +94,14 @@
     if (!opt) { if (b.getAttribute('aria-expanded') === 'true') b.click(); return false; }
     opt.click(); return true;
   };
-  const current = seasonBtn()?.textContent.trim();
-  if (current) {
+  // TAKA can draw the season dropdown a moment after the games; wait for it, else read the season from the page.
+  await waitFor(() => seasonBtn(), 6000);
+  const textSeason = (root.innerText.match(/\n\s*(20\d\d-20\d\d)\s*\n/) || [])[1];
+  const current = seasonBtn()?.textContent.trim() || textSeason;
+  if (current && !seasonBtn()) {
+    data.seasons.push(current);
+    data.games_list.push(...readGames(current));
+  } else if (current) {
     data.seasons.push(current);
     data.games_list.push(...readGames(current));
     const b = seasonBtn(); b.click(); await sleep(700);
