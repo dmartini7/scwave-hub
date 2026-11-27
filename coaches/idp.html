@@ -166,6 +166,18 @@ if (/(^|\.)scwaveplayerhub\.com$|\.pages\.dev$/.test(location.hostname) && !loca
       .row { padding: 5px 12px; }
       h2 { margin: 12px 0 6px; }
     }
+    .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+    @media screen and (max-width: 700px) { .shots { grid-template-columns: 1fr; } }
+    .shot-box { border: 1.5px dashed #CFCFCA; border-radius: 10px; padding: 10px; background: #FAFAF7; outline: none; }
+    .shot-box:focus { border-color: #F5C518; background: #FFFBEA; }
+    .shot-list { display: flex; flex-wrap: wrap; gap: 8px; margin: 6px 0; }
+    .shot { position: relative; }
+    .shot img { height: 90px; border-radius: 6px; border: 1px solid #DDD; cursor: zoom-in; display: block; }
+    .shot-x { position: absolute; top: 3px; right: 3px; background: rgba(255,255,255,.9) !important; }
+    .shot-hint { font-size: 11px; color: #6B6B6B; margin-left: 8px; }
+    .shot-box .add { display: inline-block; }
+    .ev-img { display: block; width: 100%; border: 1px solid #E3E3DE; border-radius: 8px; margin: 6px 0 14px; break-inside: avoid; }
+    @media print { .evidence .ev-img { max-height: 8.2in; object-fit: contain; } }
   </style>
 </head>
 <body>
@@ -245,7 +257,7 @@ const R = ['', '1', '1.5', '2', '2.5', '3', '3.5', '4'];
 const TAKA_STATUS = ['Key Strength', 'On Par', 'Dev. Opportunity', 'No data'];
 
 const ID = new URLSearchParams(location.search).get('id');
-let S = null, META = null, BASE = null, STATUS = 'draft', ME = null;
+let S = null, META = null, BASE = null, STATUS = 'draft', ME = null, FILES = [];
 let dirty = false, saving = false, blocked = false, timer = null;
 
 function clone(o) { return JSON.parse(JSON.stringify(o)); }
@@ -296,7 +308,8 @@ window.addEventListener('beforeunload', e => { if (dirty || saving) { e.preventD
 
 async function init() {
   if (!ID) { location.href = '/coaches/'; return; }
-  const [me, r] = await Promise.all([idpApi('me'), idpApi('idps/' + ID)]);
+  const [me, r, fl] = await Promise.all([idpApi('me'), idpApi('idps/' + ID), idpApi('idps/' + ID + '/files')]);
+  FILES = fl.ok ? fl.body : [];
   if (!r.ok) { document.getElementById('doc').innerHTML = '<p class="loadmsg">This IDP was not found. <a href="/coaches/">Back to all IDPs</a></p>'; return; }
   ME = me.body; META = r.body; S = r.body.data; BASE = r.body.updated_at; STATUS = r.body.status;
   S.taka = S.taka || { note: '', skills: [] };
@@ -420,6 +433,15 @@ function render() {
       <h2>MLS NEXT Data — TAKA Skill Analysis</h2>
       <div class="note"><span class="powered">Powered by TAKA</span> · ${I('taka.note')}</div>
       ${S.taka.skills.length ? `<div class="taka">${taka}</div>` : `<div class="taka-empty">No TAKA data yet. Use <b>Paste from TAKA</b> at the top of the page.</div>`}
+      <div class="shots np">${SHOT_KINDS.map(([k, label]) => `
+        <div class="shot-box" tabindex="0" data-kind="${k}" title="Click here, then press Cmd+V to paste a screenshot">
+          <span class="lbl">TAKA screenshot — ${label}</span>
+          <div class="shot-list">${FILES.filter(f => f.kind === k).map(f => `
+            <div class="shot"><img src="/api/files/${f.id}" alt="TAKA ${label}" onclick="window.open(this.src)"><button class="x shot-x" title="Remove" onclick="delShot('${f.id}')">×</button></div>`).join('')}</div>
+          <label class="add">+ Upload image<input type="file" accept="image/*" hidden onchange="uploadShot('${k}', this.files[0]); this.value=''"></label>
+          <span class="shot-hint">or click this box and press Cmd+V</span>
+        </div>`).join('')}
+      </div>
 
       <h2>Development Goals</h2>
       <div class="note">Two goals, taken from the Areas to Work On.</div>
@@ -441,7 +463,17 @@ function render() {
       <div class="signs"><div><span class="lbl">Player</span></div><div><span class="lbl">Head Coach</span></div><div><span class="lbl">MLS NEXT Director</span></div></div>
     </div>
     <div class="foot"><span><b>SC WAVE</b> · Meritocracy · Team Spirit · Respect · Resilience · Creativity</span><span>Individual Development Plan · ${esc(P.season)}</span></div>
-  </section>`;
+  </section>
+  ${FILES.length ? `<section class="page evidence">
+    <div class="head">
+      <div class="l"><img src="/assets/scwave-logo.png" alt="SC Wave"><div><h1>${esc(P.name || 'Player')} · <span>TAKA Evidence</span></h1><small>MLS NEXT data · Powered by TAKA</small></div></div>
+      <img class="mls" src="/assets/mlsnext-logo.png" alt="MLS NEXT">
+    </div>
+    <div class="pad">${SHOT_KINDS.filter(([k]) => FILES.some(f => f.kind === k)).map(([k, label]) => `
+      <h2>TAKA ${label}</h2>${FILES.filter(f => f.kind === k).map(f => `<img class="ev-img" src="/api/files/${f.id}" alt="TAKA ${label}">`).join('')}`).join('')}
+      <div class="note" style="margin-top:8px">Screenshots from the player's TAKA Individual Development Plan, attached by the coaching staff.</div>
+    </div>
+  </section>` : ''}`;
   fitAll();
 }
 
@@ -472,6 +504,53 @@ function applyPosition(k) {
   S.role = { quals: pre.quals, att: pre.att, atod: pre.atod, def: pre.def, dtoa: pre.dtoa };
   save(); render(); applyLock();
 }
+
+/* ── TAKA screenshots (proof) ── */
+const SHOT_KINDS = [['skill', 'Skill Analysis'], ['performance', 'Performance Monitoring']];
+function shrinkImage(file) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => {
+      const tryAt = (maxW, q) => {
+        const scale = Math.min(1, maxW / img.width);
+        const c = document.createElement('canvas');
+        c.width = Math.round(img.width * scale); c.height = Math.round(img.height * scale);
+        const g = c.getContext('2d'); g.fillStyle = '#fff'; g.fillRect(0, 0, c.width, c.height); g.drawImage(img, 0, 0, c.width, c.height);
+        return c.toDataURL('image/jpeg', q);
+      };
+      let out = tryAt(1800, 0.85);
+      if (out.length > 1100 * 1024) out = tryAt(1400, 0.75);
+      if (out.length > 1100 * 1024) out = tryAt(1100, 0.65);
+      URL.revokeObjectURL(img.src); resolve(out);
+    };
+    img.onerror = () => reject(new Error('not an image'));
+    img.src = URL.createObjectURL(file);
+  });
+}
+async function uploadShot(kind, file) {
+  if (!file || !/^image\//.test(file.type)) { alert('Please choose an image (PNG or JPG screenshot).'); return; }
+  if (STATUS === 'approved' && !(META && META.can_approve)) return;
+  msg('Uploading screenshot…');
+  try {
+    const data = await shrinkImage(file);
+    const r = await idpApi('idps/' + ID + '/files', { method: 'POST', body: { kind, data } });
+    if (!r.ok) { alert((r.body && r.body.message) || 'Could not upload the screenshot.'); msg(''); return; }
+    FILES.push(r.body); render(); applyLock(); msg('Screenshot saved ✓');
+  } catch (e) { alert('Could not read that image.'); msg(''); }
+}
+async function delShot(fid) {
+  if (!confirm('Remove this screenshot?')) return;
+  const r = await idpApi('files/' + fid, { method: 'DELETE' });
+  if (!r.ok) { alert((r.body && r.body.message) || 'Could not remove it.'); return; }
+  FILES = FILES.filter(f => f.id !== fid); render(); applyLock();
+}
+document.addEventListener('paste', e => {
+  const box = document.activeElement && document.activeElement.closest && document.activeElement.closest('.shot-box');
+  if (!box) return;
+  const item = [...(e.clipboardData ? e.clipboardData.items : [])].find(i => i.type.startsWith('image/'));
+  if (!item) { msg('No image in the clipboard — take a screenshot first (Cmd+Ctrl+Shift+4).'); return; }
+  e.preventDefault(); uploadShot(box.dataset.kind, item.getAsFile());
+});
 
 /* ── Paste from TAKA ── */
 let PARSED = null;

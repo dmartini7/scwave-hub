@@ -7,6 +7,8 @@ import { COACHES, findCoach, nameFor } from './coaches.js';
 
 const STATUSES = ['draft', 'review', 'approved'];
 const MAX_BODY = 300 * 1024;
+const MAX_FILE = 1200 * 1024; // one compressed screenshot (base64)
+const FILE_KINDS = ['skill', 'performance'];
 const SNAPSHOT_EVERY_MS = 30 * 60 * 1000;
 const SESSION_DAYS = 30;
 const COOKIE = 'scw_coach';
@@ -146,6 +148,7 @@ async function api(request, env, url, user) {
     const { results } = await env.DB.prepare('SELECT id, team, name, num, birth_year, position, pos_key FROM roster ORDER BY team, name').all();
     return json(results);
   }
+  if (parts[0] === 'files' && parts[1]) return fileRoute(request, env, user, parts[1]);
   if (parts[0] !== 'idps') return json({ error: 'not_found' }, 404);
   const id = parts[1];
 
@@ -172,6 +175,28 @@ async function api(request, env, url, user) {
   const row = await env.DB.prepare('SELECT * FROM idps WHERE id = ?').bind(id).first();
   if (!row) return json({ error: 'not_found' }, 404);
   const isDirector = user.role === 'director';
+
+  if (parts[2] === 'files') {
+    if (method === 'GET') {
+      const { results } = await env.DB.prepare('SELECT id, kind, created_by, created_at FROM idp_files WHERE idp_id = ? ORDER BY created_at').bind(id).all();
+      return json(results.map(f => ({ ...f, created_by_name: nameFor(f.created_by) })));
+    }
+    if (method === 'POST') {
+      if (row.status === 'approved' && !isDirector) return json({ error: 'locked', message: 'Approved IDPs can only be changed by a director.' }, 403);
+      const body = await readJson(request, MAX_FILE + 4096);
+      if (!body || !FILE_KINDS.includes(body.kind)) return json({ error: 'bad_request' }, 400);
+      const data = String(body.data || '');
+      if (!/^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+/=]+$/.test(data)) return json({ error: 'bad_image' }, 400);
+      if (data.length > MAX_FILE) return json({ error: 'too_large', message: 'That image is too large.' }, 413);
+      const count = await env.DB.prepare('SELECT COUNT(*) AS n FROM idp_files WHERE idp_id = ?').bind(id).first();
+      if (count.n >= 6) return json({ error: 'too_many', message: 'An IDP can hold up to 6 screenshots.' }, 400);
+      const fid = crypto.randomUUID(), now = new Date().toISOString();
+      await env.DB.prepare('INSERT INTO idp_files (id, idp_id, kind, data, created_by, created_at) VALUES (?, ?, ?, ?, ?, ?)')
+        .bind(fid, id, body.kind, data, user.email, now).run();
+      return json({ id: fid, kind: body.kind, created_by_name: user.name, created_at: now }, 201);
+    }
+    return json({ error: 'method_not_allowed' }, 405);
+  }
 
   if (method === 'GET') {
     return json({
@@ -215,8 +240,26 @@ async function api(request, env, url, user) {
     if (!isDirector) return json({ error: 'forbidden', message: 'Only a director can delete an IDP.' }, 403);
     await env.DB.batch([
       env.DB.prepare('DELETE FROM idp_versions WHERE idp_id = ?').bind(id),
+      env.DB.prepare('DELETE FROM idp_files WHERE idp_id = ?').bind(id),
       env.DB.prepare('DELETE FROM idps WHERE id = ?').bind(id)
     ]);
+    return json({ ok: true });
+  }
+  return json({ error: 'method_not_allowed' }, 405);
+}
+
+async function fileRoute(request, env, user, fid) {
+  const f = await env.DB.prepare('SELECT f.*, i.status FROM idp_files f JOIN idps i ON i.id = f.idp_id WHERE f.id = ?').bind(fid).first();
+  if (!f) return json({ error: 'not_found' }, 404);
+  if (request.method === 'GET') {
+    const m = f.data.match(/^data:(image\/[a-z]+);base64,(.*)$/);
+    const bytes = Uint8Array.from(atob(m[2]), c => c.charCodeAt(0));
+    return new Response(bytes, { headers: { 'Content-Type': m[1], 'Cache-Control': 'private, max-age=86400' } });
+  }
+  if (request.method === 'DELETE') {
+    const isDirector = user.role === 'director';
+    if (f.status === 'approved' && !isDirector) return json({ error: 'locked', message: 'Approved IDPs can only be changed by a director.' }, 403);
+    await env.DB.prepare('DELETE FROM idp_files WHERE id = ?').bind(fid).run();
     return json({ ok: true });
   }
   return json({ error: 'method_not_allowed' }, 405);
@@ -228,9 +271,9 @@ function columnsFrom(data) {
   return { player: clip(p.name), team: clip(p.team), position: clip(p.pos) };
 }
 
-async function readJson(request) {
+async function readJson(request, limit = MAX_BODY) {
   const len = Number(request.headers.get('Content-Length') || 0);
-  if (len > MAX_BODY) return null;
+  if (len > limit) return null;
   try { return await request.json(); } catch (e) { return null; }
 }
 

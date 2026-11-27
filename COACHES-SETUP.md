@@ -31,6 +31,7 @@ Edit `src/coaches.js` (name, role `coach` or `director`, email) and push.
 
 ## TAKA
 - **Find in TAKA ↗** opens TAKA's athlete search for the player (coach's own TAKA login).
+- **TAKA screenshots**: upload or paste (Cmd+V) the Skill Analysis and Performance Monitoring screenshots; they print as a "TAKA Evidence" page.
 - **Paste from TAKA**: on the player's TAKA IDP page press Cmd+A, Cmd+C and paste. Skills, goals, jersey number and
   games fill in automatically (TAKA's chart dates are one day early; the import corrects them). Opponent names are typed in.
 
