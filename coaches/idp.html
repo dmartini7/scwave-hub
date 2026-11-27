@@ -139,7 +139,9 @@ if (/(^|\.)scwaveplayerhub\.com$|\.pages\.dev$/.test(location.hostname) && !loca
     .glist b { text-align: right; color: #C49A10; }
     .glist em { grid-column: 2 / -1; font-style: normal; color: #6B6B6B; font-size: 10.5px; margin-top: -2px; }
     .signs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 26px; }
-    .signs div { border-top: 2px solid #0D0D0D; padding-top: 4px; }
+    .signs > div { border-top: 2px solid #0D0D0D; padding-top: 4px; }
+    .signs .sn { font: 700 14px 'Inter', sans-serif; color: #0D0D0D; margin-top: 2px; padding: 3px 6px; }
+    .signs div.sn { padding-left: 0; }
     .foot { background: #0D0D0D; color: #A0A0A0; font-size: 10.5px; padding: 8px 24px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
     .foot b { color: #F5C518; }
 
@@ -161,7 +163,9 @@ if (/(^|\.)scwaveplayerhub\.com$|\.pages\.dev$/.test(location.hostname) && !loca
       textarea.f { field-sizing: content; height: auto !important; }
       #gwrap { display: none !important; }
       .glist { display: grid !important; }
-      .signs { margin-top: 18px; }
+      .signs { margin-top: 10px; }
+      .signs .sn { padding: 1px 0; font-size: 13px; }
+      .gchart { height: 88px; }
       .stats div { padding: 4px 8px; }
       .row { padding: 5px 12px; }
       h2 { margin: 12px 0 6px; }
@@ -326,6 +330,7 @@ async function init() {
   st.value = STATUS; st.querySelector('[value=approved]').disabled = !META.can_approve && STATUS !== 'approved';
   document.getElementById('findTaka').href = S.p.takaUrl || takaSearchUrl(S.p.name);
   document.title = (S.p.name || 'IDP') + ' — SC Wave IDP';
+  if (!S.p.director && META.can_edit) { S.p.director = defaultDirector(S.p.team); setTimeout(save, 0); }
   render(); applyLock();
   msg(`Saved · ${META.updated_by_name} · ${idpWhen(BASE)}`);
   if (new URLSearchParams(location.search).get('taka')) {
@@ -350,6 +355,14 @@ function avg(c, k) { const v = c.items.map(i => num(i[k])).filter(x => x !== nul
 const f1 = n => n === null ? '–' : n.toFixed(1);
 const track = it => `<div class="track"><div class="b b0" style="width:${(num(it.b) || 0) * 25}%"></div><div class="b b1" style="width:${(num(it.c) || 0) * 25}%"></div><div class="t"></div></div>`;
 const cornerScore = c => `${f1(avg(c, 'c'))}<small> / 4</small>`;
+
+const DIRECTORS = ['Daniel Mattos', 'Andre Hayne', 'Marcio Leite'];
+function coachOptions(cur) {
+  const names = ((ME && ME.coaches) || []).map(c => c.name);
+  return ['', ...new Set([...(cur && !names.includes(cur) ? [cur] : []), ...names])];
+}
+function directorOptions(cur) { return ['', ...new Set([...(cur && !DIRECTORS.includes(cur) ? [cur] : []), ...DIRECTORS])]; }
+function defaultDirector(team) { return /academy|\bAD\b/i.test(team || '') ? 'Andre Hayne' : 'Daniel Mattos'; }
 
 function render() {
   const P = S.p;
@@ -408,7 +421,7 @@ function render() {
           <div><span class="lbl">Avg. minutes (approx.)</span>${I('p.mins', '~__ / game')}</div>
         </div>
         <div><span class="lbl">Season</span>${I('p.season')}</div>
-        <div><span class="lbl">Head coach</span>${I('p.coach', 'Coach name')}</div>
+        <div><span class="lbl">Head coach</span>${SEL('p.coach', coachOptions(P.coach))}</div>
         <div><span class="lbl">Evaluation date</span>${I('p.date')}</div>
         <div><span class="lbl">Next review</span>${I('p.review')}</div>
       </div>
@@ -474,7 +487,11 @@ function render() {
         <div style="border:1px solid #E3E3DE"><span class="lbl">Coach</span>${T('coach', '', 3)}</div>
         <div style="border:1px solid #E3E3DE"><span class="lbl">Player — my goals &amp; reflection</span>${T('player', 'Player writes here', 3)}</div>
       </div>
-      <div class="signs"><div><span class="lbl">Player</span></div><div><span class="lbl">Head Coach</span></div><div><span class="lbl">MLS NEXT Director</span></div></div>
+      <div class="signs">
+        <div><span class="lbl">Player</span><div class="sn">${esc(P.name)}</div></div>
+        <div><span class="lbl">Head Coach</span>${SEL('p.coach', coachOptions(P.coach), 'sn')}</div>
+        <div><span class="lbl">MLS NEXT Director</span>${SEL('p.director', directorOptions(P.director), 'sn')}</div>
+      </div>
     </div>
     <div class="foot"><span><b>SC WAVE</b> · Meritocracy · Team Spirit · Respect · Resilience · Creativity</span><span>Individual Development Plan · ${esc(P.season)}</span></div>
   </section>
@@ -496,7 +513,7 @@ document.addEventListener('change', e => {
   const p = e.target.dataset?.p; if (!p) return; put(p, e.target.value); save();
   const m = p.match(/^corners\.(\d+)\.items\.(\d+)\./);
   if (m) { const it = S.corners[m[1]].items[m[2]]; const row = document.getElementById(`r${m[1]}-${m[2]}`); row.querySelector('.track').outerHTML = track(it); document.getElementById('cs' + m[1]).innerHTML = cornerScore(S.corners[m[1]]); }
-  else if (p.startsWith('games.') || p.startsWith('taka.')) { render(); applyLock(); }
+  else if (p.startsWith('games.') || p.startsWith('taka.') || p === 'p.coach' || p === 'p.director' || p === 'p.name') { render(); applyLock(); }
   if (p === 'p.name') document.getElementById('findTaka').href = S.p.takaUrl || takaSearchUrl(S.p.name);
 });
 function fit(t) { t.style.height = 'auto'; t.style.height = (t.scrollHeight + 2) + 'px'; }
