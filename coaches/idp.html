@@ -179,6 +179,7 @@ if (/(^|\.)scwaveplayerhub\.com$|\.pages\.dev$/.test(location.hostname) && !loca
     .ev-img { display: block; width: 100%; border: 1px solid #E3E3DE; border-radius: 8px; margin: 6px 0 14px; break-inside: avoid; }
     @media print { .evidence .ev-img { max-height: 8.2in; object-fit: contain; } }
     #pasteGo.dim { opacity: .55; }
+    .backup { color: #A0A0A0; font-size: 12px; text-decoration: underline; align-self: center; margin-left: 4px; }
     .taka .tv { display: block; font: 600 10px 'Inter'; color: #9FB3C0; font-style: normal; margin-top: 2px; }
     .flash { animation: flash 2.4s ease; border-radius: 6px; }
     @keyframes flash { 0%, 40% { background: #FDE68A; box-shadow: 0 0 0 6px #FDE68A; } 100% { background: transparent; box-shadow: none; } }
@@ -218,8 +219,9 @@ if (/(^|\.)scwaveplayerhub\.com$|\.pages\.dev$/.test(location.hostname) && !loca
   <div class="btns">
     <a class="btn" id="findTaka" target="scwave_taka" title="Opens TAKA in its own tab — this IDP stays open in this tab">Open TAKA in new tab ↗</a>
     <button class="btn" onclick="openPaste()">Paste from TAKA</button>
-    <button class="btn gold" onclick="window.print()">Print / PDF</button>
-    <button class="btn" onclick="exportJSON()">Download file</button>
+    <button class="btn gold" onclick="savePdf()" title="Opens the print window — choose Save as PDF">⬇ Save as PDF</button>
+    <button class="btn" onclick="window.print()">Print</button>
+    <a class="backup" href="#" onclick="event.preventDefault(); exportJSON()" title="Technical backup of this IDP's data (not a document)">Backup data</a>
   </div>
 </div>
 <div class="banner" id="banner" hidden></div>
@@ -503,6 +505,12 @@ window.addEventListener('beforeprint', fitAll);
 
 function addRow(k) { S[k].push(k === 'goals' ? { g: '', a: '', m: '', by: '' } : { d: '', o: '', ha: 'H', r: '', mins: '', rt: '', n: '' }); save(); render(); applyLock(); }
 function del(k, i) { if (confirm('Remove this row?')) { S[k].splice(i, 1); save(); render(); applyLock(); } }
+function savePdf() {
+  const t = document.title;
+  document.title = `SC-Wave-IDP_${(S.p.name || 'player').trim().replace(/\s+/g, '-')}`;   // becomes the PDF file name
+  msg('In the print window, set Destination to “Save as PDF”, then Save.');
+  setTimeout(() => { window.print(); document.title = t; }, 50);
+}
 function exportJSON() {
   const a = document.createElement('a');
   a.href = URL.createObjectURL(new Blob([JSON.stringify(S, null, 2)], { type: 'application/json' }));
