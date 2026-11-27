@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+  <title>TAKA button — SC Wave Coaches</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/coaches/coaches.css" />
+  <style>
+    .card-w { background: #0D0D0D; border: 1px solid #2A2A2A; border-radius: 14px; padding: 22px 24px; margin-bottom: 16px; }
+    .card-w h2 { font: 900 22px 'Barlow Condensed', sans-serif; text-transform: uppercase; margin-bottom: 10px; color: #fff; }
+    .card-w h2 span { color: #F5C518; }
+    .card-w p, .card-w li { color: #CFCFCF; font-size: 14px; line-height: 1.6; }
+    .card-w ol { padding-left: 20px; }
+    .card-w b { color: #fff; }
+    kbd { background: #242424; border: 1px solid #444; border-radius: 4px; padding: 1px 6px; font: 600 12px Menlo, monospace; color: #fff; }
+    .drag { display: inline-flex; align-items: center; gap: 8px; background: #F5C518; color: #0D0D0D !important; font: 800 15px 'Inter', sans-serif; padding: 12px 18px; border-radius: 10px; text-decoration: none; cursor: grab; border: 2px dashed #0D0D0D; box-shadow: 0 0 0 4px rgba(245,197,24,.25); }
+    .drag-row { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin: 14px 0 6px; }
+    .arrow { color: #A0A0A0; font-size: 13px; }
+  </style>
+</head>
+<body>
+<script>if (/(^|\.)scwaveplayerhub\.com$|\.pages\.dev$/.test(location.hostname) && !location.hostname.startsWith('coaches.')) location.replace('https://coaches.scwaveplayerhub.com' + location.pathname);</script>
+<header>
+  <div class="header-inner">
+    <a href="/coaches/" class="logo-block">
+      <img class="sc-logo" src="/assets/scwave-logo.png" alt="SC Wave" />
+      <div class="logo-text"><span class="club">SC Wave</span><span class="hub">Coaches Area</span></div>
+    </a>
+    <div class="header-right">
+      <nav>
+        <a href="/coaches/">Player IDPs</a>
+        <a href="/coaches/taka-button.html" class="active">TAKA button</a>
+        <a href="/">Player Hub</a>
+      </nav>
+      <div class="who"><a href="/api/logout">Sign out</a></div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap" style="max-width:820px">
+  <h1 class="page-title">TAKA → IDP in one click</h1>
+  <p class="sub" style="margin-bottom:18px">Set this up once on your computer (Chrome, Safari or Edge). After that, any player's TAKA IDP fills their SC Wave IDP with one click.</p>
+
+  <div class="card-w">
+    <h2>1. Add the button <span>(once)</span></h2>
+    <ol>
+      <li>Show your bookmarks bar: press <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>B</kbd> (Windows: <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>B</kbd>).</li>
+      <li><b>Drag</b> this yellow button up onto the bookmarks bar:</li>
+    </ol>
+    <div class="drag-row">
+      <a class="drag" id="bm" title="Drag me to your bookmarks bar" onclick="event.preventDefault(); alert('Drag this button onto your bookmarks bar (don\'t click it here). Then use it on a TAKA IDP page.')">⚡ Send to SC Wave IDP</a>
+      <span class="arrow">← drag it up to the bookmarks bar</span>
+    </div>
+  </div>
+
+  <div class="card-w">
+    <h2>2. Use it <span>(every player)</span></h2>
+    <ol>
+      <li>In TAKA, go to <b>Assistant Coach → Individual Development Plan</b> and choose the player.</li>
+      <li>Click <b>⚡ Send to SC Wave IDP</b> on your bookmarks bar. A small SC Wave panel appears on the TAKA page and reads the skills and <b>every game from both seasons</b> (about 10 seconds — don't click around while it works).</li>
+      <li>When it says <b>✓ Got [player]</b>, click <b>Fill SC Wave IDP →</b>. The player's SC Wave IDP opens in a new tab, already filled:
+        <ul>
+          <li>TAKA skills (Key Strength / On Par / Development Opportunity) with each skill's score as a % of the Top 20% level</li>
+          <li>every game from Dec 2025 on — date, opponent, home/away, score</li>
+          <li>a <b>suggested</b> 1–4 game rating from TAKA's game score (change any you disagree with)</li>
+          <li>goals and jersey number</li>
+        </ul>
+      </li>
+      <li>Add your own four-corner ratings, strengths, goals and comments as usual.</li>
+    </ol>
+    <p style="margin-top:10px">If the player has no IDP yet, it is created for you from the roster. Running it again later updates the TAKA data and adds new games; ratings you changed by hand are kept.</p>
+  </div>
+
+  <div class="card-w">
+    <h2>Good to know</h2>
+    <p>The button only reads the TAKA page you have open, using your own TAKA login. Nothing is sent anywhere until you click <b>Fill SC Wave IDP</b>, and then only to this coaches area. <b>Paste from TAKA</b> inside each IDP still works as a backup.</p>
+  </div>
+</main>
+
+<script>
+document.getElementById('bm').href =
+  "javascript:(function(){var s=document.createElement('script');s.src='https://coaches.scwaveplayerhub.com/coaches/taka-grab.js?v='+Date.now();document.body.appendChild(s);})();";
+</script>
+</body>
+</html>

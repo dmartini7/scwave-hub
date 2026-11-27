@@ -90,6 +90,34 @@ function idpBlank() {
   };
 }
 
+/* New IDP for a player, pre-filled from the team and the positional profile. */
+function idpBuild(name, team, posKey, coachName) {
+  const data = idpBlank(), pre = IDP_POSITIONS[posKey];
+  data.p.name = name; data.p.team = team;
+  const age = String(team || '').match(/U\d+(?:[-\/]U\d+)?/); data.p.age = age ? age[0] + ' Boys' : '';
+  data.p.coach = coachName || '';
+  data.p.date = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+  data.p.before = 'Dec 2025';
+  data.p.now = new Date().toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+  data.p.takaUrl = takaSearchUrl(name);
+  if (pre) { data.p.posKey = posKey; data.p.pos = pre.label; data.role = { quals: pre.quals, att: pre.att, atod: pre.atod, def: pre.def, dtoa: pre.dtoa }; }
+  return data;
+}
+
+/* TAKA draws its "Top 20%" line at about 81% of the bar scale (measured on the TAKA IDP, Nov 2026). */
+const TAKA_TOP20 = 81;
+/* Suggested 1–4 game rating from TAKA's game bar (coaches can change it). */
+function takaSuggestRating(pct) {
+  if (pct == null) return '';
+  const r = pct / TAKA_TOP20;
+  return r >= 1.1 ? '4' : r >= 1.0 ? '3.5' : r >= 0.9 ? '3' : r >= 0.83 ? '2.5' : r >= 0.75 ? '2' : '1.5';
+}
+/* "SC Wave MLS NEXT U17 AD" → "MLS NEXT U17 Academy"; "… HD" → Homegrown */
+function takaTeamHint(team) {
+  const m = String(team || '').match(/U(\d+)/); if (!m) return '';
+  return /\bAD\b|Academy/i.test(team) ? `U${m[1]} Academy` : /\bHD\b|Homegrown/i.test(team) ? `U${m[1]} Homegrown` : `U${m[1]}`;
+}
+
 /* Link to the player's search in TAKA (opens in the coach's own TAKA login). */
 function takaSearchUrl(name) {
   const first = String(name || '').trim().split(/\s+/)[0] || '';

@@ -179,6 +179,7 @@ if (/(^|\.)scwaveplayerhub\.com$|\.pages\.dev$/.test(location.hostname) && !loca
     .ev-img { display: block; width: 100%; border: 1px solid #E3E3DE; border-radius: 8px; margin: 6px 0 14px; break-inside: avoid; }
     @media print { .evidence .ev-img { max-height: 8.2in; object-fit: contain; } }
     #pasteGo.dim { opacity: .55; }
+    .taka .tv { display: block; font: 600 10px 'Inter'; color: #9FB3C0; font-style: normal; margin-top: 2px; }
     .flash { animation: flash 2.4s ease; border-radius: 6px; }
     @keyframes flash { 0%, 40% { background: #FDE68A; box-shadow: 0 0 0 6px #FDE68A; } 100% { background: transparent; box-shadow: none; } }
     .banner.ok { background: #0F2A17; border-color: #16A34A; color: #BBF7D0; }
@@ -198,6 +199,7 @@ if (/(^|\.)scwaveplayerhub\.com$|\.pages\.dev$/.test(location.hostname) && !loca
     <div class="header-right">
       <nav>
         <a href="/coaches/" class="active">Player IDPs</a>
+        <a href="/coaches/taka-button.html">TAKA button</a>
         <a href="/">Player Hub</a>
       </nav>
       <div class="who" id="who"></div>
@@ -214,7 +216,7 @@ if (/(^|\.)scwaveplayerhub\.com$|\.pages\.dev$/.test(location.hostname) && !loca
     <span id="saved"></span>
   </div>
   <div class="btns">
-    <a class="btn" id="findTaka" target="_blank" rel="noopener">Find in TAKA ↗</a>
+    <a class="btn" id="findTaka" target="scwave_taka" title="Opens TAKA in its own tab — this IDP stays open in this tab">Open TAKA in new tab ↗</a>
     <button class="btn" onclick="openPaste()">Paste from TAKA</button>
     <button class="btn gold" onclick="window.print()">Print / PDF</button>
     <button class="btn" onclick="exportJSON()">Download file</button>
@@ -227,7 +229,7 @@ if (/(^|\.)scwaveplayerhub\.com$|\.pages\.dev$/.test(location.hostname) && !loca
 <div class="modal" id="pasteModal" hidden>
   <div class="dialog wide">
     <h2>Paste from TAKA</h2>
-    <p>1. Click <b>Find in TAKA</b> and open the player's IDP in TAKA (Assistant Coach → Individual Development Plan).<br>
+    <p>1. Click <b>Open TAKA in new tab</b> and open the player's IDP in TAKA (Assistant Coach → Individual Development Plan).<br>
        2. On the <b>Skill Analysis</b> tab, press <b>Cmd+A</b> then <b>Cmd+C</b>, and paste below. Do the same on the <b>Performance Monitoring</b> tab to add the games. You can paste both, one after the other.</p>
     <label>TAKA page text<textarea id="pasteText" class="in" rows="7" placeholder="Paste here…" oninput="previewPaste()"></textarea></label>
     <label>Only games from<input id="pasteFrom" class="in" type="month" value="2025-12" onchange="previewPaste()"></label>
@@ -324,6 +326,12 @@ async function init() {
   document.title = (S.p.name || 'IDP') + ' — SC Wave IDP';
   render(); applyLock();
   msg(`Saved · ${META.updated_by_name} · ${idpWhen(BASE)}`);
+  if (new URLSearchParams(location.search).get('taka')) {
+    history.replaceState(null, '', location.pathname + '?id=' + ID);
+    let d = null; try { d = JSON.parse(sessionStorage.getItem('scw-taka-import') || 'null'); } catch (e) {}
+    sessionStorage.removeItem('scw-taka-import');
+    if (d) applyTakaData(d);
+  }
 }
 
 const esc = s => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -358,7 +366,7 @@ function render() {
         </div>`; }).join('')}
     </div>`).join('');
 
-  const taka = S.taka.skills.map((s, i) => `<div>${I(`taka.skills.${i}.n`)}${SEL(`taka.skills.${i}.s`, TAKA_STATUS, cls(s.s))}</div>`).join('');
+  const taka = S.taka.skills.map((s, i) => `<div>${I(`taka.skills.${i}.n`)}${SEL(`taka.skills.${i}.s`, TAKA_STATUS, cls(s.s))}${s.v ? `<em class="tv">${idpEsc(s.v)}% of Top 20%</em>` : ''}</div>`).join('');
 
   const goals = S.goals.map((g, i) => `<tr>
       <td class="goal-n">${i + 1}</td>
@@ -555,6 +563,61 @@ document.addEventListener('paste', e => {
   if (!item) { msg('No image in the clipboard — take a screenshot first (Cmd+Ctrl+Shift+4).'); return; }
   e.preventDefault(); uploadShot(box.dataset.kind, item.getAsFile());
 });
+
+/* ── One-click import from the TAKA bookmark button ── */
+function applyTakaData(d) {
+  if (STATUS === 'approved' && !(META && META.can_approve)) { banner('This IDP is approved — only a director can import TAKA data into it.'); return; }
+  const norm = x => String(x || '').toLowerCase().replace(/[^a-z]/g, '');
+  if (S.p.name && d.name && norm(S.p.name) !== norm(d.name) && !confirm(`The TAKA data is for ${d.name}, but this IDP is for ${S.p.name}. Fill it anyway?`)) return;
+  const parsed = parseTaka(d.skillText || '');
+  const bars = Object.fromEntries((d.skills || []).map(x => [x.n, x]));
+  let skills = parsed.skills.length ? parsed.skills : (d.skills || []).map(x => ({ n: x.n, s: 'On Par' }));
+  skills = skills.map(x => ({ ...x, v: bars[x.n] ? String(Math.round(bars[x.n].pct / TAKA_TOP20 * 100)) : '' }));
+  if (skills.length) S.taka.skills = skills;
+
+  const from = '2025-12-01';
+  const games = (d.games_list || []).filter(g => g.iso >= from).map(g => {
+    const dt = new Date(g.iso + 'T12:00:00Z');
+    return { iso: g.iso, d: `${MONTHS[dt.getUTCMonth()]} ${dt.getUTCDate()}`, o: g.opp || '', ha: g.ha, r: `${g.res} ${g.us}–${g.them}`, mins: '',
+             rt: takaSuggestRating(g.pct), n: g.pct ? `TAKA ${Math.round(g.pct / TAKA_TOP20 * 100)}% of Top 20%` : '' };
+  });
+  if (games.length) {
+    const key = g => `${g.d}|${g.r}`;
+    const old = new Map(S.games.map(g => [key(g), g]));
+    const merged = games.map(g => {
+      const o = old.get(key(g)); if (!o) return g; old.delete(key(g));
+      const coachRated = o.rt && !/^TAKA /.test(o.n || '');      // keep what a coach entered by hand
+      return { ...g, o: g.o || o.o, mins: o.mins, rt: coachRated ? o.rt : g.rt, n: coachRated ? o.n : g.n };
+    });
+    S.games = [...old.values()].concat(merged.sort((a, b) => a.iso.localeCompare(b.iso)));
+    S.p.games = String(S.games.length);
+  }
+  if (d.num) S.p.num = d.num;
+  if (d.goals) S.p.goals = d.goals;
+  // No position from PlayMetrics? Use TAKA's position to fill the Game Model role.
+  const TAKA_POS = { GK: 'GK', CB: 'CB', LCB: 'CB', RCB: 'CB', FB: 'FB', LB: 'FB', RB: 'FB', LWB: 'FB', RWB: 'FB', DM: 'DM', CDM: 'DM',
+                     CM: 'CM', AM: 'CM', CAM: 'CM', LM: 'WF', RM: 'WF', LW: 'WF', RW: 'WF', W: 'WF', ST: 'FWD', CF: 'FWD', FWD: 'FWD' };
+  const pk = TAKA_POS[d.pos];
+  if (pk && !S.p.posKey && !Object.values(S.role || {}).some(v => String(v).trim())) {
+    const pre = IDP_POSITIONS[pk];
+    S.p.posKey = pk; S.p.pos = pre.label;
+    S.role = { quals: pre.quals, att: pre.att, atod: pre.atod, def: pre.def, dtoa: pre.dtoa };
+  }
+  const first = games[0], last = games[games.length - 1];
+  const mlabel = g => { const dt = new Date(g.iso + 'T12:00:00Z'); return `${MONTHS[dt.getUTCMonth()]} ${dt.getUTCFullYear()}`; };
+  const bits = [];
+  if (parsed.period) bits.push(`${parsed.period.games} games as ${parsed.period.pos} (${parsed.period.from} – ${parsed.period.to})`);
+  if (games.length) bits.push(`${mlabel(first)} – ${mlabel(last)} · ${games.length} games tracked`);
+  if (parsed.benchmark) bits.push(`compared to the ${parsed.benchmark} in MLS NEXT`);
+  if (bits.length) S.taka.note = bits.join(' · ');
+  if (games.length) { S.p.before = S.p.before || mlabel(first); S.p.now = mlabel(last); }
+  S.p.takaUrl = S.p.takaUrl || takaSearchUrl(S.p.name);
+
+  save(); render(); applyLock();
+  banner(`✓ Filled from TAKA: ${skills.length} skills${games.length ? `, ${games.length} games with opponents and a suggested rating (from TAKA's game score — change any you disagree with)` : ''}${d.goals ? `, goals (${idpEsc(d.goals)})` : ''}.`);
+  const t = document.getElementById('takaSec');
+  if (t) { t.scrollIntoView({ behavior: 'smooth', block: 'start' }); t.classList.add('flash'); setTimeout(() => t.classList.remove('flash'), 2500); }
+}
 
 /* ── Paste from TAKA ── */
 let PARSED = null;

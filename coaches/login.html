@@ -54,7 +54,7 @@ document.getElementById('f').addEventListener('submit', async ev => {
   try {
     const res = await fetch('/api/login', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email, code }) });
     const body = await res.json().catch(() => ({}));
-    if (res.ok) { try { localStorage.setItem('scw-coach-email', email); } catch (e) {} location.href = safeNext; return; }
+    if (res.ok) { try { localStorage.setItem('scw-coach-email', email); } catch (e) {} location.href = safeNext + location.hash; return; }
     msg.textContent = body.message || 'Sign-in failed. Try again.';
   } catch (e) { msg.textContent = 'Could not reach the server. Check your connection.'; }
   go.disabled = false;

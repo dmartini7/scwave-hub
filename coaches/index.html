@@ -26,6 +26,7 @@ if (/(^|\.)scwaveplayerhub\.com$|\.pages\.dev$/.test(location.hostname) && !loca
     <div class="header-right">
       <nav>
         <a href="/coaches/" class="active">Player IDPs</a>
+        <a href="/coaches/taka-button.html">TAKA button</a>
         <a href="/">Player Hub</a>
       </nav>
       <div class="who" id="who"></div>
@@ -138,18 +139,7 @@ async function startIdp(idx) {
   if (res.ok) location.href = '/coaches/idp.html?id=' + res.body.id; else alert('Could not start the IDP. Try again.');
 }
 
-function buildIdp(name, team, posKey) {
-  const data = idpBlank(), pre = IDP_POSITIONS[posKey];
-  data.p.name = name; data.p.team = team;
-  const age = team.match(/U\d+(?:[-\/]U\d+)?/); data.p.age = age ? age[0] + ' Boys' : '';
-  data.p.coach = ME.name;
-  data.p.date = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-  data.p.before = 'Dec 2025';
-  data.p.now = new Date().toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
-  data.p.takaUrl = takaSearchUrl(name);
-  if (pre) { data.p.posKey = posKey; data.p.pos = pre.label; data.role = { quals: pre.quals, att: pre.att, atod: pre.atod, def: pre.def, dtoa: pre.dtoa }; }
-  return data;
-}
+function buildIdp(name, team, posKey) { return idpBuild(name, team, posKey, ME.name); }
 
 function openNew() { document.getElementById('newModal').hidden = false; document.getElementById('nName').focus(); }
 function closeNew() { document.getElementById('newModal').hidden = true; }

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+  <title>TAKA import — SC Wave Coaches</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/coaches/coaches.css" />
+  <style>
+    body { margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 16px; font-family: 'Inter', Arial, sans-serif; }
+    .box { width: min(520px, 100%); background: #0D0D0D; border: 1px solid #2A2A2A; border-top: 4px solid #F5C518; border-radius: 14px; padding: 26px; color: #fff; }
+    h1 { font: 900 26px/1 'Barlow Condensed', sans-serif; text-transform: uppercase; margin: 0 0 12px; }
+    h1 span { color: #F5C518; }
+    p { color: #CFCFCF; font-size: 14px; line-height: 1.55; margin: 0 0 10px; }
+    p b { color: #fff; }
+    .pick { display: block; width: 100%; text-align: left; margin: 6px 0; }
+    .err { color: #FBBF24; }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h1>TAKA <span>import</span></h1>
+    <div id="out"><p>Reading the TAKA data…</p></div>
+  </div>
+<script src="/coaches/idp-lib.js"></script>
+<script>
+const out = document.getElementById('out');
+const show = html => { out.innerHTML = html; };
+const norm = s => String(s || '').toLowerCase().normalize('NFD').replace(/[^a-z]/g, '');
+
+async function go() {
+  let data = null;
+  try {
+    const raw = location.hash.slice(1) ? decodeURIComponent(location.hash.slice(1)) : sessionStorage.getItem('scw-taka-import');
+    data = raw ? JSON.parse(raw) : null;
+  } catch (e) { data = null; }
+  if (!data || !data.name) {
+    show('<p class="err">No TAKA data found.</p><p>In TAKA, open the player\'s IDP and click the <b>Send to SC Wave IDP</b> button on your bookmarks bar.</p><p><a class="btn" href="/coaches/taka-button.html">Set up the TAKA button</a> <a class="btn" href="/coaches/">All IDPs</a></p>');
+    return;
+  }
+  sessionStorage.setItem('scw-taka-import', JSON.stringify(data));
+  history.replaceState(null, '', location.pathname); // keep the data out of the address bar / history
+
+  const [me, ro, li] = await Promise.all([idpApi('me'), idpApi('roster'), idpApi('idps')]);
+  const roster = ro.ok ? ro.body : [], idps = li.ok ? li.body : [];
+  const hint = takaTeamHint(data.team);
+  let matches = roster.filter(r => norm(r.name) === norm(data.name));
+  if (matches.length > 1 && hint) { const h = matches.filter(r => r.team.includes(hint)); if (h.length) matches = h; }
+
+  const games = (data.games_list || []).length;
+  const summary = `<p><b>${idpEsc(data.name)}</b>${data.num ? ' #' + idpEsc(data.num) : ''} · ${idpEsc(data.team)}<br>${(data.skills || []).length} TAKA skills · ${games} games</p>`;
+
+  const openFor = async row => {
+    const existing = idps.find(i => i.roster_id === row.id) || idps.find(i => !i.roster_id && norm(i.player) === norm(row.name));
+    if (existing) { location.href = '/coaches/idp.html?id=' + existing.id + '&taka=1'; return; }
+    show(summary + `<p>Creating ${idpEsc(row.name)}'s IDP…</p>`);
+    const d = idpBuild(row.name, row.team, row.pos_key, me.body && me.body.name);
+    d.p.num = row.num || data.num || '';
+    if (row.position) d.p.pos = row.position;
+    const r = await idpApi('idps', { method: 'POST', body: { data: d, roster_id: row.id } });
+    if (r.ok) location.href = '/coaches/idp.html?id=' + r.body.id + '&taka=1';
+    else show(summary + '<p class="err">Could not create the IDP. Try again.</p>');
+  };
+  window.__openFor = idx => openFor(window.__choices[idx]);
+
+  if (matches.length === 1) { show(summary + `<p>Opening <b>${idpEsc(matches[0].name)}</b>'s IDP (${idpEsc(matches[0].team)})…</p>`); return openFor(matches[0]); }
+
+  // Not found (or found on two teams): let the coach choose.
+  window.__choices = matches.length ? matches : roster.filter(r => norm(r.name).includes(norm(data.name).slice(0, 5)) || (hint && r.team.includes(hint)));
+  show(summary + (matches.length
+    ? '<p>This player is on more than one roster. Which IDP should get the TAKA data?</p>'
+    : `<p class="err">No player named ${idpEsc(data.name)} on the 2026-27 rosters.</p><p>Pick the right player below, or <a href="/coaches/">go to all IDPs</a>.</p>`) +
+    window.__choices.slice(0, 30).map((r, i) => `<button class="btn pick" onclick="__openFor(${i})">${idpEsc(r.name)} · ${idpEsc(r.team)}${r.num ? ' · #' + idpEsc(r.num) : ''}</button>`).join(''));
+}
+go();
+</script>
+</body>
+</html>
