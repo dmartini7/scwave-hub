@@ -100,6 +100,9 @@ function takaSearchUrl(name) {
    Reads the text a coach copies (Cmd+A, Cmd+C) from TAKA → Assistant Coach → IDP,
    on either the Skill Analysis or the Performance Monitoring tab. */
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+// Skill names TAKA uses across positions (used when a coach copies only part of the page).
+const TAKA_SKILLS = ['Creativity', 'Finishing', 'Physical', 'Off Ball', 'Passing', 'Defending', 'Duels', 'Possession',
+  'Aerial', 'Crossing', 'Dribbling', 'Shot Stopping', 'Distribution', 'Handling', 'Sweeping', 'Positioning', 'Pressing'];
 
 function parseTaka(text, opts = {}) {
   const t = String(text || '').replace(/\r/g, '');
@@ -119,15 +122,33 @@ function parseTaka(text, opts = {}) {
   const bm = t.match(/Top 20% (U\d+ [A-Z]{1,4}s?)/);
   if (bm) out.benchmark = `Top 20% of ${bm[1]}`;
 
-  // Skill Analysis: skill names sit between the "Top 20% …" line and "Key Strengths".
-  const bi = lines.findIndex(l => /^Top 20%/.test(l));
-  const ki = lines.indexOf('Key Strengths');
-  const di = lines.indexOf('Development Opportunities');
-  if (bi >= 0 && ki > bi) {
-    const names = lines.slice(bi + 1, ki).filter(l => /^[A-Za-z][A-Za-z ]{1,24}$/.test(l));
-    const strengths = new Set(lines.slice(ki + 1, di > ki ? di : undefined).filter(l => names.includes(l)));
-    const devs = new Set(di > 0 ? lines.slice(di + 1).filter(l => names.includes(l)) : []);
-    out.skills = names.map(n => ({ n, s: strengths.has(n) ? 'Key Strength' : devs.has(n) ? 'Dev. Opportunity' : 'On Par' }));
+  // "5 games played as CM between December 2025 and July 2026." (comparison view)
+  const gp = t.match(/(\d+)\s+games? played as\s+([A-Z]{1,4})\s+between\s+([A-Z][a-z]+ \d{4})\s+and\s+([A-Z][a-z]+ \d{4})/);
+  if (gp) out.period = { games: gp[1], pos: gp[2], from: gp[3], to: gp[4] };
+
+  // Skill Analysis. TAKA has two layouts:
+  //   single season  → "Key Strengths" / "Development Opportunities"
+  //   baseline vs. compared-to → "What Improved" / "Areas To Work On"
+  const find = re => lines.findIndex(l => re.test(l));
+  const bi = find(/^Top 20%/);
+  const ki = find(/^Key Strengths$/i), di = find(/^Development Opportunities$/i);
+  const wi = find(/^What Improved$/i), ai = find(/^Areas To Work On$/i);
+  const firstHead = [ki, di, wi, ai].filter(i => i >= 0).sort((a, b) => a - b)[0];
+  let names = [];
+  if (bi >= 0 && firstHead > bi) names = lines.slice(bi + 1, firstHead).filter(l => /^[A-Za-z][A-Za-z ]{1,24}$/.test(l) && !/^Top 20%/.test(l));
+  if (!names.length) names = TAKA_SKILLS.filter(n => lines.includes(n)); // partial copy: fall back to TAKA's skill names
+  const section = (start, ends) => {
+    if (start < 0) return new Set();
+    const stop = ends.filter(i => i > start).sort((a, b) => a - b)[0];
+    return new Set(lines.slice(start + 1, stop).filter(l => names.includes(l)));
+  };
+  const heads = [ki, di, wi, ai];
+  const strengths = section(ki, heads), devs = section(di, heads), improved = section(wi, heads), workOn = section(ai, heads);
+  if (names.length && firstHead !== undefined) {
+    out.compare = wi >= 0 || ai >= 0;
+    out.skills = names.map(n => ({ n, s:
+      strengths.has(n) ? 'Key Strength' : improved.has(n) ? 'Improved' :
+      devs.has(n) || workOn.has(n) ? 'Dev. Opportunity' : 'On Par' }));
   }
 
   // Performance Monitoring: blocks of  W|D|L / "a - b" / "15 Nov" / Home|Away  (score is home – away).

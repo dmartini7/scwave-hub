@@ -254,7 +254,7 @@ if (/(^|\.)scwaveplayerhub\.com$|\.pages\.dev$/.test(location.hostname) && !loca
    Page 1: player, role in the Game Model, four-corner ratings, strengths / work-ons.
    Page 2: TAKA (MLS NEXT) snapshot, 2–3 goals, game log, comments & sign-off. */
 const R = ['', '1', '1.5', '2', '2.5', '3', '3.5', '4'];
-const TAKA_STATUS = ['Key Strength', 'On Par', 'Dev. Opportunity', 'No data'];
+const TAKA_STATUS = ['Key Strength', 'Improved', 'On Par', 'Dev. Opportunity', 'No data'];
 
 const ID = new URLSearchParams(location.search).get('id');
 let S = null, META = null, BASE = null, STATUS = 'draft', ME = null, FILES = [];
@@ -330,7 +330,7 @@ const num = v => { const n = parseFloat(v); return isNaN(n) ? null : n; };
 const I = (p, ph = '', c = '') => `<input class="f ${c}" data-p="${p}" value="${esc(get(p))}" placeholder="${esc(ph)}">`;
 const T = (p, ph = '', rows = 2) => `<textarea class="f" data-p="${p}" rows="${rows}" placeholder="${esc(ph)}">${esc(get(p))}</textarea>`;
 const SEL = (p, o, c = '') => `<select class="f ${c}" data-p="${p}">${o.map(x => `<option value="${esc(x)}" ${String(get(p)) === x ? 'selected' : ''}>${x === '' ? '–' : esc(x)}</option>`).join('')}</select>`;
-const cls = s => s === 'Key Strength' ? 'Strength' : s === 'Dev. Opportunity' ? 'Develop' : 'OnPar';
+const cls = s => s === 'Key Strength' || s === 'Improved' ? 'Strength' : s === 'Dev. Opportunity' ? 'Develop' : 'OnPar';
 
 function avg(c, k) { const v = c.items.map(i => num(i[k])).filter(x => x !== null); return v.length ? v.reduce((a, b) => a + b) / v.length : null; }
 const f1 = n => n === null ? '–' : n.toFixed(1);
@@ -565,7 +565,8 @@ function previewPaste() {
   const h = res.header, bits = [];
   if (h.name) bits.push(`<b>${idpEsc(h.name)}</b>${h.num ? ' #' + idpEsc(h.num) : ''}${h.posCode ? ' · ' + idpEsc(h.posCode) : ''}`);
   if (h.goals) bits.push(`Goals: <b>${idpEsc(h.goals)}</b>`);
-  if (res.skills.length) bits.push(`Skills: ${res.skills.map(x => `${idpEsc(x.n)} (${idpEsc(x.s)})`).join(', ')}`);
+  if (res.skills.length) bits.push(`${res.compare ? 'Comparison view — ' : ''}Skills: ${res.skills.map(x => `${idpEsc(x.n)} (${idpEsc(x.s)})`).join(', ')}`);
+  if (res.period) bits.push(`${idpEsc(res.period.games)} games as ${idpEsc(res.period.pos)}, ${idpEsc(res.period.from)} → ${idpEsc(res.period.to)}`);
   if (res.games.length) bits.push(`Games: <b>${res.games.length}</b> (${idpEsc(res.games[0].d)} → ${idpEsc(res.games[res.games.length - 1].d)})`);
   if (h.name && S.p.name && h.name.toLowerCase() !== S.p.name.trim().toLowerCase()) bits.push(`<span class="warn">⚠ This TAKA page is for ${idpEsc(h.name)}, not ${idpEsc(S.p.name)}.</span>`);
   if (text.trim() && !res.skills.length && !res.games.length) bits.push('<span class="warn">No TAKA skills or games found. Copy the whole IDP page (Cmd+A, then Cmd+C).</span>');
@@ -590,8 +591,12 @@ function applyPaste() {
   }
   const bits = [];
   const fromV = document.getElementById('pasteFrom').value;
-  if (fromV) { const [y, m] = fromV.split('-'); bits.push(`${MONTHS[Number(m) - 1]} ${y} – now`); }
-  if (S.games.length) bits.push(`${S.games.length} games tracked`);
+  const short = t => t.replace(/^([A-Z][a-z]{2})[a-z]* (\d{4})$/, '$1 $2');
+  if (r.period) {
+    S.p.before = short(r.period.from); S.p.now = short(r.period.to);
+    bits.push(`${short(r.period.from)} – ${short(r.period.to)}`, `${r.period.games} games as ${r.period.pos}`);
+  } else if (fromV) { const [y, m] = fromV.split('-'); bits.push(`${MONTHS[Number(m) - 1]} ${y} – now`); }
+  if (S.games.length && !r.period) bits.push(`${S.games.length} games tracked`);
   if (r.benchmark) bits.push(`compared to the ${r.benchmark} in MLS NEXT`);
   if (bits.length && (r.skills.length || r.games.length)) S.taka.note = bits.join(' · ');
   closePaste(); document.getElementById('pasteText').value = ''; PARSED = null;
