@@ -465,7 +465,7 @@ function render() {
       <h2>Game Log</h2>
       <div class="note">Rating (1–4) for each game, based on the coach's review and TAKA's game assessment. The chart starts at 1; the dashed line is the target of 3.</div>
       ${chart}
-      <div class="glist" style="grid-template-rows:repeat(${Math.ceil(S.games.length / 2) || 1}, auto);grid-auto-flow:column">${S.games.map(g => `<div><span>${esc(g.d)}</span><span>${esc(g.o)}</span><span>${esc(g.ha)}</span><span>${esc(g.r)}</span><b>${esc(g.rt)}</b>${g.n ? `<em>${esc(g.n)}</em>` : ''}</div>`).join('')}</div>
+      <div class="glist" style="grid-template-rows:repeat(${Math.ceil(S.games.length / 2) || 1}, auto);grid-auto-flow:column">${S.games.map(g => `<div><span>${esc(g.d)}</span><span>${esc(g.o)}</span><span>${esc(g.ha)}</span><span>${esc(g.r)}</span><b>${esc(g.rt)}</b>${g.n && !/^TAKA /.test(g.n) ? `<em>${esc(g.n)}</em>` : ''}</div>`).join('')}</div>
       <div class="scroll" id="gwrap"><table id="gtable"><thead><tr><th>Date</th><th>Opponent</th><th>H/A</th><th>Result</th><th>Rating</th><th>Note</th><th class="np"></th></tr></thead><tbody>${games}</tbody></table></div>
       <button class="add np" onclick="addRow('games')">+ Add game</button>
 
