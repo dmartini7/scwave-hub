@@ -164,6 +164,9 @@ if (/(^|\.)scwaveplayerhub\.com$|\.pages\.dev$/.test(location.hostname) && !loca
       #gwrap { display: none !important; }
       .glist { display: grid !important; }
       .signs { margin-top: 10px; }
+      .role textarea { font-size: 9.5px !important; line-height: 1.3 !important; }
+      .role div { padding: 6px 8px; }
+      .quals textarea { font-size: 11px !important; }
       .signs .sn { padding: 1px 0; font-size: 13px; }
       .gchart { height: 88px; }
       .stats div { padding: 4px 8px; }
@@ -426,7 +429,7 @@ function render() {
         <div><span class="lbl">Next review</span>${I('p.review')}</div>
       </div>
 
-      <h2>Role in the SC Wave Game Model <select class="in np preset" onchange="applyPosition(this.value)"><option value="">Fill from a position profile…</option>${Object.entries(IDP_POSITIONS).map(([k, v]) => `<option value="${k}" ${S.p.posKey === k ? 'selected' : ''}>${idpEsc(v.label)}</option>`).join('')}</select></h2>
+      <h2>Role in the SC Wave Game Model <select class="in np preset" onchange="applyPosition(this.value)"><option value="">Fill from a position profile…</option>${Object.entries(IDP_POSITIONS).map(([k, v]) => `<option value="${k}">${idpEsc(v.label)}${S.p.posKey === k ? ' (current)' : ''}</option>`).join('')}</select></h2>
       <div class="quals"><span class="lbl">Key qualities for the position</span>${T('role.quals', '', 1)}</div>
       <div class="role">
         <div><span class="lbl">Attacking</span>${T('role.att', '', 3)}</div>
