@@ -112,6 +112,33 @@ function takaSuggestRating(pct) {
   const r = pct / TAKA_TOP20;
   return r >= 1.1 ? '4' : r >= 1.0 ? '3.5' : r >= 0.9 ? '3' : r >= 0.83 ? '2.5' : r >= 0.75 ? '2' : '1.5';
 }
+/* Draft development goals for a TAKA development area, written for the SC Wave Game Model and training week. */
+const TAKA_GOALS = {
+  Passing: { g: 'Pass forward with quality: scan before receiving and play more diagonal and through passes to break lines (Phase 1 · Attacking).',
+    a: 'Monday technical: 2-touch rondos and passing patterns with scanning cues. Tue/Wed positional games that reward line-breaking passes. Review TAKA passing clips every two weeks.' },
+  Defending: { g: 'Defend the middle: block forward passes, win interceptions and recover quickly to support the #6 (Phases 2–3 · Transition & Defending).',
+    a: 'Tue/Wed 4v4+2 and 6v6 transition games with press / delay / drop cues. Recovery-run reps from the attacking third. Review TAKA defending clips every two weeks.' },
+  Creativity: { g: 'Create more in the final third: beat a player 1v1 and play forward through the lines (Phase 1 · Attacking).',
+    a: '1v1 / 2v1 attacking circuits. Positional games that reward line-breaking dribbles and passes. Winter futsal 1× per week.' },
+  Finishing: { g: 'Finish with composure: more shots on target from the edge of the box and on late runs (Chance creation / Scoring).',
+    a: 'Weekly finishing block: first-time and 18–30 yd shots, late-arrival patterns into the box. 50 extra shots per week on your own.' },
+  Physical: { g: 'Be stronger and repeat high-intensity actions for the full game (all phases).',
+    a: 'Winter speed / agility / strength program at MOSH 2× per week. Shielding and 50/50 duel work in training. Repeated-sprint conditioning.' },
+  'Off Ball': { g: 'Better positioning off the ball: find the half space between the lines and time forward runs (Phase 1 · Attacking).',
+    a: 'Positional play games with zones and third-man runs. Video on scanning and body shape. Run-timing patterns in Thursday sessions.' },
+  Duels: { g: 'Win more duels on the ground: body position, timing and aggression (Phases 2–3).',
+    a: '1v1 defending and shielding duels every session. Small-sided games scored on duels won. Strength program 2× per week.' },
+  Possession: { g: 'Keep the ball under pressure: receive on the half-turn and play out of tight spaces (Phase 4 · Defend → Attack).',
+    a: 'Rondos and tight-space positional games. Futsal 1× per week. Receiving-on-the-turn patterns.' },
+  Aerial: { g: 'Win more aerial duels in both boxes: timing, approach and body (Defending & set pieces).',
+    a: 'Heading technique and jumping/timing reps 2× per week. Crossing-and-defending small-sided games.' }
+};
+function takaGoal(skill, v) {
+  const t = TAKA_GOALS[skill] || { g: `Raise ${skill} toward the Top 20% level in MLS NEXT.`, a: `Position-specific ${skill.toLowerCase()} work in Tue/Wed sessions. Review TAKA clips every two weeks.` };
+  const target = v ? Math.min(100, Number(v) + 7) : 90;
+  return { g: t.g, a: t.a, m: `TAKA ${skill}: from ${v ? v + '%' : 'current level'} to ${target}%+ of the Top 20% level (re-check with the TAKA button). Coach rating 3 or higher.` };
+}
+
 /* "SC Wave MLS NEXT U17 AD" → "MLS NEXT U17 Academy"; "… HD" → Homegrown */
 function takaTeamHint(team) {
   const m = String(team || '').match(/U(\d+)/); if (!m) return '';
@@ -172,6 +199,14 @@ function parseTaka(text, opts = {}) {
   };
   const heads = [ki, di, wi, ai];
   const strengths = section(ki, heads), devs = section(di, heads), improved = section(wi, heads), workOn = section(ai, heads);
+  // TAKA's one-line description under each skill in the strength / development lists
+  out.desc = {};
+  [ki, di, wi, ai].filter(i => i >= 0).forEach(start => {
+    for (let i = start + 1; i < lines.length - 1; i++) {
+      if (heads.includes(i)) break;
+      if (names.includes(lines[i]) && !names.includes(lines[i + 1]) && !/^(Key Strengths|Development Opportunities|What Improved|Areas To Work On)$/i.test(lines[i + 1])) out.desc[lines[i]] = lines[i + 1];
+    }
+  });
   if (names.length && firstHead !== undefined) {
     out.compare = wi >= 0 || ai >= 0;
     out.skills = names.map(n => ({ n, s:

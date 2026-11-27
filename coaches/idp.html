@@ -613,10 +613,49 @@ function applyTakaData(d) {
   if (games.length) { S.p.before = S.p.before || mlabel(first); S.p.now = mlabel(last); }
   S.p.takaUrl = S.p.takaUrl || takaSearchUrl(S.p.name);
 
+  /* ── Draft the rest of the IDP from TAKA (only fields that are still empty) ── */
+  const drafted = [];
+  const val = n => { const x = skills.find(k => k.n === n); return x && x.v ? Number(x.v) : null; };
+  const basePct = n => (bars[n] && bars[n].base != null) ? bars[n].base : null;
+  let rated = 0;
+  S.corners.forEach(c => c.items.forEach(it => {
+    if (!it.tk || !bars[it.tk]) return;
+    if (!it.c) { it.c = takaSuggestRating(bars[it.tk].pct); rated++; }
+    if (!it.b && basePct(it.tk) != null) it.b = takaSuggestRating(basePct(it.tk));
+  }));
+  if (rated) drafted.push(`${rated} four-corner ratings (TAKA-linked items)`);
+
+  const strong = skills.filter(k => k.s === 'Key Strength' || k.s === 'Improved');
+  const work = skills.filter(k => k.s === 'Dev. Opportunity');
+  const byVal = [...skills].filter(k => k.v).sort((a, b) => Number(b.v) - Number(a.v));
+  const top = (strong.length ? strong : byVal.slice(0, 2)).slice(0, 2);
+  const low = (work.length ? work : byVal.slice(-2).reverse()).slice(0, 2);
+  const line = (k, i) => `${i + 1}. ${k.n}${parsed.desc && parsed.desc[k.n] ? ' — ' + parsed.desc[k.n].replace(/\.$/, '') : ''} (TAKA: ${k.s}${k.v ? `, ${k.v}% of Top 20%` : ''}).`;
+  if (!String(S.strengths || '').trim() && top.length) { S.strengths = top.map(line).join('\n'); drafted.push('key strengths'); }
+  if (!String(S.workon || '').trim() && low.length) { S.workon = low.map(line).join('\n'); drafted.push('areas to work on'); }
+
+  const reviewDate = new Date(); reviewDate.setMonth(reviewDate.getMonth() + 3);
+  const reviewLabel = reviewDate.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+  if (!S.p.review) S.p.review = reviewLabel;
+  const goalsEmpty = !S.goals.some(g => [g.g, g.a, g.m].some(x => String(x || '').trim()));
+  if (goalsEmpty && low.length) {
+    S.goals = low.map(k => ({ ...takaGoal(k.n, k.v), by: S.p.review || reviewLabel }));
+    drafted.push(`${low.length} development goals`);
+  }
+
+  if (!String(S.coach || '').trim() && skills.length) {
+    const best = [...games].filter(g => g.n).sort((a, b) => parseFloat(b.n.match(/\d+/)) - parseFloat(a.n.match(/\d+/)))[0];
+    S.coach = `TAKA analysis${games.length ? ` (${mlabel(first)} – ${mlabel(last)}, ${games.length} games)` : ''}: ` +
+      `${top.length ? `strengths in ${top.map(k => k.n).join(' and ')}` : ''}${top.length && low.length ? '; ' : ''}${low.length ? `next steps are ${low.map(k => k.n).join(' and ')}` : ''}.` +
+      `${best ? ` Best game by TAKA: ${best.r} vs ${best.o || 'opponent'} (${best.n.replace('TAKA ', '')}).` : ''} [Draft from TAKA — coach to edit.]`;
+    drafted.push('coach summary (draft)');
+  }
+
   save(); render(); applyLock();
-  banner(`✓ Filled from TAKA: ${skills.length} skills${games.length ? `, ${games.length} games with opponents and a suggested rating (from TAKA's game score — change any you disagree with)` : ''}${d.goals ? `, goals (${idpEsc(d.goals)})` : ''}.`);
-  const t = document.getElementById('takaSec');
-  if (t) { t.scrollIntoView({ behavior: 'smooth', block: 'start' }); t.classList.add('flash'); setTimeout(() => t.classList.remove('flash'), 2500); }
+  banner(`✓ Filled from TAKA: ${skills.length} skills${games.length ? `, ${games.length} games with opponents and suggested ratings` : ''}${d.goals ? `, goals (${idpEsc(d.goals)})` : ''}.` +
+    (drafted.length ? `<br>Drafted from TAKA: ${idpEsc(drafted.join(', '))}. Review and edit them — ratings for items TAKA doesn't measure (transitions, endurance, mental) are yours to add.` : ''));
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  document.querySelectorAll('.corners, #takaSec, .sw').forEach(el => { el.classList.add('flash'); setTimeout(() => el.classList.remove('flash'), 2500); });
 }
 
 /* ── Paste from TAKA ── */
