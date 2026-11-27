@@ -179,6 +179,9 @@ if (/(^|\.)scwaveplayerhub\.com$|\.pages\.dev$/.test(location.hostname) && !loca
     .ev-img { display: block; width: 100%; border: 1px solid #E3E3DE; border-radius: 8px; margin: 6px 0 14px; break-inside: avoid; }
     @media print { .evidence .ev-img { max-height: 8.2in; object-fit: contain; } }
     #pasteGo.dim { opacity: .55; }
+    .flash { animation: flash 2.4s ease; border-radius: 6px; }
+    @keyframes flash { 0%, 40% { background: #FDE68A; box-shadow: 0 0 0 6px #FDE68A; } 100% { background: transparent; box-shadow: none; } }
+    .banner.ok { background: #0F2A17; border-color: #16A34A; color: #BBF7D0; }
   </style>
 </head>
 <body>
@@ -263,7 +266,7 @@ let dirty = false, saving = false, blocked = false, timer = null;
 
 function clone(o) { return JSON.parse(JSON.stringify(o)); }
 function msg(t) { document.getElementById('saved').textContent = t; }
-function banner(html) { const b = document.getElementById('banner'); b.innerHTML = html; b.hidden = !html; }
+function banner(html) { const b = document.getElementById('banner'); b.innerHTML = html; b.hidden = !html; b.classList.toggle('ok', String(html).startsWith('✓')); }
 function save() {
   if (blocked || !S) return;
   dirty = true; msg('Saving…');
@@ -431,7 +434,7 @@ function render() {
         <div class="w"><h3>◎ Areas to Work On</h3>${T('workon', 'Top 2 areas to improve', 3)}</div>
       </div>
 
-      <h2>MLS NEXT Data — TAKA Skill Analysis</h2>
+      <h2 id="takaSec">MLS NEXT Data — TAKA Skill Analysis</h2>
       <div class="note"><span class="powered">Powered by TAKA</span> · ${I('taka.note')}</div>
       ${S.taka.skills.length ? `<div class="taka">${taka}</div>` : `<div class="taka-empty">No TAKA data yet. Use <b>Paste from TAKA</b> at the top of the page.</div>`}
       <div class="shots np">${SHOT_KINDS.map(([k, label]) => `
@@ -590,7 +593,8 @@ function applyPaste() {
     const key = g => `${g.d}|${g.r}`;
     const old = new Map(S.games.map(g => [key(g), g]));
     const merged = r.games.map(g => { const o = old.get(key(g)); if (o) old.delete(key(g)); return o ? { ...g, o: o.o, rt: o.rt, n: o.n, mins: o.mins } : g; });
-    S.games = merged.concat([...old.values()]);
+    merged.sort((x, y) => (x.iso || '').localeCompare(y.iso || ''));
+    S.games = [...old.values()].concat(merged);
     S.p.games = String(S.games.length);
     const from = document.getElementById('pasteFrom').value;
     if (from && !S.p.before) { const [y, m] = from.split('-'); S.p.before = `${MONTHS[Number(m) - 1]} ${y}`; }
@@ -607,6 +611,11 @@ function applyPaste() {
   if (bits.length && (r.skills.length || r.games.length)) S.taka.note = bits.join(' · ');
   closePaste(); document.getElementById('pasteText').value = ''; PARSED = null;
   save(); render(); applyLock();
+  const what = [r.skills.length ? `${r.skills.length} TAKA skills` : '', r.games.length ? `${r.games.length} games` : '', h.goals ? `goals (${h.goals})` : ''].filter(Boolean).join(', ');
+  banner(`✓ Filled from TAKA: ${idpEsc(what)}. Scroll down to check the <b>MLS NEXT Data — TAKA</b> section${r.games.length ? ' and the <b>Game Log</b> (type in opponent names)' : ''}.`);
+  const target = document.getElementById(r.games.length && !r.skills.length ? 'gwrap' : 'takaSec');
+  if (target) { target.scrollIntoView({ behavior: 'smooth', block: 'center' }); target.classList.add('flash'); setTimeout(() => target.classList.remove('flash'), 2500); }
+  setTimeout(() => { if (!blocked) banner(''); }, 12000);
 }
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closePaste(); });
 init();
