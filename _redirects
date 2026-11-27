@@ -1,8 +1,5 @@
-# Used only by the Cloudflare Pages copy of the hub (scwaveplayerhub.com).
-# The coaches area lives on the Worker at coaches.scwaveplayerhub.com; server files are not part of the public site.
-/coaches                https://coaches.scwaveplayerhub.com/coaches/          302
-/coaches/*              https://coaches.scwaveplayerhub.com/coaches/:splat    302
-/api/*                  https://coaches.scwaveplayerhub.com/api/:splat        307
+# Cloudflare redirects (read by both the Pages copy and the Worker).
+# Keeps server/config files off the public site. (Coach pages send visitors to coaches.scwaveplayerhub.com themselves.)
 /src/*                  /                                                     302
 /migrations/*           /                                                     302
 /COACHES-SETUP.md       /                                                     302

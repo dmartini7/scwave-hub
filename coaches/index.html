@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex" />
+  <script>/* The coaches area only runs on coaches.scwaveplayerhub.com (the public Pages copy can't sign coaches in). */
+if (/(^|\.)scwaveplayerhub\.com$|\.pages\.dev$/.test(location.hostname) && !location.hostname.startsWith('coaches.')) location.replace('https://coaches.scwaveplayerhub.com' + location.pathname + location.search);</script>
   <title>Player IDPs — SC Wave Coaches</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />

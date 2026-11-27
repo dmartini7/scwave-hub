@@ -11,7 +11,7 @@ const SNAPSHOT_EVERY_MS = 30 * 60 * 1000;
 const SESSION_DAYS = 30;
 const COOKIE = 'scw_coach';
 const MAX_FAILS = 10, FAIL_WINDOW_MS = 15 * 60 * 1000;
-const PUBLIC_COACH_FILES = ['/coaches/login.html', '/coaches/coaches.css'];
+const PUBLIC_COACH_FILES = ['/coaches/login.html', '/coaches/login', '/coaches/coaches.css', '/coaches/idp-lib.js'];
 
 export default {
   async fetch(request, env) {
